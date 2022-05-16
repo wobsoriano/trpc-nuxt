@@ -12,23 +12,22 @@ importers:
       eslint: latest
       fs-extra: ^10.1.0
       nuxt: ^3.0.0-rc.3
+      pathe: ^0.3.0
       ufo: ^0.8.4
       zod: ^3.16.0
     dependencies:
       '@nuxt/kit': 3.0.0-rc.3
-      '@trpc/server': 9.23.2
+      '@trpc/server': 9.23.3
       fs-extra: 10.1.0
+      pathe: 0.3.0
       ufo: 0.8.4
-      zod: 3.16.0
     devDependencies:
       '@antfu/eslint-config': 0.23.1_eslint@8.15.0
       '@nuxt/module-builder': 0.1.7
       '@types/fs-extra': 9.0.13
       eslint: 8.15.0
       nuxt: 3.0.0-rc.3
-
-  playground:
-    specifiers: {}
+      zod: 3.16.0
 
 packages:
 
@@ -872,8 +871,8 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  /@trpc/server/9.23.2:
-    resolution: {integrity: sha512-uFvn2pFV+wJWLtvH3sqwF+1xfMp1m3Irq4S9MkNtUIFER9k3o6RN6FU2yUA+nefeCDkGsptPE7R4RbxojtpNXw==}
+  /@trpc/server/9.23.3:
+    resolution: {integrity: sha512-J8TWw/Y5TFp6QGfdry224TgfnkqXETpxAwYZS+dwf3uYCQG49sdl9RUgrf5V2IxVnQA5OXQtjDHJUSzHM7okwQ==}
     dev: false
 
   /@trysound/sax/0.2.0:
@@ -6513,7 +6512,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 4.2.3
+      string-width: 1.0.2
     dev: true
 
   /word-wrap/1.2.3:
@@ -6607,4 +6606,4 @@ packages:
 
   /zod/3.16.0:
     resolution: {integrity: sha512-szrIkryADbTM+xBt2a1KoS2CJQXec4f9xG78bj5MJeEH/XqmmHpnO+fG3IE115AKBJak+2HrbxLZkc9mhdbDKA==}
-    dev: false
+    dev: true

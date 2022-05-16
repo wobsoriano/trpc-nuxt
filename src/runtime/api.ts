@@ -33,11 +33,12 @@ export function createTRPCHandler<Router extends AnyRouter>({
   createContext?: CreateContextFn<Router>
   responseMeta?: ResponseMetaFn<Router>
 }) {
+  const url = '/trpc'
+
   return async (event) => {
     const {
       req,
       res,
-      context,
     } = event
 
     const $url = createURL(req.url)
@@ -50,7 +51,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await useBody(event),
         query: $url.searchParams,
       },
-      path: context.params.query,
+      path: $url.pathname.substring(url.length + 5),
       createContext: async () => createContext?.(req),
       responseMeta,
     })
