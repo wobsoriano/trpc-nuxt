@@ -1,0 +1,48 @@
+{
+  "name": "trpc-nuxt",
+  "type": "module",
+  "version": "0.0.2",
+  "license": "MIT",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    },
+    "./handler": {
+      "import": "./dist/runtime/handler.mjs",
+      "types": "./dist/runtime/handler.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "play": "pnpm run build && nuxi dev playground",
+    "prepare": "nuxi prepare playground",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.3",
+    "@trpc/server": "^9.23.2",
+    "fs-extra": "^10.1.0",
+    "ufo": "^0.8.4",
+    "zod": "^3.16.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.23.1",
+    "@nuxt/module-builder": "latest",
+    "@types/fs-extra": "^9.0.13",
+    "eslint": "latest",
+    "nuxt": "^3.0.0-rc.3"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  }
+}
