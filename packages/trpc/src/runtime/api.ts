@@ -51,7 +51,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await useBody(event),
         query: $url.searchParams,
       },
-      path: $url.pathname.substring(url.length + 5),
+      path: $url.pathname.substring(url.length + 1),
       createContext: async () => createContext?.(req),
       responseMeta,
     })
