@@ -1,4 +1,5 @@
 import { dirname, join } from 'pathe'
+
 import { addServerHandler, defineNuxtModule } from '@nuxt/kit'
 import fs from 'fs-extra'
 
@@ -28,6 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
         { name: 'useTrpcQuery', from: clientPath },
         { name: 'useLazyTrpcQuery', from: clientPath },
         { name: 'useTrpcMutation', from: clientPath },
+        { name: 'useClient', from: clientPath },
       )
     })
 
@@ -45,13 +47,15 @@ export default defineNuxtModule<ModuleOptions>({
       const {
         useTrpcQuery,
         useLazyTrpcQuery,
-        useTrpcMutation
+        useTrpcMutation,
+        useClient
       } = createTRPCComposables<typeof router>(client)
 
       export {
         useTrpcQuery,
         useLazyTrpcQuery,
-        useTrpcMutation
+        useTrpcMutation,
+        useClient
       }
     `)
 
@@ -67,3 +71,4 @@ export default defineNuxtModule<ModuleOptions>({
     `)
   },
 })
+

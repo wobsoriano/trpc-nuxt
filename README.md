@@ -56,6 +56,15 @@ Use the client like so:
 
 ```html
 <script setup lang="ts">
-const { data } = await useTrpcQuery('hello')
+const client = useClient()
+const data = await client.query('hello')
+console.log(data) // => 👈 world
 </script>
 ```
+
+## Composables
+
+Composables are auto-imported.
+
+###`useTrpcQuery(path, input)`
+

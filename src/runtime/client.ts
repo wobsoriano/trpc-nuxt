@@ -18,8 +18,8 @@ export function createTRPCComposables<
     ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
     ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
   >(
-    args_0: TRouteKey,
-    args_1: ProcedureInput
+    path: TRouteKey,
+    input: ProcedureInput
   ) => AsyncData<
     PickFrom<
       ProcedureOutput,
@@ -32,8 +32,8 @@ export function createTRPCComposables<
     ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
     ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
   >(
-    args_0: TRouteKey,
-    args_1: ProcedureInput
+    path: TRouteKey,
+    input: ProcedureInput
   ) => AsyncData<
     PickFrom<
       ProcedureOutput,
@@ -50,8 +50,8 @@ export function createTRPCComposables<
       Router['_def']['mutations'][TRouteKey]
     >,
   >(
-    args_0: TRouteKey,
-    args_1: ProcedureInput
+    path: TRouteKey,
+    input: ProcedureInput
   ) => AsyncData<
     PickFrom<
       ProcedureOutput,
@@ -59,6 +59,7 @@ export function createTRPCComposables<
     >,
     true | Error
   >
+  useClient: () => Client
 }
 
 export function createTRPCComposables(client: any) {
@@ -74,9 +75,12 @@ export function createTRPCComposables(client: any) {
     return useAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.mutation(...args))
   }
 
+  const useClient = () => client
+
   return {
     useTrpcQuery,
     useLazyTrpcQuery,
     useTrpcMutation,
+    useClient,
   }
 }
