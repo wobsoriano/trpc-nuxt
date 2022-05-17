@@ -52,4 +52,10 @@ export const responseMeta = () => {
 }
 ```
 
+Use the client like so:
 
+```html
+<script setup lang="ts">
+const { data } = await useTrpcQuery('hello')
+</script>
+```

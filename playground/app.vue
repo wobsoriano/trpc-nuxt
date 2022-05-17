@@ -1,14 +1,16 @@
 <script setup lang="ts">
-const { data, error } = await useTrpcQuery('getUser', {
-  name: 'johns',
-})
+const { data, pending } = useLazyTrpcQuery('hello', undefined)
 
 watchEffect(() => {
   console.log(data.value)
-  console.log('err', error.value)
 })
 </script>
 
 <template>
-  <div>{{ data.name }}</div>
+  <div v-if="pending">
+    Loading...
+  </div>
+  <div v-else>
+    {{ data }}
+  </div>
 </template>
