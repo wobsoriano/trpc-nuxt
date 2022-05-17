@@ -9,7 +9,6 @@ export function createTRPCComposables<
   Router extends AnyRouter,
   Client extends TRPCClient<Router> = TRPCClient<Router>,
   TQuery extends keyof Router['_def']['queries'] = keyof Router['_def']['queries'],
-  TMutation extends keyof Router['_def']['mutations'] = keyof Router['_def']['mutations'],
 >(
   client: Client
 ): {
@@ -41,28 +40,10 @@ export function createTRPCComposables<
     >,
     true | Error
   >
-  useTrpcMutation: <
-    TRouteKey extends TMutation,
-    ProcedureInput = inferProcedureInput<
-      Router['_def']['mutations'][TRouteKey]
-    >,
-    ProcedureOutput = inferProcedureOutput<
-      Router['_def']['mutations'][TRouteKey]
-    >,
-  >(
-    path: TRouteKey,
-    input: ProcedureInput
-  ) => AsyncData<
-    PickFrom<
-      ProcedureOutput,
-      KeyOfRes<_Transform<ProcedureOutput, ProcedureOutput>>
-    >,
-    true | Error
-  >
   useClient: () => Client
 }
 
-export function createTRPCComposables(client: any) {
+export function createTRPCComposables(client) {
   const useTrpcQuery = (...args) => {
     return useAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.query(...args))
   }
@@ -71,16 +52,11 @@ export function createTRPCComposables(client: any) {
     return useLazyAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.query(...args))
   }
 
-  const useTrpcMutation = (...args) => {
-    return useAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.mutation(...args))
-  }
-
   const useClient = () => client
 
   return {
     useTrpcQuery,
     useLazyTrpcQuery,
-    useTrpcMutation,
     useClient,
   }
 }

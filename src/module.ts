@@ -28,7 +28,6 @@ export default defineNuxtModule<ModuleOptions>({
       imports.push(
         { name: 'useTrpcQuery', from: clientPath },
         { name: 'useLazyTrpcQuery', from: clientPath },
-        { name: 'useTrpcMutation', from: clientPath },
         { name: 'useClient', from: clientPath },
       )
     })
@@ -47,14 +46,12 @@ export default defineNuxtModule<ModuleOptions>({
       const {
         useTrpcQuery,
         useLazyTrpcQuery,
-        useTrpcMutation,
         useClient
       } = createTRPCComposables<typeof router>(client)
 
       export {
         useTrpcQuery,
         useLazyTrpcQuery,
-        useTrpcMutation,
         useClient
       }
     `)
