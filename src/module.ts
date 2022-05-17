@@ -14,8 +14,8 @@ export default defineNuxtModule<ModuleOptions>({
     const clientPath = join(nuxt.options.buildDir, 'trpc-client.ts')
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
 
-    nuxt.hook('config', () => {
-      nuxt.options.build.transpile.push('trpc-nuxt/client')
+    nuxt.hook('config', (options) => {
+      options?.build?.transpile?.push('trpc-nuxt/client')
     })
 
     addServerHandler({
@@ -26,7 +26,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook('autoImports:extend', (imports) => {
       imports.push(
         { name: 'useTrpcQuery', from: clientPath },
-        { name: 'useTrpcLazyQuery', from: clientPath },
+        { name: 'useLazyTrpcQuery', from: clientPath },
         { name: 'useTrpcMutation', from: clientPath },
       )
     })
@@ -35,15 +35,6 @@ export default defineNuxtModule<ModuleOptions>({
     const optionsPath = resolve(srcDir, 'server/fn/index.ts')
 
     await fs.ensureDir(dirname(clientPath))
-
-    nuxt.options.build.transpile.push('trpc-nuxt/client')
-    nuxt.hook('autoImports:extend', (imports) => {
-      imports.push(
-        { name: 'useTrpcQuery', as: 'useTrpcQuery', from: clientPath },
-        { name: 'useTrpcLazyQuery', as: 'useTrpcLazyQuery', from: clientPath },
-        { name: 'useTrpcMutation', as: 'useTrpcMutation', from: clientPath },
-      )
-    })
 
     await fs.writeFile(clientPath, `
       import * as trpc from '@trpc/client'
@@ -56,13 +47,13 @@ export default defineNuxtModule<ModuleOptions>({
 
       const {
         useTrpcQuery,
-        useTrpcLazyQuery,
+        useLazyTrpcQuery,
         useTrpcMutation
-      } = createTRPCComposables(client)
+      } = createTRPCComposables<typeof router>(client)
 
       export {
         useTrpcQuery,
-        useTrpcLazyQuery,
+        useLazyTrpcQuery,
         useTrpcMutation
       }
     `)

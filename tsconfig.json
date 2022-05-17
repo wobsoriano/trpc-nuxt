@@ -1,0 +1,6 @@
+{
+  "extends": "./playground/.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "types": ["nuxt/dist/app/composables/asyncData"]
+  }
+}

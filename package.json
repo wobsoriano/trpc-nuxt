@@ -1,18 +1,59 @@
 {
-  "name": "monorepo",
-  "packageManager": "pnpm@7.0.0",
+  "name": "trpc-nuxt",
+  "type": "module",
+  "version": "0.0.3",
+  "packageManager": "pnpm@7.1.0",
+  "license": "MIT",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    },
+    "./api": {
+      "import": "./dist/runtime/api.mjs",
+      "types": "./dist/runtime/api.d.ts"
+    },
+    "./client": {
+      "import": "./dist/runtime/client.mjs",
+      "types": "./dist/runtime/client.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
   "scripts": {
-    "dev": "nr --parallel --filter trpc-nuxt --filter playground dev",
+    "prepublishOnly": "nr build",
+    "build": "nuxt-module-build",
+    "play": "nr build && nuxi dev playground",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepare": "nr --filter playground prepare"
+    "release": "bumpp --commit --push --tag && pnpm publish",
+    "prepare": "nuxi prepare playground"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.3",
+    "@trpc/client": "^9.23.3",
+    "@trpc/server": "^9.23.2",
+    "fs-extra": "^10.1.0",
+    "h3": "^0.7.8",
+    "ohash": "^0.1.0",
+    "pathe": "^0.3.0",
+    "ufo": "^0.8.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "latest",
+    "@types/fs-extra": "^9.0.13",
+    "bumpp": "^7.1.1",
     "eslint": "^8.14.0",
-    "pnpm": "^7.1.0"
+    "nuxt": "^3.0.0-rc.3",
+    "pnpm": "^7.1.0",
+    "trpc-nuxt": "workspace:*",
+    "zod": "^3.16.0"
   },
   "eslintConfig": {
     "extends": "@antfu"
