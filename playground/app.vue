@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { data, pending } = useLazyTrpcQuery('hello', undefined)
+const { data, pending } = useLazyTrpcQuery('getUser', {
+  name: 'roberts',
+})
 
 watchEffect(() => {
   console.log(data.value)

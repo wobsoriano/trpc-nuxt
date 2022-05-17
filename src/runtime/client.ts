@@ -13,48 +13,49 @@ export function createTRPCComposables<
 >(
   client: Client
 ): {
-  useTrpcQuery: <TRouteKey extends TQuery>(
+  useTrpcQuery: <
+    TRouteKey extends TQuery,
+    ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
+    ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
+  >(
     args_0: TRouteKey,
-    args_1: inferProcedureInput<Router['_def']['queries'][TRouteKey]>
+    args_1: ProcedureInput
   ) => AsyncData<
     PickFrom<
-      inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
-      KeyOfRes<
-        _Transform<
-          inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
-          inferProcedureOutput<Router['_def']['queries'][TRouteKey]>
-        >
-      >
+      ProcedureOutput,
+      KeyOfRes<_Transform<ProcedureOutput, ProcedureOutput>>
     >,
     true | Error
   >
-  useLazyTrpcQuery: <TRouteKey extends TQuery>(
+  useLazyTrpcQuery: <
+    TRouteKey extends TQuery,
+    ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
+    ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
+  >(
     args_0: TRouteKey,
-    args_1: inferProcedureInput<Router['_def']['queries'][TRouteKey]>
+    args_1: ProcedureInput
   ) => AsyncData<
     PickFrom<
-      inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
-      KeyOfRes<
-        _Transform<
-          inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
-          inferProcedureOutput<Router['_def']['queries'][TRouteKey]>
-        >
-      >
+      ProcedureOutput,
+      KeyOfRes<_Transform<ProcedureOutput, ProcedureOutput>>
     >,
     true | Error
   >
-  useTrpcMutation: <TRouteKey extends TMutation>(
+  useTrpcMutation: <
+    TRouteKey extends TMutation,
+    ProcedureInput = inferProcedureInput<
+      Router['_def']['mutations'][TRouteKey]
+    >,
+    ProcedureOutput = inferProcedureOutput<
+      Router['_def']['mutations'][TRouteKey]
+    >,
+  >(
     args_0: TRouteKey,
-    args_1: inferProcedureInput<Router['_def']['mutations'][TRouteKey]>
+    args_1: ProcedureInput
   ) => AsyncData<
     PickFrom<
-      inferProcedureOutput<Router['_def']['mutations'][TRouteKey]>,
-      KeyOfRes<
-        _Transform<
-          inferProcedureOutput<Router['_def']['mutations'][TRouteKey]>,
-          inferProcedureOutput<Router['_def']['mutations'][TRouteKey]>
-        >
-      >
+      ProcedureOutput,
+      KeyOfRes<_Transform<ProcedureOutput, ProcedureOutput>>
     >,
     true | Error
   >
