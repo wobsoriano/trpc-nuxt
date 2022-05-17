@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data, error } = await useTrpcQuery('getUser', {
-  name: 'john',
+  name: 'johns',
 })
 
 watchEffect(() => {
@@ -10,5 +10,5 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div>hello</div>
+  <div>{{ data.name }}</div>
 </template>

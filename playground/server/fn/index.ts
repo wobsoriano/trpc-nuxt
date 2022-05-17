@@ -13,4 +13,20 @@ export const router = trpc
     resolve: () => 'world',
   })
 
+// optional
+export const createContext = () => {
+  // ...
+  return {
+    /** context data */
+  }
+}
+
+// optional
+export const responseMeta = () => {
+  // ...
+  return {
+    // { headers: ... }
+  }
+}
+
 export type Router = typeof router
