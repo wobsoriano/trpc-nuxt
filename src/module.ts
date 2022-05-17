@@ -38,7 +38,7 @@ export default defineNuxtModule<ModuleOptions>({
     await fs.writeFile(clientPath, `
       import * as trpc from '@trpc/client'
       import { createTRPCComposables } from 'trpc-nuxt/client'
-      import { router } from '~/server/fn'
+      import type { router } from '~/trpc'
 
       const client = trpc.createTRPCClient<typeof router>({
         url: process.browser ? '/trpc' : 'http://localhost:3000/trpc',
@@ -61,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     await fs.writeFile(handlerPath, `
       import { createTRPCHandler } from 'trpc-nuxt/api'
-      import * as functions from '~/server/fn'
+      import * as functions from '~/trpc'
 
       export default createTRPCHandler({
         router: functions.router,
