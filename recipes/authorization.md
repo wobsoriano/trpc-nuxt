@@ -2,7 +2,7 @@
 
 The `createContext`-function is called for each incoming request so here you can add contextual information about the calling user from the request object.
 
-## Create context from request headers
+### Create context from request headers
 
 ```ts
 // ~/server/trpc/index.ts
@@ -35,7 +35,7 @@ type Context = trpc.inferAsyncReturnType<typeof createContext>
 // [..] Define API handler and app router
 ```
 
-## Option 1: Authorize using resolver
+### Option 1: Authorize using resolver
 
 ```ts
 export const router = trpc
@@ -60,7 +60,7 @@ export const router = trpc
   })
 ```
 
-## Option 2: Authorize using middleware
+### Option 2: Authorize using middleware
 
 ```ts
 import * as trpc from '@trpc/server'

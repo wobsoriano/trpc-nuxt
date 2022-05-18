@@ -2,7 +2,7 @@
 
 tRPC works out-of-the-box with yup/superstruct/zod/myzod/custom validators.
 
-## Input Validation
+### Input Validation
 
 ```ts
 // ~/server/trpc/index.ts
@@ -24,7 +24,7 @@ export const router = trpc
   })
 ```
 
-## Output Validation
+### Output Validation
 
 ```ts
 // ~/server/trpc/index.ts
