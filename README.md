@@ -16,12 +16,15 @@ import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
   modules: ['trpc-nuxt'],
+  typescript: {
+    strict: true // set this to true to infer input/output types
+  }
 })
 ```
 
 ## Usage
 
-Expose your tRPC [routes](https://trpc.io/docs/router) and [context](https://trpc.io/docs/context) under `~/server/trpc/index.ts`:
+Expose your tRPC [routes](https://trpc.io/docs/router) under `~/server/trpc/index.ts`:
 
 ```ts
 // ~/server/trpc/index.ts
@@ -41,22 +44,6 @@ export const router = trpc
       }
     },
   })
-
-// Optional
-export const createContext = (event: CompatibilityEvent) => {
-  // ...
-  return {
-    /** context data */
-  }
-}
-
-// Optional
-export const responseMeta = () => {
-  // ...
-  return {
-    // { headers: ... }
-  }
-}
 ```
 
 Use the client like so:

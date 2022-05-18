@@ -48,7 +48,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
   responseMeta?: ResponseMetaFn<Router>
   onError?: OnErrorFn<Router>
 }) {
-  const url = '/trpc'
+  const url = '/api/trpc'
 
   return defineEventHandler(async (event) => {
     const {

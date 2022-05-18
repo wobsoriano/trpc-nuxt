@@ -3,20 +3,26 @@ import { dirname, join } from 'pathe'
 import { addServerHandler, defineNuxtModule } from '@nuxt/kit'
 import fs from 'fs-extra'
 
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  baseURL: string
+  trpcURL: string
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'trpc-nuxt',
     configKey: 'trpc',
   },
-  defaults: {},
-  async setup(_options, nuxt) {
+  defaults: {
+    baseURL: 'http://localhost:3000',
+    trpcURL: '/api/trpc',
+  },
+  async setup(options, nuxt) {
     const clientPath = join(nuxt.options.buildDir, 'trpc-client.ts')
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
 
     addServerHandler({
-      route: '/trpc/*',
+      route: `${options.trpcURL}/*`,
       handler: handlerPath,
     })
 
@@ -33,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
       import type { router } from '~/server/trpc'
 
       const client = trpc.createTRPCClient<typeof router>({
-        url: process.browser ? '/trpc' : 'http://localhost:3000/trpc',
+        url: '${options.baseURL}${options.trpcURL}',
       })
     
       const useClient = () => client
@@ -47,7 +53,10 @@ export default defineNuxtModule<ModuleOptions>({
       import { createTRPCHandler } from 'trpc-nuxt/api'
       import * as functions from '~/server/trpc'
 
-      export default createTRPCHandler(functions)
+      export default createTRPCHandler({
+        router: functions.router,
+        ...functions
+      })
     `)
   },
 })

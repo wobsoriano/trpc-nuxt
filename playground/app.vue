@@ -1,18 +1,28 @@
 <script setup lang="ts">
 const client = useClient()
-const { data, error } = await useAsyncData('getUser', () => client.query('getUser', {
-  username: 'asd',
-}), {
+const { data, refresh } = await useAsyncData('getUser', () => client.query('getUsers'), {
   server: true,
 })
 
-watchEffect(() => {
-  console.log(process.server, error.value)
-})
+const addUser = async (username: string) => {
+  try {
+    await client.mutation('createUser', {
+      username,
+    })
+    refresh()
+    console.log('user added')
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
   <div>
-    {{ error }}
+    {{ data }}
   </div>
+  <button @click="addUser('marksx')">
+    add
+  </button>
 </template>
