@@ -75,7 +75,7 @@ console.log(farewell); // => 👈 goodbye
 
 ## Recipes
 
-## Input validation
+### Input validation
 
 With [Zod](https://github.com/colinhacks/zod)
 
