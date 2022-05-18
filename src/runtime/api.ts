@@ -11,6 +11,7 @@ import { createURL } from 'ufo'
 import type { CompatibilityEvent } from 'h3'
 import { defineEventHandler, isMethod, useBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/dist/declarations/src/rpc'
+import type { OnErrorFunction } from '@trpc/server/dist/declarations/src/internals/OnErrorFunction'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -28,17 +29,18 @@ export function createTRPCHandler<Router extends AnyRouter>({
   router,
   createContext,
   responseMeta,
+  onError,
 }: {
   router: Router
   createContext?: CreateContextFn<Router>
   responseMeta?: ResponseMetaFn<Router>
+  onError?: OnErrorFunction<Router, CompatibilityEvent['req']>
 }) {
-  const url = '/trpc'
-
   return defineEventHandler(async (event) => {
     const {
       req,
       res,
+      context,
     } = event
 
     const $url = createURL(req.url)
@@ -51,9 +53,15 @@ export function createTRPCHandler<Router extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await useBody(event),
         query: $url.searchParams,
       },
-      path: $url.pathname.substring(url.length + 1),
+      path: context.params.path,
       createContext: async () => createContext?.(event),
       responseMeta,
+      onError: (o) => {
+        onError?.({
+          ...o,
+          req,
+        })
+      },
     })
 
     const { status, headers, body } = httpResponse

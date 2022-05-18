@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const client = useClient()
-const data = await client.query('getUser', {
-  name: 'roberts',
+const { data, error } = await useAsyncData('random', () => client.query('hello'), {
+  server: false,
 })
 </script>
 
