@@ -6,7 +6,7 @@ The `createContext`-function is called for each incoming request so here you can
 
 ```ts
 // ~/server/trpc/index.ts
-import type * as trpc from '@trpc/server'
+import type { inferAsyncReturnType } from '@trpc/server'
 import type { CompatibilityEvent } from 'h3'
 import { decodeAndVerifyJwtToken } from '~/somewhere/in/your/app/utils'
 
@@ -30,7 +30,7 @@ export async function createContext({ req }: CompatibilityEvent) {
   }
 }
 
-type Context = trpc.inferAsyncReturnType<typeof createContext>
+type Context = inferAsyncReturnType<typeof createContext>
 
 // [..] Define API handler and app router
 ```
@@ -38,6 +38,8 @@ type Context = trpc.inferAsyncReturnType<typeof createContext>
 ### Option 1: Authorize using resolver
 
 ```ts
+import { TRPCError } from '@trpc/server'
+
 export const router = trpc
   .router<Context>()
   // open for anyone
@@ -51,7 +53,7 @@ export const router = trpc
   .query('secret', {
     resolve: ({ ctx }) => {
       if (!ctx.user)
-        throw new trpc.TRPCError({ code: 'UNAUTHORIZED' })
+        throw new TRPCError({ code: 'UNAUTHORIZED' })
 
       return {
         secret: 'sauce',
@@ -65,7 +67,6 @@ export const router = trpc
 ```ts
 import * as trpc from '@trpc/server'
 import { TRPCError } from '@trpc/server'
-import { createRouter } from '../createRouter'
 
 export const router = trpc
   .router<Context>()
