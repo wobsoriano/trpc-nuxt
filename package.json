@@ -15,10 +15,6 @@
     "./api": {
       "import": "./dist/runtime/api.mjs",
       "types": "./dist/runtime/api.d.ts"
-    },
-    "./client": {
-      "import": "./dist/runtime/client.mjs",
-      "types": "./dist/runtime/client.d.ts"
     }
   },
   "files": [
@@ -39,7 +35,6 @@
     "@trpc/server": "^9.23.2",
     "fs-extra": "^10.1.0",
     "h3": "^0.7.8",
-    "ohash": "^0.1.0",
     "pathe": "^0.3.0",
     "ufo": "^0.8.4"
   },

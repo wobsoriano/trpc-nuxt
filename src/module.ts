@@ -15,10 +15,6 @@ export default defineNuxtModule<ModuleOptions>({
     const clientPath = join(nuxt.options.buildDir, 'trpc-client.ts')
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
 
-    nuxt.hook('config', (options) => {
-      options?.build?.transpile?.push('trpc-nuxt/client')
-    })
-
     addServerHandler({
       route: '/trpc/*',
       handler: handlerPath,
@@ -26,8 +22,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.hook('autoImports:extend', (imports) => {
       imports.push(
-        { name: 'useTrpcQuery', from: clientPath },
-        { name: 'useLazyTrpcQuery', from: clientPath },
         { name: 'useClient', from: clientPath },
       )
     })
@@ -36,22 +30,15 @@ export default defineNuxtModule<ModuleOptions>({
 
     await fs.writeFile(clientPath, `
       import * as trpc from '@trpc/client'
-      import { createTRPCComposables } from 'trpc-nuxt/client'
       import type { router } from '~/trpc'
 
       const client = trpc.createTRPCClient<typeof router>({
         url: process.browser ? '/trpc' : 'http://localhost:3000/trpc',
       })
-
-      const {
-        useClientQuery,
-        useLazyClientQuery,
-        useClient
-      } = createTRPCComposables<typeof router>(client)
+    
+      const useClient = () => client
 
       export {
-        useClientQuery,
-        useLazyClientQuery,
         useClient
       }
     `)

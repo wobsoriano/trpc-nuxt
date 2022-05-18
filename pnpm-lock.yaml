@@ -16,7 +16,6 @@ importers:
       fs-extra: ^10.1.0
       h3: ^0.7.8
       nuxt: ^3.0.0-rc.3
-      ohash: ^0.1.0
       pathe: ^0.3.0
       pnpm: ^7.1.0
       trpc-nuxt: workspace:*
@@ -28,7 +27,6 @@ importers:
       '@trpc/server': 9.23.4
       fs-extra: 10.1.0
       h3: 0.7.8
-      ohash: 0.1.0
       pathe: 0.3.0
       ufo: 0.8.4
     devDependencies:
@@ -4668,6 +4666,7 @@ packages:
 
   /ohash/0.1.0:
     resolution: {integrity: sha512-KvclyhWseX6F2UTEEp9Qzybb0LTGorTSVufAToV5tR2B6Q64rVhKhkcU/o+mBaiqGa5+PdobtfSVelp8VOCR6A==}
+    dev: true
 
   /ohmyfetch/0.4.17:
     resolution: {integrity: sha512-jUpCDJIDlTZdS4PE3veoHIXoUSm2NRJfFMIROd29/qeOsbJEoEYBzJ6re+W1hskc44ej11IL//scfhckIcCN8Q==}
