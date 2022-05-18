@@ -1,5 +1,6 @@
 import * as trpc from '@trpc/server'
 import { z } from 'zod'
+import type { CompatibilityEvent } from 'h3'
 
 export const router = trpc
   .router()
@@ -14,10 +15,12 @@ export const router = trpc
   })
 
 // optional
-export const createContext = () => {
-  // ...
+export const createContext = (event: CompatibilityEvent) => {
   return {
-    /** context data */
+    user: {
+      id: 69,
+      name: 'robert',
+    },
   }
 }
 
