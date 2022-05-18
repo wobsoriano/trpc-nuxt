@@ -47,11 +47,7 @@ export default defineNuxtModule<ModuleOptions>({
       import { createTRPCHandler } from 'trpc-nuxt/api'
       import * as functions from '~/server/trpc'
 
-      export default createTRPCHandler({
-        router: functions.router,
-        createContext: functions.createContext ?? undefined,
-        responseMeta: functions.responseMeta ?? undefined,
-      })
+      export default createTRPCHandler(functions)
     `)
   },
 })

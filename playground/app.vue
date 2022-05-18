@@ -1,12 +1,18 @@
 <script setup lang="ts">
 const client = useClient()
-const { data, error } = await useAsyncData('random', () => client.query('hello'), {
-  server: false,
+const { data, error } = await useAsyncData('getUser', () => client.query('getUser', {
+  username: 'asd',
+}), {
+  server: true,
+})
+
+watchEffect(() => {
+  console.log(process.server, error.value)
 })
 </script>
 
 <template>
   <div>
-    {{ data }}
+    {{ error }}
   </div>
 </template>

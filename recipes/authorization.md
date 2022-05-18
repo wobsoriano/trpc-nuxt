@@ -68,6 +68,8 @@ export const router = trpc
 import * as trpc from '@trpc/server'
 import { TRPCError } from '@trpc/server'
 
+// Merging routers: https://trpc.io/docs/merging-routers
+
 export const router = trpc
   .router<Context>()
   // this is accessible for everyone
@@ -79,7 +81,7 @@ export const router = trpc
   })
   .merge(
     'admin.',
-    createRouter()
+    trpc.router<Context>()
       // this protects all procedures defined next in this router
       .middleware(async ({ ctx, next }) => {
         if (!ctx.user?.isAdmin)
