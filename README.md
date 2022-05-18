@@ -43,7 +43,7 @@ export const router = trpc
   })
 
 // optional
-export const createContext = () => {
+export const createContext = (event: CompatibilityEvent) => {
   // ...
   return {
     /** context data */

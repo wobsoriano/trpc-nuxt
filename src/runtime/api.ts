@@ -8,13 +8,13 @@ import type {
   inferRouterError,
 } from '@trpc/server'
 import { createURL } from 'ufo'
-import type { IncomingMessage } from 'h3'
+import type { CompatibilityEvent } from 'h3'
+import { defineEventHandler, isMethod, useBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/dist/declarations/src/rpc'
-import { isMethod, useBody } from 'h3'
 
 type MaybePromise<T> = T | Promise<T>
 
-type CreateContextFn<TRouter extends AnyRouter> = (req: IncomingMessage) => MaybePromise<inferRouterContext<TRouter>>
+type CreateContextFn<TRouter extends AnyRouter> = (event: CompatibilityEvent) => MaybePromise<inferRouterContext<TRouter>>
 
 type ResponseMetaFn<TRouter extends AnyRouter> = (opts: {
   data: TRPCResponse<unknown, inferRouterError<TRouter>>[]
@@ -35,7 +35,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
 }) {
   const url = '/trpc'
 
-  return async (event) => {
+  return defineEventHandler(async (event) => {
     const {
       req,
       res,
@@ -52,7 +52,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
         query: $url.searchParams,
       },
       path: $url.pathname.substring(url.length + 1),
-      createContext: async () => createContext?.(req),
+      createContext: async () => createContext?.(event),
       responseMeta,
     })
 
@@ -65,5 +65,5 @@ export function createTRPCHandler<Router extends AnyRouter>({
     })
 
     return body
-  }
+  })
 }
