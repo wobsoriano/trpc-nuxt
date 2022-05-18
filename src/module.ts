@@ -44,14 +44,14 @@ export default defineNuxtModule<ModuleOptions>({
       })
 
       const {
-        useTrpcQuery,
-        useLazyTrpcQuery,
+        useClientQuery,
+        useLazyClientQuery,
         useClient
       } = createTRPCComposables<typeof router>(client)
 
       export {
-        useTrpcQuery,
-        useLazyTrpcQuery,
+        useClientQuery,
+        useLazyClientQuery,
         useClient
       }
     `)

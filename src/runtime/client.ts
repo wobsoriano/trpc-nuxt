@@ -12,7 +12,7 @@ export function createTRPCComposables<
 >(
   client: Client
 ): {
-  useTrpcQuery: <
+  useClientQuery: <
     TRouteKey extends TQuery,
     ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
     ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
@@ -26,7 +26,7 @@ export function createTRPCComposables<
     >,
     true | Error
   >
-  useLazyTrpcQuery: <
+  useLazyClientQuery: <
     TRouteKey extends TQuery,
     ProcedureInput = inferProcedureInput<Router['_def']['queries'][TRouteKey]>,
     ProcedureOutput = inferProcedureOutput<Router['_def']['queries'][TRouteKey]>,
@@ -44,19 +44,19 @@ export function createTRPCComposables<
 }
 
 export function createTRPCComposables(client) {
-  const useTrpcQuery = (...args) => {
+  const useClientQuery = (...args) => {
     return useAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.query(...args))
   }
 
-  const useLazyTrpcQuery = (...args) => {
+  const useLazyClientQuery = (...args) => {
     return useLazyAsyncData(`trpc-${objectHash(args[0] + (args[1] ? JSON.stringify(args[1]) : ''))}`, () => client.query(...args))
   }
 
   const useClient = () => client
 
   return {
-    useTrpcQuery,
-    useLazyTrpcQuery,
+    useClientQuery,
+    useLazyClientQuery,
     useClient,
   }
 }

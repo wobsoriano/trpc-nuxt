@@ -57,7 +57,9 @@ Use the client like so:
 ```html
 <script setup lang="ts">
 const client = useClient()
+
 const data = await client.query('hello')
+
 console.log(data) // => 👈 world
 </script>
 ```
@@ -66,5 +68,43 @@ console.log(data) // => 👈 world
 
 Composables are auto-imported.
 
-###`useTrpcQuery(path, input)`
+### `useClient()`
+
+A typesafe client with the `createTRPCClient` method from `@trpc/client`.
+
+```html
+<script setup lang="ts">
+const client = useClient()
+
+const bilbo = await client.query('getUser', 'id_bilbo');
+// => { id: 'id_bilbo', name: 'Bilbo' };
+
+const frodo = await client.mutation('createUser', { name: 'Frodo' });
+// => { id: 'id_frodo', name: 'Frodo' };
+</script>
+```
+
+### `useClientQuery`
+
+`client.query` wrapped in [`useAsyncData`](https://v3.nuxtjs.org/guide/features/data-fetching/#useasyncdata).
+
+```html
+<script setup lang="ts">
+const { data, pending, refresh, error } = await useClientQuery('getUser', 'id_bilbo');
+
+console.log(data.value) // => { id: 'id_frodo', name: 'Frodo' };
+</script>
+```
+
+### `useLazyClientQuery`
+
+`client.query` wrapped in [`useLazyAsyncData`](https://v3.nuxtjs.org/guide/features/data-fetching/#uselazyasyncdata).
+
+```html
+<script setup lang="ts">
+const { data, pending, refresh, error } = await useLazyClientQuery('getUser', 'id_bilbo');
+
+console.log(data.value) // => { id: 'id_frodo', name: 'Frodo' };
+</script>
+```
 
