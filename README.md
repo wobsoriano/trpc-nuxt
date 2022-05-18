@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
 ## Usage
 
-Create your tRPC [routes](https://trpc.io/docs/router) and [context](https://trpc.io/docs/context) under `~/server/trpc/index.ts`:
+Expose your tRPC [routes](https://trpc.io/docs/router) and [context](https://trpc.io/docs/context) under `~/server/trpc/index.ts`:
 
 ```ts
 // ~/server/trpc/index.ts
