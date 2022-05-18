@@ -75,12 +75,12 @@ console.log(farewell); // => 👈 goodbye
 
 ## Recipes
 
-### Input validation
+### Input validation with [Zod](https://github.com/colinhacks/zod)
 
-With [Zod](https://github.com/colinhacks/zod)
+tRPC works out-of-the-box with yup/superstruct/zod/myzod/custom validators. Learn more about input validation [here](https://trpc.io/docs/router#input-validation).
 
 ```ts
-// ~/trpc/index.ts
+// ~/server/trpc/index.ts
 import { z } from 'zod'
 
 export const router = trpc
@@ -89,28 +89,6 @@ export const router = trpc
     // validate input with Zod
     input: z.object({
       name: z.string().min(5)
-    }),
-    async resolve(req) {
-      // use your ORM of choice
-      return await UserModel.create({
-        data: req.input,
-      })
-    },
-  })
-```
-
-With [Yup](https://github.com/jquense/yup)
-
-```ts
-// ~/trpc/index.ts
-import { z } from 'zod'
-
-export const router = trpc
-  .router()
-  .mutation('createUser', {
-    // validate input with Zod
-    input: yup.object({
-      name: yup.string().required(),
     }),
     async resolve(req) {
       // use your ORM of choice
