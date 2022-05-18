@@ -77,6 +77,7 @@ console.log(farewell); // => 👈 goodbye
 
 - [Validation](/recipes/validation.md)
 - [Authorization](/recipes/authorization.md)
+- [Error Handling](/recipes/error-handling.md)
 
 Learn more about tRPC.io [here](https://trpc.io/docs).
 
