@@ -24,7 +24,7 @@ export default defineNuxtConfig({
 Create your tRPC [routes](https://trpc.io/docs/router) and [context](https://trpc.io/docs/context) under `~/server/trpc/index.ts`:
 
 ```ts
-// ~/trpc/index.ts
+// ~/server/trpc/index.ts
 import type { inferAsyncReturnType } from '@trpc/server'
 import * as trpc from '@trpc/server'
 
