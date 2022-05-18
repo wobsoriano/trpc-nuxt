@@ -34,6 +34,13 @@ export const router = trpc
   .query('hello', {
     resolve: () => 'world',
   })
+  .query('bye', {
+    resolve() {
+      return {
+        text: 'goodbye',
+      }
+    },
+  })
 
 // optional
 export const createContext = () => {
@@ -58,10 +65,60 @@ Use the client like so:
 <script setup lang="ts">
 const client = useClient()
 
-const bilbo = await client.query('getUser', 'id_bilbo');
-// => { id: 'id_bilbo', name: 'Bilbo' };
+const greeting = await client.query('hello');
+console.log(greeting); // => 👈 world
 
-const frodo = await client.mutation('createUser', { name: 'Frodo' });
-// => { id: 'id_frodo', name: 'Frodo' };
+const farewell = await client.query('bye');
+console.log(farewell); // => 👈 goodbye
 </script>
 ```
+
+## Recipes
+
+## Input validation
+
+With [Zod](https://github.com/colinhacks/zod)
+
+```ts
+// ~/trpc/index.ts
+import { z } from 'zod'
+
+export const router = trpc
+  .router()
+  .mutation('createUser', {
+    // validate input with Zod
+    input: z.object({
+      name: z.string().min(5)
+    }),
+    async resolve(req) {
+      // use your ORM of choice
+      return await UserModel.create({
+        data: req.input,
+      })
+    },
+  })
+```
+
+With [Yup](https://github.com/jquense/yup)
+
+```ts
+// ~/trpc/index.ts
+import { z } from 'zod'
+
+export const router = trpc
+  .router()
+  .mutation('createUser', {
+    // validate input with Zod
+    input: yup.object({
+      name: yup.string().required(),
+    }),
+    async resolve(req) {
+      // use your ORM of choice
+      return await UserModel.create({
+        data: req.input,
+      })
+    },
+  })
+```
+
+Learn more about tRPC.io [here](https://trpc.io/docs).
