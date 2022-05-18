@@ -1,10 +1,12 @@
 ## Authorization
 
-The `createContext`-function is called for each incoming request so here you can add contextual information about the calling user from the request object. Learn more about authorization [here](https://trpc.io/docs/authorization).
+The `createContext`-function is called for each incoming request so here you can add contextual information about the calling user from the request object.
+
+## Create context from request headers
 
 ```ts
 // ~/server/trpc/index.ts
-import * as trpc from '@trpc/server'
+import type * as trpc from '@trpc/server'
 import type { CompatibilityEvent } from 'h3'
 import { decodeAndVerifyJwtToken } from '~/somewhere/in/your/app/utils'
 
@@ -28,8 +30,16 @@ export async function createContext({ req }: CompatibilityEvent) {
   }
 }
 
+type Context = trpc.inferAsyncReturnType<typeof createContext>
+
+// [..] Define API handler and app router
+```
+
+## Option 1: Authorize using resolver
+
+```ts
 export const router = trpc
-  .router<inferAsyncReturnType<typeof createContext>>()
+  .router<Context>()
   // open for anyone
   .query('hello', {
     input: z.string().nullish(),
@@ -49,3 +59,41 @@ export const router = trpc
     },
   })
 ```
+
+## Option 2: Authorize using middleware
+
+```ts
+import * as trpc from '@trpc/server'
+import { TRPCError } from '@trpc/server'
+import { createRouter } from '../createRouter'
+
+export const router = trpc
+  .router<Context>()
+  // this is accessible for everyone
+  .query('hello', {
+    input: z.string().nullish(),
+    resolve: ({ input, ctx }) => {
+      return `hello ${input ?? ctx.user?.name ?? 'world'}`
+    },
+  })
+  .merge(
+    'admin.',
+    createRouter()
+      // this protects all procedures defined next in this router
+      .middleware(async ({ ctx, next }) => {
+        if (!ctx.user?.isAdmin)
+          throw new TRPCError({ code: 'UNAUTHORIZED' })
+
+        return next()
+      })
+      .query('secret', {
+        resolve: ({ ctx }) => {
+          return {
+            secret: 'sauce',
+          }
+        },
+      }),
+  )
+```
+
+Learn more about authorization [here](https://trpc.io/docs/authorization).

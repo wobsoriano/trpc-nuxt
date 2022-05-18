@@ -1,6 +1,6 @@
 ## Validation
 
-tRPC works out-of-the-box with yup/superstruct/zod/myzod/custom validators. Learn more about input validation [here](https://trpc.io/docs/router#input-validation).
+tRPC works out-of-the-box with yup/superstruct/zod/myzod/custom validators.
 
 ## Input Validation
 
@@ -45,3 +45,5 @@ export const router = trpc
     },
   })
 ```
+
+Learn more about input validation [here](https://trpc.io/docs/router#input-validation).
