@@ -122,3 +122,7 @@ export const router = trpc
 ```
 
 Learn more about tRPC.io [here](https://trpc.io/docs).
+
+## License
+
+MIT
