@@ -33,7 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook('autoImports:extend', (imports) => {
       imports.push(
         { name: 'useClient', from: clientPath },
-        { name: 'useTRPCAsyncData', from: join(runtimeDir, 'composables') },
+        { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
       )
     })
 

@@ -14,6 +14,19 @@ const fakeUsers = [
 
 export const router = trpc
   .router<inferAsyncReturnType<typeof createContext>>()
+  .formatError(({ shape, error }) => {
+    return {
+      ...shape,
+      data: {
+        ...shape.data,
+        zodError:
+          error.code === 'BAD_REQUEST'
+          && error.cause instanceof ZodError
+            ? error.cause.flatten()
+            : null,
+      },
+    }
+  })
   .query('getUsers', {
     resolve() {
       return fakeUsers

@@ -52,33 +52,34 @@ export const router = trpc
 
 Use the client like so:
 
-```html
-<script setup lang="ts">
-const client = useClient()
+```ts
+const client = useClient() // auto-imported
 
-const greeting = await client.query('hello');
-console.log(greeting); // => 👈 world
+const greeting = await client.query('hello')
+console.log(greeting) // => 👈 world
 
-const farewell = await client.query('bye');
-console.log(farewell); // => 👈 goodbye
-</script>
+const farewell = await client.query('bye')
+console.log(farewell) // => 👈 goodbye
 ```
 
-## `useTRPCAsyncData`
+## useAsyncQuery
 
-A composable that wraps Nuxt's [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) with some modifications to have better error handlings.
+A thin wrapper around [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/).
+
+The first argument is a `[path, input]`-tuple - if the `input` is optional, you can omit the, `input`-part.
+
+You'll notice that you get autocompletion on the `path` and automatic typesafety on the `input`.
 
 ```ts
-const path = 'hello'
-const client = useClient()
-
 const {
   data,
   pending,
   error,
   refresh
-} = await useTRPCAsyncData(path, () => client.query(path))
-console.log(data.value) // => 👈 world
+} = await useAsyncQuery(['getUser', { id: 69 }], {
+  // pass useAsyncData options here
+  server: true
+})
 ```
 
 ## Recipes
@@ -86,6 +87,7 @@ console.log(data.value) // => 👈 world
 - [Validation](/recipes/validation.md)
 - [Authorization](/recipes/authorization.md)
 - [Error Handling](/recipes/error-handling.md)
+- [Error Formatting](/recipes/error-formatting.md)
 
 Learn more about tRPC.io [here](https://trpc.io/docs).
 

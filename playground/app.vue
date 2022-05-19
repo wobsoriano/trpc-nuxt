@@ -1,11 +1,9 @@
 <script setup lang="ts">
+const { data, error } = await useAsyncQuery(['getUser', { username: 'jcena' }], {
+  lazy: true,
+})
+
 const client = useClient()
-
-const key = 'getUser'
-
-const { data, pending, error } = await useTRPCAsyncData(key, () => client.query(key, {
-  username: 'jcena',
-}))
 </script>
 
 <template>
@@ -14,7 +12,7 @@ const { data, pending, error } = await useTRPCAsyncData(key, () => client.query(
       {{ JSON.stringify(data, null, 2) }}
     </div>
     <div v-else-if="error">
-      asdx  {{ JSON.stringify(error.data, null, 2) }}
+      asdx  {{ JSON.stringify(error, null, 2) }}
     </div>
   </div>
 </template>
