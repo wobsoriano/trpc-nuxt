@@ -82,6 +82,43 @@ const {
 })
 ```
 
+## Options
+
+trpc-nuxt accepts the following options exposed under `~/server/trpc.index.ts`:
+
+```ts
+import * as trpc from '@trpc/server'
+import type { inferAsyncReturnType } from '@trpc/server'
+import type { CompatibilityEvent } from 'h3'
+import type { OnErrorPayload } from 'trpc-nuxt/api'
+
+export const router = trpc.router<inferAsyncReturnType<typeof createContext>>()
+
+// Optional
+// https://trpc.io/docs/context
+export const createContext = (event: CompatibilityEvent) => {
+  // ...
+  return {
+    /** context data */
+  }
+}
+
+// Optional
+// https://trpc.io/docs/caching#using-responsemeta--to-cache-responses
+export const responseMeta = () => {
+  // ...
+  return {
+    // { headers: ... }
+  }
+}
+
+// Optional
+// https://trpc.io/docs/error-handling#handling-errors
+export const onError = (payload: OnErrorPayload<typeof router>) => {
+  // Do whatever here like send to bug reporting and stuff
+}
+```
+
 ## Recipes
 
 - [Validation](/recipes/validation.md)

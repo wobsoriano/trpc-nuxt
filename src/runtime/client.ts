@@ -49,6 +49,7 @@ export async function useAsyncQuery<
     options,
   )
 
+  // @ts-expect-error: Resolved by Nuxt
   if (process.server && error.value && !serverError.value)
     serverError.value = error.value as any
 
