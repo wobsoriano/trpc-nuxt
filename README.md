@@ -64,7 +64,7 @@ const client = useClient() // auto-imported
 const users = await client.query('getUsers')
 
 const addUser = async () => {
-  const mutate = await client.mutation('createUser', {
+  const newUser = await client.mutation('createUser', {
     name: 'wagmi'
   })
 }
