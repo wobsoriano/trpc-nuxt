@@ -4,6 +4,17 @@
 
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 
+<p align="center">
+  <figure>
+    <img src="https://i.imgur.com/mx7XyjI.gif" alt="Demo" />
+    <figcaption>
+      <p align="center">
+        The client above is <strong>not</strong> importing any code from the server, only its type declarations.
+      </p>
+    </figcaption>
+  </figure>
+</p>
+
 ## Install
 
 ```bash
