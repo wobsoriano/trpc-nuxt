@@ -2,21 +2,11 @@
 
 Writing all API-code in your code in the same file is not a great idea. It's easy to merge routers with other routers.
 
+Define your routes:
+
 ```ts
 // ~/server/trpc/routes/posts.ts
 export const posts = trpc.router()
-  .mutation('create', {
-    input: z.object({
-      title: z.string(),
-    }),
-    resolve: ({ input }) => {
-      // ..
-      return {
-        id: 'xxxx',
-        ...input,
-      }
-    },
-  })
   .query('list', {
     resolve() {
       // ..
@@ -44,4 +34,13 @@ import { posts } from './routes/posts'
 export const router = trpc.router()
   .merge('user.', users) // prefix user procedures with "user."
   .merge('post.', posts) // prefix post procedures with "post."
+```
+
+and use it like this:
+
+```html
+<script setup lang="ts">
+const { data: users } = await useAsyncQuery(['user.list'])
+const { data: posts } = await useAsyncQuery(['post.list'])
+</script>
 ```
