@@ -72,7 +72,7 @@ const addUser = async () => {
 
 ## useAsyncQuery
 
-A thin wrapper around [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/).
+A thin wrapper around [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) and `client.query()`.
 
 The first argument is a `[path, input]`-tuple - if the `input` is optional, you can omit the, `input`-part.
 
