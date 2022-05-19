@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url'
 import { dirname, join } from 'pathe'
 
 import { addServerHandler, defineNuxtModule } from '@nuxt/kit'
@@ -18,6 +19,9 @@ export default defineNuxtModule<ModuleOptions>({
     trpcURL: '/api/trpc',
   },
   async setup(options, nuxt) {
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    nuxt.options.build.transpile.push(runtimeDir)
+
     const clientPath = join(nuxt.options.buildDir, 'trpc-client.ts')
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
 
@@ -29,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook('autoImports:extend', (imports) => {
       imports.push(
         { name: 'useClient', from: clientPath },
+        { name: 'useTRPCAsyncData', from: join(runtimeDir, 'composables') },
       )
     })
 
@@ -42,21 +47,14 @@ export default defineNuxtModule<ModuleOptions>({
         url: '${options.baseURL}${options.trpcURL}',
       })
     
-      const useClient = () => client
-
-      export {
-        useClient
-      }
+      export const useClient = () => client
     `)
 
     await fs.writeFile(handlerPath, `
       import { createTRPCHandler } from 'trpc-nuxt/api'
       import * as functions from '~/server/trpc'
 
-      export default createTRPCHandler({
-        router: functions.router,
-        ...functions
-      })
+      export default createTRPCHandler(functions)
     `)
   },
 })

@@ -1,28 +1,20 @@
 <script setup lang="ts">
 const client = useClient()
-const { data, refresh } = await useAsyncData('getUser', () => client.query('getUsers'), {
-  server: true,
-})
 
-const addUser = async (username: string) => {
-  try {
-    await client.mutation('createUser', {
-      username,
-    })
-    refresh()
-    console.log('user added')
-  }
-  catch (error) {
-    console.log(error)
-  }
-}
+const key = 'getUser'
+
+const { data, pending, error } = await useTRPCAsyncData(key, () => client.query(key, {
+  username: 'jcena',
+}))
 </script>
 
 <template>
   <div>
-    {{ data }}
+    <div v-if="data">
+      {{ JSON.stringify(data, null, 2) }}
+    </div>
+    <div v-else-if="error">
+      asdx  {{ JSON.stringify(error.data, null, 2) }}
+    </div>
   </div>
-  <button @click="addUser('marksx')">
-    add
-  </button>
 </template>

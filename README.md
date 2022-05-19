@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     trpcURL: '/api/trpc', // defaults to /api/trpc
   },
   typescript: {
-    strict: true // set this to true to infer input/output types
+    strict: true // set this to true to make input/output types work
   }
 })
 ```
@@ -62,6 +62,22 @@ console.log(greeting); // => 👈 world
 const farewell = await client.query('bye');
 console.log(farewell); // => 👈 goodbye
 </script>
+```
+
+## `useTRPCAsyncData`
+
+A composable that wraps Nuxt's [`useAsyncData`](https://v3.nuxtjs.org/api/composables/use-async-data/) with some modifications to have better error handlings.
+
+```ts
+const path = 'hello'
+const client = useClient()
+
+const {
+  data,
+  pending,
+  error,
+  refresh
+} = await useTRPCAsyncData(path, () => client.query(path))
 ```
 
 ## Recipes

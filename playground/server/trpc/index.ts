@@ -1,7 +1,10 @@
 // ~/server/trpc/index.ts
-import { z } from 'zod'
+import { ZodError, z } from 'zod'
 import * as trpc from '@trpc/server'
 import type { inferAsyncReturnType } from '@trpc/server'
+import type { CompatibilityEvent } from 'h3'
+import type { ResponseMetaFnPayload } from 'trpc-nuxt/api'
+// import superjson from 'superjson'
 
 const fakeUsers = [
   { id: 1, username: 'jcena' },
@@ -37,9 +40,30 @@ export const router = trpc
     },
   })
 
-export const createContext = () => {
-  // ...
-  return {
-    /** context data */
-  }
+export const createContext = (event: CompatibilityEvent) => {
+  event.res.setHeader('x-ssr', 1)
+  return {}
+}
+
+export const responseMeta = (opts: ResponseMetaFnPayload<any>) => {
+  // const nuxtApp = useNuxtApp()
+  // const client = useClient()
+  // console.log(opts)
+
+  // if (nuxtApp.nuxtState) {
+  //   nuxtApp.nuxtState.trpc = client.runtime.transformer.serialize({
+  //     ctx: opts.ctx,
+  //     errors: opts.errors,
+  //   })
+  // }
+  // else {
+  //   nuxtApp.nuxtState = {
+  //     trpc: client.runtime.transformer.serialize({
+  //       ctx: opts.ctx,
+  //       errors: opts.errors,
+  //     }),
+  //   }
+  // }
+
+  return {}
 }
