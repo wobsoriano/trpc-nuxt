@@ -1,5 +1,23 @@
 <script setup lang="ts">
+const client = useClient()
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
+
+const addTodo = async () => {
+  const title = Math.random().toString(36).slice(2, 7)
+
+  try {
+    const result = await client.mutation('addTodo', {
+      id: Date.now(),
+      userId: 69,
+      title,
+      completed: false,
+    })
+    console.log('Todo: ', result)
+  }
+  catch (e) {
+    console.log(e)
+  }
+}
 </script>
 
 <template>
@@ -17,6 +35,9 @@ const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'
         </NuxtLink>
       </li>
     </ul>
+    <button @click="addTodo">
+      Add Todo
+    </button>
     <button @click="() => refresh()">
       Refresh
     </button>
