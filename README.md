@@ -34,18 +34,24 @@ Expose your tRPC [routes](https://trpc.io/docs/router) under `~/server/trpc/inde
 // ~/server/trpc/index.ts
 import type { inferAsyncReturnType } from '@trpc/server'
 import * as trpc from '@trpc/server'
+import { z } from 'zod' //  yup/superstruct/zod/myzod/custom
 
-export const router = trpc
-  .router<inferAsyncReturnType<typeof createContext>>()
+export const router = trpc.router()
   // queries and mutations...
-  .query('hello', {
-    resolve: () => 'world',
+  .query('getUsers', {
+    async resolve(req) {
+      // use your ORM of choice
+      return await UserModel.all()
+    },
   })
-  .query('bye', {
-    resolve() {
-      return {
-        text: 'goodbye',
-      }
+  .mutation('createUser', {
+    // validate input with Zod
+    input: z.object({ name: z.string().min(5) }),
+    async resolve(req) {
+      // use your ORM of choice
+      return await UserModel.create({
+        data: req.input,
+      })
     },
   })
 ```
@@ -55,11 +61,13 @@ Use the client like so:
 ```ts
 const client = useClient() // auto-imported
 
-const greeting = await client.query('hello')
-console.log(greeting) // => 👈 world
+const users = await client.query('getUsers')
 
-const farewell = await client.query('bye')
-console.log(farewell) // => 👈 goodbye
+const addUser = async () => {
+  const mutate = await client.mutation('createUser', {
+    name: 'wagmi'
+  })
+}
 ```
 
 ## useAsyncQuery
