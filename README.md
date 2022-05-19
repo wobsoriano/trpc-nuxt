@@ -131,6 +131,7 @@ export const onError = (payload: OnErrorPayload<typeof router>) => {
 
 - [Validation](/recipes/validation.md)
 - [Authorization](/recipes/authorization.md)
+- [Merging Routers](/recipes/merging-routers.md)
 - [Error Handling](/recipes/error-handling.md)
 - [Error Formatting](/recipes/error-formatting.md)
 
