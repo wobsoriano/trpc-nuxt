@@ -58,8 +58,6 @@ export function createTRPCHandler<Router extends AnyRouter>({
 
     const $url = createURL(req.url)
 
-    event.context.hello = 'world'
-
     const httpResponse = await resolveHTTPResponse({
       router,
       req: {
