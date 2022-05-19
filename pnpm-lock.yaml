@@ -12,6 +12,7 @@ importers:
       '@trpc/server': ^9.23.2
       '@types/fs-extra': ^9.0.13
       bumpp: ^7.1.1
+      defu: ^6.0.0
       eslint: ^8.14.0
       fs-extra: ^10.1.0
       h3: ^0.7.8
@@ -27,6 +28,7 @@ importers:
       '@nuxt/kit': 3.0.0-rc.3
       '@trpc/client': 9.23.4_@trpc+server@9.23.4
       '@trpc/server': 9.23.4
+      defu: 6.0.0
       fs-extra: 10.1.0
       h3: 0.7.8
       pathe: 0.3.0

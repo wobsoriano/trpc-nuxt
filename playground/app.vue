@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { data, pending, error } = await useAsyncQuery(['getUser', { username: 'jcena' }], {
-  lazy: true,
+  lazy: false,
+  transform: data => data || null,
 })
 </script>
 

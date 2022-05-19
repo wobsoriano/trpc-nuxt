@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'pathe'
+import { defu } from 'defu'
 
 import { addServerHandler, defineNuxtModule } from '@nuxt/kit'
 import fs from 'fs-extra'
@@ -25,8 +26,14 @@ export default defineNuxtModule<ModuleOptions>({
     const clientPath = join(nuxt.options.buildDir, 'trpc-client.ts')
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
 
+    // Final resolved configuration
+    const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
+      baseURL: options.baseURL,
+      trpcURL: options.trpcURL,
+    })
+
     addServerHandler({
-      route: `${options.trpcURL}/*`,
+      route: `${finalConfig.trpcURL}/*`,
       handler: handlerPath,
     })
 
@@ -44,7 +51,7 @@ export default defineNuxtModule<ModuleOptions>({
       import type { router } from '~/server/trpc'
 
       const client = trpc.createTRPCClient<typeof router>({
-        url: '${options.baseURL}${options.trpcURL}',
+        url: '${finalConfig.baseURL}${finalConfig.trpcURL}',
       })
     
       export const useClient = () => client
@@ -52,9 +59,15 @@ export default defineNuxtModule<ModuleOptions>({
 
     await fs.writeFile(handlerPath, `
       import { createTRPCHandler } from 'trpc-nuxt/api'
+      import { useRuntimeConfig } from '#imports'
       import * as functions from '~/server/trpc'
 
-      export default createTRPCHandler(functions)
+      const { trpc: { trpcURL } } = useRuntimeConfig().public
+
+      export default createTRPCHandler({
+        ...functions,
+        trpcURL 
+      })
     `)
   },
 })
