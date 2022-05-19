@@ -21,10 +21,6 @@
     "dist",
     "*.d.ts"
   ],
-  "clean-publish": {
-    "withoutPublish": true,
-    "tempDir": "package"
-  },
   "scripts": {
     "prepublishOnly": "nr build",
     "build": "nuxt-module-build",
