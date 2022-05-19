@@ -2,6 +2,9 @@
   "name": "trpc-nuxt",
   "type": "module",
   "version": "0.0.3",
+  "publishConfig": {
+    "directory": "package"
+  },
   "packageManager": "pnpm@7.1.0",
   "license": "MIT",
   "main": "./dist/module.cjs",
@@ -21,11 +24,17 @@
     "dist",
     "*.d.ts"
   ],
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "package"
+  },
   "scripts": {
-    "prepublishOnly": "nr build",
+    "prepublishOnly": "rimraf ./package && nr build && clean-publish",
+    "postpublish": "rimraf ./package",
     "build": "nuxt-module-build",
     "play": "nr build && nuxi dev playground",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "prepare": "nuxi prepare playground"
   },
@@ -44,6 +53,7 @@
     "@nuxt/module-builder": "latest",
     "@types/fs-extra": "^9.0.13",
     "bumpp": "^7.1.1",
+    "clean-publish": "^4.0.0",
     "eslint": "^8.14.0",
     "nuxt": "^3.0.0-rc.3",
     "ohash": "^0.1.0",
