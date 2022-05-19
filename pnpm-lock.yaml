@@ -19,7 +19,7 @@ importers:
       nuxt: ^3.0.0-rc.3
       ohash: ^0.1.0
       pathe: ^0.3.0
-      pnpm: ^7.1.0
+      pnpm: ^7.1.1
       superjson: ^1.9.1
       trpc-nuxt: workspace:*
       ufo: ^0.8.4
