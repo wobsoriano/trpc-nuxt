@@ -78,6 +78,7 @@ const {
   error,
   refresh
 } = await useTRPCAsyncData(path, () => client.query(path))
+console.log(data.value) // => 👈 world
 ```
 
 ## Recipes
