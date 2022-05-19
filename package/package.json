@@ -1,0 +1,39 @@
+{
+  "name": "trpc-nuxt",
+  "type": "module",
+  "version": "0.0.3",
+  "publishConfig": {
+    "directory": "package"
+  },
+  "packageManager": "pnpm@7.1.0",
+  "license": "MIT",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    },
+    "./api": {
+      "import": "./dist/runtime/api.mjs",
+      "types": "./dist/runtime/api.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.3",
+    "@trpc/client": "^9.23.3",
+    "@trpc/server": "^9.23.2",
+    "fs-extra": "^10.1.0",
+    "h3": "^0.7.8",
+    "pathe": "^0.3.0",
+    "ufo": "^0.8.4"
+  },
+  "scripts": {
+    "postpublish": "rimraf ./package"
+  }
+}
