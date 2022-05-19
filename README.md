@@ -63,11 +63,9 @@ const client = useClient() // auto-imported
 
 const users = await client.query('getUsers')
 
-const addUser = async () => {
-  const newUser = await client.mutation('createUser', {
-    name: 'wagmi'
-  })
-}
+const newUser = await client.mutation('createUser', {
+  name: 'wagmi'
+})
 ```
 
 ## useAsyncQuery
@@ -86,7 +84,7 @@ const {
   refresh
 } = await useAsyncQuery(['getUser', { id: 69 }], {
   // pass useAsyncData options here
-  server: true
+  lazy: false
 })
 ```
 
