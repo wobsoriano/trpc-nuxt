@@ -146,6 +146,10 @@ export const onError = (payload: OnErrorPayload<typeof router>) => {
 
 Learn more about tRPC.io [here](https://trpc.io/docs).
 
+## Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
 ## License
 
 MIT
