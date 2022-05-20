@@ -8,11 +8,8 @@ import type {
 import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProcedureOutput } from '@trpc/server'
 import type { TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
-// @ts-expect-error: Resolved by Nuxt
 import { useAsyncData, useState } from '#app'
-// @ts-expect-error: Resolved by Nuxt
 import { useClient } from '#build/trpc-client'
-// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
 type AppRouter = typeof router
@@ -49,7 +46,6 @@ export async function useAsyncQuery<
     options,
   )
 
-  // @ts-expect-error: Resolved by Nuxt
   if (process.server && error.value && !serverError.value)
     serverError.value = error.value as any
 
