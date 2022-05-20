@@ -101,7 +101,7 @@ const {
 
 ## Options
 
-trpc-nuxt accepts the following options exposed under `~/server/trpc.index.ts`:
+trpc-nuxt accepts the following options exposed under `~/server/trpc/index.ts`:
 
 ```ts
 import * as trpc from '@trpc/server'
