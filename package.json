@@ -36,7 +36,6 @@
     "@trpc/client": "^9.23.3",
     "@trpc/server": "^9.23.2",
     "defu": "^6.0.0",
-    "fs-extra": "^10.1.0",
     "h3": "^0.7.8",
     "pathe": "^0.3.0",
     "ufo": "^0.8.4"
@@ -45,7 +44,6 @@
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "latest",
-    "@types/fs-extra": "^9.0.13",
     "bumpp": "^7.1.1",
     "eslint": "^8.14.0",
     "nuxt": "^3.0.0-rc.3",

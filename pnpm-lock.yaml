@@ -10,11 +10,9 @@ importers:
       '@nuxt/module-builder': latest
       '@trpc/client': ^9.23.3
       '@trpc/server': ^9.23.2
-      '@types/fs-extra': ^9.0.13
       bumpp: ^7.1.1
       defu: ^6.0.0
       eslint: ^8.14.0
-      fs-extra: ^10.1.0
       h3: ^0.7.8
       nuxt: ^3.0.0-rc.3
       ohash: ^0.1.0
@@ -29,7 +27,6 @@ importers:
       '@trpc/client': 9.23.4_@trpc+server@9.23.4
       '@trpc/server': 9.23.4
       defu: 6.0.0
-      fs-extra: 10.1.0
       h3: 0.7.8
       pathe: 0.3.0
       ufo: 0.8.4
@@ -37,7 +34,6 @@ importers:
       '@antfu/eslint-config': 0.23.1_eslint@8.15.0
       '@antfu/ni': 0.16.2
       '@nuxt/module-builder': 0.1.7
-      '@types/fs-extra': 9.0.13
       bumpp: 7.1.1
       eslint: 8.15.0
       nuxt: 3.0.0-rc.3
@@ -943,12 +939,6 @@ packages:
 
   /@types/estree/0.0.51:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
-    dev: true
-
-  /@types/fs-extra/9.0.13:
-    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
-    dependencies:
-      '@types/node': 17.0.34
     dev: true
 
   /@types/jsdom/16.2.14:
@@ -3216,6 +3206,7 @@ packages:
       graceful-fs: 4.2.10
       jsonfile: 6.1.0
       universalify: 2.0.0
+    dev: true
 
   /fs-memo/1.2.0:
     resolution: {integrity: sha512-YEexkCpL4j03jn5SxaMHqcO6IuWuqm8JFUYhyCep7Ao89JIYmB8xoKhK7zXXJ9cCaNXpyNH5L3QtAmoxjoHW2w==}
@@ -3930,6 +3921,7 @@ packages:
       universalify: 2.0.0
     optionalDependencies:
       graceful-fs: 4.2.10
+    dev: true
 
   /jsx-ast-utils/3.3.0:
     resolution: {integrity: sha512-XzO9luP6L0xkxwhIJMTJQpZo/eeN60K08jHdexfD569AGxeNug6UketeHXEhROoM8aR7EcUoOQmIhcJQjcuq8Q==}
@@ -6333,6 +6325,7 @@ packages:
   /universalify/2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
+    dev: true
 
   /unplugin/0.6.3:
     resolution: {integrity: sha512-CoW88FQfCW/yabVc4bLrjikN9HC8dEvMU4O7B6K2jsYMPK0l6iAnd9dpJwqGcmXJKRCU9vwSsy653qg+RK0G6A==}
