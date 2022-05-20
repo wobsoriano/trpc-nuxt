@@ -10,11 +10,12 @@ import type { TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import { useAsyncData, useState } from '#app'
 import { useClient } from '#build/trpc-client'
+// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
 type AppRouter = typeof router
 
-type inferProcedures<
+export type inferProcedures<
   TObj extends ProcedureRecord<any, any, any, any, any, any>,
 > = {
   [TPath in keyof TObj]: {
@@ -23,10 +24,10 @@ type inferProcedures<
   };
 }
 
-type TQueries = AppRouter['_def']['queries']
-type TError = TRPCClientErrorLike<AppRouter>
+export type TQueries = AppRouter['_def']['queries']
+export type TError = TRPCClientErrorLike<AppRouter>
 
-type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
+export type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
 
 export async function useAsyncQuery<
   TPath extends keyof TQueryValues & string,

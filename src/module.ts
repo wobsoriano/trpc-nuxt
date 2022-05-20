@@ -20,7 +20,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-client', '#build/trpc-handler')
+    nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-client', '#build/trpc-handler', '#build/trpc-helpers')
 
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
     const trpcOptionsPath = join(nuxt.options.rootDir, 'server/trpc')
@@ -82,7 +82,7 @@ export default defineNuxtModule<ModuleOptions>({
     addTemplate({
       filename: 'trpc-helpers.ts',
       write: true,
-      src: join(runtimeDir, 'helpers.ts'),
+      src: join(runtimeDir, 'helpers.d.ts'),
     })
   },
 })

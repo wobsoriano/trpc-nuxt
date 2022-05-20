@@ -1,10 +1,8 @@
 import type { inferProcedureInput, inferProcedureOutput, inferSubscriptionOutput } from '@trpc/server'
+// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
-/**
- * The main router type
- */
-export type AppRouter = typeof router
+type AppRouter = typeof router
 
 /**
  * Enum containing all api query paths
