@@ -25,6 +25,7 @@
     "prepublishOnly": "nr build",
     "build": "nuxt-module-build",
     "play": "nr build && nuxi dev playground",
+    "build:playground": "nuxi build playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp --commit --push --tag && pnpm publish",

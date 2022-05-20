@@ -9,7 +9,7 @@ import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProc
 import type { TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 // @ts-expect-error: Resolved by Nuxt
-import { useAsyncData, useState } from '#imports'
+import { useAsyncData, useState } from '#app'
 // @ts-expect-error: Resolved by Nuxt
 import { useClient } from '#build/trpc-client'
 // @ts-expect-error: Resolved by Nuxt
