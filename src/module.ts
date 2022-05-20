@@ -23,7 +23,6 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-client', '#build/trpc-handler')
 
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
-    nuxt.options.build.transpile.push(handlerPath)
 
     // Final resolved configuration
     const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
