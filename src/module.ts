@@ -78,6 +78,12 @@ export default defineNuxtModule<ModuleOptions>({
         `
       },
     })
+
+    addTemplate({
+      filename: 'trpc-helpers.ts',
+      write: true,
+      src: join(runtimeDir, 'helpers.ts'),
+    })
   },
 })
 
