@@ -23,6 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-client', '#build/trpc-handler')
 
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
+    const trpcOptionsPath = join(nuxt.options.rootDir, 'server/trpc')
 
     // Final resolved configuration
     const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
@@ -48,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
       getContents() {
         return `
           import * as trpc from '@trpc/client'
-          import type { router } from '~/server/trpc'
+          import type { router } from '${trpcOptionsPath}'
     
           const client = trpc.createTRPCClient<typeof router>({
             url: '${finalConfig.baseURL}${finalConfig.trpcURL}',
@@ -66,7 +67,7 @@ export default defineNuxtModule<ModuleOptions>({
         return `
           import { createTRPCHandler } from 'trpc-nuxt/api'
           import { useRuntimeConfig } from '#imports'
-          import * as functions from '~/server/trpc'
+          import * as functions from '${trpcOptionsPath}'
     
           const { trpc: { trpcURL } } = useRuntimeConfig().public
     
