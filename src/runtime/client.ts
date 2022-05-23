@@ -6,7 +6,7 @@ import type {
   _Transform,
 } from 'nuxt/dist/app/composables/asyncData'
 import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProcedureOutput } from '@trpc/server'
-import type { TRPCClientErrorLike } from '@trpc/client'
+import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import { useAsyncData, useNuxtApp, useState } from '#app'
 // @ts-expect-error: Resolved by Nuxt
@@ -61,5 +61,5 @@ export async function useAsyncQuery<
 
 export function useClient() {
   const { $client } = useNuxtApp()
-  return $client
+  return $client as TRPCClient<AppRouter>
 }
