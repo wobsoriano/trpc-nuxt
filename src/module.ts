@@ -51,14 +51,11 @@ export default defineNuxtModule<ModuleOptions>({
       getContents() {
         return `
           import { createTRPCHandler } from 'trpc-nuxt/api'
-          import { useRuntimeConfig } from '#imports'
           import * as functions from '${trpcOptionsPath}'
-    
-          const { trpc: { trpcURL } } = useRuntimeConfig().public
     
           export default createTRPCHandler({
             ...functions,
-            trpcURL 
+            trpcURL: '${finalConfig.trpcURL}'
           })
         `
       },
