@@ -3,15 +3,15 @@ import * as trpc from '@trpc/client'
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
 import type { router } from '~/server/trpc'
 
-type AppRouter = typeof router
-
-const config = useRuntimeConfig().public.trpc
-const client = trpc.createTRPCClient<AppRouter>({
-  url: `${config.baseURL}${config.trpcURL}`,
-  headers: useRequestHeaders(),
-})
+declare type AppRouter = typeof router
 
 export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig().public.trpc
+  const client = trpc.createTRPCClient<AppRouter>({
+    url: `${config.baseURL}${config.trpcURL}`,
+    headers: useRequestHeaders(),
+  })
+
   return {
     provide: {
       client,

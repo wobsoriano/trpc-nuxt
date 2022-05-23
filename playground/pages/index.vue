@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const client = useClient()
+const { $client } = useNuxtApp()
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const result = await client.mutation('addTodo', {
+    const result = await $client.mutation('addTodo', {
       id: Date.now(),
       userId: 69,
       title,

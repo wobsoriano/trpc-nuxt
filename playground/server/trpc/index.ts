@@ -42,8 +42,8 @@ export async function createContext(event: CompatibilityEvent) {
   // Will be available as `ctx` in all your resolvers
 
   // This is just an example of something you'd might want to do in your ctx fn
-  // const x = useCookies(event)
-  console.log('Headers', event.req.headers)
+  const x = useCookies(event)
+  console.log(x)
 
   return {
 
