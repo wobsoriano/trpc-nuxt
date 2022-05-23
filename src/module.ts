@@ -1,8 +1,8 @@
 import { fileURLToPath } from 'url'
-import { join } from 'pathe'
+import { join, resolve } from 'pathe'
 import { defu } from 'defu'
 
-import { addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addPluginTemplate, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
@@ -48,15 +48,19 @@ export default defineNuxtModule<ModuleOptions>({
       write: true,
       getContents() {
         return `
-          import * as trpc from '@trpc/client'
-          import type { router } from '${trpcOptionsPath}'
-    
-          const client = trpc.createTRPCClient<typeof router>({
-            url: '${finalConfig.baseURL}${finalConfig.trpcURL}',
-          })
-        
-          export const useClient = () => client
+          export const useClient = () => {
+            const { $client } = useNuxtApp()
+            return $client
+          }
         `
+      },
+    })
+
+    addPluginTemplate({
+      src: resolve(runtimeDir, 'plugin.ts'),
+      write: true,
+      options: {
+        url: `${finalConfig.baseURL}${finalConfig.trpcURL}`,
       },
     })
 
