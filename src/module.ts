@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url'
 import { join, resolve } from 'pathe'
 import { defu } from 'defu'
 
-import { addPluginTemplate, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
@@ -33,7 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.hook('autoImports:extend', (imports) => {
       imports.push(
-        { name: 'useClient', from: '#build/trpc-client' },
+        { name: 'useClient', from: join(runtimeDir, 'client') },
         { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
       )
     })
@@ -43,26 +43,7 @@ export default defineNuxtModule<ModuleOptions>({
       handler: handlerPath,
     })
 
-    addTemplate({
-      filename: 'trpc-client.ts',
-      write: true,
-      getContents() {
-        return `
-          export const useClient = () => {
-            const { $client } = useNuxtApp()
-            return $client
-          }
-        `
-      },
-    })
-
-    addPluginTemplate({
-      src: resolve(runtimeDir, 'plugin.ts'),
-      write: true,
-      options: {
-        url: `${finalConfig.baseURL}${finalConfig.trpcURL}`,
-      },
-    })
+    addPlugin(resolve(runtimeDir, 'plugin'))
 
     addTemplate({
       filename: 'trpc-handler.ts',

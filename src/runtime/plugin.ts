@@ -1,12 +1,13 @@
 import * as trpc from '@trpc/client'
-import { defineNuxtPlugin, useRequestHeaders } from '#app'
+// @ts-expect-error: Resolved by Nuxt
+import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
+// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
-const options = JSON.parse('<%= JSON.stringify(options) %>')
-
 export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig().public.trpc
   const client = trpc.createTRPCClient<typeof router>({
-    url: options.url as string,
+    url: `${config.baseURL}${config.trpcURL}`,
     headers: useRequestHeaders(),
   })
 

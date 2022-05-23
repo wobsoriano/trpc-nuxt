@@ -58,3 +58,8 @@ export async function useAsyncQuery<
     error: serverError,
   } as any
 }
+
+export function useClient() {
+  const { $client } = useNuxtApp()
+  return $client
+}
