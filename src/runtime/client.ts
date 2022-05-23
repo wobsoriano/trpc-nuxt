@@ -59,7 +59,7 @@ export async function useAsyncQuery<
   } as any
 }
 
-export function useClient() {
+export function useClient(): TRPCClient<AppRouter> {
   const { $client } = useNuxtApp()
-  return $client as TRPCClient<AppRouter>
+  return $client
 }
