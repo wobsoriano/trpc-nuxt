@@ -1,11 +1,12 @@
 import * as trpc from '@trpc/client'
 // @ts-expect-error: Resolved by Nuxt
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
-// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
+type AppRouter = typeof router
+
 const config = useRuntimeConfig().public.trpc
-const client = trpc.createTRPCClient<typeof router>({
+const client = trpc.createTRPCClient<AppRouter>({
   url: `${config.baseURL}${config.trpcURL}`,
   headers: useRequestHeaders(),
 })
@@ -20,6 +21,6 @@ export default defineNuxtPlugin(() => {
 
 declare module '#app' {
   interface NuxtApp {
-    $client: typeof import('~/server/trpc').router
+    $client: trpc.TRPCClient<AppRouter>
   }
 }
