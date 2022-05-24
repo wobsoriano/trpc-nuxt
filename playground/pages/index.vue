@@ -1,12 +1,20 @@
 <script setup lang="ts">
-const { $client } = useNuxtApp()
+const client = useClient()
+const headers = useClientHeader({ authorization: 'asdada' })
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
+
+console.log(headers.value)
+
+const addHeader = () => {
+  // headers.value.cookie = 'counter=69'
+  console.log(headers.value)
+}
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const result = await $client.mutation('addTodo', {
+    const result = await client.mutation('addTodo', {
       id: Date.now(),
       userId: 69,
       title,
@@ -27,7 +35,7 @@ const addTodo = async () => {
   <div v-else-if="error?.data?.code">
     Error: {{ error.data.code }}
   </div>
-  <div v-else>
+  <div v-else-if="todos">
     <ul>
       <li v-for="t in todos.slice(0, 10)" :key="t.id">
         <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
@@ -40,6 +48,9 @@ const addTodo = async () => {
     </button>
     <button @click="() => refresh()">
       Refresh
+    </button>
+    <button @click="addHeader">
+      Add header
     </button>
   </div>
 </template>

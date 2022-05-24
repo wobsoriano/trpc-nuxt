@@ -8,6 +8,8 @@ import type {
 import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProcedureOutput } from '@trpc/server'
 import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
+import type { MaybeRef } from '@vueuse/core'
+import { useStorage } from '@vueuse/core'
 import { useAsyncData, useNuxtApp, useState } from '#app'
 import type { router } from '~/server/trpc'
 
@@ -27,6 +29,13 @@ export type TError = TRPCClientErrorLike<AppRouter>
 
 export type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
 
+/**
+ * Additional header properties to pass to tRPC client.
+ *
+ * @see https://trpc.io/docs/vanilla
+ * @param pathAndInput tRPC client path and input.
+ * @param options Options to pass to useAsyncData.
+ */
 export async function useAsyncQuery<
   TPath extends keyof TQueryValues & string,
   TOutput extends TQueryValues[TPath]['output'] = TQueryValues[TPath]['output'],
@@ -59,7 +68,22 @@ export async function useAsyncQuery<
   } as any
 }
 
+/**
+ * tRPC Client.
+ *
+ * @see https://trpc.io/docs/vanilla
+ */
 export function useClient(): TRPCClient<AppRouter> {
   const { $client } = useNuxtApp()
   return $client
+}
+
+/**
+ * Additional header properties to pass to tRPC client.
+ *
+ * @see https://github.com/trpc/trpc/discussions/1686
+ * @param initialValue
+ */
+export function useClientHeaders(initialValue: MaybeRef<Record<string, any>>) {
+  return useStorage('trpc-nuxt-header', initialValue || {})
 }

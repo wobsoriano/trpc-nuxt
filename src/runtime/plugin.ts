@@ -4,18 +4,26 @@ import type { router } from '~/server/trpc'
 
 declare type AppRouter = typeof router
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig().public.trpc
+  const headers = useRequestHeaders()
   const client = trpc.createTRPCClient<AppRouter>({
     url: `${config.baseURL}${config.trpcURL}`,
-    headers: useRequestHeaders(),
+    headers: () => {
+      let otherHeaders = {}
+      if (!process.server) {
+        const key = 'trpc-nuxt-header'
+        otherHeaders = JSON.parse(localStorage.getItem(key) || JSON.stringify({}))
+      }
+
+      return {
+        ...otherHeaders,
+        ...headers,
+      }
+    },
   })
 
-  return {
-    provide: {
-      client,
-    },
-  }
+  nuxtApp.provide('client', client)
 })
 
 declare module '#app' {
