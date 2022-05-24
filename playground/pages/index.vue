@@ -1,9 +1,7 @@
 <script setup lang="ts">
 const client = useClient()
-const headers = useClientHeader({ authorization: 'asdada' })
+const headers = useClientHeaders()
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
-
-console.log(headers.value)
 
 const addHeader = () => {
   // headers.value.cookie = 'counter=69'

@@ -38,7 +38,7 @@ export default defineNuxtModule<ModuleOptions>({
       imports.push(
         { name: 'useClient', from: join(runtimeDir, 'client') },
         { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
-        { name: 'useClientHeader', from: join(runtimeDir, 'client') },
+        { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
       )
     })
 
