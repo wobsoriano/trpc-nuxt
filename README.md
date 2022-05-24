@@ -101,7 +101,7 @@ const {
 
 ## useClientHeaders
 
-A composable that lets you add additional properties to pass to the tRPC Client. It uses [`useStorage`] from [@vueuse/core](https://vueuse.org/core/usestorage).
+A composable that lets you add additional properties to pass to the tRPC Client. It uses `useStorage` from [@vueuse/core](https://vueuse.org/core/usestorage).
 
 ```ts
 const headers = useClientHeaders()
