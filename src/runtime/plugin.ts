@@ -1,5 +1,4 @@
 import * as trpc from '@trpc/client'
-// @ts-expect-error: Resolved by Nuxt
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
 import type { router } from '~/server/trpc'
 

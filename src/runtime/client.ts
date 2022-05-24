@@ -9,7 +9,6 @@ import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProc
 import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import { useAsyncData, useNuxtApp, useState } from '#app'
-// @ts-expect-error: Resolved by Nuxt
 import type { router } from '~/server/trpc'
 
 type AppRouter = typeof router
@@ -43,6 +42,7 @@ export async function useAsyncQuery<
   const { error, data, ...rest } = await useAsyncData(
     key,
     () => $client.query(...pathAndInput),
+    // @ts-expect-error: Internal
     options,
   )
 
