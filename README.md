@@ -99,6 +99,21 @@ const {
 })
 ```
 
+## useClientHeaders
+
+A composable that lets you add additional properties to pass to the tRPC Client. It uses [`useStorage`] from [@vueuse/core](https://vueuse.org/core/usestorage).
+
+```ts
+const headers = useClientHeaders()
+
+const { data: token } = await useAsyncQuery(['auth.login', { username, password }])
+
+headers.value.Authorization = `Bearer ${token}`
+
+// All client calls will now include the Authorization header.
+// For SSR, please follow this until I found a solution https://github.com/trpc/trpc/discussions/1686
+```
+
 ## Options
 
 trpc-nuxt accepts the following options exposed under `~/server/trpc/index.ts`:

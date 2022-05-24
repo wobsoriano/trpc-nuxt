@@ -84,6 +84,6 @@ export function useClient(): TRPCClient<AppRouter> {
  * @see https://github.com/trpc/trpc/discussions/1686
  * @param initialValue
  */
-export function useClientHeaders(initialValue: MaybeRef<Record<string, any>>) {
+export function useClientHeaders(initialValue?: MaybeRef<Record<string, any>>) {
   return useStorage('trpc-nuxt-header', initialValue || {})
 }
