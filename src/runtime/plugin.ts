@@ -1,4 +1,5 @@
 import * as trpc from '@trpc/client'
+import { unref } from 'vue'
 import { useClientHeaders } from './client'
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
 import type { router } from '~/server/trpc'
