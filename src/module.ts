@@ -23,7 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-handler')
 
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
-    const trpcOptionsPath = join(nuxt.options.rootDir, 'server/trpc')
+    const trpcOptionsPath = join(nuxt.options.srcDir, 'server/trpc')
 
     // Add vueuse
     nuxt.options.modules.push('@vueuse/nuxt')
