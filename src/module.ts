@@ -1,6 +1,8 @@
 import { fileURLToPath } from 'url'
 import { join, resolve } from 'pathe'
 import { defu } from 'defu'
+// @ts-expect-error: No types
+import dedent from 'dedent'
 
 import { addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
@@ -53,7 +55,7 @@ export default defineNuxtModule<ModuleOptions>({
       filename: 'trpc-handler.ts',
       write: true,
       getContents() {
-        return `
+        return dedent`
           import { createTRPCHandler } from 'trpc-nuxt/api'
           import * as functions from '${trpcOptionsPath}'
     
