@@ -31,6 +31,18 @@ export type TError = TRPCClientErrorLike<AppRouter>
 
 export type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
 
+
+
+/**
+ * Calculates the key used for `useAsyncData` call
+ * @param pathAndInput
+ */
+export function getQueryKey<
+    TPath extends keyof TQueryValues & string
+    >(pathAndInput: [path: TPath, ...args: inferHandlerInput<TQueries[TPath]>]) {
+  return `${pathAndInput[0]}-${objectHash(pathAndInput[1] ? JSON.stringify(pathAndInput[1]) : '')}`
+}
+
 export async function useAsyncQuery<
   TPath extends keyof TQueryValues & string,
   TOutput extends TQueryValues[TPath]['output'] = TQueryValues[TPath]['output'],
@@ -41,7 +53,7 @@ export async function useAsyncQuery<
   options: AsyncDataOptions<TOutput, Transform, PickKeys> = {},
 ): Promise<AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TError>> {
   const { $client } = useNuxtApp()
-  const key = `${pathAndInput[0]}-${objectHash(pathAndInput[1] ? JSON.stringify(pathAndInput[1]) : '')}`
+  const key = getQueryKey(pathAndInput)
   const serverError = useState<TError | null>(`error-${key}`, () => null)
   const { error, data, ...rest } = await useAsyncData(
     key,
