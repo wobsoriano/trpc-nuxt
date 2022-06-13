@@ -8,7 +8,7 @@ import { addAutoImport, addPlugin, addServerHandler, addTemplate, defineNuxtModu
 
 export interface ModuleOptions {
   baseURL: string
-  trpcURL: string
+  endpoint: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -18,7 +18,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     baseURL: 'http://localhost:3000',
-    trpcURL: '/api/trpc',
+    endpoint: '/trpc',
   },
   async setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
@@ -33,7 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Final resolved configuration
     const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
       baseURL: options.baseURL,
-      trpcURL: options.trpcURL,
+      endpoint: options.endpoint,
     })
 
     addAutoImport([
@@ -43,7 +43,7 @@ export default defineNuxtModule<ModuleOptions>({
     ])
 
     addServerHandler({
-      route: `${finalConfig.trpcURL}/*`,
+      route: `${finalConfig.endpoint}/*`,
       handler: handlerPath,
     })
 
@@ -59,7 +59,7 @@ export default defineNuxtModule<ModuleOptions>({
     
           export default createTRPCHandler({
             ...functions,
-            endpoint: '${finalConfig.trpcURL}'
+            endpoint: '${finalConfig.endpoint}'
           })
         `
       },

@@ -57,6 +57,9 @@
     "zod": "^3.16.0"
   },
   "eslintConfig": {
-    "extends": "@antfu"
+    "extends": "@antfu",
+    "rules": {
+      "no-console": "warn"
+    }
   }
 }

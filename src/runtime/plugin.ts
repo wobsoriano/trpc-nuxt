@@ -11,7 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const headers = useRequestHeaders()
   const otherHeaders = useClientHeaders()
   const client = trpc.createTRPCClient<AppRouter>({
-    url: `${config.baseURL}${config.trpcURL}`,
+    url: `${config.baseURL}${config.endpoint}`,
     headers: () => {
       return {
         ...unref(otherHeaders),
