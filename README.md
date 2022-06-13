@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     endpoint: '/trpc', // defaults to /trpc
   },
   typescript: {
-    strict: true // set this to true to make input/output types work
+    strict: true // required to make input/output types work
   }
 })
 ```
