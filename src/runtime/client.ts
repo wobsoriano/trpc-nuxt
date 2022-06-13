@@ -31,14 +31,12 @@ export type TError = TRPCClientErrorLike<AppRouter>
 
 export type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
 
-
-
 /**
  * Calculates the key used for `useAsyncData` call
  * @param pathAndInput
  */
 export function getQueryKey<
-    TPath extends keyof TQueryValues & string
+    TPath extends keyof TQueryValues & string,
     >(pathAndInput: [path: TPath, ...args: inferHandlerInput<TQueries[TPath]>]) {
   return `${pathAndInput[0]}-${objectHash(pathAndInput[1] ? JSON.stringify(pathAndInput[1]) : '')}`
 }

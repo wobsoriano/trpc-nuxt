@@ -56,12 +56,12 @@ export function createTRPCHandler<Router extends AnyRouter>({
       res,
     } = event
 
-    const $url = createURL(req.url)
+    const $url = createURL(req.url!)
 
     const httpResponse = await resolveHTTPResponse({
       router,
       req: {
-        method: req.method,
+        method: req.method!,
         headers: req.headers,
         body: isMethod(event, 'GET') ? null : await useBody(event),
         query: $url.searchParams,
@@ -81,8 +81,8 @@ export function createTRPCHandler<Router extends AnyRouter>({
 
     res.statusCode = status
 
-    Object.keys(headers).forEach((key) => {
-      res.setHeader(key, headers[key])
+    headers && Object.keys(headers).forEach((key) => {
+      res.setHeader(key, headers[key]!)
     })
 
     return body
