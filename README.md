@@ -111,7 +111,7 @@ const { data: token } = await useAsyncQuery(['auth.login', { username, password 
 headers.value.Authorization = `Bearer ${token}`
 
 // All client calls will now include the Authorization header.
-// For SSR, please follow this until I found a solution https://github.com/trpc/trpc/discussions/1686
+// For SSR, please follow this link https://github.com/trpc/trpc/discussions/1686
 ```
 
 ## Options
