@@ -42,13 +42,13 @@ export function createTRPCHandler<Router extends AnyRouter>({
   createContext,
   responseMeta,
   onError,
-  trpcURL,
+  endpoint,
 }: {
   router: Router
   createContext?: CreateContextFn<Router>
   responseMeta?: ResponseMetaFn<Router>
   onError?: OnErrorFn<Router>
-  trpcURL: string
+  endpoint: string
 }) {
   return defineEventHandler(async (event) => {
     const {
@@ -66,7 +66,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await useBody(event),
         query: $url.searchParams,
       },
-      path: $url.pathname.substring(trpcURL.length + 1),
+      path: $url.pathname.substring(endpoint.length + 1),
       createContext: async () => createContext?.(event),
       responseMeta,
       onError: (o) => {

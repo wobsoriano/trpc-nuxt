@@ -61,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
     
           export default createTRPCHandler({
             ...functions,
-            trpcURL: '${finalConfig.trpcURL}'
+            endpoint: '${finalConfig.trpcURL}'
           })
         `
       },
