@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   modules: ['trpc-nuxt'],
   trpc: {
     baseURL: 'http://localhost:3000', // defaults to http://localhost:3000
-    trpcURL: '/api/trpc', // defaults to /api/trpc
+    endpoint: '/trpc', // defaults to /api/trpc
   },
   typescript: {
     strict: true // set this to true to make input/output types work
