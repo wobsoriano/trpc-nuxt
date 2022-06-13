@@ -4,7 +4,7 @@ import { defu } from 'defu'
 // @ts-expect-error: No types
 import dedent from 'dedent'
 
-import { addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addAutoImport, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
@@ -36,13 +36,11 @@ export default defineNuxtModule<ModuleOptions>({
       trpcURL: options.trpcURL,
     })
 
-    nuxt.hook('autoImports:extend', (imports) => {
-      imports.push(
-        { name: 'useClient', from: join(runtimeDir, 'client') },
-        { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
-        { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
-      )
-    })
+    addAutoImport([
+      { name: 'useClient', from: join(runtimeDir, 'client') },
+      { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
+      { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
+    ])
 
     addServerHandler({
       route: `${finalConfig.trpcURL}/*`,
