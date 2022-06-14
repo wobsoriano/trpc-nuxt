@@ -40,6 +40,7 @@ export default defineNuxtModule<ModuleOptions>({
       { name: 'useClient', from: join(runtimeDir, 'client') },
       { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
       { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
+      { name: 'getQueryKey', from: join(runtimeDir, 'client') },
     ])
 
     addServerHandler({
