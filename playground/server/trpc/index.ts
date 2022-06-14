@@ -2,7 +2,6 @@ import * as trpc from '@trpc/server'
 import type { inferAsyncReturnType } from '@trpc/server'
 import { z } from 'zod'
 import type { CompatibilityEvent } from 'h3'
-import { useCookies } from 'h3'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -30,6 +29,7 @@ export const router = trpc.router<Context>()
   .mutation('addTodo', {
     input: TodoShape,
     async resolve(req) {
+      console.log(req.input)
       return await $fetch<Todo>(`${baseURL}/todos`, {
         method: 'POST',
         body: req.input,
