@@ -17,7 +17,7 @@ importers:
       defu: ^6.0.0
       eslint: ^8.14.0
       h3: ^0.7.9
-      nuxt: ^3.0.0-rc.3
+      nuxt: 3.0.0-rc.4
       ohash: ^0.1.0
       pathe: ^0.3.0
       pnpm: ^7.1.1
@@ -4111,7 +4111,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 17.0.42
+      '@types/node': 18.0.0
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
