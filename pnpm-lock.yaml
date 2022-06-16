@@ -16,7 +16,7 @@ importers:
       dedent: ^0.7.0
       defu: ^6.0.0
       eslint: ^8.14.0
-      h3: ^0.7.8
+      h3: ^0.7.9
       nuxt: ^3.0.0-rc.3
       ohash: ^0.1.0
       pathe: ^0.3.0
