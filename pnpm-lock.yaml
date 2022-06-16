@@ -8,7 +8,7 @@ importers:
       '@antfu/ni': ^0.16.2
       '@nuxt/kit': ^3.0.0-rc.4
       '@nuxt/module-builder': latest
-      '@trpc/client': ^9.23.3
+      '@trpc/client': ^9.25.2
       '@trpc/server': ^9.25.2
       '@vueuse/core': ^8.6.0
       '@vueuse/nuxt': ^8.6.0
@@ -977,6 +977,10 @@ packages:
     resolution: {integrity: sha512-Q5BPGyGKcvQgAMbsr7qEGN/kIPN6zZecYYABeTDBizOsau+2NMdSVTar9UQw21A2+JyA2KRNDYaYrPB0Rpk2oQ==}
     dev: true
 
+  /@types/node/18.0.0:
+    resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
+    dev: true
+
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -988,7 +992,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 17.0.42
+      '@types/node': 18.0.0
     dev: true
 
   /@types/tough-cookie/4.0.2:
