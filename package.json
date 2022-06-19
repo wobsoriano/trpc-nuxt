@@ -47,6 +47,7 @@
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "latest",
+    "@types/dedent": "^0.7.0",
     "bumpp": "^7.1.1",
     "eslint": "^8.14.0",
     "nuxt": "3.0.0-rc.4",

@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url'
 import { join, resolve } from 'pathe'
 import { defu } from 'defu'
-// @ts-expect-error: No types
 import dedent from 'dedent'
 
 import { addAutoImport, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
