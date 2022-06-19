@@ -36,7 +36,7 @@
     "@trpc/client": "^9.25.2",
     "@trpc/server": "^9.25.2",
     "@vueuse/core": "^8.7.4",
-    "@vueuse/nuxt": "^8.6.0",
+    "@vueuse/nuxt": "^8.7.4",
     "dedent": "^0.7.0",
     "defu": "^6.0.0",
     "h3": "^0.7.9",
