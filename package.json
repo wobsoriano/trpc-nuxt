@@ -48,7 +48,7 @@
     "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "latest",
     "@types/dedent": "^0.7.0",
-    "bumpp": "^7.1.1",
+    "bumpp": "^7.2.0",
     "eslint": "^8.14.0",
     "nuxt": "3.0.0-rc.4",
     "ohash": "^0.1.0",
