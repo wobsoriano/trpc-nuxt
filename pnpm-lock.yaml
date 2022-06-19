@@ -17,7 +17,7 @@ importers:
       dedent: ^0.7.0
       defu: ^6.0.0
       eslint: ^8.14.0
-      h3: ^0.7.9
+      h3: ^0.7.10
       nuxt: 3.0.0-rc.4
       ohash: ^0.1.0
       pathe: ^0.3.0
@@ -33,7 +33,7 @@ importers:
       '@vueuse/nuxt': 8.7.4
       dedent: 0.7.0
       defu: 6.0.0
-      h3: 0.7.9
+      h3: 0.7.10
       pathe: 0.3.0
       ufo: 0.8.4
     devDependencies:
@@ -777,7 +777,7 @@ packages:
       externality: 0.2.2
       fs-extra: 10.1.0
       get-port-please: 2.5.0
-      h3: 0.7.9
+      h3: 0.7.10
       knitwork: 0.1.2
       magic-string: 0.26.2
       mlly: 0.5.2
@@ -3690,8 +3690,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.7.9:
-    resolution: {integrity: sha512-1AWtXxgKNOKhvwKlvx69X+dfAn6tFDmXQU6Vk4kLRvHr1vJZCxhRPWPC/NjYc+I/QG5bxTDM/NuP5r1SjpWHvQ==}
+  /h3/0.7.10:
+    resolution: {integrity: sha512-HcUQxlOocG2uf6PQLu3Bxk0KSXcTuxSF6kRclFBDO7y74Ml0wCwTvmoN5zmrzoxbNHecDNUrcGr8qSNGcOqAHQ==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.1.1
@@ -4623,7 +4623,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.2
       gzip-size: 7.0.0
-      h3: 0.7.9
+      h3: 0.7.10
       hookable: 5.1.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -4849,7 +4849,7 @@ packages:
       escape-string-regexp: 5.0.0
       fs-extra: 10.1.0
       globby: 13.1.2
-      h3: 0.7.9
+      h3: 0.7.10
       hash-sum: 2.0.0
       hookable: 5.1.1
       knitwork: 0.1.2
@@ -6738,7 +6738,7 @@ packages:
       anymatch: 3.1.2
       chokidar: 3.5.3
       destr: 1.1.1
-      h3: 0.7.9
+      h3: 0.7.10
       ioredis: 5.0.6
       listhen: 0.2.12
       mri: 1.2.0
