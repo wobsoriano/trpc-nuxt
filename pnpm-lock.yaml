@@ -11,7 +11,7 @@ importers:
       '@trpc/client': ^9.25.2
       '@trpc/server': ^9.25.2
       '@types/dedent': ^0.7.0
-      '@vueuse/core': ^8.6.0
+      '@vueuse/core': ^8.7.4
       '@vueuse/nuxt': ^8.6.0
       bumpp: ^7.2.0
       dedent: ^0.7.0
@@ -29,7 +29,7 @@ importers:
       '@nuxt/kit': 3.0.0-rc.4
       '@trpc/client': 9.25.2_@trpc+server@9.25.2
       '@trpc/server': 9.25.2
-      '@vueuse/core': 8.6.0
+      '@vueuse/core': 8.7.4
       '@vueuse/nuxt': 8.6.0
       dedent: 0.7.0
       defu: 6.0.0
@@ -1300,6 +1300,22 @@ packages:
       vue-demi: 0.13.1
     dev: false
 
+  /@vueuse/core/8.7.4:
+    resolution: {integrity: sha512-dQgxjb79PDcizlaclgCkCzNoqNv12PnbXxUOFL9VacakmD/ACoSMWwTpcG3HKoDoYyl2V3kSW/8AkvXGEYEGFA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@vueuse/metadata': 8.7.4
+      '@vueuse/shared': 8.7.4
+      vue-demi: 0.13.1
+    dev: false
+
   /@vueuse/head/0.7.6_vue@3.2.37:
     resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
     peerDependencies:
@@ -1310,6 +1326,10 @@ packages:
 
   /@vueuse/metadata/8.6.0:
     resolution: {integrity: sha512-F+CKPvaExsm7QgRr8y+ZNJFwXasn89rs5wth/HeX9lJ1q8XEt+HJ16Q5Sxh4rfG5YSKXrStveVge8TKvPjMjFA==}
+    dev: false
+
+  /@vueuse/metadata/8.7.4:
+    resolution: {integrity: sha512-CwEYS6/M6JDxk9D1mUsZq3F0VnYnf39rAxOytP58vb4BrhmPKEVfiSpvxuYcJimU9ccT/xjWhwBnsdGC2H9mIQ==}
     dev: false
 
   /@vueuse/nuxt/8.6.0:
@@ -1332,6 +1352,20 @@ packages:
 
   /@vueuse/shared/8.6.0:
     resolution: {integrity: sha512-Y/IVywZo7IfEoSSEtCYpkVEmPV7pU35mEIxV7PbD/D3ly18B3mEsBaPbtDkNM/QP3zAZ5mn4nEkOfddX4uwuIA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      vue-demi: 0.13.1
+    dev: false
+
+  /@vueuse/shared/8.7.4:
+    resolution: {integrity: sha512-QhwTEd2Gr/8ZliWVEM8sbMUkXtVVV1Mt1mOkCnIbIN33D/V28FwGKUKqEPGZZCXuJchARnun/J1TAiT/UmZd1w==}
     peerDependencies:
       '@vue/composition-api': ^1.1.0
       vue: ^2.6.0 || ^3.2.0
@@ -4747,7 +4781,7 @@ packages:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.0
+      resolve: 1.22.1
       semver: 5.7.1
       validate-npm-package-license: 3.0.4
     dev: true
