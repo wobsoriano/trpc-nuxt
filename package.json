@@ -41,7 +41,7 @@
     "defu": "^6.0.0",
     "h3": "^0.7.10",
     "pathe": "^0.3.0",
-    "ufo": "^0.8.4"
+    "ufo": "^0.8.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
