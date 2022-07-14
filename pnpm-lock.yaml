@@ -12,7 +12,7 @@ importers:
       '@trpc/server': ^9.26.0
       '@types/dedent': ^0.7.0
       '@vueuse/core': ^8.9.3
-      '@vueuse/nuxt': ^8.7.4
+      '@vueuse/nuxt': ^8.9.3
       bumpp: ^7.2.0
       dedent: ^0.7.0
       defu: ^6.0.0
@@ -30,7 +30,7 @@ importers:
       '@trpc/client': 9.26.0_@trpc+server@9.26.0
       '@trpc/server': 9.26.0
       '@vueuse/core': 8.9.3
-      '@vueuse/nuxt': 8.7.4
+      '@vueuse/nuxt': 8.9.3
       dedent: 0.7.0
       defu: 6.0.0
       h3: 0.7.10
@@ -1359,22 +1359,6 @@ packages:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
 
-  /@vueuse/core/8.7.4:
-    resolution: {integrity: sha512-dQgxjb79PDcizlaclgCkCzNoqNv12PnbXxUOFL9VacakmD/ACoSMWwTpcG3HKoDoYyl2V3kSW/8AkvXGEYEGFA==}
-    peerDependencies:
-      '@vue/composition-api': ^1.1.0
-      vue: ^2.6.0 || ^3.2.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      vue:
-        optional: true
-    dependencies:
-      '@vueuse/metadata': 8.7.4
-      '@vueuse/shared': 8.7.4
-      vue-demi: 0.13.1
-    dev: false
-
   /@vueuse/core/8.9.3:
     resolution: {integrity: sha512-q2pr3N7FPG7IBBhEXTYOJU+38VwKMLP5IfD33byzBV4Th7f1JHT4qPKvJrvr17knAefPRzNqgt9et+xFqaRlPQ==}
     peerDependencies:
@@ -1400,22 +1384,18 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /@vueuse/metadata/8.7.4:
-    resolution: {integrity: sha512-CwEYS6/M6JDxk9D1mUsZq3F0VnYnf39rAxOytP58vb4BrhmPKEVfiSpvxuYcJimU9ccT/xjWhwBnsdGC2H9mIQ==}
-    dev: false
-
   /@vueuse/metadata/8.9.3:
     resolution: {integrity: sha512-57gZZKtWAmcJaUBmciCohvmumVLz4+FnoVnWj7U5BWs5PC2/7gU9Z0/i1i9leDNeboAauFzAq7z1GjS8eYnT+w==}
     dev: false
 
-  /@vueuse/nuxt/8.7.4:
-    resolution: {integrity: sha512-ysE+9OpFS+8whrqxGIWHbDEhkRYX9Xeg36AQI7DvfZn/dn25JF1ASlV6rzHI5mEX5qanlLr1WrS+niLuTMDYnw==}
+  /@vueuse/nuxt/8.9.3:
+    resolution: {integrity: sha512-bjjt/WaHm/iIyZjUcmqEUGP8OK+rLwppyVhxBNVeV/FRH+tSn745iN/3iyTYJUILKl/KazLtDrK6sunhSm6CZA==}
     dependencies:
       '@nuxt/kit': 3.0.0-rc.4
-      '@vueuse/core': 8.7.4
-      '@vueuse/metadata': 8.7.4
-      local-pkg: 0.4.1
-      vue-demi: 0.13.1
+      '@vueuse/core': 8.9.3
+      '@vueuse/metadata': 8.9.3
+      local-pkg: 0.4.2
+      vue-demi: 0.13.4
     transitivePeerDependencies:
       - '@vue/composition-api'
       - esbuild
@@ -1424,20 +1404,6 @@ packages:
       - vite
       - vue
       - webpack
-    dev: false
-
-  /@vueuse/shared/8.7.4:
-    resolution: {integrity: sha512-QhwTEd2Gr/8ZliWVEM8sbMUkXtVVV1Mt1mOkCnIbIN33D/V28FwGKUKqEPGZZCXuJchARnun/J1TAiT/UmZd1w==}
-    peerDependencies:
-      '@vue/composition-api': ^1.1.0
-      vue: ^2.6.0 || ^3.2.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      vue:
-        optional: true
-    dependencies:
-      vue-demi: 0.13.1
     dev: false
 
   /@vueuse/shared/8.9.3:
@@ -4219,6 +4185,11 @@ packages:
     resolution: {integrity: sha512-lL87ytIGP2FU5PWwNDo0w3WhIo2gopIAxPg9RxDYF7m4rr5ahuZxP22xnJHIvaLTe4Z9P6uKKY2UHiwyB4pcrw==}
     engines: {node: '>=14'}
 
+  /local-pkg/0.4.2:
+    resolution: {integrity: sha512-mlERgSPrbxU3BP4qBqAvvwlgW4MTg78iwJdGGnv7kibKjWcJksrG3t6LB5lXI93wXRDvG4NpUgJFmTG4T6rdrg==}
+    engines: {node: '>=14'}
+    dev: false
+
   /locate-path/2.0.0:
     resolution: {integrity: sha512-NCI2kiDkyR7VeEKm27Kda/iQHyKJe1Bu0FlTbYp3CqJu+9IFe9bLyAjMxf5ZDDbEg+iMPzB5zYyUTSm8wVTKmA==}
     engines: {node: '>=4'}
@@ -6881,19 +6852,6 @@ packages:
     dependencies:
       bundle-runner: 0.0.1
     dev: true
-
-  /vue-demi/0.13.1:
-    resolution: {integrity: sha512-xmkJ56koG3ptpLnpgmIzk9/4nFf4CqduSJbUM0OdPoU87NwRuZ6x49OLhjSa/fC15fV+5CbEnrxU4oyE022svg==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dev: false
 
   /vue-demi/0.13.4:
     resolution: {integrity: sha512-KP4lq9uSz0KZbaqCllRhnxMV3mYRsRWJfdsAhZyt5bV5O1RTpoeDptBRV9NOa/JgOpfaA9ane88VF7OjWNK/DA==}
