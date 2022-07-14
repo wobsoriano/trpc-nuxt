@@ -35,7 +35,7 @@
     "@nuxt/kit": "^3.0.0-rc.4",
     "@trpc/client": "^9.26.0",
     "@trpc/server": "^9.26.0",
-    "@vueuse/core": "^8.7.4",
+    "@vueuse/core": "^8.9.3",
     "@vueuse/nuxt": "^8.7.4",
     "dedent": "^0.7.0",
     "defu": "^6.0.0",
