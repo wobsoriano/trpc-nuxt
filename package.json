@@ -32,7 +32,7 @@
     "prepare": "nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.4",
+    "@nuxt/kit": "3.0.0-rc.5",
     "@trpc/client": "^9.26.0",
     "@trpc/server": "^9.26.0",
     "@vueuse/core": "^8.9.3",
