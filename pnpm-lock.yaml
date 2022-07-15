@@ -21,7 +21,7 @@ importers:
       nuxt: 3.0.0-rc.4
       ohash: ^0.1.0
       pathe: ^0.3.0
-      pnpm: ^7.1.1
+      pnpm: ^7.5.0
       trpc-nuxt: workspace:*
       ufo: ^0.8.5
       zod: ^3.16.0
