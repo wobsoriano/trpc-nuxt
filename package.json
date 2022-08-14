@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "3.0.0-rc.5",
-    "@trpc/client": "^9.26.0",
+    "@trpc/client": "^9.27.0",
     "@trpc/server": "^9.26.0",
     "@vueuse/core": "^8.9.3",
     "@vueuse/nuxt": "^8.9.3",
