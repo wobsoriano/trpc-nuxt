@@ -9,7 +9,7 @@ importers:
       '@nuxt/kit': 3.0.0-rc.5
       '@nuxt/module-builder': latest
       '@trpc/client': ^9.27.0
-      '@trpc/server': ^9.26.0
+      '@trpc/server': ^9.27.0
       '@types/dedent': ^0.7.0
       '@vueuse/core': ^8.9.3
       '@vueuse/nuxt': ^8.9.3
@@ -27,8 +27,8 @@ importers:
       zod: ^3.16.0
     dependencies:
       '@nuxt/kit': 3.0.0-rc.5
-      '@trpc/client': 9.27.0_@trpc+server@9.26.0
-      '@trpc/server': 9.26.0
+      '@trpc/client': 9.27.0_@trpc+server@9.27.0
+      '@trpc/server': 9.27.0
       '@vueuse/core': 8.9.3
       '@vueuse/nuxt': 8.9.3
       dedent: 0.7.0
@@ -987,17 +987,17 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  /@trpc/client/9.27.0_@trpc+server@9.26.0:
+  /@trpc/client/9.27.0_@trpc+server@9.27.0:
     resolution: {integrity: sha512-Yh+oDBiANArjDx69bSnXqIK36wjlRm8iGLQkMmrvTTFwVRt3hgfreCzjyj4PgNEd4SNX4iGrhLLPIDHeH+qlJA==}
     peerDependencies:
       '@trpc/server': 9.27.0
     dependencies:
       '@babel/runtime': 7.18.9
-      '@trpc/server': 9.26.0
+      '@trpc/server': 9.27.0
     dev: false
 
-  /@trpc/server/9.26.0:
-    resolution: {integrity: sha512-aQgGkcAln9leq/Ab5X5AOWci0BNiy4oGcEqXCWs5Q7sZ1gd5Y3OzQV5tnY6fPsWSRjuvkb45Syq2AkFpX0q0/w==}
+  /@trpc/server/9.27.0:
+    resolution: {integrity: sha512-5A/d5U9Y8L6+4q46a9gLackTyMRUFyNubo6JlIpSxtea/wW8teR6Azux4gg/uKIM3+6+lgg/HxQHWvwkG0VOSg==}
     dev: false
 
   /@trysound/sax/0.2.0:
