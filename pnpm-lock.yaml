@@ -34,6 +34,7 @@ importers:
       dedent: 0.7.0
       defu: 6.0.0
       h3: 0.7.10
+      ohash: 0.1.5
       pathe: 0.3.2
       ufo: 0.8.5
     devDependencies:
@@ -44,7 +45,6 @@ importers:
       bumpp: 7.2.0
       eslint: 8.19.0
       nuxt: 3.0.0-rc.8
-      ohash: 0.1.5
       pnpm: 7.5.1
       trpc-nuxt: 'link:'
       zod: 3.17.3
@@ -4736,7 +4736,6 @@ packages:
 
   /ohash/0.1.5:
     resolution: {integrity: sha512-qynly1AFIpGWEAW88p6DhMNqok/Swb52/KsiU+Toi7er058Ptvno3tkfTML6wYcEgFgp2GsUziW4Nqn62ciuyw==}
-    dev: true
 
   /ohmyfetch/0.4.18:
     resolution: {integrity: sha512-MslzNrQzBLtZHmiZBI8QMOcMpdNFlK61OJ34nFNFynZ4v+4BonfCQ7VIN4EGXvGGq5zhDzgdJoY3o9S1l2T7KQ==}
