@@ -19,7 +19,7 @@ importers:
       eslint: ^8.14.0
       h3: ^0.7.10
       nuxt: 3.0.0-rc.8
-      ohash: ^0.1.0
+      ohash: ^0.1.5
       pathe: ^0.3.0
       pnpm: ^7.5.0
       trpc-nuxt: workspace:*
@@ -44,7 +44,7 @@ importers:
       bumpp: 7.2.0
       eslint: 8.19.0
       nuxt: 3.0.0-rc.8
-      ohash: 0.1.3
+      ohash: 0.1.5
       pnpm: 7.5.1
       trpc-nuxt: 'link:'
       zod: 3.17.3
@@ -4732,10 +4732,6 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.1.4
       es-abstract: 1.20.1
-    dev: true
-
-  /ohash/0.1.3:
-    resolution: {integrity: sha512-yGB9/8Ysloz9kz8VnFAQrCH5V7on7h956y69j+NnuzmYazPhiHVY1uF/EDn/AjXPzblW3BYbpzJZro3Dgrfogg==}
     dev: true
 
   /ohash/0.1.5:
