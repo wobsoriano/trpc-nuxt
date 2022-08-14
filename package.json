@@ -46,11 +46,11 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
-    "@nuxt/module-builder": "latest",
+    "@nuxt/module-builder": "^0.1.7",
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.14.0",
-    "nuxt": "3.0.0-rc.4",
+    "nuxt": "3.0.0-rc.8",
     "ohash": "^0.1.0",
     "pnpm": "^7.5.0",
     "trpc-nuxt": "workspace:*",
