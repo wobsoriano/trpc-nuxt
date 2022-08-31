@@ -4,7 +4,7 @@ const headers = useClientHeaders()
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
 
 const addHeader = () => {
-  // headers.value.cookie = 'counter=69'
+  headers.value.authorization = 'Bearer abcdefghijklmnop'
   console.log(headers.value)
 }
 
