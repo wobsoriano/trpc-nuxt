@@ -103,7 +103,7 @@ const {
 
 ## useClientHeaders
 
-A composable that lets you add additional properties to pass to the tRPC Client. It uses `useStorage` from [@vueuse/core](https://vueuse.org/core/usestorage).
+A composable that lets you add additional properties to pass to the tRPC Client. It uses `useState` from [nuxt 3](https://v3.nuxtjs.org/api/composables/use-state).
 
 ```ts
 const headers = useClientHeaders()
