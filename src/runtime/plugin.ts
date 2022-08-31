@@ -13,13 +13,10 @@ export default defineNuxtPlugin((nuxtApp) => {
   const client = trpc.createTRPCClient<AppRouter>({
     url: `${config.baseURL}${config.endpoint}`,
     headers: () => {
-      if (nuxtApp.ssrContext) {
-        return {
-          ...unref(otherHeaders),
-          ...headers,
-        }
+      return {
+        ...unref(otherHeaders),
+        ...headers,
       }
-      return {}
     },
   })
 
