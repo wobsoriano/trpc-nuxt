@@ -9,7 +9,6 @@ import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProc
 import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import type { Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
 import { useAsyncData, useNuxtApp, useState } from '#app'
 import type { router } from '~/server/trpc'
 
@@ -79,5 +78,5 @@ export function useClient(): TRPCClient<AppRouter> {
 }
 
 export function useClientHeaders(initialValue: MaybeRef<Record<string, any>> = {}): Ref<Record<string, any>> {
-  return useStorage('trpc-nuxt-header', initialValue)
+  return useState('trpc-nuxt-header', () => initialValue)
 }
