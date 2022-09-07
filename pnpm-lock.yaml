@@ -8,7 +8,7 @@ importers:
       '@antfu/ni': ^0.16.2
       '@nuxt/kit': 3.0.0-rc.9
       '@nuxt/module-builder': ^0.1.7
-      '@trpc/client': ^9.27.1
+      '@trpc/client': ^9.27.2
       '@trpc/server': ^9.27.2
       '@types/dedent': ^0.7.0
       bumpp: ^7.2.0
@@ -25,7 +25,7 @@ importers:
       zod: ^3.16.0
     dependencies:
       '@nuxt/kit': 3.0.0-rc.9
-      '@trpc/client': 9.27.1_@trpc+server@9.27.2
+      '@trpc/client': 9.27.2_@trpc+server@9.27.2
       '@trpc/server': 9.27.2
       dedent: 0.7.0
       defu: 6.0.0
@@ -1148,10 +1148,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  /@trpc/client/9.27.1_@trpc+server@9.27.2:
-    resolution: {integrity: sha512-srh3s1ekhV5fssqxdE5DagcW+bnWUXp4LWkuHTunPDUL5BaIs6l0FXE4wKMv9AFAcCw7xJOFx8VSwFl/raXqKQ==}
+  /@trpc/client/9.27.2_@trpc+server@9.27.2:
+    resolution: {integrity: sha512-rpsgJJMalOtki5VjcyheL0zdft23mDnoBHn5cJMZLf3ssymCZq2crbvCiUmCRU289lYHrqffaaZ+9PqCSsVKfg==}
     peerDependencies:
-      '@trpc/server': 9.27.1
+      '@trpc/server': 9.27.2
     dependencies:
       '@babel/runtime': 7.18.9
       '@trpc/server': 9.27.2
