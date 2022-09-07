@@ -49,7 +49,7 @@
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.14.0",
-    "nuxt": "3.0.0-rc.8",
+    "nuxt": "3.0.0-rc.9",
     "pnpm": "^7.5.0",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.16.0"
