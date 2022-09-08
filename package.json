@@ -32,9 +32,9 @@
     "prepare": "nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "3.0.0-rc.8",
-    "@trpc/client": "^9.27.1",
-    "@trpc/server": "^9.27.1",
+    "@nuxt/kit": "3.0.0-rc.9",
+    "@trpc/client": "^9.27.2",
+    "@trpc/server": "^9.27.2",
     "dedent": "^0.7.0",
     "defu": "^6.0.0",
     "h3": "^0.7.10",
@@ -49,7 +49,7 @@
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.14.0",
-    "nuxt": "3.0.0-rc.8",
+    "nuxt": "3.0.0-rc.9",
     "pnpm": "^7.5.0",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.16.0"

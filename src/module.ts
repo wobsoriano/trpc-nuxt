@@ -3,7 +3,7 @@ import { join, resolve } from 'pathe'
 import { defu } from 'defu'
 import dedent from 'dedent'
 
-import { addAutoImport, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
@@ -32,7 +32,7 @@ export default defineNuxtModule<ModuleOptions>({
       endpoint: options.endpoint,
     })
 
-    addAutoImport([
+    addImports([
       { name: 'useClient', from: join(runtimeDir, 'client') },
       { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
       { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
