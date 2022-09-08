@@ -28,7 +28,7 @@
     "build:playground": "nuxi build playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp --commit --push --tag && pnpm publish",
+    "release": "bumpp --commit --push --tag && npm publish",
     "prepare": "nuxi prepare playground"
   },
   "dependencies": {
