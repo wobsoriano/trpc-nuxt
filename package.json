@@ -1,7 +1,7 @@
 {
   "name": "trpc-nuxt",
   "type": "module",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "packageManager": "pnpm@7.5.0",
   "license": "MIT",
   "main": "./dist/module.cjs",
