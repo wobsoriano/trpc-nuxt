@@ -5,7 +5,7 @@ import Module from '../src/module'
 export default defineNuxtConfig({
   modules: [Module],
   runtimeConfig: {
-    baseURL: 'http://localhost:3000',
+    baseURL: '',
   },
   typescript: {
     strict: true,
