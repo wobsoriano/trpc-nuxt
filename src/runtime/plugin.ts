@@ -20,11 +20,11 @@ export default defineNuxtPlugin((nuxtApp) => {
         ...headers,
       }
     },
-    fetch: (input, options) => 
+    fetch: (input, options) =>
       globalThis.$fetch.raw(input.toString(), options).then(response => ({
         ...response,
         json: () => Promise.resolve(response._data),
-      }))
+      })),
   })
 
   nuxtApp.provide('client', client)
