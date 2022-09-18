@@ -1,5 +1,6 @@
 import * as trpc from '@trpc/client'
 import { unref } from 'vue'
+import { FetchError } from 'ohmyfetch'
 import { useClientHeaders } from './client'
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
 import type { router } from '~/server/trpc'
@@ -21,10 +22,17 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     },
     fetch: (input, options) =>
-      globalThis.$fetch.raw(input.toString(), options).then(response => ({
-        ...response,
-        json: () => Promise.resolve(response._data),
-      })),
+      globalThis.$fetch.raw(input.toString(), options)
+        .catch((e) => {
+          if (e instanceof FetchError && e.response)
+            return e.response
+
+          throw e
+        })
+        .then(response => ({
+          ...response,
+          json: () => Promise.resolve(response._data),
+        })),
   })
 
   nuxtApp.provide('client', client)
