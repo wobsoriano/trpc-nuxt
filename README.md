@@ -15,8 +15,6 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
   </figure>
 </p>
 
-**⚠️ Currently works on Node v16 until [this issue](https://github.com/trpc/trpc/issues/2420) gets fixed.**
-
 ## Install
 
 ```bash
