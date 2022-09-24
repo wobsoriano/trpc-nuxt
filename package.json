@@ -59,8 +59,5 @@
     "rules": {
       "no-console": "warn"
     }
-  },
-  "volta": {
-    "node": "16.14.2"
   }
 }
