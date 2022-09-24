@@ -16,7 +16,7 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'trpc',
   },
   defaults: {
-    baseURL: 'http://localhost:3000',
+    baseURL: '',
     endpoint: '/trpc',
   },
   async setup(options, nuxt) {
