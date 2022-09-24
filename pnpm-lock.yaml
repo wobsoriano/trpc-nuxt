@@ -15,7 +15,7 @@ importers:
       dedent: ^0.7.0
       defu: ^6.0.0
       eslint: ^8.14.0
-      h3: ^0.7.10
+      h3: ^0.7.21
       nuxt: 3.0.0-rc.11
       ohash: ^0.1.5
       pathe: ^0.3.0
@@ -29,7 +29,7 @@ importers:
       '@trpc/server': 9.27.2
       dedent: 0.7.0
       defu: 6.0.0
-      h3: 0.7.10
+      h3: 0.7.21
       ohash: 0.1.5
       pathe: 0.3.2
       ufo: 0.8.5
@@ -3538,15 +3538,6 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.7.10:
-    resolution: {integrity: sha512-HcUQxlOocG2uf6PQLu3Bxk0KSXcTuxSF6kRclFBDO7y74Ml0wCwTvmoN5zmrzoxbNHecDNUrcGr8qSNGcOqAHQ==}
-    dependencies:
-      cookie-es: 0.5.0
-      destr: 1.1.1
-      radix3: 0.1.2
-      ufo: 0.8.5
-    dev: false
-
   /h3/0.7.21:
     resolution: {integrity: sha512-F/qdr3JKh8zBLiZyiprH5kuzG6vjoTK3nFnIYFUIQPLsw755GI5JezAFc3HJxbgYlzawcGeJlmsw4xu2t/0n/Q==}
     dependencies:
@@ -3554,7 +3545,6 @@ packages:
       destr: 1.1.1
       radix3: 0.1.2
       ufo: 0.8.5
-    dev: true
 
   /has-bigints/1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
