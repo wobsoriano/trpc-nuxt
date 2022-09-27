@@ -28,7 +28,7 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   modules: ['trpc-nuxt'],
   trpc: {
-    baseURL: 'http://localhost:3000', // defaults to http://localhost:3000
+    baseURL: '', // Set empty string (default) to make requests by relative address 
     endpoint: '/trpc', // defaults to /trpc
   },
   typescript: {
