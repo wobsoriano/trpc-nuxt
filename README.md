@@ -159,7 +159,7 @@ export const onError = (payload: OnErrorPayload<typeof router>) => {
 - [Error Formatting](/recipes/error-formatting.md)
 - [Inference Helpers](/recipes/inference-helpers.md)
 
-Learn more about tRPC.io [here](https://trpc.io/docs).
+Learn more about tRPC.io [here](https://trpc.io/docs/v9).
 
 ## Recommended IDE Setup
 
