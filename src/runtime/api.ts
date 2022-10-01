@@ -9,7 +9,7 @@ import type {
 } from '@trpc/server'
 import { createURL } from 'ufo'
 import type { CompatibilityEvent } from 'h3'
-import { defineEventHandler, isMethod, useBody } from 'h3'
+import { defineEventHandler, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/dist/declarations/src/rpc'
 
 type MaybePromise<T> = T | Promise<T>
@@ -63,7 +63,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
       req: {
         method: req.method!,
         headers: req.headers,
-        body: isMethod(event, 'GET') ? null : await useBody(event),
+        body: isMethod(event, 'GET') ? null : await readBody(event),
         query: $url.searchParams,
       },
       path: $url.pathname.substring(endpoint.length + 1),
