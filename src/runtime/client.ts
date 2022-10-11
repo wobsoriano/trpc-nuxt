@@ -51,16 +51,13 @@ export async function useAsyncQuery<
 ): Promise<AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TError>> {
   const { $client } = useNuxtApp()
   const key = getQueryKey(pathAndInput)
-  const serverError = useState<TError | null>(`error-${key}`, () => null)
   const { error, data, ...rest } = await useAsyncData(
     key,
     () => $client.query(...pathAndInput),
     // @ts-expect-error: Internal
     options,
-  )
-
-  if (process.server && error.value && !serverError.value)
-    serverError.value = error.value as any
+    )
+  const serverError = useState<TError | null>(`error-${key}`, () => error.value)
 
   if (data.value)
     serverError.value = null
