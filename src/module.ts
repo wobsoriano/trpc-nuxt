@@ -3,11 +3,13 @@ import { join, resolve } from 'pathe'
 import { defu } from 'defu'
 import dedent from 'dedent'
 
+import type { DataTransformerOptions } from '@trpc/server'
 import { addImports, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
   endpoint: string
+  transformer: DataTransformerOptions | undefined
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -18,6 +20,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     baseURL: '',
     endpoint: '/trpc',
+    transformer: undefined,
   },
   async setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))

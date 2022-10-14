@@ -24,6 +24,8 @@ const addTodo = async () => {
     console.log(e)
   }
 }
+
+console.log('Current date', await client.query('getCurrentDate'))
 </script>
 
 <template>

@@ -11,8 +11,8 @@ const { data: todo, pending, error } = await useAsyncQuery(['getTodo', Number(ro
     {{ error.data.code }}
   </div>
   <div v-else>
-    ID: {{ todo.id }} <br>
-    Title: {{ todo.title }} <br>
-    Completed: {{ todo.completed }}
+    ID: {{ todo?.id }} <br>
+    Title: {{ todo?.title }} <br>
+    Completed: {{ todo?.completed }}
   </div>
 </template>

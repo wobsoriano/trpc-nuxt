@@ -1,7 +1,9 @@
-import * as trpc from '@trpc/server'
 import type { inferAsyncReturnType } from '@trpc/server'
-import { z } from 'zod'
 import type { CompatibilityEvent } from 'h3'
+
+import * as trpc from '@trpc/server'
+import superjson from 'superjson'
+import { z } from 'zod'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -14,6 +16,8 @@ const TodoShape = z.object({
 
 export type Todo = z.infer<typeof TodoShape>
 
+export const transformer = superjson
+
 export const router = trpc.router<Context>()
   .query('getTodos', {
     async resolve() {
@@ -24,6 +28,11 @@ export const router = trpc.router<Context>()
     input: z.number(),
     async resolve(req) {
       return await $fetch<Todo>(`${baseURL}/todos/${req.input}`)
+    },
+  })
+  .query('getCurrentDate', {
+    async resolve() {
+      return new Date()
     },
   })
   .mutation('addTodo', {
@@ -50,4 +59,4 @@ export async function createContext(event: CompatibilityEvent) {
   }
 }
 
-  type Context = inferAsyncReturnType<typeof createContext>
+type Context = inferAsyncReturnType<typeof createContext>

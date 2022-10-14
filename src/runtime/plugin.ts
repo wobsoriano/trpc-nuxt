@@ -13,6 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const otherHeaders = useClientHeaders()
 
   const baseURL = process.server ? '' : config.baseURL
+
   const client = trpc.createTRPCClient<AppRouter>({
     url: `${baseURL}${config.endpoint}`,
     headers: () => {
@@ -21,18 +22,23 @@ export default defineNuxtPlugin((nuxtApp) => {
         ...headers,
       }
     },
-    fetch: (input, options) =>
-      globalThis.$fetch.raw(input.toString(), options)
-        .catch((e) => {
-          if (e instanceof FetchError && e.response)
-            return e.response
+    fetch: async (input, options) => {
+      try {
+        const response = await globalThis.$fetch.raw(input.toString(), options)
 
-          throw e
-        })
-        .then(response => ({
+        return {
           ...response,
           json: () => Promise.resolve(response._data),
-        })),
+        }
+      }
+      catch (e) {
+        if (e instanceof FetchError && e.response)
+          return e.response
+
+        throw e
+      }
+    },
+    transformer: config.transformer,
   })
 
   nuxtApp.provide('client', client)
