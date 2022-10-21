@@ -48,7 +48,7 @@
     "@nuxt/module-builder": "^0.2.0",
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
-    "eslint": "^8.14.0",
+    "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
     "pnpm": "^7.5.0",
     "trpc-nuxt": "workspace:*",
