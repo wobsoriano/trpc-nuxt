@@ -8,13 +8,13 @@ import type {
   inferRouterError,
 } from '@trpc/server'
 import { createURL } from 'ufo'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 import { defineEventHandler, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/dist/declarations/src/rpc'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type CreateContextFn<TRouter extends AnyRouter> = (event: CompatibilityEvent) => MaybePromise<inferRouterContext<TRouter>>
+export type CreateContextFn<TRouter extends AnyRouter> = (event: H3Event) => MaybePromise<inferRouterContext<TRouter>>
 
 export interface ResponseMetaFnPayload<TRouter extends AnyRouter> {
   data: TRPCResponse<unknown, inferRouterError<TRouter>>[]
@@ -30,7 +30,7 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
   error: TRPCError
   type: ProcedureType | 'unknown'
   path: string | undefined
-  req: CompatibilityEvent['req']
+  req: H3Event['req']
   input: unknown
   ctx: undefined | inferRouterContext<TRouter>
 }

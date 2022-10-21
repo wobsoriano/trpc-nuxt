@@ -1,7 +1,7 @@
 import * as trpc from '@trpc/server'
 import type { inferAsyncReturnType } from '@trpc/server'
 import { z } from 'zod'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -37,7 +37,7 @@ export const router = trpc.router<Context>()
     },
   })
 
-export async function createContext(event: CompatibilityEvent) {
+export async function createContext(event: H3Event) {
   // Create your context based on the request object
   // Will be available as `ctx` in all your resolvers
 
