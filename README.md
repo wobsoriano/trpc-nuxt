@@ -120,14 +120,14 @@ trpc-nuxt accepts the following options exposed under `~/server/trpc/index.ts`:
 ```ts
 import * as trpc from '@trpc/server'
 import type { inferAsyncReturnType } from '@trpc/server'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 import type { OnErrorPayload } from 'trpc-nuxt/api'
 
 export const router = trpc.router<inferAsyncReturnType<typeof createContext>>()
 
 // Optional
 // https://trpc.io/docs/context
-export const createContext = (event: CompatibilityEvent) => {
+export const createContext = (event: H3Event) => {
   // ...
   return {
     /** context data */

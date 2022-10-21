@@ -7,11 +7,11 @@ The `createContext`-function is called for each incoming request so here you can
 ```ts
 // ~/server/trpc/index.ts
 import type { inferAsyncReturnType } from '@trpc/server'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 import { decodeAndVerifyJwtToken } from '~/somewhere/in/your/app/utils'
 
 // The app's context - is generated for each incoming request
-export async function createContext({ req }: CompatibilityEvent) {
+export async function createContext({ req }: H3Event) {
   // Create your context based on the request object
   // Will be available as `ctx` in all your resolvers
 
