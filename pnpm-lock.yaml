@@ -8,8 +8,8 @@ importers:
       '@antfu/ni': ^0.16.2
       '@nuxt/kit': 3.0.0-rc.12
       '@nuxt/module-builder': ^0.2.0
-      '@trpc/client': ^9.27.4
-      '@trpc/server': ^9.27.4
+      '@trpc/client': 10.0.0-rc.1
+      '@trpc/server': 10.0.0-rc.1
       '@types/dedent': ^0.7.0
       bumpp: ^7.2.0
       dedent: ^0.7.0
@@ -25,8 +25,6 @@ importers:
       zod: ^3.19.1
     dependencies:
       '@nuxt/kit': 3.0.0-rc.12
-      '@trpc/client': 9.27.4_@trpc+server@9.27.4
-      '@trpc/server': 9.27.4
       dedent: 0.7.0
       defu: 6.1.0
       h3: 0.8.5
@@ -37,6 +35,8 @@ importers:
       '@antfu/eslint-config': 0.23.1_eslint@8.25.0
       '@antfu/ni': 0.16.3
       '@nuxt/module-builder': 0.2.0
+      '@trpc/client': 10.0.0-rc.1_@trpc+server@10.0.0-rc.1
+      '@trpc/server': 10.0.0-rc.1
       '@types/dedent': 0.7.0
       bumpp: 7.2.0
       eslint: 8.25.0
@@ -400,13 +400,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@babel/runtime/7.18.9:
-    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      regenerator-runtime: 0.13.9
-    dev: false
 
   /@babel/standalone/7.19.0:
     resolution: {integrity: sha512-P8lYynBl10MYpgkhGEV1fOsGDE/6lQSYp+e2YvqUPMWHT4JaQrOkM49FizjswrRzJ6KZTgG6ZY90/1GYvAR3/Q==}
@@ -1011,18 +1004,17 @@ packages:
       rollup: 3.2.3
     dev: true
 
-  /@trpc/client/9.27.4_@trpc+server@9.27.4:
-    resolution: {integrity: sha512-NyS3J333xy8PJWGTSKO0egvj3x/s4SaSPx7XDWHf/i51W/i5Fla+sNxYpv+4z+SwE2xyJKszN2EZbvKIW2X/wA==}
+  /@trpc/client/10.0.0-rc.1_@trpc+server@10.0.0-rc.1:
+    resolution: {integrity: sha512-7tNq2Oopn1v+R2aGDsulpuCi2MODf8MOtBENOMg8gKnWpw8O6+UPApLJLbMKJJ45qWLg/4jSvpi4kHAYsXTzzA==}
     peerDependencies:
-      '@trpc/server': 9.27.4
+      '@trpc/server': 10.0.0-rc.1
     dependencies:
-      '@babel/runtime': 7.18.9
-      '@trpc/server': 9.27.4
-    dev: false
+      '@trpc/server': 10.0.0-rc.1
+    dev: true
 
-  /@trpc/server/9.27.4:
-    resolution: {integrity: sha512-yw0omUrxGp8+gEAuieZFeXB4bCqFvmyCDL3GOBv+Q6+cK0m5824ViHZKPgK5DYG1ijN/lbi1hP3UVKywPN7rbQ==}
-    dev: false
+  /@trpc/server/10.0.0-rc.1:
+    resolution: {integrity: sha512-AqbGhlDVEs5ziDDuvBpXpDiUd2FzK9rS4frfA0pdYfpuhH/AoJoot8vHGENLHzyssS06/HTUGeFr/n8oCKW9DA==}
+    dev: true
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -5544,10 +5536,6 @@ packages:
     dependencies:
       redis-errors: 1.2.0
     dev: true
-
-  /regenerator-runtime/0.13.9:
-    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-    dev: false
 
   /regexp-tree/0.1.24:
     resolution: {integrity: sha512-s2aEVuLhvnVJW6s/iPgEGK6R+/xngd2jNQ+xy4bXNDKxZKJH6jpPHY6kVeVv1IeLCHgswRj+Kl3ELaDjG6V1iw==}

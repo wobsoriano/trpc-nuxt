@@ -31,10 +31,12 @@
     "release": "bumpp --commit --push --tag && npm publish",
     "prepare": "nuxi prepare playground"
   },
+  "peerDependencies": {
+    "@trpc/client": "^10.0.0-proxy-beta.21",
+    "@trpc/server": "^10.0.0-proxy-beta.21"
+  },
   "dependencies": {
     "@nuxt/kit": "3.0.0-rc.12",
-    "@trpc/client": "^9.27.4",
-    "@trpc/server": "^9.27.4",
     "dedent": "^0.7.0",
     "defu": "^6.1.0",
     "h3": "^0.8.5",
@@ -46,6 +48,8 @@
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "^0.2.0",
+    "@trpc/client": "10.0.0-rc.1",
+    "@trpc/server": "10.0.0-rc.1",
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.25.0",
