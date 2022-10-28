@@ -1,7 +1,7 @@
-import * as trpc from '@trpc/server'
-import type { inferAsyncReturnType } from '@trpc/server'
+import { initTRPC } from '@trpc/server'
 import { z } from 'zod'
 import type { H3Event } from 'h3'
+import type { inferAsyncReturnType } from '@trpc/server'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -14,28 +14,34 @@ const TodoShape = z.object({
 
 export type Todo = z.infer<typeof TodoShape>
 
-export const router = trpc.router<Context>()
-  .query('getTodos', {
-    async resolve() {
-      return await $fetch<Todo[]>(`${baseURL}/todos`)
-    },
-  })
-  .query('getTodo', {
-    input: z.number(),
-    async resolve(req) {
-      return await $fetch<Todo>(`${baseURL}/todos/${req.input}`)
-    },
-  })
-  .mutation('addTodo', {
-    input: TodoShape,
-    async resolve(req) {
-      console.log(req.input)
-      return await $fetch<Todo>(`${baseURL}/todos`, {
+const t = initTRPC.context<Context>().create()
+
+// We explicitly export the methods we use here
+// This allows us to create reusable & protected base procedures
+export const middleware = t.middleware
+export const router = t.router
+export const publicProcedure = t.procedure
+
+export const appRouter = router({
+  getTodos: publicProcedure.query(() => {
+    return $fetch<Todo[]>(`${baseURL}/todos`)
+  }),
+  getTodo: publicProcedure
+    .input(z.number())
+    .query((req) => {
+      return $fetch<Todo>(`${baseURL}/todos/${req.input}`)
+    }),
+  addTodo: publicProcedure
+    .input(TodoShape)
+    .mutation((req) => {
+      return $fetch<Todo>(`${baseURL}/todos`, {
         method: 'POST',
         body: req.input,
       })
-    },
-  })
+    }),
+})
+
+export type AppRouter = typeof appRouter
 
 export async function createContext(event: H3Event) {
   // Create your context based on the request object
@@ -50,4 +56,4 @@ export async function createContext(event: H3Event) {
   }
 }
 
-  type Context = inferAsyncReturnType<typeof createContext>
+type Context = inferAsyncReturnType<typeof createContext>
