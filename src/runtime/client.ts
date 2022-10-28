@@ -57,9 +57,9 @@ export async function useAsyncQuery<
     () => $client.query(...pathAndInput),
     // @ts-expect-error: Internal
     options,
-  )
+    )
 
-  if (process.server && error.value && !serverError.value)
+  if (error.value && !serverError.value)
     serverError.value = error.value as any
 
   if (data.value)
