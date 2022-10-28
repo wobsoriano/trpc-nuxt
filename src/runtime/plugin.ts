@@ -4,9 +4,7 @@ import { unref } from 'vue'
 import { FetchError } from 'ohmyfetch'
 import { useClientHeaders } from './client'
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
-// import type { router } from '~/server/trpc'
-
-// declare type AppRouter = typeof router
+import type { AppRouter } from '~/server/trpc'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig().public.trpc
@@ -14,7 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const otherHeaders = useClientHeaders()
 
   const baseURL = process.server ? '' : config.baseURL
-  const client = createTRPCProxyClient<any>({
+  const client = createTRPCProxyClient<AppRouter>({
     links: [
       httpBatchLink({
         url: `${baseURL}${config.endpoint}`,
