@@ -1,11 +1,12 @@
-import * as trpc from '@trpc/client'
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
+import type { TRPCClient } from '@trpc/client';
 import { unref } from 'vue'
 import { FetchError } from 'ohmyfetch'
 import { useClientHeaders } from './client'
 import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
-import type { router } from '~/server/trpc'
+// import type { router } from '~/server/trpc'
 
-declare type AppRouter = typeof router
+// declare type AppRouter = typeof router
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig().public.trpc
@@ -13,26 +14,30 @@ export default defineNuxtPlugin((nuxtApp) => {
   const otherHeaders = useClientHeaders()
 
   const baseURL = process.server ? '' : config.baseURL
-  const client = trpc.createTRPCClient<AppRouter>({
-    url: `${baseURL}${config.endpoint}`,
-    headers: () => {
-      return {
-        ...unref(otherHeaders),
-        ...headers,
-      }
-    },
-    fetch: (input, options) =>
-      globalThis.$fetch.raw(input.toString(), options)
-        .catch((e) => {
-          if (e instanceof FetchError && e.response)
-            return e.response
+  const client = createTRPCProxyClient<any>({
+    links: [
+      httpBatchLink({
+        url: `${baseURL}${config.endpoint}`,
+        headers: () => {
+          return {
+            ...unref(otherHeaders),
+            ...headers,
+          }
+        },
+        fetch: (input, options) =>
+          globalThis.$fetch.raw(input.toString(), options)
+            .catch((e) => {
+              if (e instanceof FetchError && e.response)
+                return e.response
 
-          throw e
-        })
-        .then(response => ({
-          ...response,
-          json: () => Promise.resolve(response._data),
-        })),
+              throw e
+            })
+            .then(response => ({
+              ...response,
+              json: () => Promise.resolve(response._data),
+            })),
+      }),
+    ],
   })
 
   nuxtApp.provide('client', client)
@@ -40,6 +45,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 declare module '#app' {
   interface NuxtApp {
-    $client: trpc.TRPCClient<AppRouter>
+    $client: TRPCClient<any>
   }
 }
