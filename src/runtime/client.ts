@@ -5,19 +5,22 @@ import type {
   PickFrom,
   _Transform,
 } from 'nuxt/dist/app/composables/asyncData'
-import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProcedureOutput } from '@trpc/server'
+import type {
+  ProcedureRecord,
+  inferHandlerInput,
+  inferProcedureInput,
+  inferProcedureOutput,
+} from '@trpc/server'
 import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import type { Ref } from 'vue'
 import { useAsyncData, useNuxtApp, useState } from '#app'
-import type { router } from '~/server/trpc'
+import type { AppRouter } from '~/server/trpc'
 
 type MaybeRef<T> = T | Ref<T>
 
-type AppRouter = typeof router
-
 export type inferProcedures<
-  TObj extends ProcedureRecord<any, any, any, any, any, any>,
+  TObj extends ProcedureRecord,
 > = {
   [TPath in keyof TObj]: {
     input: inferProcedureInput<TObj[TPath]>
@@ -25,10 +28,10 @@ export type inferProcedures<
   };
 }
 
-export type TQueries = AppRouter['_def']['queries']
+export type TQueries = AppRouter['_def']['procedures']
 export type TError = TRPCClientErrorLike<AppRouter>
 
-export type TQueryValues = inferProcedures<AppRouter['_def']['queries']>
+export type TQueryValues = inferProcedures<AppRouter['_def']['procedures']>
 
 /**
  * Calculates the key used for `useAsyncData` call
@@ -55,9 +58,8 @@ export async function useAsyncQuery<
   const { error, data, ...rest } = await useAsyncData(
     key,
     () => $client.query(...pathAndInput),
-    // @ts-expect-error: Internal
     options,
-    )
+  )
 
   if (error.value && !serverError.value)
     serverError.value = error.value as any
