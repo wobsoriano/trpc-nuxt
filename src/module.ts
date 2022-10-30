@@ -1,9 +1,9 @@
 import { fileURLToPath } from 'url'
-import { join, resolve } from 'pathe'
+import { join } from 'pathe'
 import { defu } from 'defu'
 import dedent from 'dedent'
 
-import { addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
@@ -32,26 +32,17 @@ export default defineNuxtModule<ModuleOptions>({
       endpoint: options.endpoint,
     })
 
-    // addImports([
-    //   { name: 'useClient', from: join(runtimeDir, 'client') },
-    //   { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
-    //   { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
-    //   { name: 'getQueryKey', from: join(runtimeDir, 'client') },
-    // ])
-
     addServerHandler({
       route: `${finalConfig.endpoint}/*`,
       handler: handlerPath,
     })
-
-    // addPlugin(resolve(runtimeDir, 'plugin'))
 
     addTemplate({
       filename: 'trpc-handler.ts',
       write: true,
       getContents() {
         return dedent`
-          import { createTRPCHandler } from 'trpc-nuxt/api'
+          import { createTRPCHandler } from 'trpc-nuxt/server'
           import * as functions from '${trpcOptionsPath}'
     
           export default createTRPCHandler({

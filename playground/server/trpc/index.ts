@@ -19,7 +19,7 @@ const t = initTRPC.context<Context>().create()
 // We explicitly export the methods we use here
 // This allows us to create reusable & protected base procedures
 export const middleware = t.middleware
-const router = t.router
+export const router = t.router
 export const publicProcedure = t.procedure
 
 const anotherRouter = router({
