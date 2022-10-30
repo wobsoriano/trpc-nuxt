@@ -1,23 +1,12 @@
-import type { CreateTRPCClientOptions, TRPCClientErrorLike, inferRouterProxyClient } from '@trpc/client'
-import { createTRPCProxyClient } from '@trpc/client'
-import type {
-  AnyMutationProcedure,
-  AnyProcedure,
-  AnyQueryProcedure,
-  AnyRouter,
-  ProcedureRouterRecord,
-  inferProcedureInput,
-  inferProcedureOutput,
-} from '@trpc/server'
+import type { TRPCClientErrorLike, inferRouterProxyClient } from '@trpc/client'
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
+import type { AnyMutationProcedure, AnyProcedure, AnyQueryProcedure, AnyRouter, ProcedureRecord, ProcedureRouterRecord, inferHandlerInput, inferProcedureInput, inferProcedureOutput, inferRouterInputs } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import type {
-  AsyncData,
-  AsyncDataOptions,
-  KeyOfRes,
-  PickFrom,
-  _Transform,
+  AsyncData, AsyncDataOptions, KeyOfRes, PickFrom, _Transform,
 } from 'nuxt/dist/app/composables/asyncData'
 import { hash } from 'ohash'
+import type { AppRouter } from '~~/server/trpc'
 
 /**
  * Calculates the key used for `useAsyncData` call
@@ -46,14 +35,12 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
     const queryKey = getQueryKey(path, input)
 
     if (lastArg === 'mutate') {
-      // @ts-expect-error: Nuxt internal
       return useAsyncData(queryKey, () => (client as any)[path][lastArg](input), {
         ...asyncDataOptions as Record<string, any>,
         immediate: false,
       })
     }
 
-    // @ts-expect-error: Nuxt internal
     return useAsyncData(queryKey, () => (client as any)[path][lastArg](input), asyncDataOptions as Record<string, any>)
   })
 }
@@ -102,12 +89,22 @@ export type DecoratedProcedureRecord<
       : never;
 }
 
-export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: CreateTRPCClientOptions<TRouter>) {
-  const client = createTRPCProxyClient(opts)
+export default defineNuxtPlugin(() => {
+  const client = createTRPCProxyClient<AppRouter>({
+    links: [
+      httpBatchLink({
+        url: 'http://localhost:3000/trpc',
+      }),
+    ],
+  })
 
-  const decoratedClient = createFlatProxy((key) => {
+  const newClient = createFlatProxy((key) => {
     return createNuxtProxyDecoration(key, client)
-  }) as DecoratedProcedureRecord<TRouter['_def']['record']>
+  }) as DecoratedProcedureRecord<AppRouter['_def']['record']>
 
-  return decoratedClient
-}
+  return {
+    provide: {
+      client: newClient,
+    },
+  }
+})

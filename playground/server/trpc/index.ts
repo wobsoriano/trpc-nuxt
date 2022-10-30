@@ -19,13 +19,10 @@ const t = initTRPC.context<Context>().create()
 // We explicitly export the methods we use here
 // This allows us to create reusable & protected base procedures
 export const middleware = t.middleware
-export const router = t.router
+const router = t.router
 export const publicProcedure = t.procedure
 
-export const appRouter = router({
-  getTodos: publicProcedure.query(() => {
-    return $fetch<Todo[]>(`${baseURL}/todos`)
-  }),
+const anotherRouter = router({
   getTodo: publicProcedure
     .input(z.number())
     .query((req) => {
@@ -38,6 +35,19 @@ export const appRouter = router({
         method: 'POST',
         body: req.input,
       })
+    }),
+})
+
+export const appRouter = router({
+  todo: anotherRouter,
+  getTodos: publicProcedure.query(() => {
+    return $fetch<Todo[]>(`${baseURL}/todos`)
+  }),
+  getTodo: publicProcedure
+    .input(z.number())
+    .query((req) => {
+      console.log('REQ', req)
+      return $fetch<Todo>(`${baseURL}/todos/${req.input}`)
     }),
 })
 

@@ -1,5 +1,5 @@
+import type { inferRouterProxyClient } from '@trpc/client'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
-import type { TRPCClient } from '@trpc/client';
 import { unref } from 'vue'
 import { FetchError } from 'ohmyfetch'
 import { useClientHeaders } from './client'
@@ -12,6 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const otherHeaders = useClientHeaders()
 
   const baseURL = process.server ? '' : config.baseURL
+
   const client = createTRPCProxyClient<AppRouter>({
     links: [
       httpBatchLink({
@@ -43,6 +44,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 declare module '#app' {
   interface NuxtApp {
-    $client: TRPCClient<any>
+    $client: inferRouterProxyClient<AppRouter>
   }
 }

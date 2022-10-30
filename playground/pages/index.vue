@@ -1,55 +1,66 @@
 <script setup lang="ts">
-const client = useClient()
-const headers = useClientHeaders()
-const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
+const { $client } = useNuxtApp()
+// const headers = useClientHeaders()
+// const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
 
-const addHeader = () => {
-  headers.value.authorization = 'Bearer abcdefghijklmnop'
-  console.log(headers.value)
-}
+// const addHeader = () => {
+//   headers.value.authorization = 'Bearer abcdefghijklmnop'
+//   console.log(headers.value)
+// }
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const result = await client.mutation('addTodo', {
-      id: Date.now(),
+    const result = await $client.todo.addTodo.mutate({
+      id: 69,
       userId: 69,
       title,
       completed: false,
     })
-    console.log('Todo: ', result)
+    await result.execute()
+    console.log('Todo: ', result.data.value)
   }
   catch (e) {
     console.log(e)
   }
 }
+// console.log($client)
+const { data: todos, pending, error } = await $client.todo.getTodo.query(2, {
+  // immediate: false,
+  pick: ['completed'],
+})
 </script>
 
 <template>
-  <div v-if="pending">
-    Loading...
-  </div>
-  <div v-else-if="error?.data?.code">
-    Error: {{ error.data.code }}
-  </div>
-  <div v-else-if="todos">
-    <ul>
-      <li v-for="t in todos.slice(0, 10)" :key="t.id">
-        <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
-          Title: {{ t.title }}
-        </NuxtLink>
-      </li>
-    </ul>
+  <div>
+    <div v-if="pending">
+      Loading...
+    </div>
+    <div v-else-if="error?.data?.code">
+      Error: {{ error.data.code }}
+    </div>
+    <!-- <div v-if="todos && todos.length > 0">
+      <ul>
+        <li v-for="t in todos.slice(0, 10)" :key="t.id">
+          <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
+            Title: {{ t.title }}
+          </NuxtLink>
+        </li>
+      </ul> -->
     <button @click="addTodo">
       Add Todo
     </button>
-    <button @click="() => refresh()">
-      Refresh
-    </button>
-    <button @click="addHeader">
-      Add header
-    </button>
+    <!-- <button @click="() => refresh()">
+        Refresh
+      </button>
+      <button @click="addHeader">
+        Add header
+      </button> -->
+    <!-- </div> -->
+    <div v-if="todos">
+      {{ JSON.stringify(todos) }}
+    </div>
   </div>
 </template>
 
