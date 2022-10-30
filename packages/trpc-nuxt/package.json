@@ -3,15 +3,14 @@
   "version": "0.4.0-beta.1",
   "packageManager": "pnpm@7.5.0",
   "license": "MIT",
+  "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
     "./client": {
-      "types": "./dist/client.d.ts",
       "require": "./dist/client.js",
       "import": "./dist/client.mjs"
     }
@@ -21,7 +20,7 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "*.d.ts"
+    "client.d.ts"
   ],
   "scripts": {
     "prepublishOnly": "nr build",
@@ -46,8 +45,8 @@
     "@trpc/server": "10.0.0-rc.1",
     "bumpp": "^8.2.1",
     "nuxt": "3.0.0-rc.12",
-    "tsup": "^6.3.0",
-    "typescript": "4.5.4"
+    "tsup": "6.0.1",
+    "typescript": "^4.7.4"
   },
   "eslintConfig": {
     "extends": "@antfu",
