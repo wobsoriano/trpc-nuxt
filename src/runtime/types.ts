@@ -16,6 +16,9 @@ import type {
   _Transform,
 } from 'nuxt/dist/app/composables/asyncData'
 
+// Inspired by trpc/react-query client types
+// https://github.com/trpc/trpc/blob/next/packages/react-query/src/createTRPCReact.tsx
+
 /**
  * @internal
  */
