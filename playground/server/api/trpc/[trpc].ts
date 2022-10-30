@@ -1,12 +1,23 @@
 import { createNuxtApiHandler } from 'trpc-nuxt'
 import { appRouter } from '../../trpc/routers'
+import { createContext } from '~~/server/trpc/context'
 
 export default createNuxtApiHandler({
   router: appRouter,
-  createContext: async () => {
-    return {}
-  },
+  /**
+   * @link https://trpc.io/docs/context
+   */
+  createContext,
   onError({ error }) {
-    console.log('Error', error)
+    if (error.code === 'INTERNAL_SERVER_ERROR') {
+      // send to bug reporting
+      console.error('Something went wrong', error)
+    }
   },
+  /**
+   * @link https://trpc.io/docs/caching#api-response-caching
+   */
+  // responseMeta() {
+  //   // ...
+  // },
 })
