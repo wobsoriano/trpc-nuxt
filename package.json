@@ -9,15 +9,15 @@
     "./package.json": "./package.json",
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./client": {
       "require": "./dist/client/index.cjs",
-      "import": "./dist/client/index.js"
+      "import": "./dist/client/index.mjs"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
@@ -49,7 +49,7 @@
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
     "pnpm": "^7.14.1",
-    "tsup": "6.0.1",
+    "tsup": "6.3.0",
     "typescript": "^4.7.4"
   },
   "eslintConfig": {

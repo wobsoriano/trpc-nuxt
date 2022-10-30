@@ -14,7 +14,7 @@ importers:
       nuxt: 3.0.0-rc.12
       ohash: ^0.1.5
       pnpm: ^7.14.1
-      tsup: 6.0.1
+      tsup: 6.3.0
       typescript: ^4.7.4
       ufo: ^0.8.6
     dependencies:
@@ -30,7 +30,7 @@ importers:
       eslint: 8.26.0
       nuxt: 3.0.0-rc.12_wyqvi574yv7oiwfeinomdzmc3m
       pnpm: 7.14.1
-      tsup: 6.0.1_typescript@4.8.4
+      tsup: 6.3.0_typescript@4.8.4
       typescript: 4.8.4
 
   docs:
@@ -2695,13 +2695,13 @@ packages:
       semver: 7.3.8
     dev: true
 
-  /bundle-require/3.1.0_esbuild@0.14.54:
+  /bundle-require/3.1.0_esbuild@0.15.12:
     resolution: {integrity: sha512-IIXtAO7fKcwPHNPt9kY/WNVJqy7NDy6YqJvv6ENH0TOZoJ+yjpEsn1w40WKZbR2ibfu5g1rfgJTvmFHpm5aOMA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       esbuild: '>=0.13'
     dependencies:
-      esbuild: 0.14.54
+      esbuild: 0.15.12
       load-tsconfig: 0.2.3
     dev: true
 
@@ -9117,8 +9117,8 @@ packages:
     engines: {node: '>=0.6.x'}
     dev: true
 
-  /tsup/6.0.1_typescript@4.8.4:
-    resolution: {integrity: sha512-2Pl1YkEEvzfg4aYgwUILaHV0wwZQKO7mNHMQChyzdCNlQqf11eug7gWk86XCb3CvRofCXBX87x73BTGjyS3cOQ==}
+  /tsup/6.3.0_typescript@4.8.4:
+    resolution: {integrity: sha512-IaNQO/o1rFgadLhNonVKNCT2cks+vvnWX3DnL8sB87lBDqRvJXHENr5lSPJlqwplUlDxSwZK8dSg87rgBu6Emw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -9133,11 +9133,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      bundle-require: 3.1.0_esbuild@0.14.54
+      bundle-require: 3.1.0_esbuild@0.15.12
       cac: 6.7.14
       chokidar: 3.5.3
       debug: 4.3.4
-      esbuild: 0.14.54
+      esbuild: 0.15.12
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1

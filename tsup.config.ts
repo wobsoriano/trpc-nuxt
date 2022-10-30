@@ -7,4 +7,10 @@ export default defineConfig({
   clean: true,
   external: ['#app'],
   dts: true,
+  // @ts-expect-error: Missing type
+  outExtension({ format }) {
+    return {
+      js: format === 'esm' ? '.mjs' : `.${format}`,
+    }
+  },
 })
