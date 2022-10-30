@@ -12,9 +12,13 @@
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
     },
-    "./api": {
-      "import": "./dist/runtime/api.mjs",
-      "types": "./dist/runtime/api.d.ts"
+    "./server": {
+      "import": "./dist/runtime/server.mjs",
+      "types": "./dist/runtime/server.d.ts"
+    },
+    "./client": {
+      "import": "./dist/runtime/client.mjs",
+      "types": "./dist/runtime/client.d.ts"
     }
   },
   "files": [
