@@ -40,7 +40,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: strin
     const queryKey = getQueryKey(path, input)
 
     if (lastArg === 'mutate') {
-      return useAsyncData(queryKey, () => (client as any)[path][lastArg](input), {
+      return useAsyncData(() => (client as any)[path][lastArg](input), {
         ...asyncDataOptions as Record<string, any>,
         immediate: false,
       })
