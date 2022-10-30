@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { publicProcedure, router } from '..'
+import { publicProcedure, router } from '../trpc'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 

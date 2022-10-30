@@ -1,4 +1,4 @@
-import { router } from '..'
+import { router } from '../trpc'
 import { todoRouter } from './todo'
 import { userRouter } from './user'
 
