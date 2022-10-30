@@ -26,8 +26,6 @@ const addTodo = async () => {
 }
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query()
-
-console.log(typeof $client.todo.getTodos.query)
 </script>
 
 <template>
