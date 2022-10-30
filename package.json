@@ -42,11 +42,11 @@
     "ufo": "^0.8.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.23.1",
-    "@antfu/ni": "^0.16.2",
+    "@antfu/eslint-config": "^0.27.0",
+    "@antfu/ni": "^0.18.3",
     "@trpc/client": "10.0.0-rc.1",
     "@trpc/server": "10.0.0-rc.1",
-    "bumpp": "^7.2.0",
+    "bumpp": "^8.2.1",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
     "pnpm": "^7.5.0",
