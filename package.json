@@ -27,7 +27,7 @@
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp --commit --push --tag && npm publish"
+    "release": "bumpp && npm publish"
   },
   "peerDependencies": {
     "@trpc/client": "^10.0.0-proxy-beta.21",
