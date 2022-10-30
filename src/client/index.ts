@@ -6,6 +6,8 @@ import type {
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
 import type { DecoratedProcedureRecord } from './types'
+// @ts-ignore: nuxt internal
+import { useAsyncData, useState } from '#app'
 
 /**
  * Calculates the key used for `useAsyncData` call
@@ -27,7 +29,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: strin
     const pathCopy = [name, ...opts.path]
 
     // The last arg is for instance `.mutate` or `.query()`
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     const lastArg = pathCopy.pop()!
 
     const path = pathCopy.join('.')
@@ -44,9 +46,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: strin
  * Custom useAsyncData to add server error to client
  */
 async function useAsyncDataWithError(queryKey: string, cb: any, asyncDataOptions: any) {
-  // @ts-ignore: nuxt internal
   const serverError = useState(`error-${queryKey}`, () => null)
-  // @ts-ignore: nuxt internal
   const { error, data, ...rest } = await useAsyncData(queryKey, cb, asyncDataOptions)
 
   if (error.value && !serverError.value)
