@@ -38,16 +38,36 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: strin
     const queryKey = getQueryKey(path, input)
 
     if (lastArg === 'mutate') {
-      // @ts-ignore: nuxt internal
-      return useAsyncData(() => (client as any)[path][lastArg](input), {
+      return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input), {
         ...asyncDataOptions as Record<string, any>,
         immediate: false,
       })
     }
 
-    // @ts-ignore: nuxt internal
-    return useAsyncData(queryKey, () => (client as any)[path][lastArg](input), asyncDataOptions as Record<string, any>)
+    return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input), asyncDataOptions as Record<string, any>)
   })
+}
+
+/**
+ * Custom useAsyncData to add server error to client
+ */
+async function useAsyncDataWithError(queryKey: string, cb: any, asyncDataOptions: any) {
+  // @ts-ignore: nuxt internal
+  const serverError = useState(`error-${queryKey}`, () => null)
+  // @ts-ignore: nuxt internal
+  const { error, data, ...rest } = await useAsyncData(queryKey, cb, asyncDataOptions)
+
+  if (error.value && !serverError.value)
+    serverError.value = error.value as any
+
+  if (data.value)
+    serverError.value = null
+
+  return {
+    ...rest,
+    data,
+    error: serverError,
+  }
 }
 
 export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: CreateTRPCClientOptions<TRouter>) {
