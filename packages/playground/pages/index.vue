@@ -11,14 +11,13 @@ const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const result = await $client.todo.addTodo.mutate({
+    const x = await $client.todo.addTodo.mutate({
       id: Date.now(),
       userId: 69,
       title,
       completed: false,
     })
-    await result.execute()
-    console.log('Todo: ', result.data.value)
+    console.log(x.data.value)
   }
   catch (e) {
     console.log(e)

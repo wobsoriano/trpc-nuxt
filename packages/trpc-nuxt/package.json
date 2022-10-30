@@ -11,8 +11,8 @@
       "import": "./dist/index.mjs"
     },
     "./client": {
-      "require": "./dist/client.js",
-      "import": "./dist/client.mjs"
+      "require": "./dist/client/index.js",
+      "import": "./dist/client/index.mjs"
     }
   },
   "main": "./dist/index.js",
@@ -37,7 +37,6 @@
   "dependencies": {
     "h3": "^0.8.5",
     "ohash": "^0.1.5",
-    "ohmyfetch": "^0.4.20",
     "ufo": "^0.8.6"
   },
   "devDependencies": {
