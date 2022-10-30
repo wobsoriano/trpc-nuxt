@@ -1,5 +1,6 @@
 {
   "name": "trpc-nuxt",
+  "type": "module",
   "version": "0.4.0-beta.4",
   "packageManager": "pnpm@7.14.1",
   "license": "MIT",
@@ -7,16 +8,16 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
     },
     "./client": {
-      "require": "./dist/client/index.js",
-      "import": "./dist/client/index.mjs"
+      "require": "./dist/client/index.cjs",
+      "import": "./dist/client/index.js"
     }
   },
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
