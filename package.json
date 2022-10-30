@@ -1,7 +1,7 @@
 {
   "name": "trpc-nuxt",
   "version": "0.4.0-beta.3",
-  "packageManager": "pnpm@7.5.0",
+  "packageManager": "pnpm@7.14.1",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -47,7 +47,7 @@
     "bumpp": "^8.2.1",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
-    "pnpm": "^7.5.0",
+    "pnpm": "^7.14.1",
     "tsup": "6.0.1",
     "typescript": "^4.7.4"
   },

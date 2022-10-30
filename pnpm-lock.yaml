@@ -13,7 +13,7 @@ importers:
       h3: ^0.8.5
       nuxt: 3.0.0-rc.12
       ohash: ^0.1.5
-      pnpm: ^7.5.0
+      pnpm: ^7.14.1
       tsup: 6.0.1
       typescript: ^4.7.4
       ufo: ^0.8.6
