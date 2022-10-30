@@ -1,7 +1,7 @@
 {
   "name": "trpc-nuxt",
   "type": "module",
-  "version": "0.4.0-beta.6",
+  "version": "0.4.0-beta.7",
   "packageManager": "pnpm@7.14.1",
   "license": "MIT",
   "sideEffects": false,
