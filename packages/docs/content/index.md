@@ -9,7 +9,7 @@ layout: page
 ---
 cta:
   - Get Started
-  - /get-started/introduction
+  - /get-started/installation
 secondary:
   - Star on GitHub ->
   - https://github.com/wobsoriano/trpc-nuxt
