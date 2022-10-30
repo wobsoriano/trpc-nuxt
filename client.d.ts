@@ -1,1 +1,1 @@
-export * from './dist/runtime/client'
+export * from './dist/client'

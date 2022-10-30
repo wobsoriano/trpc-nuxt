@@ -1,24 +1,22 @@
 {
   "name": "trpc-nuxt",
-  "type": "module",
   "version": "0.3.1",
   "packageManager": "pnpm@7.5.0",
   "license": "MIT",
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
-    },
-    "./server": {
-      "import": "./dist/runtime/server.mjs",
-      "types": "./dist/runtime/server.d.ts"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     },
     "./client": {
-      "import": "./dist/runtime/client.mjs",
-      "types": "./dist/runtime/client.d.ts"
+      "require": "./dist/client.js",
+      "import": "./dist/client.mjs",
+      "types": "./dist/client.d.ts"
     }
   },
   "files": [
@@ -27,40 +25,33 @@
   ],
   "scripts": {
     "prepublishOnly": "nr build",
-    "build": "nuxt-module-build",
-    "play": "nr build && nuxi dev playground",
-    "build:playground": "nuxi build playground",
+    "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp --commit --push --tag && npm publish",
-    "prepare": "nuxi prepare playground"
+    "release": "bumpp --commit --push --tag && npm publish"
   },
   "peerDependencies": {
     "@trpc/client": "^10.0.0-proxy-beta.21",
-    "@trpc/server": "^10.0.0-proxy-beta.21"
+    "@trpc/server": "^10.0.0-proxy-beta.21",
+    "nuxt": "^3.0.0-rc.12"
   },
   "dependencies": {
-    "@nuxt/kit": "3.0.0-rc.12",
-    "dedent": "^0.7.0",
-    "defu": "^6.1.0",
     "h3": "^0.8.5",
     "ohash": "^0.1.5",
-    "pathe": "^0.3.9",
+    "ohmyfetch": "^0.4.20",
     "ufo": "^0.8.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
     "@antfu/ni": "^0.16.2",
-    "@nuxt/module-builder": "^0.2.0",
     "@trpc/client": "10.0.0-rc.1",
     "@trpc/server": "10.0.0-rc.1",
-    "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
     "pnpm": "^7.5.0",
-    "trpc-nuxt": "workspace:*",
-    "zod": "^3.19.1"
+    "tsup": "^6.3.0",
+    "typescript": "4.5.4"
   },
   "eslintConfig": {
     "extends": "@antfu",

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { $client } = useNuxtApp()
 // const headers = useClientHeaders()
-// const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])
 
 // const addHeader = () => {
 //   headers.value.authorization = 'Bearer abcdefghijklmnop'
@@ -13,7 +12,7 @@ const addTodo = async () => {
 
   try {
     const result = await $client.todo.addTodo.mutate({
-      id: 69,
+      id: Date.now(),
       userId: 69,
       title,
       completed: false,
@@ -26,7 +25,7 @@ const addTodo = async () => {
   }
 }
 
-const { data: todos, pending, error, refresh } = await $client.getTodos.query()
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query()
 </script>
 
 <template>

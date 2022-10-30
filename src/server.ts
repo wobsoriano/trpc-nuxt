@@ -37,18 +37,18 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
 
 export type OnErrorFn<TRouter extends AnyRouter> = (opts: OnErrorPayload<TRouter>) => void
 
-export function createTRPCHandler<Router extends AnyRouter>({
+export function createNuxtApiHandler<TRouter extends AnyRouter>({
   router,
   createContext,
   responseMeta,
   onError,
-  endpoint,
+  url = '/api/trpc',
 }: {
-  router: Router
-  createContext?: CreateContextFn<Router>
-  responseMeta?: ResponseMetaFn<Router>
-  onError?: OnErrorFn<Router>
-  endpoint: string
+  router: TRouter
+  createContext?: CreateContextFn<TRouter>
+  responseMeta?: ResponseMetaFn<TRouter>
+  onError?: OnErrorFn<TRouter>
+  url?: string
 }) {
   return defineEventHandler(async (event) => {
     const {
@@ -66,7 +66,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await readBody(event),
         query: $url.searchParams,
       },
-      path: $url.pathname.substring(endpoint.length + 1),
+      path: $url.pathname.substring(url.length + 1),
       createContext: async () => createContext?.(event),
       responseMeta,
       onError: (o) => {
