@@ -5,9 +5,8 @@ import type {
 } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
+import { useAsyncData, useState } from 'nuxt/app'
 import type { DecoratedProcedureRecord } from './types'
-// @ts-ignore: nuxt internal
-import { useAsyncData, useState } from '#app'
 
 /**
  * Calculates the key used for `useAsyncData` call
