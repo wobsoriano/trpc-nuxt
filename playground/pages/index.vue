@@ -25,11 +25,8 @@ const addTodo = async () => {
     console.log(e)
   }
 }
-// console.log($client)
-const { data: todos, pending, error } = await $client.todo.getTodo.query(2, {
-  // immediate: false,
-  pick: ['completed'],
-})
+
+const { data: todos, pending, error, refresh } = await $client.getTodos.query()
 </script>
 
 <template>
@@ -40,26 +37,20 @@ const { data: todos, pending, error } = await $client.todo.getTodo.query(2, {
     <div v-else-if="error?.data?.code">
       Error: {{ error.data.code }}
     </div>
-    <!-- <div v-if="todos && todos.length > 0">
+    <div v-else>
       <ul>
-        <li v-for="t in todos.slice(0, 10)" :key="t.id">
+        <li v-for="t in todos?.slice(0, 10)" :key="t.id">
           <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
             Title: {{ t.title }}
           </NuxtLink>
         </li>
-      </ul> -->
-    <button @click="addTodo">
-      Add Todo
-    </button>
-    <!-- <button @click="() => refresh()">
+      </ul>
+      <button @click="addTodo">
+        Add Todo
+      </button>
+      <button @click="() => refresh()">
         Refresh
       </button>
-      <button @click="addHeader">
-        Add header
-      </button> -->
-    <!-- </div> -->
-    <div v-if="todos">
-      {{ JSON.stringify(todos) }}
     </div>
   </div>
 </template>
