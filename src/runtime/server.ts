@@ -11,9 +11,6 @@ import { createURL } from 'ufo'
 import type { H3Event } from 'h3'
 import { defineEventHandler, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
-import type { CreateTRPCClientOptions, inferRouterProxyClient } from '@trpc/client'
-import { createTRPCProxyClient } from '@trpc/client'
-import { toRaw } from 'vue'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -90,27 +87,4 @@ export function createTRPCHandler<Router extends AnyRouter>({
 
     return body
   })
-}
-
-export function createTRPCNuxtClient<R extends AnyRouter>(opts: CreateTRPCClientOptions<R>) {
-  const client = createTRPCProxyClient(opts)
-
-  // Object.keys(client).forEach((path) => {
-  //   clientWithOther[path] = {}
-  //   Object.keys(client[path]).forEach((action) => {
-  //     clientWithOther[path][action] = (input: inferRouterInputs<R>) => {
-  //       // @ts-expect-error: asd
-  //       return useAsyncData(`${path}-${action}`, () => client[path][action](input))
-  //     }
-  //   })
-  // })
-
-  const proxiedClient = new Proxy({}, {
-    get(target, property) {
-      // @ts-expect-error: Nuxt
-      return () => useAsyncData(`${target}-${property}`, () => client.getTodos.query())
-    },
-  })
-
-  return proxiedClient as inferRouterProxyClient<R>
 }
