@@ -5,7 +5,7 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   splitting: false,
   clean: true,
-  external: ['#app'],
+  external: ['#app', '#imports'],
   dts: true,
   // @ts-expect-error: Missing type
   outExtension({ format }) {
