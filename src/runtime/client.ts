@@ -1,5 +1,6 @@
 import type { CreateTRPCClientOptions, TRPCClientErrorLike, inferRouterProxyClient } from '@trpc/client'
 import { createTRPCProxyClient } from '@trpc/client'
+import { FetchError } from 'ohmyfetch'
 import type {
   AnyMutationProcedure,
   AnyProcedure,
@@ -110,4 +111,18 @@ export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: Creat
   }) as DecoratedProcedureRecord<TRouter['_def']['record']>
 
   return decoratedClient
+}
+
+export function customFetch(input: RequestInfo | URL, options?: RequestInit) {
+  return globalThis.$fetch.raw(input.toString(), options)
+    .catch((e) => {
+      if (e instanceof FetchError && e.response)
+        return e.response
+
+      throw e
+    })
+    .then(response => ({
+      ...response,
+      json: () => Promise.resolve(response._data),
+    }))
 }
