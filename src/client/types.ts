@@ -19,6 +19,10 @@ import type {
 // Inspired by trpc/react-query client types
 // https://github.com/trpc/trpc/blob/next/packages/react-query/src/createTRPCReact.tsx
 
+interface TRPCOptions extends TRPCRequestOptions {
+  abortOnUnmount?: boolean
+}
+
 /**
  * @internal
  */
@@ -33,7 +37,7 @@ export type DecorateProcedure<
       PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCRequestOptions },
+        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCOptions },
       ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: <
@@ -42,7 +46,7 @@ export type DecorateProcedure<
       PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCRequestOptions },
+        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCOptions },
       ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>
     } : never
 

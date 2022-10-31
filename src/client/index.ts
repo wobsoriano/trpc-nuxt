@@ -5,6 +5,7 @@ import type {
 } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
+import { getCurrentInstance, onScopeDispose } from 'vue'
 import type { DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
 import { useAsyncData, useState } from '#imports'
@@ -36,7 +37,21 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
 
     const { trpc, ...asyncDataOptions } = otherOptions || {} as any
 
-    return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input, trpc), asyncDataOptions)
+    let controller: AbortController
+
+    if (trpc?.abortOnUnmount) {
+      if (getCurrentInstance()) {
+        onScopeDispose(() => {
+          controller?.abort?.()
+        })
+      }
+      controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
+    }
+
+    return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input, {
+      ...trpc,
+      signal: controller?.signal,
+    }), asyncDataOptions)
   })
 }
 

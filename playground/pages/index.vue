@@ -24,7 +24,12 @@ const addTodo = async () => {
   }
 }
 
-const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query()
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query(undefined, {
+  trpc: {
+    abortOnUnmount: true,
+  },
+  server: false,
+})
 </script>
 
 <template>

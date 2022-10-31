@@ -5,9 +5,8 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   splitting: false,
   clean: true,
-  external: ['#app', '#imports'],
+  external: ['#app', '#imports', 'vue'],
   dts: true,
-  // @ts-expect-error: Missing type
   outExtension({ format }) {
     return {
       js: format === 'esm' ? '.mjs' : `.${format}`,
