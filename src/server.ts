@@ -3,13 +3,15 @@ import { resolveHTTPResponse } from '@trpc/server/http'
 import type {
   AnyRouter,
   ProcedureType,
-  TRPCError,
   inferRouterContext,
   inferRouterError,
 } from '@trpc/server'
+import {
+  TRPCError,
+} from '@trpc/server'
 import { createURL } from 'ufo'
 import type { H3Event } from 'h3'
-import { defineEventHandler, isMethod, readBody } from 'h3'
+import { defineEventHandler, isMethod, readBody, createError } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
 
 type MaybePromise<T> = T | Promise<T>
@@ -37,18 +39,26 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
 
 export type OnErrorFn<TRouter extends AnyRouter> = (opts: OnErrorPayload<TRouter>) => void
 
+function getPath(event: H3Event): string | null {
+  if (typeof event.context.params.trpc === 'string')
+    return event.context.params.trpc
+
+  if (Array.isArray(event.context.params.trpc))
+    return event.context.params.trpc.join('/')
+
+  return null
+}
+
 export function createNuxtApiHandler<TRouter extends AnyRouter>({
   router,
   createContext,
   responseMeta,
   onError,
-  url = '/api/trpc',
 }: {
   router: TRouter
   createContext?: CreateContextFn<TRouter>
   responseMeta?: ResponseMetaFn<TRouter>
   onError?: OnErrorFn<TRouter>
-  url?: string
 }) {
   return defineEventHandler(async (event) => {
     const {
@@ -58,6 +68,30 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
 
     const $url = createURL(req.url!)
 
+    const path = getPath(event)
+
+    if (path === null) {
+      const error = router.getErrorShape({
+        error: new TRPCError({
+          message:
+            'Param "trpc" not found - is the file named `[trpc]`.ts or `[...trpc].ts`?',
+          code: 'INTERNAL_SERVER_ERROR',
+        }),
+        type: 'unknown',
+        ctx: undefined,
+        path: undefined,
+        input: undefined,
+      })
+
+      throw createError({
+        statusCode: 500,
+        statusMessage: JSON.stringify({
+          id: -1,
+          error,
+        }),
+      })
+    }
+
     const httpResponse = await resolveHTTPResponse({
       router,
       req: {
@@ -66,7 +100,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
         body: isMethod(event, 'GET') ? null : await readBody(event),
         query: $url.searchParams,
       },
-      path: $url.pathname.substring(url.length + 1),
+      path,
       createContext: async () => createContext?.(event),
       responseMeta,
       onError: (o) => {
