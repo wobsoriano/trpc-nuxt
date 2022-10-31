@@ -39,6 +39,16 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
 
 export type OnErrorFn<TRouter extends AnyRouter> = (opts: OnErrorPayload<TRouter>) => void
 
+interface ResolveHTTPRequestOptions<TRouter extends AnyRouter> {
+  router: TRouter
+  createContext?: CreateContextFn<TRouter>
+  responseMeta?: ResponseMetaFn<TRouter>
+  onError?: OnErrorFn<TRouter>
+  batching?: {
+    enabled: boolean
+  }
+}
+
 function getPath(event: H3Event): string | null {
   if (typeof event.context.params.trpc === 'string')
     return event.context.params.trpc
@@ -54,12 +64,8 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
   createContext,
   responseMeta,
   onError,
-}: {
-  router: TRouter
-  createContext?: CreateContextFn<TRouter>
-  responseMeta?: ResponseMetaFn<TRouter>
-  onError?: OnErrorFn<TRouter>
-}) {
+  ...otherOpts
+}: ResolveHTTPRequestOptions<TRouter>) {
   return defineEventHandler(async (event) => {
     const {
       req,
@@ -88,6 +94,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
     }
 
     const httpResponse = await resolveHTTPResponse({
+      ...otherOpts,
       router,
       req: {
         method: req.method!,
