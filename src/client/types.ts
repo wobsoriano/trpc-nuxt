@@ -1,4 +1,4 @@
-import type { TRPCClientErrorLike } from '@trpc/client'
+import type { TRPCClientErrorLike, TRPCRequestOptions } from '@trpc/client'
 import type {
   AnyMutationProcedure,
   AnyProcedure,
@@ -33,7 +33,7 @@ export type DecorateProcedure<
       PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, Transform, PickKeys>,
+        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCRequestOptions },
       ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: <
@@ -42,7 +42,7 @@ export type DecorateProcedure<
       PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, Transform, PickKeys>,
+        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc: TRPCRequestOptions },
       ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>
     } : never
 

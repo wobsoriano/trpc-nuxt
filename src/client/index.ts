@@ -30,10 +30,11 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
 
     const path = pathCopy.join('.')
 
-    // @ts-expect-error: Additional options
-    const [input, { trpc, ...asyncDataOptions }] = args
+    const [input, otherOptions] = args
 
     const queryKey = getQueryKey(path, input)
+
+    const { trpc, ...asyncDataOptions } = otherOptions || {} as any
 
     return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input, trpc), asyncDataOptions)
   })
