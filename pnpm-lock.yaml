@@ -9,6 +9,7 @@ importers:
       '@trpc/client': 10.0.0-rc.2
       '@trpc/server': 10.0.0-rc.2
       bumpp: ^8.2.1
+      concurrently: ^7.5.0
       eslint: ^8.25.0
       h3: ^0.8.5
       nuxt: 3.0.0-rc.12
@@ -27,6 +28,7 @@ importers:
       '@trpc/client': 10.0.0-rc.2_@trpc+server@10.0.0-rc.2
       '@trpc/server': 10.0.0-rc.2
       bumpp: 8.2.1
+      concurrently: 7.5.0
       eslint: 8.26.0
       nuxt: 3.0.0-rc.12_wyqvi574yv7oiwfeinomdzmc3m
       pnpm: 7.14.1
@@ -3073,6 +3075,22 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
+  /concurrently/7.5.0:
+    resolution: {integrity: sha512-5E3mwiS+i2JYBzr5BpXkFxOnleZTMsG+WnE/dCG4/P+oiVXrbmrBwJ2ozn4SxwB2EZDrKR568X+puVohxz3/Mg==}
+    engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      chalk: 4.1.2
+      date-fns: 2.29.3
+      lodash: 4.17.21
+      rxjs: 7.5.7
+      shell-quote: 1.7.4
+      spawn-command: 0.0.2-1
+      supports-color: 8.1.1
+      tree-kill: 1.2.2
+      yargs: 17.6.0
+    dev: true
+
   /consola/2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
@@ -3302,6 +3320,11 @@ packages:
   /data-uri-to-buffer/4.0.0:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
+    dev: true
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: true
 
   /de-indent/1.0.2:
@@ -8539,6 +8562,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /shell-quote/1.7.4:
+    resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
+    dev: true
+
   /shiki-es/0.1.2:
     resolution: {integrity: sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==}
     dev: true
@@ -8640,6 +8667,10 @@ packages:
 
   /space-separated-tokens/2.0.1:
     resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
+    dev: true
+
+  /spawn-command/0.0.2-1:
+    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
     dev: true
 
   /spdx-correct/3.1.1:
@@ -8875,6 +8906,13 @@ packages:
   /supports-color/7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
+    dev: true
+
+  /supports-color/8.1.1:
+    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
+    engines: {node: '>=10'}
     dependencies:
       has-flag: 4.0.0
     dev: true

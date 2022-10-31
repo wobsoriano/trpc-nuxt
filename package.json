@@ -28,6 +28,7 @@
     "module.mjs"
   ],
   "scripts": {
+    "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
     "prepublishOnly": "nr build",
     "build": "tsup",
     "lint": "eslint .",
@@ -50,6 +51,7 @@
     "@trpc/client": "10.0.0-rc.2",
     "@trpc/server": "10.0.0-rc.2",
     "bumpp": "^8.2.1",
+    "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
     "pnpm": "^7.14.1",
