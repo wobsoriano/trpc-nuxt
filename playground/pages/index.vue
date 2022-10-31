@@ -28,7 +28,6 @@ const { data: todos, pending, error, refresh } = await $client.todo.getTodos.que
   trpc: {
     abortOnUnmount: true,
   },
-  server: false,
 })
 </script>
 

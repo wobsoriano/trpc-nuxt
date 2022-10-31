@@ -28,7 +28,6 @@ interface TRPCOptions extends TRPCRequestOptions {
  */
 export type DecorateProcedure<
  TProcedure extends AnyProcedure,
- TPath extends string,
 > = TProcedure extends AnyQueryProcedure
   ? {
       query: <
@@ -63,6 +62,6 @@ export type DecoratedProcedureRecord<
        `${TPath}${TKey & string}.`
      >
     : TProcedures[TKey] extends AnyProcedure
-      ? DecorateProcedure<TProcedures[TKey], `${TPath}${TKey & string}`>
+      ? DecorateProcedure<TProcedures[TKey]>
       : never;
 }
