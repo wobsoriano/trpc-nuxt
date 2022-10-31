@@ -49,8 +49,8 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
     }
 
     return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input, {
-      ...trpc,
       signal: controller?.signal,
+      ...trpc,
     }), asyncDataOptions)
   })
 }
