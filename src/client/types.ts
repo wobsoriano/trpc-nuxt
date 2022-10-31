@@ -26,9 +26,7 @@ interface TRPCOptions extends TRPCRequestOptions {
 /**
  * @internal
  */
-export type DecorateProcedure<
- TProcedure extends AnyProcedure,
-> = TProcedure extends AnyQueryProcedure
+export type DecorateProcedure<TProcedure extends AnyProcedure> = TProcedure extends AnyQueryProcedure
   ? {
       query: <
       TData = inferProcedureOutput<TProcedure>,
@@ -52,15 +50,9 @@ export type DecorateProcedure<
 /**
 * @internal
 */
-export type DecoratedProcedureRecord<
- TProcedures extends ProcedureRouterRecord,
- TPath extends string = '',
-> = {
+export type DecoratedProcedureRecord<TProcedures extends ProcedureRouterRecord> = {
   [TKey in keyof TProcedures]: TProcedures[TKey] extends AnyRouter
-    ? DecoratedProcedureRecord<
-       TProcedures[TKey]['_def']['record'],
-       `${TPath}${TKey & string}.`
-     >
+    ? DecoratedProcedureRecord<TProcedures[TKey]['_def']['record']>
     : TProcedures[TKey] extends AnyProcedure
       ? DecorateProcedure<TProcedures[TKey]>
       : never;
