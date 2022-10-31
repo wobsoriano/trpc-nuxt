@@ -11,7 +11,7 @@ import {
 } from '@trpc/server'
 import { createURL } from 'ufo'
 import type { H3Event } from 'h3'
-import { defineEventHandler, isMethod, readBody, createError } from 'h3'
+import { createError, defineEventHandler, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
 
 type MaybePromise<T> = T | Promise<T>
