@@ -14,6 +14,9 @@
     "./client": {
       "require": "./dist/client/index.cjs",
       "import": "./dist/client/index.mjs"
+    },
+    "./module": {
+      "import": "./module.mjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -21,7 +24,8 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "client.d.ts"
+    "client.d.ts",
+    "module.mjs"
   ],
   "scripts": {
     "prepublishOnly": "nr build",
