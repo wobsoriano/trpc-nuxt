@@ -80,7 +80,7 @@ export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: Creat
 
   const decoratedClient = createFlatProxy((key) => {
     return createNuxtProxyDecoration(key, client)
-  }) as DecoratedProcedureRecord<TRouter['_def']['record']>
+  }) as DecoratedProcedureRecord<TRouter['_def']['record'], TRouter>
 
   return decoratedClient
 }
