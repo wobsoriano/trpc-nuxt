@@ -39,7 +39,7 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
 
 export type OnErrorFn<TRouter extends AnyRouter> = (opts: OnErrorPayload<TRouter>) => void
 
-interface ResolveHTTPRequestOptions<TRouter extends AnyRouter> {
+export interface ResolveHTTPRequestOptions<TRouter extends AnyRouter> {
   router: TRouter
   createContext?: CreateContextFn<TRouter>
   responseMeta?: ResponseMetaFn<TRouter>
