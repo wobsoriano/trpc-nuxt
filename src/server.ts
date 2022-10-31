@@ -77,19 +77,21 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
     const path = getPath(event)
 
     if (path === null) {
+      const error = router.getErrorShape({
+        error: new TRPCError({
+          message:
+            'Param "trpc" not found - is the file named `[trpc]`.ts or `[...trpc].ts`?',
+          code: 'INTERNAL_SERVER_ERROR',
+        }),
+        type: 'unknown',
+        ctx: undefined,
+        path: undefined,
+        input: undefined,
+      })
+
       throw createError({
         statusCode: 500,
-        statusMessage: JSON.stringify({
-          error: new TRPCError({
-            message:
-              'Query "trpc" not found - is the file named `[trpc]`.ts or `[...trpc].ts`?',
-            code: 'INTERNAL_SERVER_ERROR',
-          }),
-          type: 'unknown',
-          ctx: undefined,
-          path: undefined,
-          input: undefined,
-        }),
+        statusMessage: JSON.stringify(error),
       })
     }
 
