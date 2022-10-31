@@ -64,7 +64,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
   createContext,
   responseMeta,
   onError,
-  ...otherOpts
+  batching,
 }: ResolveHTTPRequestOptions<TRouter>) {
   return defineEventHandler(async (event) => {
     const {
@@ -96,7 +96,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter>({
     }
 
     const httpResponse = await resolveHTTPResponse({
-      ...otherOpts,
+      batching,
       router,
       req: {
         method: req.method!,
