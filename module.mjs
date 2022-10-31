@@ -5,7 +5,7 @@ export default defineNuxtModule({
     name: 'trpc-nuxt',
     configKey: 'trpc',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '>=3.0.0',
     },
   },
   async setup(_moduleOptions, nuxt) {
@@ -14,7 +14,7 @@ export default defineNuxtModule({
     extendViteConfig((config) => {
       config.optimizeDeps = config.optimizeDeps || {}
       config.optimizeDeps.exclude = config.optimizeDeps.exclude || []
-      config.optimizeDeps.include.push('trpc-nuxt/client')
+      config.optimizeDeps.exclude.push('trpc-nuxt/client')
     })
   },
 })
