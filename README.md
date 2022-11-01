@@ -15,6 +15,9 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
   </figure>
 </p>
 
+## Quick Start
+get started with an online playground on [https://codesandbox.io/p/sandbox/lucid-buck-3x3n3x](codesandbox)
+
 ## Install
 
 ```bash
