@@ -12,6 +12,7 @@ importers:
       concurrently: ^7.5.0
       eslint: ^8.25.0
       h3: ^0.8.5
+      nanoid: ^4.0.0
       nuxt: 3.0.0-rc.12
       ohash: ^0.1.5
       pnpm: ^7.14.1
@@ -20,6 +21,7 @@ importers:
       ufo: ^0.8.6
     dependencies:
       h3: 0.8.6
+      nanoid: 4.0.0
       ohash: 0.1.5
       ufo: 0.8.6
     devDependencies:
@@ -6706,7 +6708,6 @@ packages:
     resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
-    dev: true
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}

@@ -6,6 +6,7 @@ import type {
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
 import { getCurrentInstance, onScopeDispose } from 'vue'
+import { nanoid } from 'nanoid'
 import type { DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
 import { useAsyncData, useState } from '#imports'
@@ -33,7 +34,7 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
 
     const [input, otherOptions] = args
 
-    const queryKey = getQueryKey(path, input)
+    const queryKey = lastArg === 'mutate' ? nanoid() : getQueryKey(path, input)
 
     const { trpc, ...asyncDataOptions } = otherOptions || {} as any
 
