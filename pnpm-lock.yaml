@@ -5,7 +5,6 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.23.1
-      '@antfu/ni': ^0.16.2
       '@nuxt/kit': 3.0.0-rc.12
       '@nuxt/module-builder': ^0.2.0
       '@trpc/client': ^9.27.4
@@ -19,7 +18,6 @@ importers:
       nuxt: 3.0.0-rc.12
       ohash: ^0.1.5
       pathe: ^0.3.9
-      pnpm: ^7.5.0
       trpc-nuxt: workspace:*
       ufo: ^0.8.6
       zod: ^3.19.1
@@ -35,13 +33,11 @@ importers:
       ufo: 0.8.6
     devDependencies:
       '@antfu/eslint-config': 0.23.1_eslint@8.25.0
-      '@antfu/ni': 0.16.3
       '@nuxt/module-builder': 0.2.0
       '@types/dedent': 0.7.0
       bumpp: 7.2.0
       eslint: 8.25.0
       nuxt: 3.0.0-rc.12_eslint@8.25.0
-      pnpm: 7.5.1
       trpc-nuxt: 'link:'
       zod: 3.19.1
 
@@ -155,11 +151,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-    dev: true
-
-  /@antfu/ni/0.16.3:
-    resolution: {integrity: sha512-/C1N/hORSJp1qJHr4oRqQzmWPqB6S42T4HV4dWhXOllPJkcqQA/L40U55Oc7Gq4Gm9pLeCNZn7YYU1kUK2Ekpg==}
-    hasBin: true
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -5057,12 +5048,6 @@ packages:
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
-    dev: true
-
-  /pnpm/7.5.1:
-    resolution: {integrity: sha512-/WbI4+V4QLJvMn4mp6dw4q+fbvwIyLTr7qmkoCpqs/xIYMpVXA3wdkvI5I9O9k1DJfYNuH8yY7Uf4vCCEdObJw==}
-    engines: {node: '>=14.6'}
-    hasBin: true
     dev: true
 
   /postcss-calc/8.2.4_postcss@8.4.18:

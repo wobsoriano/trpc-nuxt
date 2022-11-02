@@ -2,7 +2,6 @@
   "name": "trpc-nuxt",
   "type": "module",
   "version": "0.3.1",
-  "packageManager": "pnpm@7.5.0",
   "license": "MIT",
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
@@ -22,9 +21,9 @@
     "*.d.ts"
   ],
   "scripts": {
-    "prepublishOnly": "nr build",
+    "prepublishOnly": "pnpm build",
     "build": "nuxt-module-build",
-    "play": "nr build && nuxi dev playground",
+    "play": "pnpm build && nuxi dev playground",
     "build:playground": "nuxi build playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -44,13 +43,11 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
-    "@antfu/ni": "^0.16.2",
     "@nuxt/module-builder": "^0.2.0",
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.12",
-    "pnpm": "^7.5.0",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.19.1"
   },

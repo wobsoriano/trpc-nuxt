@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "overrides": {
+    "index.html": {
+      "path": ""
+    },
+    "get-started/installation/index.html": {
+      "path": "get-started/installation"
+    },
+    "examples/basic/index.html": {
+      "path": "examples/basic"
+    },
+    "get-started/usage/index.html": {
+      "path": "get-started/usage"
+    },
+    "examples/multiple-routers/index.html": {
+      "path": "examples/multiple-routers"
+    }
+  },
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/__nitro"
+    }
+  ]
+}
