@@ -49,8 +49,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",
     "@antfu/ni": "^0.18.3",
-    "@trpc/client": "10.0.0-rc.2",
-    "@trpc/server": "10.0.0-rc.2",
+    "@trpc/client": "10.0.0-rc.3",
+    "@trpc/server": "10.0.0-rc.3",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
