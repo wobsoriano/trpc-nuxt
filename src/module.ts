@@ -60,7 +60,7 @@ export default defineNuxtModule<ModuleOptions>({
       },
     })
 
-    if (options.installPlugin) {
+    if (finalConfig.installPlugin) {
       addImports([
         { name: 'useClient', from: join(runtimeDir, 'client') },
         { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
@@ -71,6 +71,9 @@ export default defineNuxtModule<ModuleOptions>({
       addPlugin(resolve(runtimeDir, 'plugin'))
 
       logger.success('Plugin successfully installed.')
+    }
+    else {
+      logger.info('Plugin not installed. Create your own @trpc/client client plugin and composables.')
     }
   },
 })
