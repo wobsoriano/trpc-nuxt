@@ -28,8 +28,9 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   modules: ['trpc-nuxt'],
   trpc: {
-    baseURL: '', // Set empty string (default) to make requests by relative address 
+    baseURL: '', // Set empty string (default) to make requests by relative address
     endpoint: '/trpc', // defaults to /trpc
+    installPlugin: true, // defaults to true. Add @trpc/client plugin and composables
   },
   typescript: {
     strict: true // required to make input/output types work
@@ -112,6 +113,8 @@ headers.value.Authorization = `Bearer ${token}`
 
 // All client calls will now include the Authorization header.
 ```
+
+If your app needs transformers and other option that needs to be passed in `@trpc/client`, you will need to opt-out of the plugin by setting `installPlugin` to false in your `nuxt.config.ts` file and create your own. You can just copy the contents of the client plugin [here](https://github.com/wobsoriano/trpc-nuxt/blob/master/src/runtime/client.ts).
 
 ## Options
 

@@ -3,23 +3,29 @@ import { join, resolve } from 'pathe'
 import { defu } from 'defu'
 import dedent from 'dedent'
 
-import { addImports, addPlugin, addServerHandler, addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addImports, addPlugin, addServerHandler, addTemplate, defineNuxtModule, useLogger } from '@nuxt/kit'
 
 export interface ModuleOptions {
   baseURL: string
   endpoint: string
+  installPlugin?: boolean
 }
+
+const metaName = 'trpc-nuxt'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'trpc-nuxt',
+    name: metaName,
     configKey: 'trpc',
   },
   defaults: {
     baseURL: '',
     endpoint: '/trpc',
+    installPlugin: true,
   },
   async setup(options, nuxt) {
+    const logger = useLogger(metaName)
+
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-handler')
 
@@ -30,21 +36,13 @@ export default defineNuxtModule<ModuleOptions>({
     const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
       baseURL: options.baseURL,
       endpoint: options.endpoint,
+      installPlugin: options.installPlugin,
     })
-
-    addImports([
-      { name: 'useClient', from: join(runtimeDir, 'client') },
-      { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
-      { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
-      { name: 'getQueryKey', from: join(runtimeDir, 'client') },
-    ])
 
     addServerHandler({
       route: `${finalConfig.endpoint}/*`,
       handler: handlerPath,
     })
-
-    addPlugin(resolve(runtimeDir, 'plugin'))
 
     addTemplate({
       filename: 'trpc-handler.ts',
@@ -61,6 +59,19 @@ export default defineNuxtModule<ModuleOptions>({
         `
       },
     })
+
+    if (options.installPlugin) {
+      addImports([
+        { name: 'useClient', from: join(runtimeDir, 'client') },
+        { name: 'useAsyncQuery', from: join(runtimeDir, 'client') },
+        { name: 'useClientHeaders', from: join(runtimeDir, 'client') },
+        { name: 'getQueryKey', from: join(runtimeDir, 'client') },
+      ])
+
+      addPlugin(resolve(runtimeDir, 'plugin'))
+
+      logger.success('Plugin successfully installed.')
+    }
   },
 })
 
