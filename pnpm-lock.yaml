@@ -5,7 +5,6 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.27.0
-      '@antfu/ni': ^0.18.3
       '@trpc/client': 10.0.0-rc.3
       '@trpc/server': 10.0.0-rc.3
       bumpp: ^8.2.1
@@ -25,7 +24,6 @@ importers:
       ufo: 0.8.6
     devDependencies:
       '@antfu/eslint-config': 0.27.0_wyqvi574yv7oiwfeinomdzmc3m
-      '@antfu/ni': 0.18.3
       '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
       '@trpc/server': 10.0.0-rc.3
       bumpp: 8.2.1
@@ -300,11 +298,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-    dev: true
-
-  /@antfu/ni/0.18.3:
-    resolution: {integrity: sha512-Tjn/lApBYvQhFCw0GgJIdENOk1m6LxucvPqBnCfWQRc2tI+uxtAvJljxiSR9s5B/gtMahGBsB6Hs7H8HZIOY6Q==}
-    hasBin: true
     dev: true
 
   /@babel/code-frame/7.18.6:
