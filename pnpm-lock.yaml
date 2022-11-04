@@ -5,8 +5,8 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.27.0
-      '@trpc/client': 10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.4
+      '@trpc/server': 10.0.0-rc.4
       bumpp: ^8.2.1
       concurrently: ^7.5.0
       eslint: ^8.25.0
@@ -24,8 +24,8 @@ importers:
       ufo: 0.8.6
     devDependencies:
       '@antfu/eslint-config': 0.27.0_wyqvi574yv7oiwfeinomdzmc3m
-      '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.4_@trpc+server@10.0.0-rc.4
+      '@trpc/server': 10.0.0-rc.4
       bumpp: 8.2.1
       concurrently: 7.5.0
       eslint: 8.26.0
@@ -49,15 +49,15 @@ importers:
 
   playground:
     specifiers:
-      '@trpc/client': 10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.4
+      '@trpc/server': 10.0.0-rc.4
       nuxt: 3.0.0-rc.13
       superjson: ^1.11.0
       trpc-nuxt: workspace:*
       zod: ^3.19.1
     dependencies:
-      '@trpc/client': 10.0.0-rc.3_@trpc+server@10.0.0-rc.3
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/client': 10.0.0-rc.4_@trpc+server@10.0.0-rc.4
+      '@trpc/server': 10.0.0-rc.4
       superjson: 1.11.0
       trpc-nuxt: link:..
       zod: 3.19.1
@@ -1834,15 +1834,15 @@ packages:
       postcss-selector-parser: 6.0.10
     dev: true
 
-  /@trpc/client/10.0.0-rc.3_@trpc+server@10.0.0-rc.3:
-    resolution: {integrity: sha512-gZYVfZra1YB2DluDY+GcIrL7KqPXCI9y0mF4utXYAUAl+jrxfLyG63pCv30USRRYlwwSKaoLJNpjQB9k05aYaw==}
+  /@trpc/client/10.0.0-rc.4_@trpc+server@10.0.0-rc.4:
+    resolution: {integrity: sha512-kzyDnFjBaNz/bL/Fir0jr1NgPoZ4Leho5NttAa3Xgml4tMV874LNrCeBbXf6GGU8bjeqTc2XarfnDcJokw2CXg==}
     peerDependencies:
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.4
     dependencies:
-      '@trpc/server': 10.0.0-rc.3
+      '@trpc/server': 10.0.0-rc.4
 
-  /@trpc/server/10.0.0-rc.3:
-    resolution: {integrity: sha512-aSs3uDQ5wumwVjtxj855WLDjlDC+v50QoqHzvuptI33NhJZV7meu0pU2EJkrSZXFt27CSNfP9o2ZPfoReoPUuw==}
+  /@trpc/server/10.0.0-rc.4:
+    resolution: {integrity: sha512-svW7FcjoWv4AXPjF0Kyf4c3zGuav/GwzfyldZyQh+qQ5fEHBRe69aNNpifbykuxv4svV8daQtTYqW/PsItO7FQ==}
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
