@@ -35,7 +35,7 @@
     "@trpc/server": "<10.0.0"
   },
   "dependencies": {
-    "@nuxt/kit": "3.0.0-rc.12",
+    "@nuxt/kit": "3.0.0-rc.13",
     "@trpc/client": "^9.27.4",
     "@trpc/server": "^9.27.4",
     "dedent": "^0.7.0",
@@ -51,7 +51,7 @@
     "@types/dedent": "^0.7.0",
     "bumpp": "^7.2.0",
     "eslint": "^8.25.0",
-    "nuxt": "3.0.0-rc.12",
+    "nuxt": "3.0.0-rc.13",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.19.1"
   },
