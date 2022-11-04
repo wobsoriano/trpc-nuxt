@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.4.0-beta.15",
   "license": "MIT",
-  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -18,14 +20,12 @@
       "import": "./module.mjs"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "client.d.ts",
     "module.mjs"
   ],
+  "sideEffects": false,
   "scripts": {
     "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
     "dev:prepare": "pnpm build && nuxt prepare playground",
