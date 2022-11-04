@@ -5,7 +5,7 @@ export default defineNuxtModule({
     name: 'trpc-nuxt',
     configKey: 'trpc',
     compatibility: {
-      nuxt: '^3.0.0-rc.12',
+      nuxt: '^3.0.0-rc.13',
     },
   },
   async setup(_moduleOptions, nuxt) {
