@@ -8,7 +8,7 @@ import { hash } from 'ohash'
 import { nanoid } from 'nanoid'
 import type { DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { useAsyncData, getCurrentInstance, onScopeDispose } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call
