@@ -47,14 +47,14 @@
     "ufo": "^0.8.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.27.0",
+    "@antfu/eslint-config": "^0.29.3",
     "@trpc/client": "10.0.0-rc.4",
     "@trpc/server": "10.0.0-rc.4",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.13",
-    "tsup": "6.3.0",
+    "tsup": "6.4.0",
     "typescript": "^4.7.4"
   },
   "eslintConfig": {
