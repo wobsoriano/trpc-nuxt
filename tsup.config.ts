@@ -5,7 +5,7 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   splitting: false,
   clean: true,
-  external: ['#app', '#imports', 'vue'],
+  external: ['#app', '#imports'],
   dts: true,
   outExtension({ format }) {
     return {

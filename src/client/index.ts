@@ -5,11 +5,10 @@ import type {
 } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
-import { getCurrentInstance, onScopeDispose } from 'vue'
 import { nanoid } from 'nanoid'
 import type { DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { useAsyncData } from '#imports'
+import { useAsyncData, getCurrentInstance, onScopeDispose } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call
