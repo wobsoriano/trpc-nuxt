@@ -6,7 +6,4 @@ export default defineNuxtConfig({
   runtimeConfig: {
     baseURL: '',
   },
-  typescript: {
-    strict: true,
-  },
 })

@@ -58,7 +58,7 @@ export async function useAsyncQuery<
     options,
   )
 
-  return result
+  return result as any
 }
 
 export function useClient(): TRPCClient<AppRouter> {
