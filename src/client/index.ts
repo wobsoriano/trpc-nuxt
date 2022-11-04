@@ -9,7 +9,7 @@ import { getCurrentInstance, onScopeDispose } from 'vue'
 import { nanoid } from 'nanoid'
 import type { DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { useAsyncData, useState } from '#imports'
+import { useAsyncData } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call
@@ -49,31 +49,11 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
       controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
     }
 
-    return useAsyncDataWithError(queryKey, () => (client as any)[path][lastArg](input, {
+    return useAsyncData(queryKey, () => (client as any)[path][lastArg](input, {
       signal: controller?.signal,
       ...trpc,
     }), asyncDataOptions)
   })
-}
-
-/**
- * Custom useAsyncData to add server error to client
- */
-async function useAsyncDataWithError(queryKey: string, cb: any, asyncDataOptions: any) {
-  const serverError = useState(`error-${queryKey}`, () => null)
-  const { error, data, ...rest } = await useAsyncData(queryKey, cb, asyncDataOptions)
-
-  if (error.value && !serverError.value)
-    serverError.value = error.value as any
-
-  if (data.value)
-    serverError.value = null
-
-  return {
-    ...rest,
-    data,
-    error: serverError,
-  }
 }
 
 export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: CreateTRPCClientOptions<TRouter>) {
