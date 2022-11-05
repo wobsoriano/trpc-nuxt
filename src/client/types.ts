@@ -9,7 +9,7 @@ import type {
   ProcedureArgs,
   ProcedureRouterRecord,
   inferProcedureInput,
-  inferProcedureOutput,
+  inferProcedureOutput
 } from '@trpc/server'
 import type { Unsubscribable, inferObservableValue } from '@trpc/server/observable'
 import type {
@@ -17,7 +17,7 @@ import type {
   AsyncDataOptions,
   KeyOfRes,
   PickFrom,
-  _Transform,
+  _Transform
 } from 'nuxt/dist/app/composables/asyncData'
 
 // Modified @trpc/client and @trpc/react-query types
