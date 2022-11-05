@@ -15,19 +15,18 @@ const addTodo = async () => {
       id: Date.now(),
       userId: 69,
       title,
-      completed: false,
+      completed: false
     })
     console.log(x.data.value)
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e)
   }
 }
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query(undefined, {
   trpc: {
-    abortOnUnmount: true,
-  },
+    abortOnUnmount: true
+  }
 })
 </script>
 

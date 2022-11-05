@@ -1,7 +1,7 @@
 import type { CreateTRPCClientOptions, inferRouterProxyClient } from '@trpc/client'
 import { createTRPCProxyClient } from '@trpc/client'
 import type {
-  AnyRouter,
+  AnyRouter
 } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
@@ -13,14 +13,14 @@ import { getCurrentInstance, onScopeDispose, useAsyncData } from '#imports'
 /**
  * Calculates the key used for `useAsyncData` call
  */
-export function getQueryKey(
+export function getQueryKey (
   path: string,
-  input: unknown,
+  input: unknown
 ): string {
   return input === undefined ? path : `${path}-${hash(input || '')}`
 }
 
-function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, client: inferRouterProxyClient<TRouter>) {
+function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: string, client: inferRouterProxyClient<TRouter>) {
   return createRecursiveProxy((opts) => {
     const args = opts.args
 
@@ -50,12 +50,12 @@ function createNuxtProxyDecoration<TRouter extends AnyRouter>(name: string, clie
 
     return useAsyncData(queryKey, () => (client as any)[path][lastArg](input, {
       signal: controller?.signal,
-      ...trpc,
+      ...trpc
     }), asyncDataOptions)
   })
 }
 
-export function createTRPCNuxtProxyClient<TRouter extends AnyRouter>(opts: CreateTRPCClientOptions<TRouter>) {
+export function createTRPCNuxtProxyClient<TRouter extends AnyRouter> (opts: CreateTRPCClientOptions<TRouter>) {
   const client = createTRPCProxyClient(opts)
 
   const decoratedClient = createFlatProxy((key) => {

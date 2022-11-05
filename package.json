@@ -3,9 +3,7 @@
   "type": "module",
   "version": "0.4.0-beta.15",
   "license": "MIT",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -20,12 +18,14 @@
       "import": "./module.mjs"
     }
   },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "client.d.ts",
     "module.mjs"
   ],
-  "sideEffects": false,
   "scripts": {
     "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
     "dev:prepare": "pnpm build && nuxt prepare playground",
@@ -47,7 +47,7 @@
     "ufo": "^0.8.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.29.3",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@trpc/client": "10.0.0-rc.4",
     "@trpc/server": "10.0.0-rc.4",
     "bumpp": "^8.2.1",
@@ -56,11 +56,5 @@
     "nuxt": "3.0.0-rc.13",
     "tsup": "6.4.0",
     "typescript": "^4.7.4"
-  },
-  "eslintConfig": {
-    "extends": "@antfu",
-    "rules": {
-      "no-console": "warn"
-    }
   }
 }

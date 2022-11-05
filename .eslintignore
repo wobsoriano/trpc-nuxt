@@ -1,0 +1,5 @@
+dist
+node_modules
+package.json
+tsconfig.json
+vercel.json
