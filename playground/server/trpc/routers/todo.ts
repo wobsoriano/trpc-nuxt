@@ -7,7 +7,7 @@ const TodoShape = z.object({
   userId: z.number(),
   id: z.number(),
   title: z.string(),
-  completed: z.boolean(),
+  completed: z.boolean()
 })
 
 export type Todo = z.infer<typeof TodoShape>
@@ -27,7 +27,7 @@ export const todoRouter = router({
     .mutation((req) => {
       return $fetch<Todo>(`${baseURL}/todos`, {
         method: 'POST',
-        body: req.input,
+        body: req.input
       })
-    }),
+    })
 })
