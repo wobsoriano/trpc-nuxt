@@ -1,17 +1,17 @@
+import type { ResponseMeta } from '@trpc/server/http'
 import { resolveHTTPResponse } from '@trpc/server/http'
-import {
-  TRPCError
-} from '@trpc/server'
 import type {
   AnyRouter,
   ProcedureType,
   inferRouterContext,
   inferRouterError
 } from '@trpc/server'
-import type { H3Event } from 'h3'
+import {
+  TRPCError
+} from '@trpc/server'
 import { createURL } from 'ufo'
+import type { H3Event } from 'h3'
 import { createError, defineEventHandler, isMethod, readBody } from 'h3'
-import type { ResponseMeta } from '@trpc/server/http'
 import type { TRPCResponse } from '@trpc/server/rpc'
 
 type MaybePromise<T> = T | Promise<T>
