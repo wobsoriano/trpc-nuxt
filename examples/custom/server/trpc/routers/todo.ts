@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { publicProcedure, router } from '#trpc/init'
+import { publicProcedure, router } from '../trpc'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -12,7 +12,7 @@ const TodoShape = z.object({
 
 export type Todo = z.infer<typeof TodoShape>
 
-export default router({
+export const todoRouter = router({
   getTodos: publicProcedure
     .query(() => {
       return $fetch<Todo[]>(`${baseURL}/todos`)

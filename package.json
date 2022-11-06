@@ -5,53 +5,59 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
     },
     "./client": {
-      "require": "./dist/client/index.cjs",
-      "import": "./dist/client/index.mjs"
+      "types": "./dist/runtime/client.d.ts",
+      "import": "./dist/runtime/client.mjs"
     },
-    "./module": {
-      "import": "./module.mjs"
+    "./handler": {
+      "types": "./dist/runtime/handler.d.ts",
+      "import": "./dist/runtime/handler.mjs"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
     "dist",
     "client.d.ts",
-    "module.mjs"
+    "handler.d.ts"
   ],
   "scripts": {
-    "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
-    "dev:prepare": "pnpm build && nuxt prepare playground",
-    "prepublishOnly": "pnpm build",
-    "build": "tsup",
+    "dev": "pnpm prepack && pnpm --filter playground dev",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepublishOnly": "pnpm prepack",
+    "prepack": "nuxt-module-build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish"
   },
   "peerDependencies": {
     "@trpc/client": "^10.0.0-proxy-beta.21",
-    "@trpc/server": "^10.0.0-proxy-beta.21",
-    "nuxt": "^3.0.0-rc.13"
+    "@trpc/server": "^10.0.0-proxy-beta.21"
   },
   "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.13",
+    "dedent": "^0.7.0",
+    "defu": "^6.1.0",
+    "fast-glob": "^3.2.12",
     "h3": "^0.8.6",
+    "knitwork": "^0.1.2",
     "nanoid": "^4.0.0",
     "ohash": "^0.1.5",
+    "pathe": "^0.3.9",
     "ufo": "^0.8.6"
   },
   "devDependencies": {
+    "@nuxt/module-builder": "^0.2.0",
+    "@nuxt/schema": "^3.0.0-rc.13",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@trpc/client": "10.0.0-rc.4",
     "@trpc/server": "10.0.0-rc.4",
+    "@types/dedent": "^0.7.0",
     "bumpp": "^8.2.1",
-    "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
     "nuxt": "3.0.0-rc.13",
     "tsup": "6.4.0",

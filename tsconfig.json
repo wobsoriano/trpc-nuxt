@@ -1,16 +1,3 @@
 {
-  "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "noImplicitAny": true,
-    "allowJs": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "skipDefaultLibCheck": true
-  }
+  "extends": "./playground/.nuxt/tsconfig.json"
 }
