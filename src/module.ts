@@ -17,7 +17,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
   },
   defaults: {
-    enableFileRouting: true
+    enableFileRouting: false
   },
   async setup (moduleOptions, nuxt) {
     nuxt.options.build.transpile.push('trpc-nuxt')
