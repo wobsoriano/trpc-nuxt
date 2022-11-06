@@ -1,3 +1,4 @@
+import fs from 'fs'
 import { defineNuxtModule, addTemplate, addServerHandler } from '@nuxt/kit'
 import fg from 'fast-glob'
 import { resolve } from 'pathe'
@@ -34,7 +35,7 @@ export default defineNuxtModule<ModuleOptions>({
     ]
     const extGlob = '*.{ts,js}'
 
-    async function scanServerFunctions () {
+    async function scanServerRouters () {
       files.length = 0
       files.push(...new Set(
         (await Promise.all(
@@ -50,7 +51,7 @@ export default defineNuxtModule<ModuleOptions>({
       }
       const abs = resolve(nuxt.options.rootDir, path)
       if (files.includes(abs) || dirs.some(dir => abs.startsWith(dir))) {
-        await scanServerFunctions()
+        await scanServerRouters()
         await nuxt.callHook('builder:generateApp')
       }
     })
@@ -66,11 +67,8 @@ export default defineNuxtModule<ModuleOptions>({
       getContents () {
         return dedent`
           import { initTRPC } from '@trpc/server'
-          import superjson from 'superjson'
 
-          const t = initTRPC.context().create({
-            transformer: superjson,
-          })
+          const t = initTRPC.context().create()
 
           export const router = t.router
           export const defineRouter = router
@@ -103,9 +101,12 @@ export default defineNuxtModule<ModuleOptions>({
       write: true,
       getContents () {
         const routeFiles = files.map(i => i.replace(/\.ts$/, ''))
+        const otherConfigPath = resolve(nuxt.options.rootDir, 'server/trpc/trpc.ts')
+        const hasConfig = fs.existsSync(otherConfigPath)
         return dedent`
           import { createNuxtApiHandler } from 'trpc-nuxt/handler'
           import { router } from '${resolve(nuxt.options.buildDir, 'trpc/init.mjs')}'
+          ${hasConfig ? `import * as handlerConfig from '${otherConfigPath.replace('.ts', '')}'` : ''}
           ${routeFiles.map(i => `import { default as ${getRouteName(i)}Route } from '${i}'`).join('\n')}
 
           export const appRouter = router({
@@ -115,7 +116,8 @@ export default defineNuxtModule<ModuleOptions>({
           export type AppRouter = typeof appRouter
     
           export default createNuxtApiHandler({
-            router: appRouter
+            router: appRouter,
+            ${hasConfig ? '...handlerConfig' : ''}
           })
         `
       }
@@ -136,6 +138,6 @@ export default defineNuxtModule<ModuleOptions>({
       options.references.push({ path: resolve(nuxt.options.buildDir, 'trpc/types.d.ts') })
     })
 
-    await scanServerFunctions()
+    await scanServerRouters()
   }
 })
