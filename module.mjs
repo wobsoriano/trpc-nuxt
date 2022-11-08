@@ -5,13 +5,13 @@ export default defineNuxtModule({
     name: 'trpc-nuxt',
     configKey: 'trpc',
     compatibility: {
-      nuxt: '^3.0.0-rc.13',
-    },
+      nuxt: '^3.0.0-rc.13'
+    }
   },
-  async setup(_moduleOptions, nuxt) {
+  setup (_moduleOptions, nuxt) {
     nuxt.options.build.transpile.push('trpc-nuxt')
     nuxt.options.vite.optimizeDeps = nuxt.options.vite.optimizeDeps || {}
     nuxt.options.vite.optimizeDeps.exclude = nuxt.options.vite.optimizeDeps.exclude || []
     nuxt.options.vite.optimizeDeps.exclude.push('trpc-nuxt/client')
-  },
+  }
 })

@@ -824,7 +824,6 @@ packages:
       untyped: 0.5.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@nuxt/kit/3.0.0-rc.13:
     resolution: {integrity: sha512-FYEnMRm4LvIUxygmBX/p5kykzSeBleUqCOfxervQFONkz5PVVYXEp1DDBINGR3xk01yuPElENuf+l59iEQ4q7g==}
@@ -911,7 +910,6 @@ packages:
       untyped: 0.5.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@nuxt/schema/3.0.0-rc.13:
     resolution: {integrity: sha512-yfNPvUkOQ1/8aKHX8OtU7stANAaZ3B8Rty7HPuo1KHv0R3wNqlRdoRXwFuf4D+jcsS+R5Kccr7i8YYD5IG56Iw==}
@@ -957,7 +955,7 @@ packages:
     resolution: {integrity: sha512-1+nhSxGTADRC4tMkKvt3gpgI659UHygNDx0eU9PJgNEtNoqeJ7gHAZ5cXyO4vw9g6ujgxbdEmoL8uHuyaANarA==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.0.0-rc.13
+      '@nuxt/kit': 3.0.0-rc.12
       chalk: 5.1.2
       ci-info: 3.5.0
       consola: 2.15.3
@@ -978,7 +976,6 @@ packages:
       rc9: 1.2.2
       std-env: 3.3.0
     transitivePeerDependencies:
-      - rollup
       - supports-color
 
   /@nuxt/ui-templates/0.4.0:
@@ -1025,12 +1022,10 @@ packages:
       vue: 3.2.41
       vue-bundle-renderer: 0.4.4
     transitivePeerDependencies:
-      - '@types/node'
       - eslint
       - less
       - sass
       - stylus
-      - sugarss
       - supports-color
       - terser
       - typescript
@@ -1550,7 +1545,6 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
-    dev: true
 
   /@rollup/pluginutils/5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
@@ -6364,17 +6358,14 @@ packages:
       vue-devtools-stub: 0.1.0
       vue-router: 4.1.6_vue@3.2.41
     transitivePeerDependencies:
-      - '@types/node'
       - '@vue/composition-api'
       - bufferutil
       - debug
       - encoding
       - eslint
       - less
-      - rollup
       - sass
       - stylus
-      - sugarss
       - supports-color
       - terser
       - typescript
@@ -7738,7 +7729,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
 
   /rollup/2.79.1:
     resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
@@ -8649,7 +8639,6 @@ packages:
       scule: 0.3.2
       strip-literal: 0.4.2
       unplugin: 0.9.6
-    dev: true
 
   /unimport/0.7.0:
     resolution: {integrity: sha512-Cr0whz4toYVid3JHlni/uThwavDVVCk6Zw0Gxnol1c7DprTA+Isr4T+asO6rDGkhkgV7r3vSdSs5Ym8F15JA+w==}
@@ -8869,13 +8858,11 @@ packages:
       debug: 4.3.4
       mlly: 0.5.16
       pathe: 0.2.0
-      vite: 3.2.3
+      vite: 3.1.8
     transitivePeerDependencies:
-      - '@types/node'
       - less
       - sass
       - stylus
-      - sugarss
       - supports-color
       - terser
 
@@ -9017,7 +9004,6 @@ packages:
       rollup: 2.78.1
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
 
   /vite/3.2.3:
     resolution: {integrity: sha512-h8jl1TZ76eGs3o2dIBSsvXDLb1m/Ec1iej8ZMdz+PsaFUsftZeWe2CZOI3qogEsMNaywc17gu0q6cQDzh/weCQ==}
