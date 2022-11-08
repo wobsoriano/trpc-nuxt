@@ -1,10 +1,10 @@
 import { defineTheme } from 'pinceau'
 
 export default defineTheme({
-  title: 'asddsasda 3s',
+  title: 'tRPC-Nuxt',
   cover: {
-    src: 'https://res.cloudinary.com/nuxt/image/upload/v1650870623/nuxt3-rc-social_z6qh3m.png',
-    alt: 'Nuxt 3 cover image'
+    src: 'https://og-image.vercel.app/tRPC-Nuxt',
+    alt: 'tRPC-Nuxt conver'
   },
   aside: {
     level: 1
