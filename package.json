@@ -39,6 +39,10 @@
     "@trpc/client": "^10.0.0-proxy-beta.21",
     "@trpc/server": "^10.0.0-proxy-beta.21"
   },
+  "peerDependencies": {
+    "@trpc/client": "<10.0.0",
+    "@trpc/server": "<10.0.0"
+  },
   "dependencies": {
     "nuxt": "^3.0.0-rc.13",
     "h3": "^0.8.6",
