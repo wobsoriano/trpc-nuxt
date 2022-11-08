@@ -1,5 +1,5 @@
 export default defineAppConfig({
   docus: {
-    title: 'tRPC Nuxt',
-  },
+    title: 'tRPC Nuxt'
+  }
 })

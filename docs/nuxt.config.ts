@@ -1,17 +1,26 @@
 export default defineNuxtConfig({
   app: {
     pageTransition: false,
-    layoutTransition: false,
+    layoutTransition: false
   },
-  extends: '@nuxt-themes/docus',
+  modules: ['@nuxtlabs/github-module'],
+  extends: process.env.DOCUS_THEME_PATH || '@nuxt-themes/docus',
+  github: {
+    owner: 'nuxt',
+    repo: 'content',
+    branch: 'main'
+  },
+  colorMode: {
+    preference: 'dark'
+  },
   build: {
-    transpile: [/content-edge/],
+    transpile: [/content-edge/, '@nuxtlabs/github-module-edge']
   },
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
+      routes: ['/']
     },
-    preset: 'vercel',
-  },
+    preset: 'vercel'
+  }
 })

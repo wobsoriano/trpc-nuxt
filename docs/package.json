@@ -8,10 +8,11 @@
     "preview": "nuxi preview"
   },
   "devDependencies": {
-    "@docus/github": "npm:@docus/github-edge@latest",
-    "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@0.1.0-2a7c428",
-    "@nuxt-themes/website": "0.1.7",
-    "nuxt": "^3.0.0-rc.12",
-    "vue-plausible": "^1.3.2"
+    "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
+    "@nuxtlabs/github-module": "npm:@nuxtlabs/github-module-edge@latest",
+    "nuxt": "3.0.0-rc.12"
+  },
+  "dependencies": {
+    "pinceau": "^0.6.14"
   }
 }
