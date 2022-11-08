@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@trpc/client": "10.0.0-rc.4",
-    "@trpc/server": "10.0.0-rc.4",
+    "@trpc/client": "10.0.0-rc.7",
+    "@trpc/server": "10.0.0-rc.7",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
