@@ -1,10 +1,9 @@
-import { httpBatchLink, loggerLink } from '@trpc/client'
-import { createTRPCNuxtProxyClient } from 'trpc-nuxt/client'
+import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client'
 import superjson from 'superjson'
 import type { AppRouter } from '~~/server/trpc/routers'
 
 export default defineNuxtPlugin(() => {
-  const client = createTRPCNuxtProxyClient<AppRouter>({
+  const client = createTRPCProxyClient<AppRouter>({
     transformer: superjson,
     links: [
       // adds pretty logs to your console in development and logs errors in production

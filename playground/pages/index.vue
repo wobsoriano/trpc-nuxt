@@ -17,17 +17,13 @@ const addTodo = async () => {
       title,
       completed: false
     })
-    console.log(x.data.value)
+    console.log(x)
   } catch (e) {
     console.log(e)
   }
 }
 
-const { data: todos, pending, error, refresh } = await $client.todo.getTodos.query(undefined, {
-  trpc: {
-    abortOnUnmount: true
-  }
-})
+const { data: todos, pending, error, refresh } = await useAsyncData(() => $client.todo.getTodos.query())
 </script>
 
 <template>

@@ -6,14 +6,9 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    },
-    "./client": {
-      "require": "./dist/client/index.cjs",
-      "import": "./dist/client/index.mjs"
     },
     "./module": {
       "import": "./module.mjs"
@@ -24,7 +19,6 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "client.d.ts",
     "module.mjs"
   ],
   "scripts": {
@@ -73,6 +67,8 @@
   "eslintIgnore": [
     "*.json",
     "node_modules",
-    "*.md"
+    "*.md",
+    "dist",
+    ".output"
   ]
 }

@@ -10,8 +10,5 @@ export default defineNuxtModule({
   },
   setup (_moduleOptions, nuxt) {
     nuxt.options.build.transpile.push('trpc-nuxt')
-    nuxt.options.vite.optimizeDeps = nuxt.options.vite.optimizeDeps || {}
-    nuxt.options.vite.optimizeDeps.exclude = nuxt.options.vite.optimizeDeps.exclude || []
-    nuxt.options.vite.optimizeDeps.exclude.push('trpc-nuxt/client')
   }
 })
