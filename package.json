@@ -9,17 +9,13 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    },
-    "./module": {
-      "import": "./module.mjs"
     }
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "module.mjs"
+    "dist"
   ],
   "scripts": {
     "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
