@@ -15,8 +15,5 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: [/content-edge/, /github-module/]
-  },
-  nitro: {
-    preset: 'vercel'
   }
 })
