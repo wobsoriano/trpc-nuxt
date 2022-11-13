@@ -2,7 +2,7 @@
 
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 
-Docs: https://trpc-nuxt.vercel.app
+Docs: https://trpc-nuxt-beta.vercel.app
 
 For version 3 of this module (tRPC v9, auto-imports, auto handlers), [go here](https://github.com/wobsoriano/trpc-nuxt/tree/v3).
 
