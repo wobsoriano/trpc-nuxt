@@ -1846,8 +1846,8 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  /@unocss/reset/0.46.4:
-    resolution: {integrity: sha512-Bd5LlvJj2A0wdJIAjzXF2+SL5gVJlAItk0ZO88OR2q2UZnqAYDrjWGfZGyNQKttKPWNuTH87IC6/8FFjoIAtxA==}
+  /@unocss/reset/0.46.5:
+    resolution: {integrity: sha512-DU1sisNixEaUsnfDdbU+POaedJLKUtalHnOOce2Txxrcakf7M2/I5/9cRIXt5diVbPjIyoDPcx+7Gn8K0cTGqg==}
     dev: true
 
   /@vercel/nft/0.22.1:
@@ -6640,7 +6640,7 @@ packages:
   /pinceau/0.6.17:
     resolution: {integrity: sha512-bvG24PoHpMiOV38OAF4bDhg3BLy7+sEP05wmneCNf+LgU4uwaRUku0S68yKHUIFT3ck8NRX5FejJgwKJfMMNnA==}
     dependencies:
-      '@unocss/reset': 0.46.4
+      '@unocss/reset': 0.46.5
       '@volar/vue-language-core': 1.0.9
       chroma-js: 2.4.2
       consola: 2.15.3
