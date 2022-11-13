@@ -18,7 +18,7 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 ## Install
 
 ```bash
-npm i trpc-nuxt
+npm i trpc-nuxt@0.3
 ```
 
 ```ts
