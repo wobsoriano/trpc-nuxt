@@ -1,6 +1,6 @@
 ---
 title: "tRPC Nuxt"
-description: "A supa simple wrapper arousnd supabase-js to enable usage and integration within Nuxt."
+description: "End-to-end typesafe APIs in Nuxt applications."
 navigation: false
 layout: page
 ---
@@ -13,7 +13,7 @@ cta:
 secondary:
   - Star on GitHub ->
   - https://github.com/wobsoriano/trpc-nuxt
-snippet: npm install trpc-nuxt@beta
+snippet: npm install trpc-nuxt@next
 ---
 
 #title

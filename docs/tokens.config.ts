@@ -1,14 +1,6 @@
 import { defineTheme } from 'pinceau'
 
 export default defineTheme({
-  title: 'tRPC-Nuxt',
-  cover: {
-    src: 'https://og-image.vercel.app/tRPC-Nuxt',
-    alt: 'tRPC-Nuxt conver'
-  },
-  aside: {
-    level: 1
-  },
   colors: {
     primary: {
       50: '#BFEDFC',
