@@ -14,6 +14,5 @@
   "devDependencies": {
     "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
     "@nuxtlabs/github-module": "npm:@nuxtlabs/github-module-edge@latest"
-  },
-  "packageManager": "yarn@1.22.19"
+  }
 }
