@@ -6,9 +6,9 @@ export default defineNuxtConfig({
   modules: ['@nuxtlabs/github-module'],
   extends: process.env.DOCUS_THEME_PATH || '@nuxt-themes/docus',
   github: {
-    owner: 'nuxt',
-    repo: 'content',
-    branch: 'main'
+    owner: 'wobsoriano',
+    repo: 'trpc-nuxt',
+    branch: 'next'
   },
   colorMode: {
     preference: 'dark'
