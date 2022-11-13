@@ -1,0 +1,22 @@
+diff --git a/dist/head/runtime/lib/vueuse-head.plugin.mjs b/dist/head/runtime/lib/vueuse-head.plugin.mjs
+index a3278e56986d8e8efb099c502c82d9661a36d846..148a8879ba433072cecd15995cfd5b1b69941124 100644
+--- a/dist/head/runtime/lib/vueuse-head.plugin.mjs
++++ b/dist/head/runtime/lib/vueuse-head.plugin.mjs
+@@ -4,7 +4,7 @@ import { defineNuxtPlugin, useRouter } from "#app";
+ import { appHead } from "#build/nuxt.config.mjs";
+ export default defineNuxtPlugin((nuxtApp) => {
+   const head = createHead();
+-  head.addEntry(appHead, { resolved: true });
++  head.addHeadObjs(appHead, { resolved: true });
+   nuxtApp.vueApp.use(head);
+   if (process.client) {
+     let pauseDOMUpdates = true;
+@@ -25,7 +25,7 @@ export default defineNuxtPlugin((nuxtApp) => {
+   }
+   nuxtApp._useHead = (_meta, options) => {
+     if (process.server) {
+-      head.addEntry(_meta, options);
++      head.addHeadObjs(_meta, options);
+       return;
+     }
+     const cleanUp = head.addReactiveEntry(_meta, options);

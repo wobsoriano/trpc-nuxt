@@ -13,9 +13,6 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'dark'
   },
-  build: {
-    transpile: [/content-edge/, '@nuxtlabs/github-module-edge']
-  },
   nitro: {
     prerender: {
       crawlLinks: true,
