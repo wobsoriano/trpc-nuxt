@@ -8,6 +8,7 @@
     "preview": "nuxi preview"
   },
   "dependencies": {
+    "@vueuse/head": "^1.0.3",
     "nuxt": "^3.0.0-rc.13",
     "@nuxtjs/tailwindcss": "^6.1.3"
   },
