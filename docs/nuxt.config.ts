@@ -17,10 +17,6 @@ export default defineNuxtConfig({
     transpile: [/content-edge/, /github-module/]
   },
   nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ['/']
-    },
     preset: 'vercel'
   }
 })
