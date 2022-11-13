@@ -13,7 +13,7 @@ cta:
 secondary:
   - Star on GitHub ->
   - https://github.com/wobsoriano/trpc-nuxt
-snippet: npm install trpc-nuxt@next
+snippet: npm install trpc-nuxt
 ---
 
 #title
