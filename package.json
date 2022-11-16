@@ -33,12 +33,10 @@
   "dependencies": {
     "h3": "^0.8.6",
     "nanoid": "^4.0.0",
-    "nuxt": "^3.0.0-rc.13",
     "ohash": "^0.1.5",
     "ufo": "^0.8.6"
   },
   "devDependencies": {
-    "@nuxt/kit": "3.0.0-rc.13",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@trpc/client": "10.0.0-rc.8",
     "@trpc/server": "10.0.0-rc.8",
