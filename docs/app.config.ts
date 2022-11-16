@@ -5,15 +5,14 @@ export default defineAppConfig({
     alt: 'tRPC-Nuxt cover',
     url: 'https://trpc-nuxt.vercel.app',
     debug: false,
+    socials: {
+      github: 'wobsoriano/trpc-nuxt'
+    },
     aside: {
       level: 1
     },
     footer: {
-      credits: {
-        icon: 'IconDocus',
-        text: 'Powered by Docus',
-        href: 'https://docus.com'
-      },
+      credits: true,
       icons: [
         {
           label: 'NuxtJS',

@@ -24,8 +24,8 @@ End-to-end typesafe APIs in Nuxt applications.
 
 #extra
   ::list
-  - Automatic typesafety
+  - Automatic typesafety 
   - Snappy DX
-  - Autocompletion
+  - Autocompletion on the client, for inputs, outputs and errors
   ::
 ::
