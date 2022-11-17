@@ -31,10 +31,10 @@
     "@trpc/server": "^10.0.0-proxy-beta.21"
   },
   "dependencies": {
-    "h3": "^0.8.6",
+    "h3": "^1.0.0",
     "nanoid": "^4.0.0",
-    "ohash": "^0.1.5",
-    "ufo": "^0.8.6"
+    "ohash": "^1.0.0",
+    "ufo": "^1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
