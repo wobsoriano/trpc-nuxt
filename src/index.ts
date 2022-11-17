@@ -68,7 +68,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
     const {
       req,
       res
-    } = event
+    } = event.node
 
     const $url = createURL(req.url!)
 
