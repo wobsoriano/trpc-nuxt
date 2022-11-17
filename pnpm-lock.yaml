@@ -10,7 +10,7 @@ importers:
       bumpp: ^8.2.1
       concurrently: ^7.5.0
       eslint: ^8.25.0
-      h3: ^1.0.0
+      h3: ^1.0.1
       nanoid: ^4.0.0
       ohash: ^1.0.0
       tsup: 6.4.0
