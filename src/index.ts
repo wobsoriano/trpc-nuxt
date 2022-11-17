@@ -16,7 +16,7 @@ import type { TRPCResponse } from '@trpc/server/rpc'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type CreateContextFn<TRouter extends AnyRouter> = (event: H3Event) => MaybePromise<inferRouterContext<TRouter>>
+export type CreateContextFn<TRouter extends AnyRouter> = (event: H3Event['node']) => MaybePromise<inferRouterContext<TRouter>>
 
 export interface ResponseMetaFnPayload<TRouter extends AnyRouter> {
   data: TRPCResponse<unknown, inferRouterError<TRouter>>[]
@@ -32,7 +32,7 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
   error: TRPCError
   type: ProcedureType | 'unknown'
   path: string | undefined
-  req: H3Event['req']
+  req: H3Event['node']['req']
   input: unknown
   ctx: undefined | inferRouterContext<TRouter>
 }
