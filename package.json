@@ -31,7 +31,7 @@
     "@trpc/server": "^10.0.0-proxy-beta.21"
   },
   "dependencies": {
-    "h3": "^1.0.0",
+    "h3": "^1.0.1",
     "nanoid": "^4.0.0",
     "ohash": "^1.0.0",
     "ufo": "^1.0.0"
