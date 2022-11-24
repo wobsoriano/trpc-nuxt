@@ -27,8 +27,8 @@
     "release": "bumpp && npm publish"
   },
   "peerDependencies": {
-    "@trpc/client": "^10.0.0-proxy-beta.21",
-    "@trpc/server": "^10.0.0-proxy-beta.21"
+    "@trpc/client": "^10.0.0",
+    "@trpc/server": "^10.0.0"
   },
   "dependencies": {
     "h3": "^1.0.1",
@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@trpc/client": "10.0.0-rc.8",
-    "@trpc/server": "10.0.0-rc.8",
+    "@trpc/client": "^10.1.0",
+    "@trpc/server": "^10.1.0",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
