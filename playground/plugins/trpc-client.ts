@@ -16,9 +16,7 @@ export default defineNuxtPlugin(() => {
       httpBatchLink({
         url: 'http://localhost:3000/api/trpc',
         headers () {
-          return {
-            ...unref(headers)
-          }
+          return headers
         }
       })
     ]
