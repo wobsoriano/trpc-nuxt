@@ -4,12 +4,6 @@ import type { inferRouterOutputs } from '@trpc/server';
 import type { AppRouter } from '~~/server/trpc/routers';
 
 const { $client } = useNuxtApp()
-// const headers = useClientHeaders()
-
-// const addHeader = () => {
-//   headers.value.authorization = 'Bearer abcdefghijklmnop'
-//   console.log(headers.value)
-// }
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
