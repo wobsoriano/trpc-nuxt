@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { TRPCClientError } from '@trpc/client';
-import type { inferRouterOutputs } from '@trpc/server';
-import type { AppRouter } from '~~/server/trpc/routers';
-
 const { $client } = useNuxtApp()
+const { mutate } = $client.todo.addTodo.useMutation()
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const x = await $client.todo.addTodo.mutate({
+    const x = await mutate({
       id: Date.now(),
       userId: 69,
       title,
@@ -21,10 +18,7 @@ const addTodo = async () => {
   }
 }
 
-type RouterOutput = inferRouterOutputs<AppRouter>;
-type ErrorOutput = TRPCClientError<AppRouter>
-
-const { data: todos, pending, error, refresh } = await useAsyncData<RouterOutput['todo']['getTodos'], ErrorOutput>(() => $client.todo.getTodos.query())
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 </script>
 
 <template>

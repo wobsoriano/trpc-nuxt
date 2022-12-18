@@ -9,13 +9,19 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "require": "./dist/client/index.cjs",
+      "import": "./dist/client/index.mjs"
     }
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "client.d.ts"
   ],
   "scripts": {
     "dev": "concurrently \"pnpm build -- --watch\" \"pnpm --filter playground dev\"",
@@ -38,8 +44,8 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@trpc/client": "^10.1.0",
-    "@trpc/server": "^10.1.0",
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
