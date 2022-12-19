@@ -30,8 +30,14 @@ const { data: todos, pending, error, refresh } = await $client.todo.getTodos.use
     </div>
     <div v-else>
       <ul>
-        <li v-for="t in todos?.slice(0, 10)" :key="t.id">
-          <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
+        <li
+          v-for="t in todos?.slice(0, 10)"
+          :key="t.id"
+        >
+          <NuxtLink
+            :class="{ completed: t.completed }"
+            :to="`/todo/${t.id}`"
+          >
             Title: {{ t.title }}
           </NuxtLink>
         </li>
