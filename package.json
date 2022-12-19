@@ -2,6 +2,7 @@
   "name": "trpc-nuxt",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "type": "module",
+  "packageManager": "pnpm@7.18.2",
   "version": "0.4.3",
   "license": "MIT",
   "sideEffects": false,
@@ -9,13 +10,19 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "require": "./dist/client/index.cjs",
+      "import": "./dist/client/index.mjs"
     }
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "client.d.ts"
   ],
   "scripts": {
     "dev": "concurrently \"pnpm build -- --watch\" \"pnpm --filter playground dev\"",
@@ -31,15 +38,15 @@
     "@trpc/server": "^10.0.0"
   },
   "dependencies": {
-    "h3": "^1.0.1",
-    "nanoid": "^4.0.0",
+    "h3": "^1.0.2",
+    "ofetch": "^1.0.0",
     "ohash": "^1.0.0",
     "ufo": "^1.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@trpc/client": "^10.1.0",
-    "@trpc/server": "^10.1.0",
+    "@nuxt/eslint-config": "^0.1.1",
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
     "bumpp": "^8.2.1",
     "concurrently": "^7.5.0",
     "eslint": "^8.25.0",
@@ -48,7 +55,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@nuxtjs/eslint-config-typescript"
+      "@nuxt/eslint-config"
     ],
     "rules": {
       "@typescript-eslint/no-unused-vars": [
@@ -64,5 +71,13 @@
     "*.md",
     "dist",
     ".output"
-  ]
+  ],
+  "pnpm": {
+    "overrides": {
+      "nuxt": "3.0.0"
+    }
+  },
+  "engines": {
+    "node": "^16.13.0 || ^18.12.0"
+  }
 }

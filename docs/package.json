@@ -11,7 +11,7 @@
     "nuxt": "^3.0.0"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^0.3.1",
-    "@nuxtlabs/github-module": "^1.5.3"
+    "@nuxt-themes/docus": "^1.1.10",
+    "@nuxtlabs/github-module": "^1.5.4"
   }
 }

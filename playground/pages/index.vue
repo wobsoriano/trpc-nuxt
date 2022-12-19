@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { TRPCClientError } from '@trpc/client';
-import type { inferRouterOutputs } from '@trpc/server';
-import type { AppRouter } from '~~/server/trpc/routers';
-
 const { $client } = useNuxtApp()
 
 const addTodo = async () => {
@@ -21,10 +17,7 @@ const addTodo = async () => {
   }
 }
 
-type RouterOutput = inferRouterOutputs<AppRouter>;
-type ErrorOutput = TRPCClientError<AppRouter>
-
-const { data: todos, pending, error, refresh } = await useAsyncData<RouterOutput['todo']['getTodos'], ErrorOutput>(() => $client.todo.getTodos.query())
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 </script>
 
 <template>
@@ -37,8 +30,14 @@ const { data: todos, pending, error, refresh } = await useAsyncData<RouterOutput
     </div>
     <div v-else>
       <ul>
-        <li v-for="t in todos?.slice(0, 10)" :key="t.id">
-          <NuxtLink :class="{ completed: t.completed }" :to="`/todo/${t.id}`">
+        <li
+          v-for="t in todos?.slice(0, 10)"
+          :key="t.id"
+        >
+          <NuxtLink
+            :class="{ completed: t.completed }"
+            :to="`/todo/${t.id}`"
+          >
             Title: {{ t.title }}
           </NuxtLink>
         </li>
