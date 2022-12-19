@@ -1,11 +1,11 @@
-import { httpLink as _httpLink, httpBatchLink as _httpBatchLink, HttpBatchLinkOptions } from '@trpc/client'
+import { httpLink as _httpLink, httpBatchLink as _httpBatchLink } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
 import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
-import { type HTTPLinkOptions } from '@trpc/client/dist/links/internals/httpUtils'
+import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/internals/httpUtils'
 
-function customFetch(input: RequestInfo | URL, init?: RequestInit | undefined) {
+function customFetch(input: RequestInfo | URL, init?: RequestInit) {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
       if (e instanceof FetchError && e.response) { return e.response }
@@ -17,9 +17,17 @@ function customFetch(input: RequestInfo | URL, init?: RequestInit | undefined) {
     }))
 }
 
+export interface HTTPLinkOptions extends _HTTPLinkOptions {
+  /**
+   * Select headers to pass to `useRequestHeaders`.
+   */
+  pickHeaders?: string[] 
+}
+
 /**
  * This is a convenience wrapper around the original httpLink
- * that replaces regular `fetch` with a `$fetch` from Nuxt.
+ * that replaces regular `fetch` with a `$fetch` from Nuxt. It
+ * also sets the default headers based on `useRequestHeaders` values.
  *
  * During server-side rendering, calling $fetch to fetch your internal API routes
  * will directly call the relevant function (emulating the request),
@@ -28,7 +36,7 @@ function customFetch(input: RequestInfo | URL, init?: RequestInit | undefined) {
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
-  const headers = useRequestHeaders()
+  const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpLink<TRouter>({
     url: '/api/trpc',
@@ -40,10 +48,15 @@ export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
   })
 }
 
+export interface HttpBatchLinkOptions extends HTTPLinkOptions {
+  maxURLLength?: number;
+}
+
 
 /**
  * This is a convenience wrapper around the original httpBatchLink
- * that replaces regular `fetch` with a `$fetch` from Nuxt.
+ * that replaces regular `fetch` with a `$fetch` from Nuxt. It
+ * also sets the default headers based on `useRequestHeaders` values.
  *
  * During server-side rendering, calling $fetch to fetch your internal API routes
  * will directly call the relevant function (emulating the request),
@@ -52,7 +65,7 @@ export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOptions) {
-  const headers = useRequestHeaders()
+  const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpBatchLink<TRouter>({
     url: '/api/trpc',
