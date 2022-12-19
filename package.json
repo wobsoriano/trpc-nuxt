@@ -31,7 +31,8 @@
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp && npm publish"
+    "release": "bumpp && npm publish",
+    "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
     "@trpc/client": "^10.0.0",
@@ -41,17 +42,18 @@
     "h3": "^1.0.2",
     "ofetch": "^1.0.0",
     "ohash": "^1.0.0",
-    "ufo": "^1.0.0"
+    "ufo": "^1.0.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
     "@trpc/client": "^10.5.0",
     "@trpc/server": "^10.5.0",
     "bumpp": "^8.2.1",
-    "concurrently": "^7.5.0",
-    "eslint": "^8.25.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.30.0",
+    "taze": "^0.8.4",
     "tsup": "6.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.4"
   },
   "eslintConfig": {
     "extends": [
