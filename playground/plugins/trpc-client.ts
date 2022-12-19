@@ -1,4 +1,4 @@
-import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client'
+import { httpBatchLink, loggerLink } from '@trpc/client'
 import superjson from 'superjson'
 import { FetchError } from 'ofetch'
 import { createTRPCNuxtClient } from 'trpc-nuxt/client'
@@ -10,18 +10,18 @@ export default defineNuxtPlugin(() => {
     transformer: superjson,
     links: [
       // adds pretty logs to your console in development and logs errors in production
-      // loggerLink({
-      //   enabled: opts =>
-      //     process.env.NODE_ENV === 'development' ||
-      //     (opts.direction === 'down' && opts.result instanceof Error)
-      // }),
+      loggerLink({
+        enabled: opts =>
+          process.env.NODE_ENV === 'development' ||
+          (opts.direction === 'down' && opts.result instanceof Error)
+      }),
       httpBatchLink({
         url: '/api/trpc',
         headers () {
           return headers
         },
         fetch: (input, options) =>
-          $fetch.raw(input.toString(), options)
+          globalThis.$fetch.raw(input.toString(), options)
             .catch((e) => {
               if (e instanceof FetchError && e.response) { return e.response }
               throw e

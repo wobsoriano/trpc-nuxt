@@ -1,11 +1,11 @@
-import { type CreateTRPCClientOptions, type inferRouterProxyClient, createTRPCProxyClient, httpBatchLink as _httpBatchLink } from '@trpc/client'
+import { type CreateTRPCClientOptions, type inferRouterProxyClient, createTRPCProxyClient } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
 import { nanoid } from 'nanoid'
 import { type DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, useRequestHeaders, ref, unref } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData, ref, unref } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call
