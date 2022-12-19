@@ -14,12 +14,14 @@ importers:
       concurrently: ^7.5.0
       eslint: ^8.25.0
       h3: ^1.0.2
+      ofetch: ^1.0.0
       ohash: ^1.0.0
       tsup: 6.4.0
       typescript: ^4.7.4
       ufo: ^1.0.0
     dependencies:
       h3: 1.0.2
+      ofetch: 1.0.0
       ohash: 1.0.0
       ufo: 1.0.0
     devDependencies:
