@@ -1,12 +1,11 @@
 <script setup lang="ts">
 const { $client } = useNuxtApp()
-const { mutate } = $client.todo.addTodo.useMutation()
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
 
   try {
-    const x = await mutate({
+    const x = await $client.todo.addTodo.mutate({
       id: Date.now(),
       userId: 69,
       title,
