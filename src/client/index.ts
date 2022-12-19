@@ -4,7 +4,7 @@ import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
 import { type DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, ref, unref } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call
