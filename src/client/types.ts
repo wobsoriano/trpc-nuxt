@@ -13,7 +13,6 @@ import type {
 } from '@trpc/server'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
 import { inferTransformedProcedureOutput } from '@trpc/server/shared'
-// import { inferTransformedProcedureOutput } from '@trpc/server/shared'
 import type {
   AsyncData,
   AsyncDataOptions,
@@ -21,10 +20,6 @@ import type {
   PickFrom,
   _Transform
 } from 'nuxt/dist/app/composables/asyncData'
-
-// Modified @trpc/client and @trpc/react-query types
-// https://github.com/trpc/trpc/blob/next/packages/client/src/createTRPCClientProxy.ts
-// https://github.com/trpc/trpc/blob/next/packages/react-query/src/createTRPCReact.tsx
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
@@ -65,15 +60,6 @@ type DecorateProcedure<
       ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
-      useMutation: <
-      TData = inferTransformedProcedureOutput<TProcedure>,
-      Transform extends _Transform<TData> = _Transform<TData, TData>,
-      PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
-     >(
-        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc?: TRPCRequestOptions },
-      ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>> & {
-        mutate: (input: inferProcedureInput<TProcedure>) => Promise<PickFrom<ReturnType<Transform>, PickKeys>>
-      },
       mutate: Resolver<TProcedure>
     } : TProcedure extends AnySubscriptionProcedure ? {
       subscribe: SubscriptionResolver<TProcedure, TRouter>
