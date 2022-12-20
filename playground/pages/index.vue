@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useClient, useClientHeaders, useAsyncQuery } from '#imports'
 const client = useClient()
 const headers = useClientHeaders()
 const { data: todos, pending, error, refresh } = await useAsyncQuery(['getTodos'])

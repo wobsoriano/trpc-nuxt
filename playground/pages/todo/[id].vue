@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute, useAsyncQuery } from '#imports'
 const route = useRoute()
 const { data: todo, pending, error } = await useAsyncQuery(['getTodo', Number(route.params.id)])
 </script>
@@ -11,8 +12,8 @@ const { data: todo, pending, error } = await useAsyncQuery(['getTodo', Number(ro
     {{ error.data.code }}
   </div>
   <div v-else>
-    ID: {{ todo.id }} <br>
-    Title: {{ todo.title }} <br>
-    Completed: {{ todo.completed }}
+    ID: {{ todo?.id }} <br>
+    Title: {{ todo?.title }} <br>
+    Completed: {{ todo?.completed }}
   </div>
 </template>

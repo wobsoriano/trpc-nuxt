@@ -27,7 +27,7 @@ export default defineNuxtModule<ModuleOptions>({
     const logger = useLogger(metaName)
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir, '#build/trpc-handler')
+    nuxt.options.build.transpile.push(runtimeDir)
 
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
     const trpcOptionsPath = join(nuxt.options.srcDir, 'server/trpc')
@@ -49,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
       write: true,
       getContents() {
         return dedent`
-          import { createTRPCHandler } from 'trpc-nuxt/api'
+          import { createTRPCHandler } from ${JSON.stringify(join(runtimeDir, 'api'))}
           import * as functions from '${trpcOptionsPath}'
     
           export default createTRPCHandler({

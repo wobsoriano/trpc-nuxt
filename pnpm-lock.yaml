@@ -18,7 +18,6 @@ importers:
       nuxt: 3.0.0
       ohash: ^1.0.0
       pathe: ^1.0.0
-      trpc-nuxt: workspace:*
       ufo: ^1.0.1
       zod: ^3.20.2
     dependencies:
@@ -38,7 +37,6 @@ importers:
       bumpp: 8.2.1
       eslint: 8.26.0
       nuxt: 3.0.0_eslint@8.26.0
-      trpc-nuxt: 'link:'
       zod: 3.20.2
 
   playground:
