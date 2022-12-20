@@ -27,5 +27,6 @@ End-to-end typesafe APIs in Nuxt applications.
   - Automatic typesafety 
   - Snappy DX
   - Autocompletion on the client, for inputs, outputs and errors
+  - Leverages [useAsyncData](https://nuxt.com/docs/api/composables/use-async-data)
   ::
 ::
