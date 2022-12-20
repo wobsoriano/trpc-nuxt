@@ -1,7 +1,7 @@
 {
   "name": "trpc-nuxt",
   "type": "module",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "license": "MIT",
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
