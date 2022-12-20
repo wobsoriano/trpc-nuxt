@@ -35,25 +35,25 @@
     "@trpc/server": "<10.0.0"
   },
   "dependencies": {
-    "@nuxt/kit": "3.0.0-rc.13",
+    "@nuxt/kit": "3.0.0",
     "@trpc/client": "^9.27.4",
     "@trpc/server": "^9.27.4",
     "dedent": "^0.7.0",
-    "defu": "^6.1.0",
-    "h3": "^0.8.6",
-    "ohash": "^0.1.5",
-    "pathe": "^0.3.9",
-    "ufo": "^0.8.6"
+    "defu": "^6.1.1",
+    "h3": "^1.0.2",
+    "ohash": "^1.0.0",
+    "pathe": "^1.0.0",
+    "ufo": "^1.0.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.23.1",
-    "@nuxt/module-builder": "^0.2.0",
+    "@antfu/eslint-config": "^0.34.0",
+    "@nuxt/module-builder": "^0.2.1",
     "@types/dedent": "^0.7.0",
-    "bumpp": "^7.2.0",
+    "bumpp": "^8.2.1",
     "eslint": "^8.25.0",
-    "nuxt": "3.0.0-rc.13",
+    "nuxt": "3.0.0",
     "trpc-nuxt": "workspace:*",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   },
   "eslintConfig": {
     "extends": "@antfu",
