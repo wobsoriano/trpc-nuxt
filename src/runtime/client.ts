@@ -9,7 +9,7 @@ import type { ProcedureRecord, inferHandlerInput, inferProcedureInput, inferProc
 import type { TRPCClient, TRPCClientErrorLike } from '@trpc/client'
 import { objectHash } from 'ohash'
 import type { Ref } from 'vue'
-import { useAsyncData, useNuxtApp, useState } from '#app'
+import { useAsyncData, useNuxtApp, useState } from '#imports'
 import type { router } from '~/server/trpc'
 
 type MaybeRef<T> = T | Ref<T>

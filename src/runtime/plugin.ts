@@ -2,7 +2,7 @@ import * as trpc from '@trpc/client'
 import { unref } from 'vue'
 import { FetchError } from 'ohmyfetch'
 import { useClientHeaders } from './client'
-import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#app'
+import { defineNuxtPlugin, useRequestHeaders, useRuntimeConfig } from '#imports'
 import type { router } from '~/server/trpc'
 
 declare type AppRouter = typeof router
