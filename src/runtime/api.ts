@@ -30,7 +30,7 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
   error: TRPCError
   type: ProcedureType | 'unknown'
   path: string | undefined
-  req: H3Event['req']
+  req: H3Event['node']['req']
   input: unknown
   ctx: undefined | inferRouterContext<TRouter>
 }
@@ -54,7 +54,7 @@ export function createTRPCHandler<Router extends AnyRouter>({
     const {
       req,
       res,
-    } = event
+    } = event.node
 
     const $url = createURL(req.url!)
 
