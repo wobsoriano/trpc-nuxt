@@ -58,7 +58,7 @@ importers:
     dependencies:
       '@trpc/client': 10.5.0_@trpc+server@10.5.0
       '@trpc/server': 10.5.0
-      superjson: 1.12.0
+      superjson: 1.12.1
       trpc-nuxt: link:..
       zod: 3.20.2
     devDependencies:
@@ -6748,8 +6748,8 @@ packages:
       ts-interface-checker: 0.1.13
     dev: true
 
-  /superjson/1.12.0:
-    resolution: {integrity: sha512-B4tefmFqj8KDShHi2br2rz0kBlUJuQHtxMCydEuHvooL+6EscROTNWRfOLMDxW1dS/daK2zZr3C3N9DU+jXATQ==}
+  /superjson/1.12.1:
+    resolution: {integrity: sha512-HMTj43zvwW5bD+JCZCvFf4DkZQCmiLTen4C+W1Xogj0SPOpnhxsriogM04QmBVGH5b3kcIIOr6FqQ/aoIDx7TQ==}
     engines: {node: '>=10'}
     dependencies:
       copy-anything: 3.0.3

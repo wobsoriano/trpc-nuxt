@@ -12,7 +12,7 @@ export function createContext (
   event: H3Event
 ) {
   // for API-response caching see https://trpc.io/docs/caching
-  console.log('cookies', parseCookies(event))
+  // console.log('cookies', parseCookies(event))
   
   return {}
 }
