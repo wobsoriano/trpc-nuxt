@@ -29,7 +29,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp --commit --push --tag && npm publish",
-    "prepare": "nuxi prepare playground"
+    "prepare": "nuxi prepare playground",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "@trpc/client": "<10.0.0",
