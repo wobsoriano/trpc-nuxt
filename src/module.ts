@@ -26,11 +26,11 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const logger = useLogger(metaName)
 
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
-    nuxt.options.build.transpile.push(runtimeDir)
-
     const handlerPath = join(nuxt.options.buildDir, 'trpc-handler.ts')
     const trpcOptionsPath = join(nuxt.options.srcDir, 'server/trpc')
+
+    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    nuxt.options.build.transpile.push(runtimeDir, handlerPath)
 
     // Final resolved configuration
     const finalConfig = nuxt.options.runtimeConfig.public.trpc = defu(nuxt.options.runtimeConfig.public.trpc, {
@@ -77,4 +77,3 @@ export default defineNuxtModule<ModuleOptions>({
     }
   },
 })
-

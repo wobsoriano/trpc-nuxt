@@ -3,8 +3,6 @@
   "type": "module",
   "version": "0.3.5",
   "license": "MIT",
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -16,6 +14,8 @@
       "import": "./dist/runtime/api.mjs"
     }
   },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
     "dist",
     "*.d.ts"
@@ -42,6 +42,7 @@
     "dedent": "^0.7.0",
     "defu": "^6.1.1",
     "h3": "^1.0.2",
+    "ofetch": "^1.0.0",
     "ohash": "^1.0.0",
     "pathe": "^1.0.0",
     "ufo": "^1.0.1"

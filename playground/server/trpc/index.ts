@@ -29,7 +29,6 @@ export const router = trpc.router<Context>()
   .mutation('addTodo', {
     input: TodoShape,
     async resolve(req) {
-      console.log(req.input)
       return await $fetch<Todo>(`${baseURL}/todos`, {
         method: 'POST',
         body: req.input,
@@ -43,7 +42,7 @@ export async function createContext(event: H3Event) {
 
   // This is just an example of something you'd might want to do in your ctx fn
   // const x = useCookies(event)
-  console.log(event.req.headers)
+  console.log(event.node.req.headers)
 
   return {
 

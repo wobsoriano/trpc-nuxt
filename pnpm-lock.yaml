@@ -16,6 +16,7 @@ importers:
       eslint: ^8.25.0
       h3: ^1.0.2
       nuxt: 3.0.0
+      ofetch: ^1.0.0
       ohash: ^1.0.0
       pathe: ^1.0.0
       ufo: ^1.0.1
@@ -27,6 +28,7 @@ importers:
       dedent: 0.7.0
       defu: 6.1.1
       h3: 1.0.2
+      ofetch: 1.0.0
       ohash: 1.0.0
       pathe: 1.0.0
       ufo: 1.0.1
@@ -4505,7 +4507,6 @@ packages:
       destr: 1.2.2
       node-fetch-native: 1.0.1
       ufo: 1.0.1
-    dev: true
 
   /ohash/1.0.0:
     resolution: {integrity: sha512-kxSyzq6tt+6EE/xCnD1XaFhCCjUNUaz3X30rJp6mnjGLXAAvuPFqohMdv0aScWzajR45C29HyBaXZ8jXBwnh9A==}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, useAsyncQuery } from '#imports'
+import { useAsyncQuery, useRoute } from '#imports'
 const route = useRoute()
 const { data: todo, pending, error } = await useAsyncQuery(['getTodo', Number(route.params.id)])
 </script>
