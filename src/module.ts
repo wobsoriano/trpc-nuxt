@@ -49,8 +49,8 @@ export default defineNuxtModule<ModuleOptions>({
       write: true,
       getContents() {
         return dedent`
-          import { createTRPCHandler } from ${JSON.stringify(join(runtimeDir, 'api'))}
-          import * as functions from '${trpcOptionsPath}'
+          import { createTRPCHandler } from ${JSON.stringify(join(runtimeDir, 'api'))};
+          import * as functions from ${JSON.stringify(trpcOptionsPath)};
     
           export default createTRPCHandler({
             ...functions,
