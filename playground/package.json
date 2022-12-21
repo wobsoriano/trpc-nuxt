@@ -9,11 +9,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@trpc/client": "^10.5.0",
-    "@trpc/server": "^10.5.0",
-    "superjson": "^1.11.0",
+    "@trpc/client": "^10.6.0",
+    "@trpc/server": "^10.6.0",
+    "superjson": "^1.12.1",
     "trpc-nuxt": "workspace:*",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "nuxt": "^3.0.0"

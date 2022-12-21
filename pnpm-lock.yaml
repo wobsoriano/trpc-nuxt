@@ -8,15 +8,15 @@ importers:
   .:
     specifiers:
       '@nuxt/eslint-config': ^0.1.1
-      '@trpc/client': ^10.5.0
-      '@trpc/server': ^10.5.0
+      '@trpc/client': ^10.6.0
+      '@trpc/server': ^10.6.0
       bumpp: ^8.2.1
       concurrently: ^7.6.0
       eslint: ^8.30.0
       h3: ^1.0.2
       ofetch: ^1.0.0
       ohash: ^1.0.0
-      taze: ^0.8.4
+      taze: ^0.8.5
       tsup: 6.4.0
       typescript: ^4.9.4
       ufo: ^1.0.1
@@ -27,12 +27,12 @@ importers:
       ufo: 1.0.1
     devDependencies:
       '@nuxt/eslint-config': 0.1.1_eslint@8.30.0
-      '@trpc/client': 10.5.0_@trpc+server@10.5.0
-      '@trpc/server': 10.5.0
+      '@trpc/client': 10.6.0_@trpc+server@10.6.0
+      '@trpc/server': 10.6.0
       bumpp: 8.2.1
       concurrently: 7.6.0
       eslint: 8.30.0
-      taze: 0.8.4
+      taze: 0.8.5
       tsup: 6.4.0_typescript@4.9.4
       typescript: 4.9.4
 
@@ -49,15 +49,15 @@ importers:
 
   playground:
     specifiers:
-      '@trpc/client': ^10.5.0
-      '@trpc/server': ^10.5.0
+      '@trpc/client': ^10.6.0
+      '@trpc/server': ^10.6.0
       nuxt: 3.0.0
-      superjson: ^1.11.0
+      superjson: ^1.12.1
       trpc-nuxt: workspace:*
-      zod: ^3.19.1
+      zod: ^3.20.2
     dependencies:
-      '@trpc/client': 10.5.0_@trpc+server@10.5.0
-      '@trpc/server': 10.5.0
+      '@trpc/client': 10.6.0_@trpc+server@10.6.0
+      '@trpc/server': 10.6.0
       superjson: 1.12.1
       trpc-nuxt: link:..
       zod: 3.20.2
@@ -1304,15 +1304,15 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@trpc/client/10.5.0_@trpc+server@10.5.0:
-    resolution: {integrity: sha512-ULRL6YUi/4sMzZnqS3VCe/VduPZgY24wdC4canpwWZfHj+O0kHz3KR260DzEw0QrpLrOwmkIWOlQKzVBn2lLgQ==}
+  /@trpc/client/10.6.0_@trpc+server@10.6.0:
+    resolution: {integrity: sha512-GvZzUQuPStXN9zTyJ+PvlGweEa1mvsbtsAgo6yfnDGjrx1HJbDMtYC+o98lz1T+UOdDPgfDE/R1MaCrWDUrpSA==}
     peerDependencies:
-      '@trpc/server': 10.5.0
+      '@trpc/server': 10.6.0
     dependencies:
-      '@trpc/server': 10.5.0
+      '@trpc/server': 10.6.0
 
-  /@trpc/server/10.5.0:
-    resolution: {integrity: sha512-AJ4ckDpnN8xuqWBox68KDTFpG12ZxKkW7fi9XJ+TLtyyNyqOMVUvKH9070CdxhqBZjebTASryE+/6lntkDFQxA==}
+  /@trpc/server/10.6.0:
+    resolution: {integrity: sha512-SXqogi536yDpfK0xsCaLvP0bzu5Qzn2rRHVr59NJ0SLwLPPKFjfHIrS+O+QnTA3TVUXvnXG0/Hllu8SJXOm7Zg==}
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -6823,8 +6823,8 @@ packages:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  /taze/0.8.4:
-    resolution: {integrity: sha512-1dqNgQvNOJY4jPb37FpqOFseIXtezv5MBkTSdrdreX4daC/G+zEi/4PJvl0MiQmIHnBQ3byN8qYU1fM9/ViNKg==}
+  /taze/0.8.5:
+    resolution: {integrity: sha512-4aB/BEfBah5iJJUDY3vW7xjJl7AzV6bsQx0PHC1DxIVlCE+JUFfpE7dDPZv/4Z+ft4Eg3I69NWnMnaAUL++rDQ==}
     hasBin: true
     dependencies:
       '@antfu/ni': 0.18.8
