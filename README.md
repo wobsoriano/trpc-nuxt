@@ -1,3 +1,9 @@
+<p align="center">
+  <figure>
+    <img src="./public/banner.png" alt="trpc-nuxt cover image" />
+  </figure>
+</p>
+
 # tRPC-Nuxt
 
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
@@ -19,7 +25,7 @@ For version 3 of this module (tRPC v9, auto-imports, auto handlers), [go here](h
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+-   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 ## License
 
