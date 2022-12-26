@@ -1,6 +1,6 @@
 <p align="center">
   <figure>
-    <img src="./public/banner.png" alt="trpc-nuxt cover image" />
+    <img src="https://trpc-nuxt.vercel.app/cover.jpg" alt="trpc-nuxt cover image" />
   </figure>
 </p>
 
