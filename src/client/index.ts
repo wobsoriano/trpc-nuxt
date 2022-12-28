@@ -7,7 +7,17 @@ import { type DecoratedProcedureRecord } from './types'
 import { getCurrentInstance, onScopeDispose, useAsyncData } from '#imports'
 
 /**
- * Calculates the key used for `useAsyncData` call
+ * Calculates the key used for `useAsyncData` call.
+ *
+ * @example
+ *
+ * ```ts
+ * import { getQueryKey } from 'trpc-nuxt/client'
+ *
+ * $client.todo.getTodo(1)
+ * 
+ * const queryKey = getQueryKey('todo.getTodo', 1)
+ * ```
  */
 export function getQueryKey (
   path: string,
