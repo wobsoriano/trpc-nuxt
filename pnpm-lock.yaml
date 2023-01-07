@@ -49,15 +49,15 @@ importers:
 
   playground:
     specifiers:
-      '@trpc/client': ^10.6.0
-      '@trpc/server': ^10.6.0
+      '@trpc/client': ^10.8.1
+      '@trpc/server': ^10.8.1
       nuxt: 3.0.0
       superjson: ^1.12.1
       trpc-nuxt: workspace:*
       zod: ^3.20.2
     dependencies:
-      '@trpc/client': 10.6.0_@trpc+server@10.6.0
-      '@trpc/server': 10.6.0
+      '@trpc/client': 10.8.1_@trpc+server@10.8.1
+      '@trpc/server': 10.8.1
       superjson: 1.12.1
       trpc-nuxt: link:..
       zod: 3.20.2
@@ -1304,29 +1304,15 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@trpc/client/10.6.0_@trpc+server@10.6.0:
-    resolution: {integrity: sha512-GvZzUQuPStXN9zTyJ+PvlGweEa1mvsbtsAgo6yfnDGjrx1HJbDMtYC+o98lz1T+UOdDPgfDE/R1MaCrWDUrpSA==}
-    peerDependencies:
-      '@trpc/server': 10.6.0
-    dependencies:
-      '@trpc/server': 10.6.0
-    dev: false
-
   /@trpc/client/10.8.1_@trpc+server@10.8.1:
     resolution: {integrity: sha512-DQ+Y3ek/rjCYaI8ifeeVPVW/KIO6ryye32Xdm9VAkdhd1humYD/4rN2CQ7K1zPTeNpbIpuckEAMEadeB4ItcMQ==}
     peerDependencies:
       '@trpc/server': 10.8.1
     dependencies:
       '@trpc/server': 10.8.1
-    dev: true
-
-  /@trpc/server/10.6.0:
-    resolution: {integrity: sha512-SXqogi536yDpfK0xsCaLvP0bzu5Qzn2rRHVr59NJ0SLwLPPKFjfHIrS+O+QnTA3TVUXvnXG0/Hllu8SJXOm7Zg==}
-    dev: false
 
   /@trpc/server/10.8.1:
     resolution: {integrity: sha512-oSNYgFNJbjki4jBByJ/SKHasB/X7kTsEbVGaONNH1DHMz638xlYXPQucV+2bWbhCm5HlXhQTaVN7Or0lsCuUUQ==}
-    dev: true
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}

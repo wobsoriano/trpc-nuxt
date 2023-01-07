@@ -1,5 +1,5 @@
 import type { TRPCClientErrorLike, TRPCRequestOptions as _TRPCRequestOptions } from '@trpc/client'
-import { type TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCClient'
+import { type TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
 import type {
   AnyMutationProcedure,
   AnyProcedure,
