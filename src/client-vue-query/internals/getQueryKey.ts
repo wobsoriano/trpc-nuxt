@@ -6,6 +6,6 @@ export function getQueryKey(
   path: string,
   input: unknown,
 ): [string] | [string, unknown] {
-  if (path.length) return input === undefined ? [path] : [path, input];
-  return [] as unknown as [string];
+  if (path.length) return input === undefined ? [path] : [path, input]
+  return [] as unknown as [string]
 }

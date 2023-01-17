@@ -1,9 +1,9 @@
-export type QueryType = 'query' | 'infinite' | 'any';
+export type QueryType = 'query' | 'infinite' | 'any'
 
 export type QueryKey = [
   string[],
   { input?: unknown; type?: Exclude<QueryType, 'any'> }?,
-];
+]
 
 /**
  * To allow easy interactions with groups of related queries, such as
@@ -16,11 +16,11 @@ export function getArrayQueryKey(
   queryKey: string | [string] | [string, ...unknown[]] | unknown[],
   type: QueryType,
 ): QueryKey {
-  const queryKeyArrayed = Array.isArray(queryKey) ? queryKey : [queryKey];
-  const [path, input] = queryKeyArrayed;
+  const queryKeyArrayed = Array.isArray(queryKey) ? queryKey : [queryKey]
+  const [path, input] = queryKeyArrayed
 
   const arrayPath =
-    typeof path !== 'string' || path === '' ? [] : path.split('.');
+    typeof path !== 'string' || path === '' ? [] : path.split('.')
 
   // Construct a query key that is easy to destructure and flexible for
   // partial selecting etc.
@@ -28,12 +28,12 @@ export function getArrayQueryKey(
   if (!input && (!type || type === 'any'))
     // for `utils.invalidate()` to match all queries (including vanilla react-query)
     // we don't want nested array if path is empty, i.e. `[]` instead of `[[]]`
-    return arrayPath.length ? [arrayPath] : ([] as unknown as QueryKey);
+    return arrayPath.length ? [arrayPath] : ([] as unknown as QueryKey)
   return [
     arrayPath,
     {
       ...(typeof input !== 'undefined' && { input: input }),
       ...(type && type !== 'any' && { type: type }),
     },
-  ];
+  ]
 }
