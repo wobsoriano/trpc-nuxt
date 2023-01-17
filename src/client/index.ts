@@ -78,4 +78,4 @@ export function createTRPCNuxtClient<TRouter extends AnyRouter> (opts: CreateTRP
 export {
   httpBatchLink,
   httpLink
-} from './links'
+} from '../client-shared/links'

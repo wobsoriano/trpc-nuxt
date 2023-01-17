@@ -15,6 +15,11 @@
       "types": "./dist/client/index.d.ts",
       "require": "./dist/client/index.cjs",
       "import": "./dist/client/index.mjs"
+    },
+    "./client-vue-query": {
+      "types": "./dist/client-vue-query/index.d.ts",
+      "require": "./dist/client-vue-query/index.cjs",
+      "import": "./dist/client-vue-query/index.mjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -22,7 +27,8 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "client.d.ts"
+    "client.d.ts",
+    "client-vue-query.d.ts"
   ],
   "scripts": {
     "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
@@ -35,6 +41,7 @@
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
+    "@tanstack/vue-query": "^4.22.0",
     "@trpc/client": "^10.8.0",
     "@trpc/server": "^10.8.0"
   },
@@ -46,6 +53,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
+    "@tanstack/vue-query": "^4.22.0",
     "@trpc/client": "^10.8.1",
     "@trpc/server": "^10.8.1",
     "bumpp": "^8.2.1",
