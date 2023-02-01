@@ -27,6 +27,10 @@ For version 3 of this module (tRPC v9, auto-imports, auto handlers), [go here](h
 
 -   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
+## Acknowledgements
+
+Huge thanks to [Alex / KATT](https://github.com/KATT), the author of [tRPC](https://trpc.io/), for being the first sponsor of this project! 🎉 
+
 ## License
 
 MIT
