@@ -4,6 +4,7 @@ import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/internals/httpUtils'
+import { type FetchEsque } from '@trpc/client/dist/internals/types'
 
 function customFetch(input: RequestInfo | URL, init?: RequestInit) {
   return globalThis.$fetch.raw(input.toString(), init)
@@ -43,7 +44,7 @@ export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
     headers () {
       return headers
     },
-    fetch: customFetch,
+    fetch: customFetch as FetchEsque,
     ...opts,
   })
 }
@@ -72,7 +73,7 @@ export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOpt
     headers () {
       return headers
     },
-    fetch: customFetch,
+    fetch: customFetch as FetchEsque,
     ...opts,
   })
 }

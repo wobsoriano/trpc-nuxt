@@ -25,7 +25,7 @@
     "client.d.ts"
   ],
   "scripts": {
-    "dev": "concurrently \"pnpm build --watch\" \"pnpm --filter playground dev\"",
+    "dev": "tsup --watch --onSuccess \"pnpm --filter playground dev\"",
     "dev:prepare": "pnpm build && nuxt prepare playground",
     "prepublishOnly": "pnpm build",
     "build": "tsup",
@@ -35,8 +35,8 @@
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
-    "@trpc/client": "^10.8.0",
-    "@trpc/server": "^10.8.0"
+    "@trpc/client": "^10.10.0",
+    "@trpc/server": "^10.10.0"
   },
   "dependencies": {
     "h3": "^1.0.2",
@@ -46,8 +46,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.8.1",
-    "@trpc/server": "^10.8.1",
+    "@trpc/client": "^10.10.0",
+    "@trpc/server": "^10.10.0",
     "bumpp": "^8.2.1",
     "concurrently": "^7.6.0",
     "eslint": "^8.30.0",

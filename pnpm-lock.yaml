@@ -8,8 +8,8 @@ importers:
   .:
     specifiers:
       '@nuxt/eslint-config': ^0.1.1
-      '@trpc/client': ^10.8.1
-      '@trpc/server': ^10.8.1
+      '@trpc/client': ^10.10.0
+      '@trpc/server': ^10.10.0
       bumpp: ^8.2.1
       concurrently: ^7.6.0
       eslint: ^8.30.0
@@ -27,8 +27,8 @@ importers:
       ufo: 1.0.1
     devDependencies:
       '@nuxt/eslint-config': 0.1.1_eslint@8.30.0
-      '@trpc/client': 10.8.1_@trpc+server@10.8.1
-      '@trpc/server': 10.8.1
+      '@trpc/client': 10.10.0_@trpc+server@10.10.0
+      '@trpc/server': 10.10.0
       bumpp: 8.2.1
       concurrently: 7.6.0
       eslint: 8.30.0
@@ -1304,15 +1304,29 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /@trpc/client/10.10.0_@trpc+server@10.10.0:
+    resolution: {integrity: sha512-HRVGkOsR4FIYpyQILP84HLbj6pRnLKgxy4AIelTf9d9TxD60M5bNhbR2Uz3hqNSb9a2ppaRJBLv7twlV9b4qHQ==}
+    peerDependencies:
+      '@trpc/server': 10.10.0
+    dependencies:
+      '@trpc/server': 10.10.0
+    dev: true
+
   /@trpc/client/10.8.1_@trpc+server@10.8.1:
     resolution: {integrity: sha512-DQ+Y3ek/rjCYaI8ifeeVPVW/KIO6ryye32Xdm9VAkdhd1humYD/4rN2CQ7K1zPTeNpbIpuckEAMEadeB4ItcMQ==}
     peerDependencies:
       '@trpc/server': 10.8.1
     dependencies:
       '@trpc/server': 10.8.1
+    dev: false
+
+  /@trpc/server/10.10.0:
+    resolution: {integrity: sha512-tCTqcqBT+3nebYFTHtwM877qo5xQPtVlptxKdUzMVWleWT4lFTL4oddk45qVURToci2iMbVJjd4jQU9y9/XwlQ==}
+    dev: true
 
   /@trpc/server/10.8.1:
     resolution: {integrity: sha512-oSNYgFNJbjki4jBByJ/SKHasB/X7kTsEbVGaONNH1DHMz638xlYXPQucV+2bWbhCm5HlXhQTaVN7Or0lsCuUUQ==}
+    dev: false
 
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}

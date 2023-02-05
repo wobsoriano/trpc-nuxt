@@ -69,7 +69,7 @@ export function createTRPCNuxtClient<TRouter extends AnyRouter> (opts: CreateTRP
   const client = createTRPCProxyClient<TRouter>(opts)
 
   const decoratedClient = createFlatProxy((key) => {
-    return createNuxtProxyDecoration(key, client)
+    return createNuxtProxyDecoration(key, client as any)
   }) as DecoratedProcedureRecord<TRouter['_def']['record'], TRouter>
 
   return decoratedClient
