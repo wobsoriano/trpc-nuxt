@@ -49,7 +49,6 @@
     "@trpc/client": "^10.10.0",
     "@trpc/server": "^10.10.0",
     "bumpp": "^8.2.1",
-    "concurrently": "^7.6.0",
     "eslint": "^8.30.0",
     "taze": "^0.8.5",
     "tsup": "6.4.0",
