@@ -35,8 +35,8 @@
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
-    "@trpc/client": "^10.10.0",
-    "@trpc/server": "^10.10.0"
+    "@trpc/client": "^10.12.0",
+    "@trpc/server": "^10.12.0"
   },
   "dependencies": {
     "h3": "^1.5.0",
@@ -46,8 +46,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.10.0",
-    "@trpc/server": "^10.10.0",
+    "@trpc/client": "^10.12.0",
+    "@trpc/server": "^10.12.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.33.0",
     "taze": "^0.8.5",
