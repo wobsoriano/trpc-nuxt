@@ -13,17 +13,17 @@ importers:
       bumpp: ^8.2.1
       eslint: ^8.33.0
       h3: ^1.5.0
-      ofetch: ^1.0.0
+      ofetch: ^1.0.1
       ohash: ^1.0.0
       taze: ^0.8.5
       tsup: 6.4.0
       typescript: ^4.9.5
-      ufo: ^1.0.1
+      ufo: ^1.1.0
     dependencies:
       h3: 1.5.0
-      ofetch: 1.0.0
+      ofetch: 1.0.1
       ohash: 1.0.0
-      ufo: 1.0.1
+      ufo: 1.1.0
     devDependencies:
       '@nuxt/eslint-config': 0.1.1_eslint@8.33.0
       '@trpc/client': 10.10.0_@trpc+server@10.10.0
@@ -699,7 +699,7 @@ packages:
       shiki-es: 0.1.2
       slugify: 1.6.5
       socket.io-client: 4.5.4
-      ufo: 1.0.1
+      ufo: 1.1.0
       unified: 10.1.2
       unist-builder: 3.0.0
       unist-util-position: 4.0.3
@@ -796,7 +796,7 @@ packages:
       postcss-import-resolver: 2.0.0
       scule: 1.0.0
       std-env: 3.3.1
-      ufo: 1.0.1
+      ufo: 1.1.0
       unimport: 1.0.2
       untyped: 1.2.0
     transitivePeerDependencies:
@@ -816,7 +816,7 @@ packages:
       postcss-import-resolver: 2.0.0
       scule: 1.0.0
       std-env: 3.3.1
-      ufo: 1.0.1
+      ufo: 1.1.0
       unimport: 1.0.2_rollup@2.79.1
       untyped: 1.2.0
     transitivePeerDependencies:
@@ -887,7 +887,7 @@ packages:
       postcss-url: 10.1.3_postcss@8.4.20
       rollup: 2.79.1
       rollup-plugin-visualizer: 5.8.3_rollup@2.79.1
-      ufo: 1.0.1
+      ufo: 1.1.0
       unplugin: 1.0.1
       vite: 3.2.5
       vite-node: 0.25.8
@@ -919,7 +919,7 @@ packages:
       nuxt-component-meta: 0.3.8
       nuxt-config-schema: 0.3.6
       socket.io-client: 4.5.4
-      ufo: 1.0.1
+      ufo: 1.1.0
     transitivePeerDependencies:
       - bufferutil
       - rollup
@@ -3403,7 +3403,7 @@ packages:
       defu: 6.1.2
       https-proxy-agent: 5.0.1
       mri: 1.2.0
-      node-fetch-native: 1.0.1
+      node-fetch-native: 1.0.2
       pathe: 1.0.0
       tar: 6.1.13
     transitivePeerDependencies:
@@ -3530,7 +3530,7 @@ packages:
       cookie-es: 0.5.0
       destr: 1.2.2
       radix3: 1.0.0
-      ufo: 1.0.1
+      ufo: 1.1.0
 
   /h3/1.5.0:
     resolution: {integrity: sha512-M+T6P4iOB0ipkC/ZCdw2w8iTF7yY6phmkILOwlrtcPuVv+KW9BilOspYlvnblpKx1nnNl+3iBsZIvZ8pvKM8Nw==}
@@ -4876,7 +4876,7 @@ packages:
       acorn: 8.8.1
       pathe: 1.0.0
       pkg-types: 1.0.1
-      ufo: 1.0.1
+      ufo: 1.1.0
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -4971,8 +4971,8 @@ packages:
       mime: 3.0.0
       mlly: 1.0.0
       mri: 1.2.0
-      node-fetch-native: 1.0.1
-      ofetch: 1.0.0
+      node-fetch-native: 1.0.2
+      ofetch: 1.0.1
       ohash: 1.0.0
       pathe: 1.0.0
       perfect-debounce: 0.1.3
@@ -4988,7 +4988,7 @@ packages:
       serve-static: 1.15.0
       source-map-support: 0.5.21
       std-env: 3.3.1
-      ufo: 1.0.1
+      ufo: 1.1.0
       unenv: 1.0.0
       unimport: 1.0.2_rollup@2.79.1
       unstorage: 1.0.1
@@ -5019,8 +5019,8 @@ packages:
   /node-fetch-native/0.1.8:
     resolution: {integrity: sha512-ZNaury9r0NxaT2oL65GvdGDy+5PlSaHTovT6JV5tOW07k1TQmgC0olZETa4C9KZg0+6zBr99ctTYa3Utqj9P/Q==}
 
-  /node-fetch-native/1.0.1:
-    resolution: {integrity: sha512-VzW+TAk2wE4X9maiKMlT+GsPU4OMmR1U9CrHSmd3DFLn2IcZ9VJ6M6BBugGfYUnPCLSYxXdZy17M0BEJyhUTwg==}
+  /node-fetch-native/1.0.2:
+    resolution: {integrity: sha512-KIkvH1jl6b3O7es/0ShyCgWLcfXxlBrLBbP3rOr23WArC66IMcU4DeZEeYEOwnopYhawLTn7/y+YtmASe8DFVQ==}
 
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
@@ -5361,8 +5361,15 @@ packages:
     resolution: {integrity: sha512-d40aof8czZFSQKJa4+F7Ch3UC5D631cK1TTUoK+iNEut9NoiCL+u0vykl/puYVUS2df4tIQl5upQcolIcEzQjQ==}
     dependencies:
       destr: 1.2.2
-      node-fetch-native: 1.0.1
-      ufo: 1.0.1
+      node-fetch-native: 1.0.2
+      ufo: 1.1.0
+
+  /ofetch/1.0.1:
+    resolution: {integrity: sha512-icBz2JYfEpt+wZz1FRoGcrMigjNKjzvufE26m9+yUiacRQRHwnNlGRPiDnW4op7WX/MR6aniwS8xw8jyVelF2g==}
+    dependencies:
+      destr: 1.2.2
+      node-fetch-native: 1.0.2
+      ufo: 1.1.0
 
   /ohash/1.0.0:
     resolution: {integrity: sha512-kxSyzq6tt+6EE/xCnD1XaFhCCjUNUaz3X30rJp6mnjGLXAAvuPFqohMdv0aScWzajR45C29HyBaXZ8jXBwnh9A==}
@@ -7086,7 +7093,7 @@ packages:
     dependencies:
       defu: 6.1.1
       mime: 3.0.0
-      node-fetch-native: 1.0.1
+      node-fetch-native: 1.0.2
       pathe: 1.0.0
 
   /unhead/1.0.13:
@@ -7232,7 +7239,7 @@ packages:
       listhen: 1.0.1
       mkdir: 0.0.2
       mri: 1.2.0
-      ofetch: 1.0.0
+      ofetch: 1.0.1
       ufo: 1.1.0
       ws: 8.11.0
     transitivePeerDependencies:
@@ -7472,7 +7479,7 @@ packages:
   /vue-bundle-renderer/1.0.0:
     resolution: {integrity: sha512-43vCqTgaMXfHhtR8/VcxxWD1DgtzyvNc4wNyG5NKCIH19O1z5G9ZCRXTGEA2wifVec5PU82CkRLD2sTK9NkTdA==}
     dependencies:
-      ufo: 1.0.1
+      ufo: 1.1.0
 
   /vue-component-meta/1.0.14_typescript@4.9.5:
     resolution: {integrity: sha512-fUxV2ZujwxYwFw8q0hyOEn7x37h8Ii/U6B2rjzQ0U2Ayh7kiFwBsbYeO+E7NpbV6OGMWIz23YMhpCXXgqC6BpQ==}
