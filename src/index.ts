@@ -50,9 +50,13 @@ export interface ResolveHTTPRequestOptions<TRouter extends AnyRouter> {
 }
 
 function getPath (event: H3Event): string | null {
-  if (typeof event.context.params.trpc === 'string') { return event.context.params.trpc }
+  const { params } = event.context
 
-  if (Array.isArray(event.context.params.trpc)) { return event.context.params.trpc.join('/') }
+  if (typeof params?.trpc === 'string') { return params.trpc }
+
+  if (params?.trpc && Array.isArray(params.trpc)) {
+    return (params.trpc as string[]).join('/')
+  }
 
   return null
 }
