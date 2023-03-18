@@ -61,7 +61,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
       }), asyncDataOptions)
     }
 
-    return (client as any)[path][lastArg](input)
+    return (client as any)[path][lastArg](...args)
   })
 }
 
