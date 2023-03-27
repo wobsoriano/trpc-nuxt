@@ -6,7 +6,7 @@ import { useRequestHeaders } from '#imports'
 import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/internals/httpUtils'
 import { type FetchEsque } from '@trpc/client/dist/internals/types'
 
-function customFetch(input: RequestInfo | URL, init?: RequestInit) {
+function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
       if (e instanceof FetchError && e.response) { return e.response }

@@ -35,21 +35,21 @@
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
-    "@trpc/client": "^10.12.0",
-    "@trpc/server": "^10.12.0"
+    "@trpc/client": "^10.18.0",
+    "@trpc/server": "^10.18.0"
   },
   "dependencies": {
-    "h3": "^1.5.0",
+    "h3": "^1.6.2",
     "ofetch": "^1.0.1",
     "ohash": "^1.0.0",
-    "ufo": "^1.1.0"
+    "ufo": "^1.1.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.12.0",
-    "@trpc/server": "^10.12.0",
+    "@trpc/client": "^10.18.0",
+    "@trpc/server": "^10.18.0",
     "bumpp": "^8.2.1",
-    "eslint": "^8.33.0",
+    "eslint": "^8.36.0",
     "taze": "^0.8.5",
     "tsup": "6.6.3",
     "typescript": "^4.9.5"
@@ -75,7 +75,7 @@
   ],
   "pnpm": {
     "overrides": {
-      "nuxt": "3.0.0"
+      "nuxt": "3.2.2"
     }
   },
   "engines": {

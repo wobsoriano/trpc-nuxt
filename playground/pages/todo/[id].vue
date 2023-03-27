@@ -8,8 +8,8 @@ const { data: todo, pending, error } = await useAsyncData(() => $client.todo.get
   <div v-if="pending">
     Loading...
   </div>
-  <div v-else-if="error?.data?.code">
-    {{ error.data.code }}
+  <div v-else-if="error">
+    {{ error.message }} - {{ error.cause }}
   </div>
   <div v-else>
     ID: {{ todo?.id }} <br>
