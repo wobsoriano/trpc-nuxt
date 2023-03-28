@@ -48,11 +48,11 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@trpc/client": "^10.18.0",
     "@trpc/server": "^10.18.0",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.0.0",
     "eslint": "^8.36.0",
-    "taze": "^0.8.5",
-    "tsup": "6.6.3",
-    "typescript": "^4.9.5"
+    "taze": "^0.9.1",
+    "tsup": "6.7.0",
+    "typescript": "^5.0.2"
   },
   "eslintConfig": {
     "extends": [
