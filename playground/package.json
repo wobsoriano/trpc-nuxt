@@ -16,6 +16,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "nuxt": "^3.2.2"
+    "nuxt": "3.3.3"
   }
 }
