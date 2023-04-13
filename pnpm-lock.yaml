@@ -55,8 +55,8 @@ importers:
         specifier: ^1.10.1
         version: 1.10.1(nuxt@3.2.2)
       '@nuxtlabs/github-module':
-        specifier: ^1.6.1
-        version: 1.6.1
+        specifier: ^1.6.2
+        version: 1.6.2
 
   playground:
     dependencies:
@@ -1720,8 +1720,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtlabs/github-module@1.6.1:
-    resolution: {integrity: sha512-VXGVdJ0edKNaHzIhu5v/Go8ypN2tU9REfIQ4xTdvdgKE2AKKXu9zuuClBDr/zUf3WsgSuS/vMtLS14++jeHn+w==}
+  /@nuxtlabs/github-module@1.6.2:
+    resolution: {integrity: sha512-piHpTQ2SjVJhcBEesHcvRkRmCfAQKsID4UtlH53tnfRBnmbmWCMYPTOWleJJqKeS9dY3ytObgP4MkcDiOznZhA==}
     dependencies:
       '@nuxt/kit': 3.3.3
       '@octokit/graphql': 5.0.4
@@ -5136,14 +5136,6 @@ packages:
       unist-util-visit: 4.1.2
     dev: true
 
-  /mdast-util-find-and-replace@2.2.1:
-    resolution: {integrity: sha512-SobxkQXFAdd4b5WmEakmkVoh18icjQRxGy5OWTCzgsLRm1Fu/KCtwD1HIQSsmq5ZRjVH0Ehwg6/Fn3xIUk+nKw==}
-    dependencies:
-      escape-string-regexp: 5.0.0
-      unist-util-is: 5.1.1
-      unist-util-visit-parents: 5.1.1
-    dev: true
-
   /mdast-util-find-and-replace@2.2.2:
     resolution: {integrity: sha512-MTtdFRz/eMDHXzeK6W3dO7mXUlF82Gom4y0oOgvHhh/HXZAGvIQDUvQ0SuUx+j2tv44b8xTHOm8K/9OoRFnXKw==}
     dependencies:
@@ -7162,10 +7154,10 @@ packages:
     resolution: {integrity: sha512-GJjWFpwqdrHHhPWqMbb8+lqFLiHQ9pCzUmXmRrhMFXGpYov5n2ljsZzuWgXlfzArfQYkiKIZczA2I8IHYMHqCA==}
     dependencies:
       '@types/mdast': 3.0.10
-      mdast-util-find-and-replace: 2.2.1
+      mdast-util-find-and-replace: 2.2.2
       mdast-util-to-string: 3.1.0
       unified: 10.1.2
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
     dev: true
 
   /remark-mdc@1.1.3:
@@ -8159,14 +8151,6 @@ packages:
     dependencies:
       '@types/unist': 2.0.6
       unist-util-is: 5.1.1
-    dev: true
-
-  /unist-util-visit@4.1.1:
-    resolution: {integrity: sha512-n9KN3WV9k4h1DxYR1LoajgN93wpEi/7ZplVe02IoB4gH5ctI1AaF2670BLHQYbwj+pY83gFtyeySFiyMHJklrg==}
-    dependencies:
-      '@types/unist': 2.0.6
-      unist-util-is: 5.1.1
-      unist-util-visit-parents: 5.1.1
     dev: true
 
   /unist-util-visit@4.1.2:
