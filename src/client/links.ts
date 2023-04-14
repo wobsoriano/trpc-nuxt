@@ -3,7 +3,7 @@ import { type AnyRouter } from '@trpc/server'
 import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
-import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/internals/httpUtils'
+import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/httpLink'
 import { type FetchEsque } from '@trpc/client/dist/internals/types'
 
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
