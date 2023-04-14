@@ -70,6 +70,7 @@ export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOpt
 
   return _httpBatchLink<TRouter>({
     url: '/api/trpc',
+    // @ts-expect-error: Missing property from batchLink. Fix this later.
     headers () {
       return headers
     },
