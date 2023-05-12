@@ -36,7 +36,8 @@
   },
   "peerDependencies": {
     "@trpc/client": "^10.26.0",
-    "@trpc/server": "^10.26.0"
+    "@trpc/server": "^10.26.0",
+    "nuxt": "^3.4.0"
   },
   "dependencies": {
     "h3": "^1.6.5",
