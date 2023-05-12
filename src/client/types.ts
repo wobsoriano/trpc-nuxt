@@ -16,7 +16,7 @@ import { inferTransformedProcedureOutput } from '@trpc/server/shared'
 import type {
   AsyncData,
   AsyncDataOptions,
-  KeyOfRes,
+  KeysOf,
   PickFrom,
   _Transform
 } from 'nuxt/dist/app/composables/asyncData'
@@ -53,7 +53,7 @@ type DecorateProcedure<
       useQuery: <
       TData = inferTransformedProcedureOutput<TProcedure>,
       Transform extends _Transform<TData> = _Transform<TData, TData>,
-      PickKeys extends KeyOfRes<Transform> = KeyOfRes<Transform>,
+      PickKeys extends KeysOf<Transform> = KeysOf<Transform>,
      >(
         input: inferProcedureInput<TProcedure>,
         opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc?: TRPCRequestOptions },
