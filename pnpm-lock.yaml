@@ -10,6 +10,9 @@ importers:
       h3:
         specifier: ^1.6.5
         version: 1.6.5
+      nuxt:
+        specifier: ^3.4.0
+        version: 3.4.3(@types/node@18.16.8)(eslint@8.40.0)(rollup@3.20.2)(typescript@5.0.4)
       ofetch:
         specifier: ^1.0.1
         version: 1.0.1
@@ -40,7 +43,7 @@ importers:
         version: 0.10.1
       tsup:
         specifier: 6.7.0
-        version: 6.7.0(typescript@5.0.4)
+        version: 6.7.0(postcss@8.4.23)(typescript@5.0.4)
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -1524,9 +1527,9 @@ packages:
       defu: 6.1.2
       hookable: 5.5.3
       pathe: 1.1.0
-      pkg-types: 1.0.2
+      pkg-types: 1.0.3
       postcss-import-resolver: 2.0.0
-      std-env: 3.3.2
+      std-env: 3.3.3
       ufo: 1.1.2
       unimport: 3.0.6(rollup@3.20.2)
       untyped: 1.3.2
@@ -1557,7 +1560,7 @@ packages:
       ofetch: 1.0.1
       parse-git-config: 3.0.0
       rc9: 2.1.0
-      std-env: 3.3.2
+      std-env: 3.3.3
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -1592,12 +1595,12 @@ packages:
       ohash: 1.1.2
       pathe: 1.1.0
       perfect-debounce: 0.1.3
-      pkg-types: 1.0.2
+      pkg-types: 1.0.3
       postcss: 8.4.23
       postcss-import: 15.1.0(postcss@8.4.23)
       postcss-url: 10.1.3(postcss@8.4.23)
       rollup-plugin-visualizer: 5.9.0(rollup@3.20.2)
-      std-env: 3.3.2
+      std-env: 3.3.3
       strip-literal: 1.0.1
       ufo: 1.1.2
       unplugin: 1.3.1
@@ -6795,7 +6798,7 @@ packages:
       read-cache: 1.0.0
       resolve: 1.22.1
 
-  /postcss-load-config@3.1.4:
+  /postcss-load-config@3.1.4(postcss@8.4.23):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -6808,6 +6811,7 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.0.6
+      postcss: 8.4.23
       yaml: 1.10.2
     dev: true
 
@@ -7730,6 +7734,7 @@ packages:
 
   /std-env@3.3.2:
     resolution: {integrity: sha512-uUZI65yrV2Qva5gqE0+A7uVAvO40iPo6jGhs7s8keRfHCmtg+uB2X6EiLGCI9IgL1J17xGhvoOqSz79lzICPTA==}
+    dev: true
 
   /std-env@3.3.3:
     resolution: {integrity: sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==}
@@ -8034,7 +8039,7 @@ packages:
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
-  /tsup@6.7.0(typescript@5.0.4):
+  /tsup@6.7.0(postcss@8.4.23)(typescript@5.0.4):
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
     engines: {node: '>=14.18'}
     hasBin: true
@@ -8058,7 +8063,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4
+      postcss: 8.4.23
+      postcss-load-config: 3.1.4(postcss@8.4.23)
       resolve-from: 5.0.0
       rollup: 3.20.2
       source-map: 0.8.0-beta.0
@@ -8270,7 +8276,7 @@ packages:
       magic-string: 0.30.0
       mlly: 1.2.0
       pathe: 1.1.0
-      pkg-types: 1.0.2
+      pkg-types: 1.0.3
       scule: 1.0.0
       strip-literal: 1.0.1
       unplugin: 1.3.1
@@ -8287,7 +8293,7 @@ packages:
       magic-string: 0.30.0
       mlly: 1.2.0
       pathe: 1.1.0
-      pkg-types: 1.0.2
+      pkg-types: 1.0.3
       scule: 1.0.0
       strip-literal: 1.0.1
       unplugin: 1.3.1
