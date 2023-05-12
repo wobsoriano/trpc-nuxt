@@ -18,7 +18,6 @@ import type {
   AsyncDataOptions,
   KeysOf,
   PickFrom,
-  _Transform
 } from 'nuxt/dist/app/composables/asyncData'
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
@@ -52,12 +51,11 @@ type DecorateProcedure<
   ? {
       useQuery: <
       TData = inferTransformedProcedureOutput<TProcedure>,
-      Transform extends _Transform<TData> = _Transform<TData, TData>,
-      PickKeys extends KeysOf<Transform> = KeysOf<Transform>,
+      PickKeys extends KeysOf<TData> = KeysOf<TData>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, Transform, PickKeys> & { trpc?: TRPCRequestOptions },
-      ) => AsyncData<PickFrom<ReturnType<Transform>, PickKeys>, TRPCClientErrorLike<TProcedure>>,
+        opts?: AsyncDataOptions<TData, TData, PickKeys> & { trpc?: TRPCRequestOptions },
+      ) => AsyncData<PickFrom<TData, PickKeys>, TRPCClientErrorLike<TProcedure>>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure>
