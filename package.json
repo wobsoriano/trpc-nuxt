@@ -75,7 +75,7 @@
   ],
   "pnpm": {
     "overrides": {
-      "nuxt": "3.2.2"
+      "nuxt": "3.4.3"
     }
   },
   "engines": {
