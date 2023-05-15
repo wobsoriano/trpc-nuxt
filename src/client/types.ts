@@ -50,12 +50,14 @@ type DecorateProcedure<
 > = TProcedure extends AnyQueryProcedure
   ? {
       useQuery: <
-      TData = inferTransformedProcedureOutput<TProcedure>,
-      PickKeys extends KeysOf<TData> = KeysOf<TData>,
+      ResT = inferTransformedProcedureOutput<TProcedure>,
+      DataE = TRPCClientErrorLike<TProcedure>,
+      DataT = ResT,
+      PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
         input: inferProcedureInput<TProcedure>,
-        opts?: AsyncDataOptions<TData, TData, PickKeys> & { trpc?: TRPCRequestOptions },
-      ) => AsyncData<PickFrom<TData, PickKeys>, TRPCClientErrorLike<TProcedure>>,
+        opts?: AsyncDataOptions<ResT, DataT, PickKeys> & { trpc?: TRPCRequestOptions },
+      ) => AsyncData<PickFrom<DataT, PickKeys>, DataE>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure>

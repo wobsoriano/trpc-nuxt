@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import { TRPCClientError, TRPCClientErrorLike } from '@trpc/client'
+import type { inferRouterOutputs } from '@trpc/server'
+import type { AppRouter } from '@/server/trpc/routers'
+
+type RouterOutput = inferRouterOutputs<AppRouter>
+type GetTodosOutput = RouterOutput['todo']['getTodos']
+
+type ErrorOutput = TRPCClientError<AppRouter>
+
 const { $client } = useNuxtApp()
 
 const addTodo = async () => {
