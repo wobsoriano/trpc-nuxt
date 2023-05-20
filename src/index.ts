@@ -128,3 +128,5 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
     return body
   })
 }
+
+export const createH3ApiHandler = createNuxtApiHandler
