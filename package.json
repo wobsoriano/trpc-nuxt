@@ -31,7 +31,7 @@
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "bumpp && npm publish",
+    "release": "changelogen --release && npm publish && git push --follow-tags",
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
@@ -48,7 +48,7 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@trpc/client": "^10.26.0",
     "@trpc/server": "^10.26.0",
-    "bumpp": "^9.1.0",
+    "changelogen": "^0.5.3",
     "eslint": "^8.40.0",
     "taze": "^0.10.1",
     "tsup": "6.7.0",
