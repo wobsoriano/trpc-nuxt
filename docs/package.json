@@ -7,11 +7,9 @@
     "generate": "nuxi build",
     "preview": "nuxi preview"
   },
-  "dependencies": {
-    "nuxt": "3.5.0"
-  },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.12.0",
+    "nuxt": "3.5.0",
     "@nuxtlabs/github-module": "^1.6.3"
   }
 }
