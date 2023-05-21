@@ -2,7 +2,7 @@
   "name": "trpc-nuxt",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "type": "module",
-  "packageManager": "pnpm@7.32.4",
+  "packageManager": "pnpm@8.5.1",
   "version": "0.10.3",
   "license": "MIT",
   "sideEffects": false,
@@ -46,10 +46,10 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.26.0",
-    "@trpc/server": "^10.26.0",
+    "@trpc/client": "^10.27.1",
+    "@trpc/server": "^10.27.1",
     "changelogen": "^0.5.3",
-    "eslint": "^8.40.0",
+    "eslint": "^8.41.0",
     "taze": "^0.10.1",
     "tsup": "6.7.0",
     "typescript": "^5.0.4"
