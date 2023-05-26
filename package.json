@@ -46,8 +46,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.27.1",
-    "@trpc/server": "^10.27.1",
+    "@trpc/client": "^10.28.0",
+    "@trpc/server": "^10.28.0",
     "changelogen": "^0.5.3",
     "eslint": "^8.41.0",
     "taze": "^0.10.1",
@@ -75,7 +75,7 @@
   ],
   "pnpm": {
     "overrides": {
-      "nuxt": "3.5.0"
+      "nuxt": "3.4.3"
     }
   },
   "engines": {
