@@ -19,6 +19,7 @@ import type {
   KeysOf,
   PickFrom,
 } from 'nuxt/dist/app/composables/asyncData'
+import type { Ref } from 'vue'
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
@@ -44,6 +45,8 @@ type SubscriptionResolver<
   ]
 ) => Unsubscribable
 
+type MaybeRef<T> = T | Ref<T>
+
 type DecorateProcedure<
   TProcedure extends AnyProcedure,
   TRouter extends AnyRouter,
@@ -55,7 +58,7 @@ type DecorateProcedure<
       DataT = ResT,
       PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
-        input: inferProcedureInput<TProcedure>,
+        input: MaybeRef<inferProcedureInput<TProcedure>>,
         opts?: AsyncDataOptions<ResT, DataT, PickKeys> & { trpc?: TRPCRequestOptions },
       ) => AsyncData<PickFrom<DataT, PickKeys>, DataE>,
       query: Resolver<TProcedure>
