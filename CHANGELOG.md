@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.10.5
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.4...v0.10.5)
+
+
+### 🚀 Enhancements
+
+  - Pass input to watched sources if it's a ref ([892d167](https://github.com/wobsoriano/trpc-nuxt/commit/892d167))
+
+### ❤️  Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.4
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.3...v0.10.4)
