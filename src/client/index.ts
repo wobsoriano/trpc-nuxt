@@ -4,7 +4,7 @@ import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
 import { hash } from 'ohash'
 import { type DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, unref } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData, unref, isRef } from '#imports'
 
 /**
  * Calculates the key used for `useAsyncData` call.
@@ -58,7 +58,10 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
       return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
         signal: controller?.signal,
         ...trpc
-      }), asyncDataOptions)
+      }), {
+        ...asyncDataOptions,
+        watch: isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      })
     }
 
     return (client as any)[path][lastArg](...args)

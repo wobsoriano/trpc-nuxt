@@ -6,9 +6,7 @@ const id = ref(1)
 //   watch: [id]
 // })
 
-const { data: todo, pending, error, refresh } = await $client.todo.getTodo.useQuery(id, {
-  watch: [id],
-})
+const { data: todo, pending, error, refresh } = await $client.todo.getTodo.useQuery(id)
 </script>
 
 <template>
