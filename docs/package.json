@@ -8,8 +8,8 @@
     "preview": "nuxi preview"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.12.0",
+    "@nuxt-themes/docus": "^1.13.1",
     "@nuxtlabs/github-module": "^1.6.3",
-    "nuxt": "3.4.3"
+    "nuxt": "3.6.2"
   }
 }
