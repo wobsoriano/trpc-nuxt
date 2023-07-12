@@ -16,7 +16,7 @@
   "dependencies": {
     "@trpc/client": "^10.34.0",
     "@trpc/server": "^10.34.0",
-    "trpc-nuxt": "^0.10.6",
+    "trpc-nuxt": "workspace:*",
     "zod": "^3.21.4"
   }
 }
