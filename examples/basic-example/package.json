@@ -10,12 +10,12 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/node": "^20.4.1",
-    "nuxt": "^3.6.2"
+    "@types/node": "^20.4.2",
+    "nuxt": "^3.6.5"
   },
   "dependencies": {
-    "@trpc/client": "^10.34.0",
-    "@trpc/server": "^10.34.0",
+    "@trpc/client": "^10.35.0",
+    "@trpc/server": "^10.35.0",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.21.4"
   }
