@@ -60,7 +60,7 @@ type DecorateProcedure<
      >(
         input: MaybeRef<inferProcedureInput<TProcedure>>,
         opts?: AsyncDataOptions<ResT, DataT, PickKeys> & { trpc?: TRPCRequestOptions },
-      ) => AsyncData<PickFrom<DataT, PickKeys>, DataE>,
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure>
