@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.10.7
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.6...v0.10.7)
+
+### 🩹 Fixes
+
+- Make useQuery return data nullable ([120ebc5](https://github.com/wobsoriano/trpc-nuxt/commit/120ebc5))
+
+### 📖 Documentation
+
+- Update Server Side Calls docs ([1c638a8](https://github.com/wobsoriano/trpc-nuxt/commit/1c638a8))
+
+### ❤️  Contributors
+
+- Blechlawine <marczinser@gmx.de>
+- Colonel-Sandvich
+
 ## v0.10.6
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.5...v0.10.6)
