@@ -9,9 +9,8 @@ import type {
 import {
   TRPCError
 } from '@trpc/server'
-import { createURL } from 'ufo'
 import type { H3Event } from 'h3'
-import { createError, defineEventHandler, isMethod, readBody } from 'h3'
+import { createError, defineEventHandler, getRequestURL, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
 
 type MaybePromise<T> = T | Promise<T>
@@ -74,7 +73,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
       res
     } = event.node
 
-    const $url = createURL(req.url!)
+    const $url = getRequestURL(event)
 
     const path = getPath(event)
 
