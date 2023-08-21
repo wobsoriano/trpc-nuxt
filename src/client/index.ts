@@ -41,7 +41,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
     const [input, otherOptions] = args
 
     if (lastArg === 'useQuery') {
-      const { trpc, ...asyncDataOptions } = otherOptions || {} as any
+      const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
 
       let controller: AbortController
 
@@ -54,7 +54,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
       }
 
-      const queryKey = getQueryKey(path, unref(input))
+      const queryKey = customQueryKey || getQueryKey(path, unref(input))
       return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
         signal: controller?.signal,
         ...trpc

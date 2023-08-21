@@ -59,7 +59,14 @@ type DecorateProcedure<
       PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
         input: MaybeRef<inferProcedureInput<TProcedure>>,
-        opts?: AsyncDataOptions<ResT, DataT, PickKeys> & { trpc?: TRPCRequestOptions },
+        opts?: AsyncDataOptions<ResT, DataT, PickKeys> & {
+          trpc?: TRPCRequestOptions
+          /**
+           * The custom unique key to use.
+           * @see https://nuxt.com/docs/api/composables/use-async-data#params
+           */
+          queryKey?: string
+        },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
