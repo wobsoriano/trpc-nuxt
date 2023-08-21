@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.10.10
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.9...v0.10.10)
+
+### 🚀 Enhancements
+
+- Add useLazyQuery composable ([93cb442](https://github.com/wobsoriano/trpc-nuxt/commit/93cb442))
+
+### ❤️  Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.9
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.8...v0.10.9)
