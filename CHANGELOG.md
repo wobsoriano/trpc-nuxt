@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.10.8
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.7...v0.10.8)
+
+### 💅 Refactors
+
+- Use built-in getRequestURL from h3 instead of ufo ([252f610](https://github.com/wobsoriano/trpc-nuxt/commit/252f610))
+- Use stand-alone getErrorShape ([3db0b31](https://github.com/wobsoriano/trpc-nuxt/commit/3db0b31))
+
+### 📖 Documentation
+
+- Add handler param description ([f86ebcd](https://github.com/wobsoriano/trpc-nuxt/commit/f86ebcd))
+
+### 📦 Build
+
+- **deps:** Bump h3 to 1.8.0 ([3a395a7](https://github.com/wobsoriano/trpc-nuxt/commit/3a395a7))
+- Bump local deps ([dc317c2](https://github.com/wobsoriano/trpc-nuxt/commit/dc317c2))
+
+### ❤️  Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.7
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.6...v0.10.7)
