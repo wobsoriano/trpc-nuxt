@@ -12,6 +12,7 @@ import {
 import type { H3Event } from 'h3'
 import { createError, defineEventHandler, getRequestURL, isMethod, readBody } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
+import { getErrorShape } from '@trpc/server/shared'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -94,10 +95,11 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
     const path = getPath(event)
 
     if (path === null) {
-      const error = router.getErrorShape({
+      const error = getErrorShape({
+        config: router._def._config,
         error: new TRPCError({
           message:
-            'Param "trpc" not found - is the file named `[trpc]`.ts or `[...trpc].ts`?',
+            'Query "trpc" not found - is the file named `[trpc]`.ts or `[...trpc].ts`?',
           code: 'INTERNAL_SERVER_ERROR'
         }),
         type: 'unknown',
