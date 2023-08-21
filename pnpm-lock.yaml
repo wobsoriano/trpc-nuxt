@@ -6,6 +6,8 @@ settings:
 
 overrides:
   nuxt: 3.6.5
+  '@trpc/client': 10.37.1
+  '@trpc/server': 10.37.1
 
 importers:
 
@@ -25,11 +27,11 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(eslint@8.45.0)
       '@trpc/client':
-        specifier: ^10.35.0
-        version: 10.35.0(@trpc/server@10.35.0)
+        specifier: 10.37.1
+        version: 10.37.1(@trpc/server@10.37.1)
       '@trpc/server':
-        specifier: ^10.35.0
-        version: 10.35.0
+        specifier: 10.37.1
+        version: 10.37.1
       changelogen:
         specifier: ^0.5.4
         version: 0.5.4
@@ -40,8 +42,8 @@ importers:
         specifier: ^0.11.2
         version: 0.11.2
       tsup:
-        specifier: 7.1.0
-        version: 7.1.0(typescript@5.1.6)
+        specifier: 7.2.0
+        version: 7.2.0(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -61,11 +63,11 @@ importers:
   examples/basic-example:
     dependencies:
       '@trpc/client':
-        specifier: ^10.35.0
-        version: 10.35.0(@trpc/server@10.35.0)
+        specifier: 10.37.1
+        version: 10.37.1(@trpc/server@10.37.1)
       '@trpc/server':
-        specifier: ^10.35.0
-        version: 10.35.0
+        specifier: 10.37.1
+        version: 10.37.1
       trpc-nuxt:
         specifier: workspace:*
         version: link:../..
@@ -86,11 +88,11 @@ importers:
   playground:
     dependencies:
       '@trpc/client':
-        specifier: ^10.35.0
-        version: 10.35.0(@trpc/server@10.35.0)
+        specifier: 10.37.1
+        version: 10.37.1(@trpc/server@10.37.1)
       '@trpc/server':
-        specifier: ^10.35.0
-        version: 10.35.0
+        specifier: 10.37.1
+        version: 10.37.1
       superjson:
         specifier: ^1.13.1
         version: 1.13.1
@@ -2078,15 +2080,15 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@trpc/client@10.35.0(@trpc/server@10.35.0):
-    resolution: {integrity: sha512-FyVNQGLLsNourpYq7bojvvvpM63woCPL9c+lJo9x1Yheop5fng2GEyiVcVjCmBNk5tVARHjG9bTG1UeNF5t8OQ==}
+  /@trpc/client@10.37.1(@trpc/server@10.37.1):
+    resolution: {integrity: sha512-OSblNfeI0Z9ERn3usgLV2x63CwwPoNOHf1FQK85cOT7F8MNaWyEHoEv7tHUwNGJwyzKXmpU+ockZ0movzX3D0g==}
     peerDependencies:
-      '@trpc/server': 10.35.0
+      '@trpc/server': 10.37.1
     dependencies:
-      '@trpc/server': 10.35.0
+      '@trpc/server': 10.37.1
 
-  /@trpc/server@10.35.0:
-    resolution: {integrity: sha512-UntbE9gG+kB2nEwuJ0hw7AmQuRWw67voKaVBPBA7Ow6+aGZc00gva7015Ey5BT7Qf1wq7xJMLUdgw4QiVU+VpQ==}
+  /@trpc/server@10.37.1:
+    resolution: {integrity: sha512-r3VeA319/braYMBIzj+XLgLKQ9lJSVglvPvP9HUv4kr5w6Y5grQMxMcExhTiZWltE9bnSJHKtBBzHafOo7KC8A==}
 
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -8253,14 +8255,6 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /rollup@3.23.0:
-    resolution: {integrity: sha512-h31UlwEi7FHihLe1zbk+3Q7z1k/84rb9BSwmBSr/XjOCEaBJ2YyedQDuM0t/kfOS0IxM+vk1/zI9XxYj9V+NJQ==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /rollup@3.26.2:
     resolution: {integrity: sha512-6umBIGVz93er97pMgQO08LuH3m6PUb3jlDUUGFsNJB6VgTCUaDFpupf5JfU30529m/UKOgmiX+uY6Sx8cOYpLA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -8974,8 +8968,8 @@ packages:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
 
-  /tsup@7.1.0(typescript@5.1.6):
-    resolution: {integrity: sha512-mazl/GRAk70j8S43/AbSYXGgvRP54oQeX8Un4iZxzATHt0roW0t6HYDVZIXMw0ZQIpvr1nFMniIVnN5186lW7w==}
+  /tsup@7.2.0(typescript@5.1.6):
+    resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     peerDependencies:
@@ -9000,7 +8994,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 4.0.1
       resolve-from: 5.0.0
-      rollup: 3.23.0
+      rollup: 3.26.2
       source-map: 0.8.0-beta.0
       sucrase: 3.29.0
       tree-kill: 1.2.2

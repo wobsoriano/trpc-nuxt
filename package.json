@@ -45,12 +45,12 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@trpc/client": "^10.35.0",
-    "@trpc/server": "^10.35.0",
+    "@trpc/client": "^10.37.1",
+    "@trpc/server": "^10.37.1",
     "changelogen": "^0.5.4",
     "eslint": "^8.45.0",
     "taze": "^0.11.2",
-    "tsup": "7.1.0",
+    "tsup": "7.2.0",
     "typescript": "^5.1.6"
   },
   "eslintConfig": {
@@ -74,7 +74,9 @@
   ],
   "pnpm": {
     "overrides": {
-      "nuxt": "3.6.5"
+      "nuxt": "3.6.5",
+      "@trpc/client": "10.37.1",
+      "@trpc/server": "10.37.1"
     }
   }
 }
