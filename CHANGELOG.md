@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.10.9
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.8...v0.10.9)
+
+### 🚀 Enhancements
+
+- Add custom query key option ([f2bcf9b](https://github.com/wobsoriano/trpc-nuxt/commit/f2bcf9b))
+
+### ❤️  Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.8
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.7...v0.10.8)
