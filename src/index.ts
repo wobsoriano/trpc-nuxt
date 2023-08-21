@@ -39,9 +39,25 @@ export interface OnErrorPayload<TRouter extends AnyRouter> {
 export type OnErrorFn<TRouter extends AnyRouter> = (opts: OnErrorPayload<TRouter>) => void
 
 export interface ResolveHTTPRequestOptions<TRouter extends AnyRouter> {
+  /**
+   * The tRPC router to use.
+   * @see https://trpc.io/docs/router
+   */
   router: TRouter
+  /**
+   * An async function that returns the tRPC context.
+   * @see https://trpc.io/docs/context
+   */
   createContext?: CreateContextFn<TRouter>
+  /**
+   * A function that returns the response meta.
+   * @see https://trpc.io/docs/caching#using-responsemeta-to-cache-responses
+   */
   responseMeta?: ResponseMetaFn<TRouter>
+  /**
+   * A function that is called when an error occurs.
+   * @see https://trpc.io/docs/error-handling#handling-errors
+   */
   onError?: OnErrorFn<TRouter>
   batching?: {
     enabled: boolean
