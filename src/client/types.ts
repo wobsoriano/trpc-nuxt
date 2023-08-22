@@ -53,13 +53,29 @@ type DecorateProcedure<
 > = TProcedure extends AnyQueryProcedure
   ? {
       useQuery: <
-      ResT = inferTransformedProcedureOutput<TProcedure>,
-      DataE = TRPCClientErrorLike<TProcedure>,
-      DataT = ResT,
-      PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+        ResT = inferTransformedProcedureOutput<TProcedure>,
+        DataE = TRPCClientErrorLike<TProcedure>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
         input: MaybeRef<inferProcedureInput<TProcedure>>,
         opts?: AsyncDataOptions<ResT, DataT, PickKeys> & {
+          trpc?: TRPCRequestOptions
+          /**
+           * The custom unique key to use.
+           * @see https://nuxt.com/docs/api/composables/use-async-data#params
+           */
+          queryKey?: string
+        },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
+      useLazyQuery: <
+        ResT = inferTransformedProcedureOutput<TProcedure>,
+        DataE = TRPCClientErrorLike<TProcedure>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+     >(
+        input: MaybeRef<inferProcedureInput<TProcedure>>,
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
           trpc?: TRPCRequestOptions
           /**
            * The custom unique key to use.

@@ -17,7 +17,7 @@ const addTodo = async () => {
   }
 }
 
-const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useLazyQuery()
 </script>
 
 <template>

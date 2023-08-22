@@ -54,17 +54,17 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
       }
 
-      if (lastArg === 'useLazyQuery') {
-        asyncDataOptions.lazy = true;
-      }
-
       const queryKey = customQueryKey || getQueryKey(path, unref(input))
+      const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
+  
       return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
         signal: controller?.signal,
         ...trpc
       }), {
         ...asyncDataOptions,
-        watch: isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+        watch,
+        lazy: isLazy
       })
     }
 
