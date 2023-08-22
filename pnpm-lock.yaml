@@ -17,8 +17,8 @@ importers:
         specifier: ^1.8.0
         version: 1.8.0
       ofetch:
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.2.0
+        version: 1.2.0
       ohash:
         specifier: ^1.1.2
         version: 1.1.2
@@ -1577,7 +1577,7 @@ packages:
       mri: 1.2.0
       nanoid: 4.0.2
       node-fetch: 3.3.1
-      ofetch: 1.1.1
+      ofetch: 1.2.0
       parse-git-config: 3.0.0
       rc9: 2.1.1
       std-env: 3.3.3
@@ -3488,7 +3488,7 @@ packages:
       execa: 7.1.1
       mri: 1.2.0
       node-fetch-native: 1.2.0
-      ofetch: 1.1.1
+      ofetch: 1.2.0
       open: 9.1.0
       pathe: 1.1.1
       pkg-types: 1.0.3
@@ -4049,6 +4049,7 @@ packages:
 
   /destr@2.0.0:
     resolution: {integrity: sha512-FJ9RDpf3GicEBvzI3jxc2XhHzbqD8p4ANw/1kPsFBfTvP1b7Gn/Lg1vO7R9J4IVgoMbyUmFrFGZafJ1hPZpvlg==}
+    dev: true
 
   /destr@2.0.1:
     resolution: {integrity: sha512-M1Ob1zPSIvlARiJUkKqvAZ3VAqQY6Jcuth/pBKQ2b1dX/Qx0OnJ8Vux6J2H5PTMQeRzWrrbTu70VxBfv/OPDJA==}
@@ -6828,7 +6829,7 @@ packages:
       mlly: 1.4.0
       mri: 1.2.0
       node-fetch-native: 1.2.0
-      ofetch: 1.1.1
+      ofetch: 1.2.0
       ohash: 1.1.2
       openapi-typescript: 6.3.2
       pathe: 1.1.1
@@ -6892,6 +6893,9 @@ packages:
 
   /node-fetch-native@1.2.0:
     resolution: {integrity: sha512-5IAMBTl9p6PaAjYCnMv5FmqIF6GcZnawAVnzaCG0rX2aYZJ4CxEkZNtVPuTRug7fL7wyM5BQYTlAzcyMPi6oTQ==}
+
+  /node-fetch-native@1.3.1:
+    resolution: {integrity: sha512-Z1q9inzb0c2+FuByzG5P2rHaNe3CEYLPqJywun4M/eOI0IHB3K9TDINfb1VA20vWFsW2rWUMaGIo87R3zwpMug==}
 
   /node-fetch@2.6.9:
     resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
@@ -7260,6 +7264,14 @@ packages:
     dependencies:
       destr: 2.0.0
       node-fetch-native: 1.2.0
+      ufo: 1.2.0
+    dev: true
+
+  /ofetch@1.2.0:
+    resolution: {integrity: sha512-R8CM00cUpy/+PS8jyf/8ijTgKNSOhrAap77DJD5hck6eNChMvJkz/lmN7HaxZW0BlCIVMWmgmDYRwALsc5ypPw==}
+    dependencies:
+      destr: 2.0.1
+      node-fetch-native: 1.3.1
       ufo: 1.2.0
 
   /ohash@1.1.2:
@@ -9602,7 +9614,7 @@ packages:
       lru-cache: 10.0.0
       mri: 1.2.0
       node-fetch-native: 1.2.0
-      ofetch: 1.1.1
+      ofetch: 1.2.0
       ufo: 1.2.0
     transitivePeerDependencies:
       - supports-color
