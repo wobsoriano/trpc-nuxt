@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.10.11
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.10...v0.10.11)
+
+### 🩹 Fixes
+
+- Add missing useLazyQuery type ([299ae55](https://github.com/wobsoriano/trpc-nuxt/commit/299ae55))
+
+### 📖 Documentation
+
+- Bump @nuxt-themes/docus to 1.14.6 ([f7eeb10](https://github.com/wobsoriano/trpc-nuxt/commit/f7eeb10))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.10
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.9...v0.10.10)
