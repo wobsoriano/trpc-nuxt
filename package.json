@@ -41,7 +41,7 @@
   "dependencies": {
     "h3": "^1.8.0",
     "ofetch": "^1.2.0",
-    "ohash": "^1.1.2"
+    "ohash": "^1.1.3"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
