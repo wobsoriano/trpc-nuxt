@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.10.12
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.11...v0.10.12)
+
+### 🩹 Fixes
+
+- Expect ofetch missing error response type ([8f9e398](https://github.com/wobsoriano/trpc-nuxt/commit/8f9e398))
+
+### 💅 Refactors
+
+- Explicitly copy headers to custom fetcher ([0fec55a](https://github.com/wobsoriano/trpc-nuxt/commit/0fec55a))
+
+### 📖 Documentation
+
+- Add response caching page ([9808375](https://github.com/wobsoriano/trpc-nuxt/commit/9808375))
+- Fix missing title ([057c8f8](https://github.com/wobsoriano/trpc-nuxt/commit/057c8f8))
+- Fix incorrect syntax ([230422b](https://github.com/wobsoriano/trpc-nuxt/commit/230422b))
+
+### 📦 Build
+
+- **deps:** Bump ofetch to 1.3.2 ([092e349](https://github.com/wobsoriano/trpc-nuxt/commit/092e349))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.11
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.10...v0.10.11)
