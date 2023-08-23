@@ -15,6 +15,7 @@ function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'G
     })
     .then(response => ({
       ...response,
+      headers: response.headers,
       json: () => Promise.resolve(response._data)
     }))
 }
