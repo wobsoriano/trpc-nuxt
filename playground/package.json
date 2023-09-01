@@ -2,21 +2,21 @@
   "name": "playground",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare"
   },
   "dependencies": {
-    "@trpc/client": "^10.37.1",
-    "@trpc/server": "^10.37.1",
+    "@trpc/client": "10.38.1",
+    "@trpc/server": "10.38.1",
     "superjson": "^1.13.1",
     "trpc-nuxt": "workspace:*",
-    "zod": "^3.21.4"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/node": "^20.4.2",
-    "nuxt": "3.6.5"
+    "@types/node": "20.5.7",
+    "nuxt": "3.7.0"
   }
 }
