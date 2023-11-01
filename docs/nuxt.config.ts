@@ -18,5 +18,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'vercel'
+  },
+  routeRules: {
+    '/': { prerender: true },
   }
 })
