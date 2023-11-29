@@ -74,9 +74,9 @@
   ],
   "pnpm": {
     "overrides": {
-      "nuxt": "3.8.0",
-      "@trpc/client": "10.40.0",
-      "@trpc/server": "10.40.0"
+      "nuxt": "3.8.2",
+      "@trpc/client": "^10.41.0",
+      "@trpc/server": "^10.41.0"
     }
   }
 }

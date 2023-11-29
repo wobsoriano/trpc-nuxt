@@ -11,7 +11,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/node": "20.8.7",
-    "nuxt": "^3.8.0"
+    "nuxt": "3.8.2"
   },
   "dependencies": {
     "@trpc/client": "^10.41.0",

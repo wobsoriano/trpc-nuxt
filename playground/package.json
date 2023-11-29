@@ -9,14 +9,14 @@
     "postinstall": "nuxi prepare"
   },
   "dependencies": {
-    "@trpc/client": "10.41.0",
-    "@trpc/server": "10.41.0",
+    "@trpc/client": "^10.41.0",
+    "@trpc/server": "^10.41.0",
     "superjson": "^2.1.0",
     "trpc-nuxt": "workspace:*",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "20.8.7",
-    "nuxt": "3.8.0"
+    "nuxt": "3.8.2"
   }
 }
