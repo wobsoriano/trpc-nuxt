@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.10.13
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.12...v0.10.13)
+
+### 📖 Documentation
+
+- Fix broken snippets ([0f1e5a5](https://github.com/wobsoriano/trpc-nuxt/commit/0f1e5a5))
+- Prerender homepage ([02ff723](https://github.com/wobsoriano/trpc-nuxt/commit/02ff723))
+
+### 📦 Build
+
+- **deps:** Bump h3 to 1.8.2 ([cc41e52](https://github.com/wobsoriano/trpc-nuxt/commit/cc41e52))
+- **deps:** Bump h3 to 1.9.0 ([894d999](https://github.com/wobsoriano/trpc-nuxt/commit/894d999))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+- Nicolas Hedger <nicolas@hedger.ch>
+
 ## v0.10.12
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.11...v0.10.12)
