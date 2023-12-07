@@ -1,30 +1,12 @@
 import { type CreateTRPCClientOptions, type inferRouterProxyClient, createTRPCProxyClient } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
 import { createFlatProxy, createRecursiveProxy } from '@trpc/server/shared'
-import { hash } from 'ohash'
 import { type DecoratedProcedureRecord } from './types'
 // @ts-expect-error: Nuxt auto-imports
 import { getCurrentInstance, onScopeDispose, useAsyncData, unref, isRef } from '#imports'
+import { getQueryKeyInternal, getQueryKey } from './getQueryKey'
 
-/**
- * Calculates the key used for `useAsyncData` call.
- *
- * @example
- *
- * ```ts
- * import { getQueryKey } from 'trpc-nuxt/client'
- *
- * $client.todo.getTodo(1)
- * 
- * const queryKey = getQueryKey('todo.getTodo', 1)
- * ```
- */
-export function getQueryKey (
-  path: string,
-  input: unknown
-): string {
-  return input === undefined ? path : `${path}-${hash(input || '')}`
-}
+export { getQueryKey }
 
 export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: string, client: inferRouterProxyClient<TRouter>) {
   return createRecursiveProxy((opts) => {
@@ -40,6 +22,12 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
 
     const [input, otherOptions] = args
 
+    if (lastArg === '_def') {
+      return {
+        path: pathCopy,
+      };
+    }
+
     if (['useQuery', 'useLazyQuery'].includes(lastArg)) {
       const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
 
@@ -54,7 +42,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
       }
 
-      const queryKey = customQueryKey || getQueryKey(path, unref(input))
+      const queryKey = customQueryKey || getQueryKeyInternal(path, unref(input))
       const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
   
@@ -67,7 +55,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         lazy: isLazy
       })
     }
-
+    
     return (client as any)[path][lastArg](...args)
   })
 }

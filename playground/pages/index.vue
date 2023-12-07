@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import { getQueryKey } from 'trpc-nuxt/client'
+
 const { $client } = useNuxtApp()
+
+const todosKey = getQueryKey('asd', undefined)
+const { data } = useNuxtData(todosKey)
+
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
-
+  const newData = {
+    id: Date.now(),
+    userId: 69,
+    title,
+    completed: false
+  }
+  data.value.push(newData)
   try {
-    const x = await $client.todo.addTodo.mutate({
-      id: Date.now(),
-      userId: 69,
-      title,
-      completed: false
-    })
-    console.log(x)
+    const x = await $client.todo.addTodo.mutate(newData)
   } catch (e) {
     console.log(e)
   }
 }
-
-const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useLazyQuery()
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const { data: todos, pending, error, refresh } = await $client.todo.getTodos.use
     <div v-else>
       <ul>
         <li
-          v-for="t in todos?.slice(0, 10)"
+          v-for="t in todos"
           :key="t.id"
         >
           <NuxtLink

@@ -16,7 +16,7 @@ export type Todo = z.infer<typeof TodoShape>
 export const todoRouter = router({
   getTodos: publicProcedure
     .query(() => {
-      return $fetch<Todo[]>(`${baseURL}/todos`)
+      return $fetch<Todo[]>(`${baseURL}/todos?_limit=5`)
     }),
   getTodo: publicProcedure
     .input(z.number())
