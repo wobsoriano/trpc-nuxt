@@ -20,11 +20,9 @@ const addTodo = async () => {
     completed: false
   }
 
-  data.value.push(newData)
+  const result = await mutate(newData)
 
-  await mutate(newData)
-
-  await refreshNuxtData(todosKey)
+  data.value.push(result)
 }
 </script>
 
