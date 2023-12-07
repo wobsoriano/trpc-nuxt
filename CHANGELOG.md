@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.10.14
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.13...v0.10.14)
+
+### 🚀 Enhancements
+
+- GetQueryKey helper ([fc2c7f9](https://github.com/wobsoriano/trpc-nuxt/commit/fc2c7f9))
+
+### 📖 Documentation
+
+- Add basic mutation usage ([7896b95](https://github.com/wobsoriano/trpc-nuxt/commit/7896b95))
+- Add getQueryKey usage ([3e34102](https://github.com/wobsoriano/trpc-nuxt/commit/3e34102))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.13
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.12...v0.10.13)
