@@ -47,7 +47,7 @@ type SubscriptionResolver<
 
 type MaybeRef<T> = T | Ref<T>
 
-type DecorateProcedure<
+export type DecorateProcedure<
   TProcedure extends AnyProcedure,
   TRouter extends AnyRouter,
 > = TProcedure extends AnyQueryProcedure
