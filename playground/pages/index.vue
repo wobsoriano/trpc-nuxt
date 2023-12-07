@@ -8,20 +8,23 @@ const { data } = useNuxtData(todosKey)
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 
+const { mutate } = $client.todo.addTodo.useMutation()
+
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
+
   const newData = {
     id: Date.now(),
     userId: 69,
     title,
     completed: false
   }
+
   data.value.push(newData)
-  try {
-    const x = await $client.todo.addTodo.mutate(newData)
-  } catch (e) {
-    console.log(e)
-  }
+
+  await mutate(newData)
+
+  await refreshNuxtData(todosKey)
 }
 </script>
 

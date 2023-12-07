@@ -87,6 +87,16 @@ export type DecorateProcedure<
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure>
+      useMutation: <
+        ResT = inferTransformedProcedureOutput<TProcedure>,
+        DataE = TRPCClientErrorLike<TProcedure>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+     >(
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
+          trpc?: TRPCRequestOptions
+        },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & { mutate: (input: inferProcedureInput<TProcedure>) => Promise<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']> },
     } : TProcedure extends AnySubscriptionProcedure ? {
       subscribe: SubscriptionResolver<TProcedure, TRouter>
     } : never
