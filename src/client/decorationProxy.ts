@@ -54,7 +54,8 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
     }
 
     if (lastArg === 'useMutation') {
-      const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
+      const { trpc, ...asyncDataOptions } = otherOptions || {} as any
+      
       // Payload will be set by the `mutate` function and used by `useAsyncData`.
       const payload = ref(null)
 
@@ -68,10 +69,8 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         }
         controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
       }
-
-      const queryKey = customQueryKey || getQueryKeyInternal(path, undefined)
   
-      const asyncData = useAsyncData(queryKey, () => (client as any)[path].mutate(payload.value, {
+      const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
         signal: controller?.signal,
         ...trpc
       }), {
