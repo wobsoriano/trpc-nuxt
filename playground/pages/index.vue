@@ -3,7 +3,7 @@ import { getQueryKey } from 'trpc-nuxt/client'
 
 const { $client } = useNuxtApp()
 
-const todosKey = getQueryKey('asd', undefined)
+const todosKey = getQueryKey($client.todo.getTodos, undefined)
 const { data } = useNuxtData(todosKey)
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
