@@ -26,8 +26,10 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
 
     const pathCopy = [name, ...opts.path]
 
+    // The last arg is for instance `.useMutation` or `.useQuery()`
     const lastArg = pathCopy.pop()!
 
+    // The `path` ends up being something like `post.byId`
     const path = pathCopy.join('.')
 
     const [input, otherOptions] = args
