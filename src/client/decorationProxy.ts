@@ -68,8 +68,10 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         }
         controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
       }
+
+      const queryKey = customQueryKey || getQueryKeyInternal(path, undefined)
   
-      const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
+      const asyncData = useAsyncData(queryKey, () => (client as any)[path].mutate(payload.value, {
         signal: controller?.signal,
         ...trpc
       }), {
