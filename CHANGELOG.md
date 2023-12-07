@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.10.15
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.14...v0.10.15)
+
+### 🚀 Enhancements
+
+- UseMutation composable ([f45957b](https://github.com/wobsoriano/trpc-nuxt/commit/f45957b))
+
+### 📖 Documentation
+
+- Add useMutation example ([93a27a6](https://github.com/wobsoriano/trpc-nuxt/commit/93a27a6))
+
+### 🏡 Chore
+
+- Add initial queryKey for useMutation ([13234b9](https://github.com/wobsoriano/trpc-nuxt/commit/13234b9))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.14
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.13...v0.10.14)
