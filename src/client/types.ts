@@ -96,7 +96,12 @@ export type DecorateProcedure<
         opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
           trpc?: TRPCRequestOptions
         },
-      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & { mutate: (input: inferProcedureInput<TProcedure>) => Promise<UnwrapRef<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']>> },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & {
+        /**
+         * The function to call to trigger the mutation.
+         */
+        mutate: (input: inferProcedureInput<TProcedure>) => Promise<UnwrapRef<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']>>
+      },
     } : TProcedure extends AnySubscriptionProcedure ? {
       subscribe: SubscriptionResolver<TProcedure, TRouter>
     } : never
