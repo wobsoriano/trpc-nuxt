@@ -19,7 +19,7 @@ import type {
   KeysOf,
   PickFrom,
 } from 'nuxt/dist/app/composables/asyncData'
-import type { Ref } from 'vue'
+import type { Ref, UnwrapRef } from 'vue'
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
@@ -96,7 +96,7 @@ export type DecorateProcedure<
         opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
           trpc?: TRPCRequestOptions
         },
-      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & { mutate: (input: inferProcedureInput<TProcedure>) => Promise<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']> },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & { mutate: (input: inferProcedureInput<TProcedure>) => Promise<UnwrapRef<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']>> },
     } : TProcedure extends AnySubscriptionProcedure ? {
       subscribe: SubscriptionResolver<TProcedure, TRouter>
     } : never
