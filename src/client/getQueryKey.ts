@@ -23,6 +23,12 @@ type GetQueryKeyParams<
   TProcedureOrRouter extends AnyQueryProcedure,
 > = GetParams<TProcedureOrRouter>;
 
+/**
+ * Method to extract the query key for a procedure
+ * @param procedure - procedure
+ * @param input - input to procedure
+ * @link https://trpc-nuxt.vercel.app/get-started/tips/mutation
+ */
 export function getQueryKey<
   TProcedure extends AnyQueryProcedure,
 >(..._params: GetQueryKeyParams<TProcedure>): string {
