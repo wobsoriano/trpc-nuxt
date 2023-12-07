@@ -5,16 +5,29 @@ import { createRecursiveProxy } from '@trpc/server/shared'
 import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
 import { getQueryKeyInternal } from './getQueryKey'
 
+function createAbortController(trpc: any) {
+  let controller: AbortController | undefined;
+
+  if (trpc?.abortOnUnmount) {
+    if (getCurrentInstance()) {
+      onScopeDispose(() => {
+        controller?.abort?.()
+      })
+    }
+    controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
+  }
+
+  return controller;
+}
+
 export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: string, client: inferRouterProxyClient<TRouter>) {
   return createRecursiveProxy((opts) => {
     const args = opts.args
 
     const pathCopy = [name, ...opts.path]
 
-    // The last arg is for instance `.useMutation` or `.useQuery()`
     const lastArg = pathCopy.pop()!
 
-    // The `path` ends up being something like `post.byId`
     const path = pathCopy.join('.')
 
     const [input, otherOptions] = args
@@ -28,16 +41,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
     if (['useQuery', 'useLazyQuery'].includes(lastArg)) {
       const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
 
-      let controller: AbortController
-
-      if (trpc?.abortOnUnmount) {
-        if (getCurrentInstance()) {
-          onScopeDispose(() => {
-            controller?.abort?.()
-          })
-        }
-        controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
-      }
+      const controller = createAbortController(trpc);
 
       const queryKey = customQueryKey || getQueryKeyInternal(path, unref(input))
       const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
@@ -56,19 +60,9 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
     if (lastArg === 'useMutation') {
       const { trpc, ...asyncDataOptions } = otherOptions || {} as any
       
-      // Payload will be set by the `mutate` function and used by `useAsyncData`.
       const payload = ref(null)
 
-      let controller: AbortController
-
-      if (trpc?.abortOnUnmount) {
-        if (getCurrentInstance()) {
-          onScopeDispose(() => {
-            controller?.abort?.()
-          })
-        }
-        controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
-      }
+      const controller = createAbortController(trpc);
   
       const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
         signal: controller?.signal,
