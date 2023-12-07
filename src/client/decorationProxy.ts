@@ -86,10 +86,9 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         return toRaw(asyncData.data.value)
       }
 
-      return {
-        mutate,
-        ...asyncData
-      }
+      Object.assign(asyncData, { mutate })
+
+      return asyncData
     }
     
     return (client as any)[path][lastArg](...args)
