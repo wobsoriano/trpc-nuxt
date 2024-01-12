@@ -6,8 +6,8 @@ settings:
 
 overrides:
   nuxt: 3.8.0
-  '@trpc/client': tmp
-  '@trpc/server': tmp
+  '@trpc/client': ^10.44.1
+  '@trpc/server': ^10.44.1
 
 importers:
 
@@ -27,10 +27,10 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(eslint@8.52.0)
       '@trpc/client':
-        specifier: tmp
+        specifier: ^10.44.1
         version: 10.44.1(@trpc/server@10.44.1)
       '@trpc/server':
-        specifier: tmp
+        specifier: ^10.44.1
         version: 10.44.1
       changelogen:
         specifier: ^0.5.5
@@ -63,10 +63,10 @@ importers:
   playground:
     dependencies:
       '@trpc/client':
-        specifier: tmp
+        specifier: ^10.44.1
         version: 10.44.1(@trpc/server@10.44.1)
       '@trpc/server':
-        specifier: tmp
+        specifier: ^10.44.1
         version: 10.44.1
       superjson:
         specifier: ^2.1.0
@@ -3026,7 +3026,7 @@ packages:
   /@trpc/client@10.44.1(@trpc/server@10.44.1):
     resolution: {integrity: sha512-vTWsykNcgz1LnwePVl2fKZnhvzP9N3GaaLYPkfGINo314ZOS0OBqe9x0ytB2LLUnRVTAAZ2WoONzARd8nHiqrA==}
     peerDependencies:
-      '@trpc/server': tmp
+      '@trpc/server': ^10.44.1
     dependencies:
       '@trpc/server': 10.44.1
 
