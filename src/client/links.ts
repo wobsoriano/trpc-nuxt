@@ -1,5 +1,5 @@
 import { httpLink as _httpLink, httpBatchLink as _httpBatchLink } from '@trpc/client'
-import { type AnyRouter } from '@trpc/server'
+import { type AnyRouter } from '@trpc/core'
 import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
