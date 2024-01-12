@@ -25,9 +25,9 @@ interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
 }
 
-type Resolver<TProcedure extends AnyProcedure> = (
+type Resolver<TProcedure extends AnyProcedure, TRouter extends AnyRouter,> = (
   ...args: ProcedureArgs<TProcedure['_def']>
-) => Promise<inferTransformedProcedureOutput<TProcedure>>;
+) => Promise<inferTransformedProcedureOutput<TRouter, TProcedure>>;
 
 type SubscriptionResolver<
   TProcedure extends AnyProcedure,
@@ -53,7 +53,7 @@ export type DecorateProcedure<
 > = TProcedure extends AnyQueryProcedure
   ? {
       useQuery: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
         DataE = TRPCClientErrorLike<TProcedure>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
@@ -69,8 +69,8 @@ export type DecorateProcedure<
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
       useLazyQuery: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter,TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
@@ -84,12 +84,12 @@ export type DecorateProcedure<
           queryKey?: string
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
-      query: Resolver<TProcedure>
+      query: Resolver<TProcedure, TRouter>
     } : TProcedure extends AnyMutationProcedure ? {
-      mutate: Resolver<TProcedure>
+      mutate: Resolver<TProcedure, TRouter>
       useMutation: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter['_def']['_config'], TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
