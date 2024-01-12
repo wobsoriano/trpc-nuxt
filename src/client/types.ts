@@ -54,7 +54,7 @@ export type DecorateProcedure<
   ? {
       useQuery: <
         ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
@@ -88,7 +88,7 @@ export type DecorateProcedure<
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure, TRouter>
       useMutation: <
-        ResT = inferTransformedProcedureOutput<TRouter['_def']['_config'], TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
         DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
