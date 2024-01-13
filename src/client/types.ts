@@ -10,9 +10,9 @@ import type {
   inferProcedureOutput,
   ProcedureArgs,
   AnySubscriptionProcedure
-} from '@trpc/server'
+} from '@trpc/core'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
-import { inferTransformedProcedureOutput } from '@trpc/server/shared'
+import { inferTransformedProcedureOutput } from '@trpc/core'
 import type {
   AsyncData,
   AsyncDataOptions,

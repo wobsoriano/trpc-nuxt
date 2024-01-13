@@ -3,7 +3,7 @@ import {
   AnyRouter,
   DeepPartial,
   inferProcedureInput,
-} from '@trpc/server';
+} from '@trpc/core';
 import { hash } from 'ohash'
 import { DecorateProcedure } from './types';
 
