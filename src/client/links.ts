@@ -1,11 +1,9 @@
-import { httpLink as _httpLink, httpBatchLink as _httpBatchLink } from '@trpc/client'
+import { httpLink as _httpLink, httpBatchLink as _httpBatchLink, type HTTPLinkOptions as _HTTPLinkOptions, type HTTPBatchLinkOptions as _HTTPBatchLinkOptions } from '@trpc/client'
+import { type FetchEsque } from '@trpc/client/dist/internals/types'
 import { type AnyRouter } from '@trpc/server'
 import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
-import { type HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client/dist/links/httpLink'
-import { type HTTPBatchLinkOptions as _HTTPBatchLinkOptions } from '@trpc/client/dist/links/HTTPBatchLinkOptions';
-import { type FetchEsque } from '@trpc/client/dist/internals/types'
 
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
