@@ -1,6 +1,5 @@
 import { type inferRouterProxyClient } from '@trpc/client'
-import { type AnyRouter } from '@trpc/server'
-import { createRecursiveProxy } from '@trpc/server/shared'
+import { createRecursiveProxy, type AnyRouter } from '@trpc/core'
 // @ts-expect-error: Nuxt auto-imports
 import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
 import { getQueryKeyInternal } from './getQueryKey'

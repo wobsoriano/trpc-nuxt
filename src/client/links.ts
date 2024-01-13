@@ -1,82 +1,121 @@
-import { httpLink as _httpLink, httpBatchLink as _httpBatchLink, type HTTPLinkOptions as _HTTPLinkOptions, type HTTPBatchLinkOptions as _HTTPBatchLinkOptions } from '@trpc/client'
-import { type FetchEsque } from '@trpc/client/dist/internals/types'
-import { type AnyRouter } from '@trpc/server'
-import { FetchError } from 'ofetch'
-// @ts-expect-error: Nuxt auto-imports
-import { useRequestHeaders } from '#imports'
+import type { TRPCClientErrorLike, TRPCRequestOptions as _TRPCRequestOptions } from '@trpc/client'
+import { type TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type {
+  AnyMutationProcedure,
+  AnyProcedure,
+  AnyQueryProcedure,
+  AnyRouter,
+  ProcedureRouterRecord,
+  inferProcedureInput,
+  inferProcedureOutput,
+  ProcedureArgs,
+  AnySubscriptionProcedure
+} from '@trpc/core'
+import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
+import { inferTransformedProcedureOutput } from '@trpc/core'
+import type {
+  AsyncData,
+  AsyncDataOptions,
+  KeysOf,
+  PickFrom,
+} from 'nuxt/dist/app/composables/asyncData'
+import type { Ref, UnwrapRef } from 'vue'
 
-function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
-  return globalThis.$fetch.raw(input.toString(), init)
-    .catch((e) => {
-      if (e instanceof FetchError && e.response) { return e.response }
-      throw e
-    })
-    .then(response => ({
-      ...response,
-      headers: response.headers,
-      json: () => Promise.resolve(response._data)
-    }))
+interface TRPCRequestOptions extends _TRPCRequestOptions {
+  abortOnUnmount?: boolean
 }
 
-export interface HTTPLinkOptions extends _HTTPLinkOptions {
-  /**
-   * Select headers to pass to `useRequestHeaders`.
-   */
-  pickHeaders?: string[] 
-}
+type Resolver<TProcedure extends AnyProcedure, TRouter extends AnyRouter,> = (
+  ...args: ProcedureArgs<TProcedure['_def']>
+) => Promise<inferTransformedProcedureOutput<TRouter, TProcedure>>;
+
+type SubscriptionResolver<
+  TProcedure extends AnyProcedure,
+  TRouter extends AnyRouter,
+> = (
+  ...args: [
+    input: ProcedureArgs<TProcedure['_def']>[0],
+    opts: ProcedureArgs<TProcedure['_def']>[1] &
+    Partial<
+        TRPCSubscriptionObserver<
+          inferObservableValue<inferProcedureOutput<TProcedure>>,
+          TRPCClientErrorLike<TRouter>
+        >
+      >,
+  ]
+) => Unsubscribable
+
+type MaybeRef<T> = T | Ref<T>
+
+export type DecorateProcedure<
+  TProcedure extends AnyProcedure,
+  TRouter extends AnyRouter,
+> = TProcedure extends AnyQueryProcedure
+  ? {
+      useQuery: <
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+     >(
+        input: MaybeRef<inferProcedureInput<TProcedure>>,
+        opts?: AsyncDataOptions<ResT, DataT, PickKeys> & {
+          trpc?: TRPCRequestOptions
+          /**
+           * The custom unique key to use.
+           * @see https://nuxt.com/docs/api/composables/use-async-data#params
+           */
+          queryKey?: string
+        },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
+      useLazyQuery: <
+        ResT = inferTransformedProcedureOutput<TRouter,TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+     >(
+        input: MaybeRef<inferProcedureInput<TProcedure>>,
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
+          trpc?: TRPCRequestOptions
+          /**
+           * The custom unique key to use.
+           * @see https://nuxt.com/docs/api/composables/use-async-data#params
+           */
+          queryKey?: string
+        },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
+      query: Resolver<TProcedure, TRouter>
+    } : TProcedure extends AnyMutationProcedure ? {
+      mutate: Resolver<TProcedure, TRouter>
+      useMutation: <
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
+        DataT = ResT,
+        PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+     >(
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
+          trpc?: TRPCRequestOptions
+        },
+      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & {
+        /**
+         * The function to call to trigger the mutation.
+         */
+        mutate: (input: inferProcedureInput<TProcedure>) => Promise<UnwrapRef<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']>>
+      },
+    } : TProcedure extends AnySubscriptionProcedure ? {
+      subscribe: SubscriptionResolver<TProcedure, TRouter>
+    } : never
 
 /**
- * This is a convenience wrapper around the original httpLink
- * that replaces regular `fetch` with a `$fetch` from Nuxt. It
- * also sets the default headers based on `useRequestHeaders` values.
- *
- * During server-side rendering, calling $fetch to fetch your internal API routes
- * will directly call the relevant function (emulating the request),
- * saving an additional API call.
- *
- * @see https://nuxt.com/docs/api/utils/dollarfetch
- */
-export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
-  const headers = useRequestHeaders(opts?.pickHeaders)
-
-  return _httpLink<TRouter>({
-    url: '/api/trpc',
-    headers () {
-      return headers
-    },
-    fetch: customFetch as FetchEsque,
-    ...opts,
-  })
-}
-
-export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
-  /**
-   * Select headers to pass to `useRequestHeaders`.
-   */
-  pickHeaders?: string[] 
-}
-
-
-/**
- * This is a convenience wrapper around the original httpBatchLink
- * that replaces regular `fetch` with a `$fetch` from Nuxt. It
- * also sets the default headers based on `useRequestHeaders` values.
- *
- * During server-side rendering, calling $fetch to fetch your internal API routes
- * will directly call the relevant function (emulating the request),
- * saving an additional API call.
- *
- * @see https://nuxt.com/docs/api/utils/dollarfetch
- */
-export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOptions) {
-  const headers = useRequestHeaders(opts?.pickHeaders)
-
-  return _httpBatchLink<TRouter>({
-    url: '/api/trpc',
-    headers () {
-      return headers
-    },
-    fetch: customFetch as FetchEsque,
-    ...opts,
-  })
+* @internal
+*/
+export type DecoratedProcedureRecord<
+  TProcedures extends ProcedureRouterRecord,
+  TRouter extends AnyRouter,
+> = {
+  [TKey in keyof TProcedures]: TProcedures[TKey] extends AnyRouter
+    ? DecoratedProcedureRecord<TProcedures[TKey]['_def']['record'], TRouter>
+    : TProcedures[TKey] extends AnyProcedure
+      ? DecorateProcedure<TProcedures[TKey], TRouter>
+      : never;
 }

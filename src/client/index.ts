@@ -1,6 +1,5 @@
-import { type CreateTRPCClientOptions, createTRPCProxyClient } from '@trpc/client'
-import { type AnyRouter } from '@trpc/server'
-import { createFlatProxy } from '@trpc/server/shared'
+import { createTRPCProxyClient, type CreateTRPCClientOptions } from '@trpc/client'
+import { createFlatProxy, type AnyRouter } from '@trpc/core'
 import { type DecoratedProcedureRecord } from './types'
 import { getQueryKey } from './getQueryKey'
 import { createNuxtProxyDecoration } from './decorationProxy'

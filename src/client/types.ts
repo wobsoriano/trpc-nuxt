@@ -10,9 +10,9 @@ import type {
   inferProcedureOutput,
   ProcedureArgs,
   AnySubscriptionProcedure
-} from '@trpc/server'
+} from '@trpc/core'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
-import { inferTransformedProcedureOutput } from '@trpc/server/shared'
+import { inferTransformedProcedureOutput } from '@trpc/core'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { KeysOf, PickFrom } from 'nuxt/dist/app/composables/asyncData'
 import type { Ref, UnwrapRef } from 'vue'
@@ -21,9 +21,9 @@ interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
 }
 
-type Resolver<TProcedure extends AnyProcedure> = (
+type Resolver<TProcedure extends AnyProcedure, TRouter extends AnyRouter,> = (
   ...args: ProcedureArgs<TProcedure['_def']>
-) => Promise<inferTransformedProcedureOutput<TProcedure>>;
+) => Promise<inferTransformedProcedureOutput<TRouter, TProcedure>>;
 
 type SubscriptionResolver<
   TProcedure extends AnyProcedure,
@@ -49,8 +49,8 @@ export type DecorateProcedure<
 > = TProcedure extends AnyQueryProcedure
   ? {
       useQuery: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
@@ -65,8 +65,8 @@ export type DecorateProcedure<
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
       useLazyQuery: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter,TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
@@ -80,12 +80,12 @@ export type DecorateProcedure<
           queryKey?: string
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
-      query: Resolver<TProcedure>
+      query: Resolver<TProcedure, TRouter>
     } : TProcedure extends AnyMutationProcedure ? {
-      mutate: Resolver<TProcedure>
+      mutate: Resolver<TProcedure, TRouter>
       useMutation: <
-        ResT = inferTransformedProcedureOutput<TProcedure>,
-        DataE = TRPCClientErrorLike<TProcedure>,
+        ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
+        DataE = TRPCClientErrorLike<TRouter>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
