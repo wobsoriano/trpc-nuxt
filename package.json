@@ -8,11 +8,18 @@
   "sideEffects": false,
   "exports": {
     ".": {
+      "types": {
+        "require": "./dist/index.d.cts",
+        "import": "./dist/index.d.ts"
+      },
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
     "./client": {
-      "types": "./dist/client/index.d.ts",
+      "types": {
+        "require": "./dist/client/index.d.cts",
+        "import": "./dist/client/index.d.ts"
+      },
       "require": "./dist/client/index.cjs",
       "import": "./dist/client/index.mjs"
     }
