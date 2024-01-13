@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v0.10.17
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.16...v0.10.17)
+
 ## v0.10.16
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.15...v0.10.16)
