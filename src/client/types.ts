@@ -13,12 +13,8 @@ import type {
 } from '@trpc/server'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
 import { inferTransformedProcedureOutput } from '@trpc/server/shared'
-import type {
-  AsyncData,
-  AsyncDataOptions,
-  KeysOf,
-  PickFrom,
-} from 'nuxt/dist/app/composables/asyncData'
+import type { KeysOf, PickFrom } from 'nuxt/dist/app/composables/asyncData'
+import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { Ref, UnwrapRef } from 'vue'
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
