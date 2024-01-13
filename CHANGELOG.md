@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.10.16
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.15...v0.10.16)
+
+### 🩹 Fixes
+
+- Typings when using node16 ([547af10](https://github.com/wobsoriano/trpc-nuxt/commit/547af10))
+
+### 📖 Documentation
+
+- Correct link ([c44bf19](https://github.com/wobsoriano/trpc-nuxt/commit/c44bf19))
+
+### 🏡 Chore
+
+- Remove queryKey in mutation ([ad2c459](https://github.com/wobsoriano/trpc-nuxt/commit/ad2c459))
+- Clean up abort controller logic ([d2a1393](https://github.com/wobsoriano/trpc-nuxt/commit/d2a1393))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+- BaboonKing ([@baboon-king](http://github.com/baboon-king))
+
 ## v0.10.15
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.14...v0.10.15)
