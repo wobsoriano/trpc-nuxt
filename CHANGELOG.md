@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.10.19
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.18...v0.10.19)
+
+### 🩹 Fixes
+
+- Fetch error types not being forwarded ([e20dcda](https://github.com/wobsoriano/trpc-nuxt/commit/e20dcda))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.10.18
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.17...v0.10.18)
