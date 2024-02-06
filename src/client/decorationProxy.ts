@@ -5,6 +5,10 @@ import { createRecursiveProxy } from '@trpc/server/shared'
 import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
 import { getQueryKeyInternal } from './getQueryKey'
 
+function isRefOrGetter<T>(val: T): boolean {
+  return isRef(val) || typeof val === 'function';
+}
+
 function createAbortController(trpc: any) {
   let controller: AbortController | undefined;
 
@@ -46,7 +50,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
       const controller = createAbortController(trpc);
 
       const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
-      const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
   
       return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {

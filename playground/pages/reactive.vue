@@ -6,7 +6,7 @@ const id = ref(1)
 //   watch: [id]
 // })
 
-const { data: todo, pending, error, refresh } = await $client.todo.getTodo.useQuery(id)
+const { data: todo, pending, error, refresh } = await $client.todo.getTodo.useQuery(() => id.value)
 </script>
 
 <template>
@@ -22,6 +22,6 @@ const { data: todo, pending, error, refresh } = await $client.todo.getTodo.useQu
     Completed: {{ todo?.completed }}
   </div>
   <button @click="id++">
-    Next Todo
+    Next Todo {{ id }}
   </button>
 </template>
