@@ -15,7 +15,7 @@ import { type inferObservableValue, type Unsubscribable } from '@trpc/server/obs
 import { inferTransformedProcedureOutput } from '@trpc/core'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { KeysOf, PickFrom } from 'nuxt/dist/app/composables/asyncData'
-import type { Ref, UnwrapRef } from 'vue'
+import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
@@ -41,8 +41,6 @@ type SubscriptionResolver<
   ]
 ) => Unsubscribable
 
-type MaybeRef<T> = T | Ref<T>
-
 export type DecorateProcedure<
   TProcedure extends AnyProcedure,
   TRouter extends AnyRouter,
@@ -54,7 +52,7 @@ export type DecorateProcedure<
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
-        input: MaybeRef<inferProcedureInput<TProcedure>>,
+        input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
         opts?: AsyncDataOptions<ResT, DataT, PickKeys> & {
           trpc?: TRPCRequestOptions
           /**
@@ -70,7 +68,7 @@ export type DecorateProcedure<
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
      >(
-        input: MaybeRef<inferProcedureInput<TProcedure>>,
+        input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
         opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
           trpc?: TRPCRequestOptions
           /**
