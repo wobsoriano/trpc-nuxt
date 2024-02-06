@@ -1,27 +1,55 @@
-import {
-  AnyQueryProcedure,
+import { hash } from 'ohash';
+import type { DecorateProcedure, DecorateRouterRecord } from './types';
+import type {
+  inferProcedureInput,
+  AnyMutationProcedure,
+  AnyRootTypes,
   AnyRouter,
   DeepPartial,
-  inferProcedureInput,
-} from '@trpc/core';
-import { hash } from 'ohash'
-import { DecorateProcedure } from './types';
+  AnyQueryProcedure
+} from '@trpc/server/unstable-core-do-not-import';
 
-export type GetQueryParams<
+/** @internal */
+export type GetQueryProcedureInput<TProcedureInput> = DeepPartial<TProcedureInput> | undefined
+
+export type QueryType = 'any' | 'infinite' | 'query';
+
+type GetQueryParams<
   TProcedureOrRouter extends AnyQueryProcedure,
   TProcedureInput = inferProcedureInput<TProcedureOrRouter>,
-> = DeepPartial<TProcedureInput>;
+> = TProcedureInput extends undefined
+  ? []
+  : [input?: GetQueryProcedureInput<TProcedureInput>, type?: QueryType];
 
 type GetParams<
-  TProcedureOrRouter extends AnyQueryProcedure,
-> = [
-  procedureOrRouter: DecorateProcedure<TProcedureOrRouter, AnyRouter> | string,
-  params: GetQueryParams<TProcedureOrRouter>,
-];
+  TRoot extends AnyRootTypes,
+  TProcedureOrRouter extends
+    | AnyMutationProcedure
+    | AnyQueryProcedure
+    | AnyRouter,
+> = TProcedureOrRouter extends AnyQueryProcedure
+  ? [
+      procedureOrRouter: DecorateProcedure<TRoot, TProcedureOrRouter>,
+      ..._params: GetQueryParams<TProcedureOrRouter>,
+    ]
+  : TProcedureOrRouter extends AnyMutationProcedure
+  ? [procedureOrRouter: DecorateProcedure<TRoot, TProcedureOrRouter>]
+  : TProcedureOrRouter extends AnyRouter
+  ? [
+      procedureOrRouter: DecorateRouterRecord<
+        TRoot,
+        TProcedureOrRouter['_def']['record']
+      >,
+    ]
+  : never;
 
 type GetQueryKeyParams<
-  TProcedureOrRouter extends AnyQueryProcedure,
-> = GetParams<TProcedureOrRouter>;
+  TRoot extends AnyRootTypes,
+  TProcedureOrRouter extends
+    | AnyMutationProcedure
+    | AnyQueryProcedure
+    | AnyRouter,
+> = GetParams<TRoot, TProcedureOrRouter>;
 
 /**
  * Method to extract the query key for a procedure
@@ -30,8 +58,12 @@ type GetQueryKeyParams<
  * @link https://trpc-nuxt.vercel.app/get-started/tips/mutation
  */
 export function getQueryKey<
-  TProcedure extends AnyQueryProcedure,
->(..._params: GetQueryKeyParams<TProcedure>): string {
+  TRoot extends AnyRootTypes,
+  TProcedureOrRouter extends
+    | AnyMutationProcedure
+    | AnyQueryProcedure
+    | AnyRouter,
+>(..._params: GetQueryKeyParams<TRoot, TProcedureOrRouter>): string {
   const [procedure, input] = _params;
 
   if (typeof procedure === 'string') {
@@ -39,7 +71,7 @@ export function getQueryKey<
     return getQueryKeyInternal(procedure, input);
   }
   
-  // @ts-expect-error: we don't expose _def on the type layer
+  // @ts-expect-error: TODO
   const path = procedure._def().path as string[];
   const dotPath = path.join('.');
 
