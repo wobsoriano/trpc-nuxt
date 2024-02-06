@@ -6,10 +6,5 @@ export default defineConfig({
   splitting: false,
   clean: true,
   external: ['#app', '#imports', /@trpc\/client/, /@trpc\/server/],
-  dts: true,
-  outExtension ({ format }) {
-    return {
-      js: format === 'esm' ? '.mjs' : `.${format}`
-    }
-  }
+  dts: true
 })
