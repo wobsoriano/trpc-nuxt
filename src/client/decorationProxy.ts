@@ -2,7 +2,7 @@ import { type inferRouterProxyClient } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
 import { createRecursiveProxy } from '@trpc/server/shared'
 // @ts-expect-error: Nuxt auto-imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
 import { getQueryKeyInternal } from './getQueryKey'
 
 function createAbortController(trpc: any) {
@@ -45,11 +45,11 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
 
       const controller = createAbortController(trpc);
 
-      const queryKey = customQueryKey || getQueryKeyInternal(path, unref(input))
+      const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
       const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
   
-      return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
+      return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
         signal: controller?.signal,
         ...trpc
       }), {
