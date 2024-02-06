@@ -14,8 +14,10 @@ import type {
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
 import { inferTransformedProcedureOutput } from '@trpc/core'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
-import type { KeysOf, PickFrom } from 'nuxt/dist/app/composables/asyncData'
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
+
+type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T;
+type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>;
 
 interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
