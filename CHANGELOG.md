@@ -1,5 +1,31 @@
 # Changelog
 
+## v0.10.18
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.17...v0.10.18)
+
+### 🚀 Enhancements
+
+- Allow getter inputs ([9603998](https://github.com/wobsoriano/trpc-nuxt/commit/9603998))
+
+### 🩹 Fixes
+
+- Stopped using internal types of trpc and nuxt ([3e31581](https://github.com/wobsoriano/trpc-nuxt/commit/3e31581))
+
+### 📖 Documentation
+
+- Correct link ([2b24c1c](https://github.com/wobsoriano/trpc-nuxt/commit/2b24c1c))
+
+### 🏡 Chore
+
+- Pass getters to watch property ([5a0c33d](https://github.com/wobsoriano/trpc-nuxt/commit/5a0c33d))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+- Alexander Gribochkin ([@AlexXanderGrib](http://github.com/AlexXanderGrib))
+- BaboonKing ([@baboon-king](http://github.com/baboon-king))
+
 ## v0.10.17
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.15...v0.10.17)
