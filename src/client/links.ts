@@ -5,7 +5,6 @@ import {
   type HTTPBatchLinkOptions as _HTTPBatchLinkOptions
 } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
-import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 import { type FetchEsque } from '@trpc/client/dist/internals/types'
@@ -13,7 +12,7 @@ import { type FetchEsque } from '@trpc/client/dist/internals/types'
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
-      if (e instanceof FetchError && e.response) { return e.response }
+      if (e.constructor.name === 'FetchError' && e.response) { return e.response }
       throw e
     })
     .then(response => ({
