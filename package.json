@@ -77,12 +77,5 @@
     "*.md",
     "dist",
     ".output"
-  ],
-  "pnpm": {
-    "overrides": {
-      "nuxt": "3.8.0",
-      "@trpc/client": "^10.44.1",
-      "@trpc/server": "^10.44.1"
-    }
-  }
+  ]
 }
