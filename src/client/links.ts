@@ -8,12 +8,16 @@ import { type AnyRouter } from '@trpc/server'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 import { type FetchEsque } from '@trpc/client/dist/internals/types'
+import { type FetchError } from "ofetch";
+
+function isFetchError(error: unknown): error is FetchError {
+  return error instanceof Error && error.name === 'FetchError';
+}
 
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
-      // @ts-expect-error: Missing `e.response` type
-      if (e instanceof Error && e.name === 'FetchError' && e.response) { return e.response }
+      if (isFetchError(e) && e.response) { return e.response }
       throw e
     })
     .then(response => ({
