@@ -12,6 +12,7 @@ import { type FetchEsque } from '@trpc/client/dist/internals/types'
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
+      // @ts-expect-error: Missing `e.response` type
       if (e instanceof Error && e.name === 'FetchError' && e.response) { return e.response }
       throw e
     })
