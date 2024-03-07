@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.10.20
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.19...v0.10.20)
+
+### 🩹 Fixes
+
+- Fetch error detection ([d8a3728](https://github.com/wobsoriano/trpc-nuxt/commit/d8a3728))
+
+### ❤️ Contributors
+
+- Alexander G ([@AlexXanderGrib](http://github.com/AlexXanderGrib))
+
 ## v0.10.19
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.18...v0.10.19)
