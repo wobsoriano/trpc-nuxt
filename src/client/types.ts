@@ -60,9 +60,10 @@ export type DecorateProcedure<
         DataE = TRPCClientErrorLike<TProcedure>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+        DefaultT = null,
      >(
         input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
-        opts?: AsyncDataOptions<ResT, DataT, PickKeys> & {
+        opts?: AsyncDataOptions<ResT, DataT, PickKeys, DefaultT> & {
           trpc?: TRPCRequestOptions
           /**
            * The custom unique key to use.
@@ -70,15 +71,16 @@ export type DecorateProcedure<
            */
           queryKey?: string
         },
-      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
+      ) => AsyncData<PickFrom<DataT, PickKeys> | DefaultT, DataE>,
       useLazyQuery: <
         ResT = inferTransformedProcedureOutput<TProcedure>,
         DataE = TRPCClientErrorLike<TProcedure>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+        DefaultT = null,
      >(
         input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
-        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>, 'lazy'> & {
           trpc?: TRPCRequestOptions
           /**
            * The custom unique key to use.
@@ -86,7 +88,7 @@ export type DecorateProcedure<
            */
           queryKey?: string
         },
-      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
+      ) => AsyncData<PickFrom<DataT, PickKeys> | DefaultT, DataE>,
       query: Resolver<TProcedure>
     } : TProcedure extends AnyMutationProcedure ? {
       mutate: Resolver<TProcedure>
@@ -95,11 +97,12 @@ export type DecorateProcedure<
         DataE = TRPCClientErrorLike<TProcedure>,
         DataT = ResT,
         PickKeys extends KeysOf<DataT> = KeysOf<DataT>,
+        DefaultT = null,
      >(
-        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys>, 'lazy'> & {
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>, 'lazy'> & {
           trpc?: TRPCRequestOptions
         },
-      ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE> & {
+      ) => AsyncData<PickFrom<DataT, PickKeys> | DefaultT, DataE> & {
         /**
          * The function to call to trigger the mutation.
          */
