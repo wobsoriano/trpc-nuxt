@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.10.21
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.20...v0.10.21)
+
+### 🩹 Fixes
+
+- Types ([06be8cb](https://github.com/wobsoriano/trpc-nuxt/commit/06be8cb))
+- Add generic parameter to fix type error when using `default` option. ([2d2834a](https://github.com/wobsoriano/trpc-nuxt/commit/2d2834a))
+
+### 🏡 Chore
+
+- Add ofetch as peer dependency ([1f5aea6](https://github.com/wobsoriano/trpc-nuxt/commit/1f5aea6))
+
+### ❤️ Contributors
+
+- Jimmyzm ([@Jimmyzm](http://github.com/Jimmyzm))
+- Alexander Gribochkin ([@AlexXanderGrib](http://github.com/AlexXanderGrib))
+
 ## v0.10.20
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.19...v0.10.20)
