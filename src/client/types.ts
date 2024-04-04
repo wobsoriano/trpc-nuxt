@@ -63,13 +63,14 @@ export type DecorateProcedure<
         DefaultT = null,
      >(
         input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
-        opts?: AsyncDataOptions<ResT, DataT, PickKeys, DefaultT> & {
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>, 'watch'> & {
           trpc?: TRPCRequestOptions
           /**
            * The custom unique key to use.
            * @see https://nuxt.com/docs/api/composables/use-async-data#params
            */
-          queryKey?: string
+          queryKey?: string,
+          watch?: AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>['watch'] | false
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | DefaultT, DataE>,
       useLazyQuery: <
@@ -80,13 +81,14 @@ export type DecorateProcedure<
         DefaultT = null,
      >(
         input: MaybeRefOrGetter<inferProcedureInput<TProcedure>>,
-        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>, 'lazy'> & {
+        opts?: Omit<AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>, 'lazy' | 'watch'> & {
           trpc?: TRPCRequestOptions
           /**
            * The custom unique key to use.
            * @see https://nuxt.com/docs/api/composables/use-async-data#params
            */
-          queryKey?: string
+          queryKey?: string,
+          watch?: AsyncDataOptions<ResT, DataT, PickKeys, DefaultT>['watch'] | false
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | DefaultT, DataE>,
       query: Resolver<TProcedure>
