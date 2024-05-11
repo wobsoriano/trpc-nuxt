@@ -1,11 +1,11 @@
-import {
+import type {
   AnyQueryProcedure,
   AnyRouter,
   DeepPartial,
   inferProcedureInput,
 } from '@trpc/server';
 import { hash } from 'ohash'
-import { DecorateProcedure } from './types';
+import type { DecorateProcedure } from './types';
 
 export type GetQueryParams<
   TProcedureOrRouter extends AnyQueryProcedure,

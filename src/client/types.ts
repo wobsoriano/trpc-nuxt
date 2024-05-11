@@ -11,7 +11,7 @@ import type {
   AnySubscriptionProcedure
 } from '@trpc/server'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
-import { inferTransformedProcedureOutput } from '@trpc/server/shared'
+import type { inferTransformedProcedureOutput } from '@trpc/server/shared'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
 

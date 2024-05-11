@@ -60,22 +60,5 @@
     "taze": "^0.13.8",
     "tsup": "8.0.2",
     "typescript": "^5.4.5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@nuxt/eslint-config"
-    ],
-    "rules": {
-      "@typescript-eslint/no-unused-vars": 0,
-      "vue/multi-word-component-names": "off",
-      "vue/no-multiple-template-root": "off"
-    }
-  },
-  "eslintIgnore": [
-    "*.json",
-    "node_modules",
-    "*.md",
-    "dist",
-    ".output"
-  ]
+  }
 }

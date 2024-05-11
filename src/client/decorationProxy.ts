@@ -78,7 +78,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
         immediate: false
       })
 
-      // eslint-disable-next-line no-inner-declarations
+       
       async function mutate (input: any) {
         payload.value = input
         await asyncData.execute()
