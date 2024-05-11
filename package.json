@@ -2,7 +2,7 @@
   "name": "trpc-nuxt",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "type": "module",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.1.0",
   "version": "0.10.21",
   "license": "MIT",
   "sideEffects": false,
@@ -51,24 +51,22 @@
     "ohash": "^1.1.3"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.2.0",
-    "@trpc/client": "^10.45.1",
-    "@trpc/server": "^10.45.1",
+    "@nuxt/eslint-config": "^0.3.12",
+    "@trpc/client": "^10.45.2",
+    "@trpc/server": "^10.45.2",
     "changelogen": "^0.5.5",
-    "eslint": "^8.57.0",
-    "ofetch": "^1.3.3",
-    "taze": "^0.13.3",
+    "eslint": "^9.2.0",
+    "ofetch": "^1.3.4",
+    "taze": "^0.13.8",
     "tsup": "8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   },
   "eslintConfig": {
     "extends": [
       "@nuxt/eslint-config"
     ],
     "rules": {
-      "@typescript-eslint/no-unused-vars": [
-        "off"
-      ],
+      "@typescript-eslint/no-unused-vars": 0,
       "vue/multi-word-component-names": "off",
       "vue/no-multiple-template-root": "off"
     }
