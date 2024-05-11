@@ -10,7 +10,7 @@ import {
   TRPCError
 } from '@trpc/server'
 import type { H3Event } from 'h3'
-import { createError, defineEventHandler, getRequestURL, isMethod, readBody } from 'h3'
+import { createError, eventHandler, getRequestURL, isMethod, readBody, setResponseHeader, setResponseStatus } from 'h3'
 import type { TRPCResponse } from '@trpc/server/rpc'
 import { getErrorShape } from '@trpc/server/shared'
 
@@ -84,7 +84,7 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
   onError,
   batching
 }: ResolveHTTPRequestOptions<TRouter>) {
-  return defineEventHandler(async (event) => {
+  return eventHandler(async (event) => {
     const {
       req,
       res
@@ -136,10 +136,10 @@ export function createNuxtApiHandler<TRouter extends AnyRouter> ({
 
     const { status, headers, body } = httpResponse
 
-    res.statusCode = status
+    setResponseStatus(event, status)
 
     headers && Object.keys(headers).forEach((key) => {
-      res.setHeader(key, headers[key]!)
+      setResponseHeader(event, key, headers[key]!)
     })
 
     return body
