@@ -11,12 +11,12 @@
   "dependencies": {
     "@trpc/client": "^11.0.0-rc.373",
     "@trpc/server": "^11.0.0-rc.373",
-    "superjson": "^2.1.0",
+    "superjson": "^2.2.1",
     "trpc-nuxt": "workspace:*",
-    "zod": "^3.22.4"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "20.8.7",
-    "nuxt": "3.8.0"
+    "@types/node": "20.12.12",
+    "nuxt": "3.11.2"
   }
 }

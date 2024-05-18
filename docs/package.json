@@ -10,6 +10,6 @@
   "devDependencies": {
     "@nuxt-themes/docus": "^1.15.0",
     "@nuxtlabs/github-module": "^1.6.3",
-    "nuxt": "3.8.0"
+    "nuxt": "3.11.2"
   }
 }
