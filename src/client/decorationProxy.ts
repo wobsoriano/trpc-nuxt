@@ -50,7 +50,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
       const controller = createAbortController(trpc);
 
       const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
-      const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      const watch = asyncDataOptions.watch === false ? [] : isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
   
       return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
