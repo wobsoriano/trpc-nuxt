@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.10.22
+
+[compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.21...v0.10.22)
+
+### 🚀 Enhancements
+
+- Allow `watch: false` in useQuery ([fbff0da](https://github.com/wobsoriano/trpc-nuxt/commit/fbff0da))
+
+### 🏡 Chore
+
+- Bump all non-major dependencies ([c7329b0](https://github.com/wobsoriano/trpc-nuxt/commit/c7329b0))
+- Use built-in h3 response helpers ([3fc20fa](https://github.com/wobsoriano/trpc-nuxt/commit/3fc20fa))
+- Bump all non-major dependencies ([262be27](https://github.com/wobsoriano/trpc-nuxt/commit/262be27))
+- Remove unused res ([b6c5668](https://github.com/wobsoriano/trpc-nuxt/commit/b6c5668))
+
+### 🎨 Styles
+
+- Update nuxt eslint config to flat ([aed4d9c](https://github.com/wobsoriano/trpc-nuxt/commit/aed4d9c))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+- Warflash <contact@nils.solutions>
+
 ## v0.10.21
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.20...v0.10.21)
