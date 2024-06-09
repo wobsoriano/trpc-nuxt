@@ -1,18 +1,16 @@
 import type { TRPCClientErrorLike, TRPCRequestOptions as _TRPCRequestOptions } from '@trpc/client'
 import { type TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
 import type {
-  AnyMutationProcedure,
-  AnyProcedure,
-  AnyQueryProcedure,
-  AnyRouter,
-  ProcedureRouterRecord,
   inferProcedureInput,
   inferProcedureOutput,
-  ProcedureArgs,
-  AnySubscriptionProcedure
-} from '@trpc/core'
+  AnyTRPCSubscriptionProcedure,
+  AnyTRPCProcedure,
+  AnyTRPCQueryProcedure,
+  AnyTRPCMutationProcedure,
+  AnyTRPCRouter
+} from '@trpc/server'
 import { type inferObservableValue, type Unsubscribable } from '@trpc/server/observable'
-import { inferTransformedProcedureOutput } from '@trpc/core'
+import { inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { KeysOf, PickFrom } from 'nuxt/dist/app/composables/asyncData'
 import type { Ref, UnwrapRef } from 'vue'
@@ -21,13 +19,13 @@ interface TRPCRequestOptions extends _TRPCRequestOptions {
   abortOnUnmount?: boolean
 }
 
-type Resolver<TProcedure extends AnyProcedure, TRouter extends AnyRouter,> = (
+type Resolver<TProcedure extends AnyTRPCProcedure, TRouter extends AnyTRPCRouter> = (
   ...args: ProcedureArgs<TProcedure['_def']>
 ) => Promise<inferTransformedProcedureOutput<TRouter, TProcedure>>;
 
 type SubscriptionResolver<
-  TProcedure extends AnyProcedure,
-  TRouter extends AnyRouter,
+  TProcedure extends AnyTRPCProcedure,
+  TRouter extends AnyTRPCRouter,
 > = (
   ...args: [
     input: ProcedureArgs<TProcedure['_def']>[0],
@@ -44,9 +42,9 @@ type SubscriptionResolver<
 type MaybeRef<T> = T | Ref<T>
 
 export type DecorateProcedure<
-  TProcedure extends AnyProcedure,
-  TRouter extends AnyRouter,
-> = TProcedure extends AnyQueryProcedure
+  TProcedure extends AnyTRPCProcedure,
+  TRouter extends AnyTRPCRouter,
+> = TProcedure extends AnyTRPCQueryProcedure
   ? {
       useQuery: <
         ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
@@ -81,7 +79,7 @@ export type DecorateProcedure<
         },
       ) => AsyncData<PickFrom<DataT, PickKeys> | null, DataE>,
       query: Resolver<TProcedure, TRouter>
-    } : TProcedure extends AnyMutationProcedure ? {
+    } : TProcedure extends AnyTRPCMutationProcedure ? {
       mutate: Resolver<TProcedure, TRouter>
       useMutation: <
         ResT = inferTransformedProcedureOutput<TRouter, TProcedure>,
@@ -98,7 +96,7 @@ export type DecorateProcedure<
          */
         mutate: (input: inferProcedureInput<TProcedure>) => Promise<UnwrapRef<AsyncData<PickFrom<DataT, PickKeys> | null, DataE>['data']>>
       },
-    } : TProcedure extends AnySubscriptionProcedure ? {
+    } : TProcedure extends AnyTRPCSubscriptionProcedure ? {
       subscribe: SubscriptionResolver<TProcedure, TRouter>
     } : never
 
@@ -107,11 +105,11 @@ export type DecorateProcedure<
 */
 export type DecoratedProcedureRecord<
   TProcedures extends ProcedureRouterRecord,
-  TRouter extends AnyRouter,
+  TRouter extends AnyTRPCRouter,
 > = {
-  [TKey in keyof TProcedures]: TProcedures[TKey] extends AnyRouter
+  [TKey in keyof TProcedures]: TProcedures[TKey] extends AnyTRPCRouter
     ? DecoratedProcedureRecord<TProcedures[TKey]['_def']['record'], TRouter>
-    : TProcedures[TKey] extends AnyProcedure
+    : TProcedures[TKey] extends AnyTRPCProcedure
       ? DecorateProcedure<TProcedures[TKey], TRouter>
       : never;
 }

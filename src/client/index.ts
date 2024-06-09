@@ -1,15 +1,15 @@
-import { createTRPCProxyClient, type CreateTRPCClientOptions } from '@trpc/client'
-import { createFlatProxy, type AnyRouter } from '@trpc/core'
+import { TRPCUntypedClient, createTRPCClientProxy } from '@trpc/client'
 import { type DecoratedProcedureRecord } from './types'
 import { getQueryKey } from './getQueryKey'
 import { createNuxtProxyDecoration } from './decorationProxy'
+import { AnyTRPCRouter, createTRPCFlatProxy } from '@trpc/server'
 
 export { getQueryKey }
 
-export function createTRPCNuxtClient<TRouter extends AnyRouter> (opts: CreateTRPCClientOptions<TRouter>) {
-  const client = createTRPCProxyClient<TRouter>(opts)
+export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter> (opts: TRPCUntypedClient<TRouter>) {
+  const client = createTRPCClientProxy<TRouter>(opts)
 
-  const decoratedClient = createFlatProxy((key) => {
+  const decoratedClient = createTRPCFlatProxy((key) => {
     return createNuxtProxyDecoration(key, client as any)
   }) as DecoratedProcedureRecord<TRouter['_def']['record'], TRouter>
 

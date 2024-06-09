@@ -4,11 +4,11 @@ import {
   type HTTPLinkOptions as _HTTPLinkOptions,
   type HTTPBatchLinkOptions as _HTTPBatchLinkOptions
 } from '@trpc/client'
-import { type AnyRouter } from '@trpc/core'
 import { FetchError } from 'ofetch'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
-import { type FetchEsque } from '@trpc/client/dist/internals/types'
+import { AnyTRPCRouter } from '@trpc/server'
+import { FetchEsque } from '@trpc/client/dist/internals/types'
 
 function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
@@ -27,7 +27,7 @@ export interface HTTPLinkOptions extends _HTTPLinkOptions {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
-  pickHeaders?: string[] 
+  pickHeaders?: string[]
 }
 
 /**
@@ -41,7 +41,7 @@ export interface HTTPLinkOptions extends _HTTPLinkOptions {
  *
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
-export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
+export function httpLink<TRouter extends AnyTRPCRouter>(opts?: HTTPLinkOptions) {
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpLink<TRouter>({
@@ -58,7 +58,7 @@ export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
-  pickHeaders?: string[] 
+  pickHeaders?: string[]
 }
 
 
@@ -73,7 +73,7 @@ export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
  *
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
-export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOptions) {
+export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions) {
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpBatchLink<TRouter>({
