@@ -5,8 +5,7 @@ import type {
   inferRouterContext,
 } from '@trpc/server'
 import type { H3Event, NodeIncomingMessage } from 'h3'
-import { eventHandler, setResponseHeader, setResponseStatus } from 'h3'
-import { incomingMessageToRequest } from './incomingMessageToRequest'
+import { eventHandler, readBody, toWebRequest } from 'h3'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -32,21 +31,25 @@ TRouter extends AnyTRPCRouter
 
 export function createNuxtApiHandler<TRouter extends AnyTRPCRouter> (opts: H3HandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
-    const { req } = event.node
-
     const createContext: ResolveHTTPRequestOptionsContextFn<TRouter> = async (
-        innerOpts,
-      ) => {
+      // TODO: Add this inner options to context
+      innerOpts,
+    ) => {
       return await opts.createContext?.(event);
     };
 
+    const { req } = event.node
+
     const path = getPath(event)!
+
+    // monkey-patch body to the IncomingMessage
+    if (event.method === 'POST') {
+      (req as any).body = await readBody(event);
+    }
 
     const httpResponse = await resolveResponse({
       ...opts,
-      req: incomingMessageToRequest(req, {
-        maxBodySize: null,
-      }),
+      req: toWebRequest(event),
       error: null,
       createContext,
       path,
@@ -59,16 +62,7 @@ export function createNuxtApiHandler<TRouter extends AnyTRPCRouter> (opts: H3Han
     })
 
 
-    // if (httpResponse.status === 200) {
-    //   setResponseStatus(event, status)
-    // }
-    setResponseStatus(event, httpResponse.status)
-
-    for (const [key, value] of httpResponse.headers) {
-      setResponseHeader(event, key, value);
-    }
-
-    return httpResponse.body
+    return httpResponse
   })
 }
 

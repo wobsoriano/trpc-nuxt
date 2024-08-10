@@ -4,7 +4,7 @@ import { ZodError } from 'zod'
 import type { Context } from './context'
 
 const t = initTRPC.context<Context>().create({
-  transformer: superjson,
+  // transformer: superjson,
   errorFormatter ({ shape, error }) {
     return {
       ...shape,

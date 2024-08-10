@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { getQueryKey } from 'trpc-nuxt/client'
+// import { getQueryKey } from 'trpc-nuxt/client'
 
 const { $client } = useNuxtApp()
 
-const todosKey = getQueryKey($client.todo.getTodos, undefined)
-const { data } = useNuxtData(todosKey)
+// const todosKey = getQueryKey($client.todo.getTodos, undefined)
+// const { data } = useNuxtData(todosKey)
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 
-const { mutate } = $client.todo.addTodo.useMutation()
+const { mutate, error: someError } = $client.todo.addTodo.useMutation()
 
 const addTodo = async () => {
   const title = Math.random().toString(36).slice(2, 7)
@@ -21,8 +21,7 @@ const addTodo = async () => {
   }
 
   const result = await mutate(newData)
-
-  data.value.push(result)
+  // data.value.push(result)
 }
 </script>
 

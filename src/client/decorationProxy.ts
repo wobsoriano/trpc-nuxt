@@ -1,4 +1,5 @@
-// @ts-expect-error: Nuxt auto-imports
+
+// @ts-expect-error: Nuxt import
 import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
 import { getQueryKeyInternal } from './getQueryKey'
 import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import';

@@ -5,7 +5,7 @@ import type { AppRouter } from '~~/server/trpc/routers'
 
 export default defineNuxtPlugin(() => {
   const client = createTRPCNuxtClient<AppRouter>({
-    transformer: superjson,
+    // transformer: superjson,
     links: [
       // adds pretty logs to your console in development and logs errors in production
       loggerLink({

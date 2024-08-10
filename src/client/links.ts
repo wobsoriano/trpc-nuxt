@@ -5,12 +5,15 @@ import {
   type HTTPBatchLinkOptions as _HTTPBatchLinkOptions
 } from '@trpc/client'
 import { FetchError } from 'ofetch'
+import type {
+  AnyClientTypes,
+} from '@trpc/server/unstable-core-do-not-import';
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 import { AnyTRPCRouter } from '@trpc/server'
 import { FetchEsque } from '@trpc/client/dist/internals/types'
 
-function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
+async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
       if (e instanceof FetchError && e.response) { return e.response }
@@ -23,7 +26,7 @@ function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'G
     }))
 }
 
-export interface HTTPLinkOptions extends _HTTPLinkOptions {
+export type HTTPLinkOptions<TRoot extends AnyClientTypes> = _HTTPLinkOptions<TRoot> & {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
@@ -41,7 +44,7 @@ export interface HTTPLinkOptions extends _HTTPLinkOptions {
  *
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
-export function httpLink<TRouter extends AnyTRPCRouter>(opts?: HTTPLinkOptions) {
+export function httpLink<TRouter extends AnyTRPCRouter, TRoot extends AnyClientTypes>(opts?: HTTPLinkOptions<TRoot>) {
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpLink<TRouter>({
@@ -51,10 +54,10 @@ export function httpLink<TRouter extends AnyTRPCRouter>(opts?: HTTPLinkOptions) 
     },
     fetch: customFetch as FetchEsque,
     ...opts,
-  })
+  } as any)
 }
 
-export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
+export type HttpBatchLinkOptions<TRoot extends AnyClientTypes> = _HTTPBatchLinkOptions<TRoot> & {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
@@ -73,7 +76,7 @@ export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
  *
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
-export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions) {
+export function httpBatchLink<TRouter extends AnyTRPCRouter, TRoot extends AnyClientTypes>(opts?: HttpBatchLinkOptions<TRoot>) {
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpBatchLink<TRouter>({
@@ -83,5 +86,5 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLin
     },
     fetch: customFetch as FetchEsque,
     ...opts,
-  })
+  } as any)
 }
