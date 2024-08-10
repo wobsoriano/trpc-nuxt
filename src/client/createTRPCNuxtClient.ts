@@ -1,20 +1,21 @@
-import { CreateTRPCClientOptions, createTRPCClientProxy, TRPCClientErrorLike, TRPCUntypedClient } from "@trpc/client";
-import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from "@trpc/server";
+import type { CreateTRPCClientOptions, TRPCClientErrorLike } from '@trpc/client'
+import { createTRPCClientProxy, TRPCUntypedClient } from '@trpc/client'
+import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
-import { AnyRootTypes, ProcedureOptions, RouterRecord } from "@trpc/server/unstable-core-do-not-import";
+import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
-import { createNuxtProxyDecoration } from "./decorationProxy";
+import { createNuxtProxyDecoration } from './decorationProxy'
 
-type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T;
-type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>;
+type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T
+type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>
 
 type ResolverDef = {
-  input: any;
-  output: any;
-  transformer: boolean;
-  errorShape: any;
-};
+  input: any
+  output: any
+  transformer: boolean
+  errorShape: any
+}
 
 export type DecorateProcedure<
   TType extends TRPCProcedureType,
@@ -22,34 +23,34 @@ export type DecorateProcedure<
 > = TType extends 'query'
   ? DecoratedQuery<TDef>
   : TType extends 'mutation'
-  ? DecoratedMutation<TDef>
-  : never;
+    ? DecoratedMutation<TDef>
+    : never
 
 export type DecorateRouterRecord<
-TRoot extends AnyRootTypes,
-TRecord extends RouterRecord,
+  TRoot extends AnyRootTypes,
+  TRecord extends RouterRecord,
 > = {
-[TKey in keyof TRecord]: TRecord[TKey] extends infer $Value
+  [TKey in keyof TRecord]: TRecord[TKey] extends infer $Value
     ? $Value extends RouterRecord
-    ? DecorateRouterRecord<TRoot, $Value>
-    : $Value extends AnyTRPCProcedure
-    ? DecorateProcedure<
-        $Value['_def']['type'],
-        {
-            input: inferProcedureInput<$Value>;
-            output: inferTransformedProcedureOutput<TRoot, $Value>;
-            transformer: TRoot['transformer'];
-            errorShape: TRoot['errorShape'];
-        }
+      ? DecorateRouterRecord<TRoot, $Value>
+      : $Value extends AnyTRPCProcedure
+        ? DecorateProcedure<
+          $Value['_def']['type'],
+          {
+            input: inferProcedureInput<$Value>
+            output: inferTransformedProcedureOutput<TRoot, $Value>
+            transformer: TRoot['transformer']
+            errorShape: TRoot['errorShape']
+          }
         >
-    : never
+        : never
     : never;
-};
+}
 
 type Resolver<TDef extends ResolverDef> = (
   input: TDef['input'],
   opts?: ProcedureOptions,
-) => Promise<TDef['output']>;
+) => Promise<TDef['output']>
 
 export type DecoratedQuery<TDef extends ResolverDef> = {
   /**
@@ -72,7 +73,7 @@ export type DecoratedQuery<TDef extends ResolverDef> = {
       queryKey?: string
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false
     }
-  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>,
+  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>
   query: Resolver<TDef>
 }
 
@@ -94,13 +95,13 @@ export type DecoratedMutation<TDef extends ResolverDef> = {
      * The function to call to trigger the mutation.
      */
     mutate: (input: TDef['output']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>
-  };
-  mutate: Resolver<TDef>;
-};
+  }
+  mutate: Resolver<TDef>
+}
 
-export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter> (opts: CreateTRPCClientOptions<TRouter>) {
-  const client = new TRPCUntypedClient<TRouter>(opts);
-  const proxy = createTRPCClientProxy<TRouter>(client);
+export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(opts: CreateTRPCClientOptions<TRouter>) {
+  const client = new TRPCUntypedClient<TRouter>(opts)
+  const proxy = createTRPCClientProxy<TRouter>(client)
 
   const decoratedClient = createTRPCFlatProxy((key) => {
     return createNuxtProxyDecoration(key, proxy as any)

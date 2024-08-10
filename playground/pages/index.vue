@@ -17,7 +17,7 @@ const addTodo = async () => {
     id: Date.now(),
     userId: 69,
     title,
-    completed: false
+    completed: false,
   }
 
   const result = await mutate(newData)

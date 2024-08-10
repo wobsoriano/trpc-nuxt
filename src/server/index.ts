@@ -11,7 +11,7 @@ type MaybePromise<T> = T | Promise<T>
 
 export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event) => MaybePromise<inferRouterContext<TRouter>>
 
-function getPath (event: H3Event): string | null {
+function getPath(event: H3Event): string | null {
   const { params } = event.context
 
   if (typeof params?.trpc === 'string') { return params.trpc }
@@ -24,19 +24,19 @@ function getPath (event: H3Event): string | null {
 }
 
 type H3HandlerOptions<
-TRouter extends AnyTRPCRouter
+  TRouter extends AnyTRPCRouter,
 > = HTTPBaseHandlerOptions<TRouter, NodeIncomingMessage> & {
   createContext?: CreateContextFn<TRouter>
 }
 
-export function createNuxtApiHandler<TRouter extends AnyTRPCRouter> (opts: H3HandlerOptions<TRouter>) {
+export function createNuxtApiHandler<TRouter extends AnyTRPCRouter>(opts: H3HandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
     const createContext: ResolveHTTPRequestOptionsContextFn<TRouter> = async (
       // TODO: Add this inner options to context
       innerOpts,
     ) => {
-      return await opts.createContext?.(event);
-    };
+      return await opts.createContext?.(event)
+    }
 
     const { req } = event.node
 
@@ -44,7 +44,7 @@ export function createNuxtApiHandler<TRouter extends AnyTRPCRouter> (opts: H3Han
 
     // monkey-patch body to the IncomingMessage
     if (event.method === 'POST') {
-      (req as any).body = await readBody(event);
+      (req as any).body = await readBody(event)
     }
 
     const httpResponse = await resolveResponse({
@@ -56,11 +56,10 @@ export function createNuxtApiHandler<TRouter extends AnyTRPCRouter> (opts: H3Han
       onError(o) {
         opts.onError?.({
           ...o,
-          req
+          req,
         })
-      }
+      },
     })
-
 
     return httpResponse
   })

@@ -1,13 +1,12 @@
-
-// @ts-expect-error: Nuxt import
-import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
+import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import'
+import type { AnyTRPCRouter } from '@trpc/server'
+import type { inferRouterClient } from '@trpc/client'
 import { getQueryKeyInternal } from './getQueryKey'
-import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import';
-import { AnyTRPCRouter } from '@trpc/server';
-import { inferRouterClient } from '@trpc/client';
+// @ts-expect-error: Nuxt imports
+import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
 
 function createAbortController(trpc: any) {
-  let controller: AbortController | undefined;
+  let controller: AbortController | undefined
 
   if (trpc?.abortOnUnmount) {
     if (getCurrentInstance()) {
@@ -18,10 +17,10 @@ function createAbortController(trpc: any) {
     controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
   }
 
-  return controller;
+  return controller
 }
 
-export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter> (name: string, client: inferRouterClient<TRouter>) {
+export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string, client: inferRouterClient<TRouter>) {
   return createRecursiveProxy((opts) => {
     const args = opts.args
 
@@ -38,13 +37,13 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter> (name: 
     if (lastArg === '_def') {
       return {
         path: pathCopy,
-      };
+      }
     }
 
     if (['useQuery', 'useLazyQuery'].includes(lastArg)) {
       const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
 
-      const controller = createAbortController(trpc);
+      const controller = createAbortController(trpc)
 
       const queryKey = customQueryKey || getQueryKeyInternal(path, unref(input))
       const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
@@ -52,11 +51,11 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter> (name: 
 
       return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
         signal: controller?.signal,
-        ...trpc
+        ...trpc,
       }), {
         ...asyncDataOptions,
         watch,
-        lazy: isLazy
+        lazy: isLazy,
       })
     }
 
@@ -65,18 +64,17 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter> (name: 
 
       const payload = ref(null)
 
-      const controller = createAbortController(trpc);
+      const controller = createAbortController(trpc)
 
       const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
         signal: controller?.signal,
-        ...trpc
+        ...trpc,
       }), {
         ...asyncDataOptions,
-        immediate: false
+        immediate: false,
       })
 
-      // eslint-disable-next-line no-inner-declarations
-      async function mutate (input: any) {
+      async function mutate(input: any) {
         payload.value = input
         await asyncData.execute()
         return toRaw(asyncData.data.value)

@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { publicProcedure, router } from '../trpc'
 import { $fetch } from 'ofetch'
+import { publicProcedure, router } from '../trpc'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
@@ -8,7 +8,7 @@ const TodoShape = z.object({
   userId: z.number(),
   id: z.number(),
   title: z.string(),
-  completed: z.boolean()
+  completed: z.boolean(),
 })
 
 export type Todo = z.infer<typeof TodoShape>
@@ -28,7 +28,7 @@ export const todoRouter = router({
     .mutation((req) => {
       return $fetch<Todo>(`${baseURL}/todos`, {
         method: 'POST',
-        body: req.input
+        body: req.input,
       })
-    })
+    }),
 })

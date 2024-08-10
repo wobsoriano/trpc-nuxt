@@ -5,19 +5,19 @@ import type { Context } from './context'
 
 const t = initTRPC.context<Context>().create({
   // transformer: superjson,
-  errorFormatter ({ shape, error }) {
+  errorFormatter({ shape, error }) {
     return {
       ...shape,
       data: {
         ...shape.data,
         zodError:
-          error.code === 'BAD_REQUEST' &&
-          error.cause instanceof ZodError
+          error.code === 'BAD_REQUEST'
+          && error.cause instanceof ZodError
             ? error.cause!.flatten()
-            : null
-      }
+            : null,
+      },
     }
-  }
+  },
 })
 
 /**
@@ -27,17 +27,17 @@ const t = initTRPC.context<Context>().create({
 export const router = t.router
 
 /**
-  * Create an unprotected procedure
-  * @see https://trpc.io/docs/v10/procedures
-  **/
+ * Create an unprotected procedure
+ * @see https://trpc.io/docs/v10/procedures
+ */
 export const publicProcedure = t.procedure
 
 /**
-  * @see https://trpc.io/docs/v10/middlewares
-  */
+ * @see https://trpc.io/docs/v10/middlewares
+ */
 export const middleware = t.middleware
 
 /**
-  * @see https://trpc.io/docs/v10/merging-routers
-  */
+ * @see https://trpc.io/docs/v10/merging-routers
+ */
 export const mergeRouters = t.mergeRouters

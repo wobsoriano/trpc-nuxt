@@ -84,16 +84,16 @@
         />
       </svg>
     </div>
-	
+
     <ProseStrong>tRPC Nuxt</ProseStrong>
   </div>
 </template>
 
 <style scoped>
-	.logo {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-weight: 800;
-	}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+}
 </style>

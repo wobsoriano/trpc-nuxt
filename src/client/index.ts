@@ -3,10 +3,10 @@ import { getQueryKey } from './getQueryKey'
 export { getQueryKey }
 
 export {
-  createTRPCNuxtClient
+  createTRPCNuxtClient,
 } from './createTRPCNuxtClient'
 
 export {
   httpBatchLink,
-  httpLink
+  httpLink,
 } from './links'

@@ -2,18 +2,18 @@ import {
   httpLink as _httpLink,
   httpBatchLink as _httpBatchLink,
   type HTTPLinkOptions as _HTTPLinkOptions,
-  type HTTPBatchLinkOptions as _HTTPBatchLinkOptions
+  type HTTPBatchLinkOptions as _HTTPBatchLinkOptions,
 } from '@trpc/client'
 import { FetchError } from 'ofetch'
 import type {
   AnyClientTypes,
-} from '@trpc/server/unstable-core-do-not-import';
+} from '@trpc/server/unstable-core-do-not-import'
 // @ts-expect-error: Nuxt auto-imports
+import type { AnyTRPCRouter } from '@trpc/server'
+import type { FetchEsque } from '@trpc/client/dist/internals/types'
 import { useRequestHeaders } from '#imports'
-import { AnyTRPCRouter } from '@trpc/server'
-import { FetchEsque } from '@trpc/client/dist/internals/types'
 
-async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' })  {
+async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
       if (e instanceof FetchError && e.response) { return e.response }
@@ -22,7 +22,7 @@ async function customFetch(input: RequestInfo | URL, init?: RequestInit & { meth
     .then(response => ({
       ...response,
       headers: response.headers,
-      json: () => Promise.resolve(response._data)
+      json: () => Promise.resolve(response._data),
     }))
 }
 
@@ -49,7 +49,7 @@ export function httpLink<TRouter extends AnyTRPCRouter, TRoot extends AnyClientT
 
   return _httpLink<TRouter>({
     url: '/api/trpc',
-    headers () {
+    headers() {
       return headers
     },
     fetch: customFetch as FetchEsque,
@@ -63,7 +63,6 @@ export type HttpBatchLinkOptions<TRoot extends AnyClientTypes> = _HTTPBatchLinkO
    */
   pickHeaders?: string[]
 }
-
 
 /**
  * This is a convenience wrapper around the original httpBatchLink
@@ -81,7 +80,7 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter, TRoot extends AnyCl
 
   return _httpBatchLink<TRouter>({
     url: '/api/trpc',
-    headers () {
+    headers() {
       return headers
     },
     fetch: customFetch as FetchEsque,
