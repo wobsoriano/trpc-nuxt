@@ -1,4 +1,4 @@
-import { createNuxtApiHandler } from 'trpc-nuxt'
+import { createNuxtApiHandler } from 'trpc-nuxt/server'
 import { appRouter } from '../../trpc/routers'
 import { createContext } from '../../trpc/context'
 
