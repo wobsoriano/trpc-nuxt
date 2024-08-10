@@ -8,15 +8,17 @@ import { FetchError } from 'ofetch'
 import type {
   AnyClientTypes,
 } from '@trpc/server/unstable-core-do-not-import'
-// @ts-expect-error: Nuxt auto-imports
 import type { AnyTRPCRouter } from '@trpc/server'
 import type { FetchEsque } from '@trpc/client/dist/internals/types'
+// @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 
 async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
   return globalThis.$fetch.raw(input.toString(), init)
     .catch((e) => {
-      if (e instanceof FetchError && e.response) { return e.response }
+      if (e instanceof FetchError && e.response) {
+        return e.response
+      }
       throw e
     })
     .then(response => ({

@@ -21,7 +21,6 @@ export default createConfigForNuxt({
         'vue/multi-word-component-names': 'off',
         'vue/no-multiple-template-root': 'off',
         '@typescript-eslint/no-explicit-any': 'warn',
-        // '@typescript-eslint/no-unused-var': 'warn'
       },
     },
   )
