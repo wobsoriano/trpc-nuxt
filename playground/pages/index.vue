@@ -1,10 +1,14 @@
 <script setup lang="ts">
-// import { getQueryKey } from 'trpc-nuxt/client'
+import { getQueryKey } from 'trpc-nuxt/client'
+import type { inferRouterOutputs } from '@trpc/server'
+import type { AppRouter } from '~/server/trpc/routers'
 
 const { $client } = useNuxtApp()
 
-// const todosKey = getQueryKey($client.todo.getTodos, undefined)
-// const { data } = useNuxtData(todosKey)
+type RouterOutput = inferRouterOutputs<AppRouter>
+
+const todosKey = getQueryKey($client.todo.getTodos, undefined)
+const { data } = useNuxtData<RouterOutput['todo']['getTodos']>(todosKey)
 
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
 
@@ -21,7 +25,9 @@ const addTodo = async () => {
   }
 
   const result = await mutate(newData)
-  // data.value.push(result)
+  if (result) {
+    data.value?.push(result)
+  }
 }
 </script>
 

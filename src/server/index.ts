@@ -14,7 +14,9 @@ export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event) =>
 function getPath(event: H3Event): string | null {
   const { params } = event.context
 
-  if (typeof params?.trpc === 'string') { return params.trpc }
+  if (typeof params?.trpc === 'string') {
+    return params.trpc
+  }
 
   if (params?.trpc && Array.isArray(params.trpc)) {
     return (params.trpc as string[]).join('/')
