@@ -1,12 +1,9 @@
-<p align="center">
-  <figure>
-    <img src="https://trpc-nuxt.vercel.app/cover.jpg" alt="trpc-nuxt cover image" />
-  </figure>
-</p>
-
 # tRPC-Nuxt
 
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
+
+> [!NOTE]
+> You are looking at the branch that supports tRPC v11 which is a work in progress.
 
 <p align="center">
   <figure>
@@ -29,7 +26,7 @@ For version 3 of this module (tRPC v9, auto-imports, auto handlers), [go here](h
 
 ## Acknowledgements
 
-Huge thanks to [Alex / KATT](https://github.com/KATT), the author of [tRPC](https://trpc.io/), for being the first sponsor of this project! 🎉 
+Huge thanks to [Alex / KATT](https://github.com/KATT), the author of [tRPC](https://trpc.io/), for being the first sponsor of this project! 🎉
 
 ## License
 
