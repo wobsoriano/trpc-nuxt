@@ -3,7 +3,11 @@ import type { AnyTRPCRouter } from '@trpc/server'
 import type { inferRouterClient } from '@trpc/client'
 import { getQueryKeyInternal } from './getQueryKey'
 // @ts-expect-error: Nuxt imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, unref, ref, isRef, toRaw } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
+
+function isRefOrGetter<T>(val: T): boolean {
+  return isRef(val) || typeof val === 'function'
+}
 
 function createAbortController(trpc: any) {
   let controller: AbortController | undefined
@@ -45,11 +49,11 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
 
       const controller = createAbortController(trpc)
 
-      const queryKey = customQueryKey || getQueryKeyInternal(path, unref(input))
-      const watch = isRef(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
+      const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
 
-      return useAsyncData(queryKey, () => (client as any)[path].query(unref(input), {
+      return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
         signal: controller?.signal,
         ...trpc,
       }), {
