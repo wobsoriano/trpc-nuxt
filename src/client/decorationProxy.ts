@@ -44,14 +44,13 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
       }
     }
 
-    if (['useQuery', 'useLazyQuery'].includes(lastArg)) {
+    if (lastArg === 'useQuery') {
       const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
 
       const controller = createAbortController(trpc)
 
       const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
       const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
-      const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
 
       return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
         signal: controller?.signal,
@@ -59,7 +58,6 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
       }), {
         ...asyncDataOptions,
         watch,
-        lazy: isLazy,
       })
     }
 
