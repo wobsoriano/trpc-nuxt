@@ -1,6 +1,5 @@
 # Changelog
 
-
 ## v0.10.15
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.14...v0.10.15)
@@ -218,4 +217,3 @@
 ### ❤️  Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
-
