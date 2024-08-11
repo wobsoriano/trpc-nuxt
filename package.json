@@ -3,7 +3,7 @@
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "type": "module",
   "packageManager": "pnpm@9.1.1",
-  "version": "0.11.0-beta.1",
+  "version": "0.11.0-beta.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
