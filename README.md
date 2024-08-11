@@ -1,12 +1,9 @@
-<p align="center">
-  <figure>
-    <img src="https://trpc-nuxt.vercel.app/cover.jpg" alt="trpc-nuxt cover image" />
-  </figure>
-</p>
-
 # tRPC-Nuxt
 
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
+
+> [!NOTE]  
+> Looking for tRPC v11 support? Proceed to [this branch](https://github.com/wobsoriano/trpc-nuxt/tree/trpc-v11) instead.
 
 <p align="center">
   <figure>
