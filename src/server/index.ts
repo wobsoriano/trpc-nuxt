@@ -1,4 +1,4 @@
-import type { HTTPBaseHandlerOptions, ResolveHTTPRequestOptionsContextFn } from '@trpc/server/http'
+import type { HTTPBaseHandlerOptions, ResolveHTTPRequestOptionsContextFn, TRPCRequestInfo } from '@trpc/server/http'
 import { resolveResponse } from '@trpc/server/http'
 import type {
   AnyTRPCRouter,
@@ -9,7 +9,7 @@ import { eventHandler, readBody, toWebRequest } from 'h3'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event) => MaybePromise<inferRouterContext<TRouter>>
+export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, innerOptions: { info: TRPCRequestInfo }) => MaybePromise<inferRouterContext<TRouter>>
 
 function getPath(event: H3Event): string | null {
   const { params } = event.context
@@ -34,10 +34,9 @@ type H3HandlerOptions<
 export function createNuxtApiHandler<TRouter extends AnyTRPCRouter>(opts: H3HandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
     const createContext: ResolveHTTPRequestOptionsContextFn<TRouter> = async (
-      // TODO: Add this inner options to context
       innerOpts,
     ) => {
-      return await opts.createContext?.(event)
+      return await opts.createContext?.(event, innerOpts)
     }
 
     const { req } = event.node

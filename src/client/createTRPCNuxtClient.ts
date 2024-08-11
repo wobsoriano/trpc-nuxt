@@ -1,10 +1,12 @@
-import type { CreateTRPCClientOptions, TRPCClientErrorLike } from '@trpc/client'
+import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike } from '@trpc/client'
 import { createTRPCClientProxy, TRPCUntypedClient } from '@trpc/client'
 import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
+import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type { Unsubscribable } from '@trpc/server/observable'
 import { createNuxtProxyDecoration } from './decorationProxy'
 
 type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T
@@ -17,6 +19,14 @@ type ResolverDef = {
   errorShape: any
 }
 
+type SubscriptionResolver<TDef extends ResolverDef> = (
+  input: TDef['input'],
+  opts?: Partial<
+    TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>
+  > &
+  ProcedureOptions,
+) => Unsubscribable
+
 export type DecorateProcedure<
   TType extends TRPCProcedureType,
   TDef extends ResolverDef,
@@ -24,7 +34,11 @@ export type DecorateProcedure<
   ? DecoratedQuery<TDef>
   : TType extends 'mutation'
     ? DecoratedMutation<TDef>
-    : never
+    : TType extends 'subscription'
+      ? {
+          subscribe: SubscriptionResolver<TDef>
+        }
+      : never
 
 export type DecorateRouterRecord<
   TRoot extends AnyRootTypes,
