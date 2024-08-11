@@ -38,6 +38,6 @@ export const publicProcedure = t.procedure
 export const middleware = t.middleware
 
 /**
-  * @see https://trpc.io/docs/v10/merging-routers
+  * @see https://trpc.io/docs/v10/server/merging-routers
   */
 export const mergeRouters = t.mergeRouters
