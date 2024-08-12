@@ -1,5 +1,5 @@
 import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike } from '@trpc/client'
-import { createTRPCClientProxy, TRPCUntypedClient } from '@trpc/client'
+import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
 import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
@@ -70,7 +70,7 @@ export type DecoratedQuery<TDef extends ResolverDef> = {
   /**
    * @example
    *
-   * const { data } = await $client.todo.getTodos.useQuery()
+   * const { data } = await $trpc.todo.getTodos.useQuery()
    */
   useQuery: <
     TQueryFnData extends TDef['output'] = TDef['output'],
@@ -95,7 +95,7 @@ export type DecoratedMutation<TDef extends ResolverDef> = {
   /**
    * @example
    *
-   * const { mutate } = await $client.todo.addTodo.useMutation()
+   * const { mutate } = await $trpc.todo.addTodo.useMutation()
    * mutate({ text: 'migrate to TRPC v11', completed: false })
    */
   useMutation: <
@@ -114,12 +114,14 @@ export type DecoratedMutation<TDef extends ResolverDef> = {
 }
 
 export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(opts: CreateTRPCClientOptions<TRouter>) {
-  const client = new TRPCUntypedClient<TRouter>(opts)
+  const client = createTRPCUntypedClient<TRouter>(opts)
   const proxy = createTRPCClientProxy<TRouter>(client)
 
-  const decoratedClient = createTRPCFlatProxy((key) => {
-    return createNuxtProxyDecoration(key, proxy as any)
-  }) as DecorateRouterRecord<TRouter['_def']['_config']['$types'], TRouter['_def']['record']>
+  const decoratedClient = createTRPCFlatProxy<
+    DecorateRouterRecord<TRouter['_def']['_config']['$types'], TRouter['_def']['record']>
+  >((key) => {
+    return createNuxtProxyDecoration(key, proxy)
+  })
 
   return decoratedClient
 }

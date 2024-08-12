@@ -7,7 +7,7 @@ export default defineNuxtPlugin(() => {
     links: [
       httpBatchLink({
         url: '/api/trpc',
-        transformer: superjson
+        transformer: superjson,
       }),
     ],
   })
