@@ -5,7 +5,7 @@ import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
-import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type { TRPCRequestOptions, TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
 import type { Unsubscribable } from '@trpc/server/observable'
 import { createNuxtProxyDecoration } from './decorationProxy'
 
@@ -86,6 +86,7 @@ export type DecoratedQuery<TDef extends ResolverDef> = {
        */
       queryKey?: string
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false
+      trpc?: TRPCRequestOptions
     }
   ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>
   query: Resolver<TDef>
@@ -109,6 +110,7 @@ export type DecoratedMutation<TDef extends ResolverDef> = {
      * The function to call to trigger the mutation.
      */
     mutate: (input: TDef['output']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>
+    trpc?: TRPCRequestOptions
   }
   mutate: Resolver<TDef>
 }
