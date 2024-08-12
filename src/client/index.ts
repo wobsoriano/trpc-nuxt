@@ -1,6 +1,4 @@
-import { getQueryKey } from './getQueryKey'
-
-export { getQueryKey }
+export { getQueryKey } from './getQueryKey'
 
 export {
   createTRPCNuxtClient,
