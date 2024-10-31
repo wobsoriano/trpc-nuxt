@@ -3,7 +3,7 @@
 End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 
 > [!NOTE]  
-> Looking for tRPC v11 support? Proceed to [this branch](https://github.com/wobsoriano/trpc-nuxt/tree/trpc-v11) instead.
+> Looking for tRPC v11 support? Proceed to [this branch](https://github.com/wobsoriano/trpc-nuxt/tree/next) instead.
 
 <p align="center">
   <figure>
