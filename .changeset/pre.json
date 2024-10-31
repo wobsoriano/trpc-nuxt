@@ -2,7 +2,11 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "trpc-nuxt": "0.11.0"
+    "trpc-nuxt": "0.11.0",
+    "docs": "0.0.0",
+    "playground": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "many-worms-kneel"
+  ]
 }
