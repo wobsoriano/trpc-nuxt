@@ -7,6 +7,7 @@
     "playground": "0.0.0"
   },
   "changesets": [
-    "many-worms-kneel"
+    "many-worms-kneel",
+    "twenty-rabbits-compete"
   ]
 }
