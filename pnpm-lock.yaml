@@ -25,11 +25,11 @@ importers:
         specifier: ^0.3.13
         version: 0.3.13(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
       '@trpc/client':
-        specifier: ^11.0.0-rc.477
-        version: 11.0.0-rc.477(@trpc/server@11.0.0-rc.477)
+        specifier: ^11.0.0-rc.604
+        version: 11.0.0-rc.604(@trpc/server@11.0.0-rc.604)
       '@trpc/server':
-        specifier: ^11.0.0-rc.477
-        version: 11.0.0-rc.477
+        specifier: ^11.0.0-rc.604
+        version: 11.0.0-rc.604
       eslint:
         specifier: ^9.7.0
         version: 9.9.0(jiti@1.21.6)
@@ -57,12 +57,6 @@ importers:
 
   playground:
     dependencies:
-      '@trpc/client':
-        specifier: ^11.0.0-rc.477
-        version: 11.0.0-rc.477(@trpc/server@11.0.0-rc.477)
-      '@trpc/server':
-        specifier: ^11.0.0-rc.477
-        version: 11.0.0-rc.477
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
@@ -1591,13 +1585,13 @@ packages:
     peerDependencies:
       eslint: '>=8.40.0'
 
-  '@trpc/client@11.0.0-rc.477':
-    resolution: {integrity: sha512-Ah/Er3vxTm2bIEUcIrike7Z/8Yc+DkFveU2ZHQQ0+zY7yxs931438+4OEJuY/Xl/0p5OTDeZTm6HBuZ1REFiyA==}
+  '@trpc/client@11.0.0-rc.604':
+    resolution: {integrity: sha512-7NdYrASHVX9uNcGAREZtKQDbmKksTZpFs+HSIi22ScID/2XeeRmsPFkf+EBlMn+KVZ6KKMYnPYAhD6cNX0llgQ==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.477+a467f8314
+      '@trpc/server': 11.0.0-rc.604+03cd991db
 
-  '@trpc/server@11.0.0-rc.477':
-    resolution: {integrity: sha512-K6zmjRv96fWilqm/ETehEK1DWsy5bSyrs2xbsNzCbjguMgamMhOClRHgYzJcwgLp2kasJ7QgD9YbahOhV1/u1w==}
+  '@trpc/server@11.0.0-rc.604':
+    resolution: {integrity: sha512-JXn6XbheQwj2tWqKnAlWhGnIo6F7cSYWQ3SgPXdq+MCYKJBuSYrurj5NvreNCVAkVZmftjyUlIV+Hs2/se4GNg==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -7798,11 +7792,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@trpc/client@11.0.0-rc.477(@trpc/server@11.0.0-rc.477)':
+  '@trpc/client@11.0.0-rc.604(@trpc/server@11.0.0-rc.604)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.477
+      '@trpc/server': 11.0.0-rc.604
 
-  '@trpc/server@11.0.0-rc.477': {}
+  '@trpc/server@11.0.0-rc.604': {}
 
   '@trysound/sax@0.2.0': {}
 

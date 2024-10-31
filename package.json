@@ -50,8 +50,8 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
     "@nuxt/eslint-config": "^0.3.13",
-    "@trpc/client": "^11.0.0-rc.477",
-    "@trpc/server": "^11.0.0-rc.477",
+    "@trpc/client": "^11.0.0-rc.604",
+    "@trpc/server": "^11.0.0-rc.604",
     "eslint": "^9.7.0",
     "taze": "^0.13.8",
     "tsup": "8.0.2",
