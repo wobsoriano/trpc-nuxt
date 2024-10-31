@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.1-next.1
+
+### Patch Changes
+
+- c1101f2: Release next test
+
 ## 0.11.1-next.0
 
 ### Patch Changes
