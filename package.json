@@ -1,6 +1,6 @@
 {
   "name": "trpc-nuxt",
-  "description": "End-to-end typesafe APIs in Nuxt applications",
+  "description": "End-to-end typesafe APIs in Nuxt applications.",
   "type": "module",
   "packageManager": "pnpm@9.12.0",
   "version": "0.11.0-beta.1",
