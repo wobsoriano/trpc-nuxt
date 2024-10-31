@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.0
+
+### Patch Changes
+
+- 56adae1: test patch for next version
+
 ## v0.10.15
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.14...v0.10.15)
@@ -106,7 +112,7 @@
 
 - Add useLazyQuery composable ([93cb442](https://github.com/wobsoriano/trpc-nuxt/commit/93cb442))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
 
@@ -118,7 +124,7 @@
 
 - Add custom query key option ([f2bcf9b](https://github.com/wobsoriano/trpc-nuxt/commit/f2bcf9b))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
 
@@ -140,7 +146,7 @@
 - **deps:** Bump h3 to 1.8.0 ([3a395a7](https://github.com/wobsoriano/trpc-nuxt/commit/3a395a7))
 - Bump local deps ([dc317c2](https://github.com/wobsoriano/trpc-nuxt/commit/dc317c2))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
 
@@ -156,7 +162,7 @@
 
 - Update Server Side Calls docs ([1c638a8](https://github.com/wobsoriano/trpc-nuxt/commit/1c638a8))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Blechlawine <marczinser@gmx.de>
 - Colonel-Sandvich
@@ -175,12 +181,11 @@
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.4...v0.10.5)
 
-
 ### 🚀 Enhancements
 
-  - Pass input to watched sources if it's a ref ([892d167](https://github.com/wobsoriano/trpc-nuxt/commit/892d167))
+- Pass input to watched sources if it's a ref ([892d167](https://github.com/wobsoriano/trpc-nuxt/commit/892d167))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
 
@@ -188,20 +193,19 @@
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.3...v0.10.4)
 
-
 ### 🚀 Enhancements
 
-  - Add reactive inputs ([054fad9](https://github.com/wobsoriano/trpc-nuxt/commit/054fad9))
+- Add reactive inputs ([054fad9](https://github.com/wobsoriano/trpc-nuxt/commit/054fad9))
 
 ### 📖 Documentation
 
-  - Update local deps ([7683499](https://github.com/wobsoriano/trpc-nuxt/commit/7683499))
+- Update local deps ([7683499](https://github.com/wobsoriano/trpc-nuxt/commit/7683499))
 
 ### 🏡 Chore
 
-  - Remove engines property ([e15a62a](https://github.com/wobsoriano/trpc-nuxt/commit/e15a62a))
+- Remove engines property ([e15a62a](https://github.com/wobsoriano/trpc-nuxt/commit/e15a62a))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
 
@@ -209,11 +213,10 @@
 
 [compare changes](https://github.com/wobsoriano/trpc-nuxt/compare/v0.10.2...v0.10.3)
 
-
 ### 🚀 Enhancements
 
-  - Export createH3ApiHandler for h3 apps ([18cd492](https://github.com/wobsoriano/trpc-nuxt/commit/18cd492))
+- Export createH3ApiHandler for h3 apps ([18cd492](https://github.com/wobsoriano/trpc-nuxt/commit/18cd492))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
