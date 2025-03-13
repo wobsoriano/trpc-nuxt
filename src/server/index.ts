@@ -15,7 +15,15 @@ export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, in
 type H3HandlerOptions<
   TRouter extends AnyTRPCRouter,
 > = Omit<FetchHandlerRequestOptions<TRouter>, 'endpoint' | 'req' | 'createContext'> & {
+  /**
+   * The tRPC API endpoint.
+   * @default '/api/trpc'
+   */
   endpoint?: string
+  /**
+   * A function that returns the tRPC context.
+   * @see https://trpc.io/docs/context
+   */
   createContext?: CreateContextFn<TRouter>
 }
 
