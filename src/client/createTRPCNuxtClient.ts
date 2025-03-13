@@ -1,4 +1,4 @@
-import type { CreateTRPCClientOptions, TRPCClient, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions } from '@trpc/client'
+import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions } from '@trpc/client'
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
 import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
@@ -119,7 +119,9 @@ export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(opts: Create
   const client = createTRPCUntypedClient<TRouter>(opts)
   const proxy = createTRPCClientProxy<TRouter>(client)
 
-  const decoratedClient = createTRPCFlatProxy<TRPCClient<TRouter>>((key) => {
+  const decoratedClient = createTRPCFlatProxy<
+    DecorateRouterRecord<TRouter['_def']['_config']['$types'], TRouter['_def']['record']>
+  >((key) => {
     return createNuxtProxyDecoration(key, proxy)
   })
 
