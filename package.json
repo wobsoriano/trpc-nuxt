@@ -39,8 +39,8 @@
     "update-deps": "taze -w && pnpm i"
   },
   "peerDependencies": {
-    "@trpc/client": "^11.0.0-rc.1",
-    "@trpc/server": "^11.0.0-rc.1"
+    "@trpc/client": "^11.0.0-rc.802",
+    "@trpc/server": "^11.0.0-rc.802"
   },
   "dependencies": {
     "h3": "^1.15.1",
