@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.1-next.3
+
+### Patch Changes
+
+- 060a36e: - Migrate to `fetchRequestHandler` to support Fetch/Edge runtimes.
+  - Remove most of internal tRPC imports
+
 ## 0.11.1-next.2
 
 ### Patch Changes
