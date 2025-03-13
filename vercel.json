@@ -2,7 +2,8 @@
   "git": {
     "deploymentEnabled": {
       "main": true,
-      "preview": false
+      "next": false,
+      "fetch-request-handler": false
     }
   }
 }
