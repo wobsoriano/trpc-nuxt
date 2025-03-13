@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.1-next.2
+
+### Patch Changes
+
+- a91a74c: Fix incorrect mutate input type
+
 ## 0.11.1-next.1
 
 ### Patch Changes
