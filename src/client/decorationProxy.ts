@@ -3,7 +3,7 @@ import type { AnyTRPCRouter } from '@trpc/server'
 import type { TRPCClient } from '@trpc/client'
 import { getQueryKeyInternal } from './getQueryKey'
 // @ts-expect-error: Nuxt imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
+import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, shallowRef, isRef, toRaw } from '#imports'
 
 function isRefOrGetter<T>(val: T): boolean {
   return isRef(val) || typeof val === 'function'
@@ -64,7 +64,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
     if (lastArg === 'useMutation') {
       const { trpc, ...asyncDataOptions } = otherOptions || {} as any
 
-      const payload = ref(null)
+      const payload = shallowRef(null)
 
       const controller = createAbortController(trpc)
 
