@@ -1,8 +1,8 @@
-import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike } from '@trpc/client'
+import type { CreateTRPCClientOptions, TRPCClient, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions } from '@trpc/client'
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
 import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
-import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
+import type { AnyRootTypes, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
 import type { TRPCRequestOptions, TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
@@ -24,7 +24,7 @@ type SubscriptionResolver<TDef extends ResolverDef> = (
   opts?: Partial<
     TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>
   > &
-  ProcedureOptions,
+  TRPCProcedureOptions,
 ) => Unsubscribable
 
 export type DecorateProcedure<
@@ -63,7 +63,7 @@ export type DecorateRouterRecord<
 
 type Resolver<TDef extends ResolverDef> = (
   input: TDef['input'],
-  opts?: ProcedureOptions,
+  opts?: TRPCProcedureOptions,
 ) => Promise<TDef['output']>
 
 export type DecoratedQuery<TDef extends ResolverDef> = {
@@ -119,9 +119,7 @@ export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(opts: Create
   const client = createTRPCUntypedClient<TRouter>(opts)
   const proxy = createTRPCClientProxy<TRouter>(client)
 
-  const decoratedClient = createTRPCFlatProxy<
-    DecorateRouterRecord<TRouter['_def']['_config']['$types'], TRouter['_def']['record']>
-  >((key) => {
+  const decoratedClient = createTRPCFlatProxy<TRPCClient<TRouter>>((key) => {
     return createNuxtProxyDecoration(key, proxy)
   })
 

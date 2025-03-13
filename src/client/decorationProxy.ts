@@ -1,6 +1,6 @@
 import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import'
 import type { AnyTRPCRouter } from '@trpc/server'
-import type { inferRouterClient } from '@trpc/client'
+import type { TRPCClient } from '@trpc/client'
 import { getQueryKeyInternal } from './getQueryKey'
 // @ts-expect-error: Nuxt imports
 import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
@@ -24,7 +24,7 @@ function createAbortController(trpc: any) {
   return controller
 }
 
-export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string, client: inferRouterClient<TRouter>) {
+export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string | number | symbol, client: TRPCClient<TRouter>) {
   return createRecursiveProxy((opts) => {
     const args = opts.args
 

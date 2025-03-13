@@ -1,65 +1,37 @@
-import type { HTTPBaseHandlerOptions, ResolveHTTPRequestOptionsContextFn, TRPCRequestInfo } from '@trpc/server/http'
-import { resolveResponse } from '@trpc/server/http'
 import type {
   AnyTRPCRouter,
   inferRouterContext,
 } from '@trpc/server'
-import type { H3Event, NodeIncomingMessage } from 'h3'
-import { eventHandler, readBody, toWebRequest } from 'h3'
+import type { H3Event } from 'h3'
+import { eventHandler, toWebRequest } from 'h3'
+import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch'
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, innerOptions: { info: TRPCRequestInfo }) => MaybePromise<inferRouterContext<TRouter>>
-
-function getPath(event: H3Event): string | null {
-  const { params } = event.context
-
-  if (typeof params?.trpc === 'string') {
-    return params.trpc
-  }
-
-  if (params?.trpc && Array.isArray(params.trpc)) {
-    return (params.trpc as string[]).join('/')
-  }
-
-  return null
-}
+export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, innerOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>
 
 type H3HandlerOptions<
   TRouter extends AnyTRPCRouter,
-> = HTTPBaseHandlerOptions<TRouter, NodeIncomingMessage> & {
+> = Omit<FetchHandlerRequestOptions<TRouter>, 'endpoint' | 'req' | 'createContext'> & {
+  endpoint?: string
   createContext?: CreateContextFn<TRouter>
 }
 
 export function createNuxtApiHandler<TRouter extends AnyTRPCRouter>(opts: H3HandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
-    const createContext: ResolveHTTPRequestOptionsContextFn<TRouter> = async (
+    const createContext: FetchCreateContextFn<TRouter> = async (
       innerOpts,
     ) => {
       return await opts.createContext?.(event, innerOpts)
     }
 
-    const { req } = event.node
-
-    const path = getPath(event)!
-
-    // monkey-patch body to the IncomingMessage
-    if (event.method === 'POST') {
-      (req as any).body = await readBody(event)
-    }
-
-    const httpResponse = await resolveResponse({
+    const httpResponse = await fetchRequestHandler({
       ...opts,
+      endpoint: opts.endpoint || '/api/trpc',
+      router: opts.router,
       req: toWebRequest(event),
-      error: null,
       createContext,
-      path,
-      onError(o) {
-        opts.onError?.({
-          ...o,
-          req,
-        })
-      },
     })
 
     return httpResponse
