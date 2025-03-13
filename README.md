@@ -22,6 +22,16 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 npm install trpc-nuxt@next @trpc/server@next @trpc/client@next
 ```
 
+Add `trpc-nuxt` to your `nuxt.config.ts`'s `build.transpile`:
+
+```ts
+export default defineNuxtConfig({
+  build: {
+    transpile: ['trpc-nuxt']
+  }
+})
+```
+
 ## Setup
 
 ### 1. Create your [tRPC router](https://trpc.io/docs/server/routers):
