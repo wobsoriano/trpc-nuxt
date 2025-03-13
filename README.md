@@ -19,7 +19,7 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 ## Installation
 
 ```bash
-npm install trpc-nuxt @trpc/server @trpc/client
+npm install trpc-nuxt@next @trpc/server@next @trpc/client@next
 ```
 
 ## Setup
@@ -28,7 +28,7 @@ npm install trpc-nuxt @trpc/server @trpc/client
 
 ```ts
 // server/trpc/trpc.ts
-import { initTRPC } from '@trpc/server'
+import { initTRPC } from 'trpc-nuxt/server'
 import type { Context } from './context'
 
 export const t = initTRPC.context<Context>().create();
@@ -100,11 +100,11 @@ export default defineNuxtPlugin(() => {
 <script setup lang="ts">
 const { $client } = useNuxtApp()
 
-const { data: hello } = await $client.hello.useQuery({ name: 'World' })
+const { data: greeting } = await $client.greeting.useQuery()
 </script>
 
 <template>
-  <div>{{ hello }}</div>
+  <div>{{ greeting }}</div>
 </template>
 ```
 
