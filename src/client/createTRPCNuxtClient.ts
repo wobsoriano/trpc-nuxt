@@ -109,7 +109,7 @@ export type DecoratedMutation<TDef extends ResolverDef> = {
     /**
      * The function to call to trigger the mutation.
      */
-    mutate: (input: TDef['output']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>
+    mutate: (input: TDef['input']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>
     trpc?: TRPCRequestOptions
   }
   mutate: Resolver<TDef>
