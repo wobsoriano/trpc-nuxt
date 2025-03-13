@@ -38,7 +38,7 @@ export default defineNuxtConfig({
 
 ```ts
 // server/trpc/trpc.ts
-import { initTRPC } from 'trpc-nuxt/server'
+import { initTRPC } from '@trpc/server'
 import type { Context } from './context'
 
 export const t = initTRPC.context<Context>().create();
@@ -75,7 +75,7 @@ import { router } from '~/server/trpc/trpc'
 import { createContext } from '~/server/trpc/context'
 
 export default createNuxtApiHandler({
-  endpoint: '/api/trpc' // default endpoint is /api/trpc
+  endpoint: '/api/trpc', // default endpoint is /api/trpc
   router,
   createContext,
 })
