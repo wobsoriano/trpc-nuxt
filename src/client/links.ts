@@ -7,6 +7,7 @@ import {
 import type { FetchError } from 'ofetch'
 import type { AnyTRPCRouter } from '@trpc/server'
 import type { FetchEsque } from '@trpc/client/dist/internals/types'
+import { defaultEndpoint } from '../utils'
 // @ts-expect-error: Nuxt auto-imports
 import { useRequestHeaders } from '#imports'
 
@@ -51,7 +52,7 @@ export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: H
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpLink({
-    url: '/api/trpc',
+    url: defaultEndpoint,
     headers() {
       return headers
     },
@@ -82,7 +83,7 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLin
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpBatchLink({
-    url: '/api/trpc',
+    url: defaultEndpoint,
     headers() {
       return headers
     },

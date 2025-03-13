@@ -6,6 +6,7 @@ import type { H3Event } from 'h3'
 import { eventHandler, toWebRequest } from 'h3'
 import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
+import { defaultEndpoint } from '../utils'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -28,7 +29,7 @@ export function createNuxtApiHandler<TRouter extends AnyTRPCRouter>(opts: H3Hand
 
     const httpResponse = await fetchRequestHandler({
       ...opts,
-      endpoint: opts.endpoint || '/api/trpc',
+      endpoint: opts.endpoint || defaultEndpoint,
       router: opts.router,
       req: toWebRequest(event),
       createContext,
