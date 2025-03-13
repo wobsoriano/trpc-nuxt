@@ -1,14 +1,9 @@
 export default defineNuxtConfig({
+  extends: process.env.DOCUS_THEME_PATH || '@nuxt-themes/docus',
+  modules: ['@nuxtlabs/github-module'],
   app: {
     pageTransition: false,
     layoutTransition: false,
-  },
-  modules: ['@nuxtlabs/github-module'],
-  extends: process.env.DOCUS_THEME_PATH || '@nuxt-themes/docus',
-  github: {
-    owner: 'wobsoriano',
-    repo: 'trpc-nuxt',
-    branch: 'next',
   },
   colorMode: {
     preference: 'dark',
@@ -16,10 +11,15 @@ export default defineNuxtConfig({
   build: {
     transpile: [/content-edge/, /github-module/],
   },
+  routeRules: {
+    '/': { prerender: true },
+  },
   nitro: {
     preset: 'vercel',
   },
-  routeRules: {
-    '/': { prerender: true },
+  github: {
+    owner: 'wobsoriano',
+    repo: 'trpc-nuxt',
+    branch: 'next',
   },
 })

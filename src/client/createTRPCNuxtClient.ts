@@ -1,11 +1,11 @@
-import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions } from '@trpc/client'
+import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client'
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
 import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 import type { AnyRootTypes, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
-import type { TRPCRequestOptions, TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
 import type { Unsubscribable } from '@trpc/server/observable'
 import { createNuxtProxyDecoration } from './decorationProxy'
 
