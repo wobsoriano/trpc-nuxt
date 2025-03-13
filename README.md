@@ -81,7 +81,7 @@ export default defineNuxtPlugin(() => {
   const client = createTRPCNuxtClient<Router>({
     links: [
       httpBatchLink({
-        endpoint: '/api/trpc' // default endpoint is /api/trpc
+        url: '/api/trpc' // default endpoint is /api/trpc
       }),
     ],
   })
