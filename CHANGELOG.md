@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.1-next.4
+
+### Patch Changes
+
+- 7c495c9: Use correct versions when installing
+
 ## 0.11.1-next.3
 
 ### Patch Changes
