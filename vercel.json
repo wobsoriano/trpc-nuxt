@@ -1,0 +1,9 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "next": false,
+      "fetch-request-handler": false
+    }
+  }
+}

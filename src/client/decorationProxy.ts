@@ -1,9 +1,8 @@
-import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import'
-import type { AnyTRPCRouter } from '@trpc/server'
-import type { inferRouterClient } from '@trpc/client'
+import { createTRPCRecursiveProxy, type AnyTRPCRouter } from '@trpc/server'
+import type { TRPCClient } from '@trpc/client'
+import { getCurrentInstance, onScopeDispose, toValue, shallowRef, isRef, toRaw } from 'vue'
+import { useAsyncData } from 'nuxt/app'
 import { getQueryKeyInternal } from './getQueryKey'
-// @ts-expect-error: Nuxt imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
 
 function isRefOrGetter<T>(val: T): boolean {
   return isRef(val) || typeof val === 'function'
@@ -24,8 +23,8 @@ function createAbortController(trpc: any) {
   return controller
 }
 
-export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string, client: inferRouterClient<TRouter>) {
-  return createRecursiveProxy((opts) => {
+export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string | number | symbol, client: TRPCClient<TRouter>) {
+  return createTRPCRecursiveProxy((opts) => {
     const args = opts.args
 
     const pathCopy = [name, ...opts.path]
@@ -64,7 +63,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
     if (lastArg === 'useMutation') {
       const { trpc, ...asyncDataOptions } = otherOptions || {} as any
 
-      const payload = ref(null)
+      const payload = shallowRef(null)
 
       const controller = createAbortController(trpc)
 

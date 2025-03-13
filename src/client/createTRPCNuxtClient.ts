@@ -1,11 +1,12 @@
-import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike } from '@trpc/client'
+import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client'
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
-import { createTRPCFlatProxy, type AnyTRPCProcedure, type AnyTRPCRouter, type TRPCProcedureType, type inferProcedureInput, type inferTransformedProcedureOutput } from '@trpc/server'
+import type { AnyTRPCRootTypes, AnyTRPCProcedure, AnyTRPCRouter, TRPCProcedureType, inferProcedureInput, inferTransformedProcedureOutput } from '@trpc/server'
+import { createTRPCFlatProxy } from '@trpc/server'
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
-import type { AnyRootTypes, ProcedureOptions, RouterRecord } from '@trpc/server/unstable-core-do-not-import'
+import type { RouterRecord } from '@trpc/server/unstable-core-do-not-import'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
-import type { TRPCRequestOptions, TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
 import type { Unsubscribable } from '@trpc/server/observable'
 import { createNuxtProxyDecoration } from './decorationProxy'
 
@@ -24,7 +25,7 @@ type SubscriptionResolver<TDef extends ResolverDef> = (
   opts?: Partial<
     TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>
   > &
-  ProcedureOptions,
+  TRPCProcedureOptions,
 ) => Unsubscribable
 
 export type DecorateProcedure<
@@ -41,7 +42,7 @@ export type DecorateProcedure<
       : never
 
 export type DecorateRouterRecord<
-  TRoot extends AnyRootTypes,
+  TRoot extends AnyTRPCRootTypes,
   TRecord extends RouterRecord,
 > = {
   [TKey in keyof TRecord]: TRecord[TKey] extends infer $Value
@@ -63,7 +64,7 @@ export type DecorateRouterRecord<
 
 type Resolver<TDef extends ResolverDef> = (
   input: TDef['input'],
-  opts?: ProcedureOptions,
+  opts?: TRPCProcedureOptions,
 ) => Promise<TDef['output']>
 
 export type DecoratedQuery<TDef extends ResolverDef> = {
