@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       h3:
-        specifier: ^1.11.1
-        version: 1.12.0
+        specifier: ^1.15.1
+        version: 1.15.1
       ofetch:
-        specifier: ^1.3.4
-        version: 1.3.4
+        specifier: ^1.4.1
+        version: 1.4.1
       ohash:
-        specifier: ^1.1.3
-        version: 1.1.3
+        specifier: ^2.0.11
+        version: 2.0.11
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.9
@@ -2419,6 +2419,9 @@ packages:
       uWebSockets.js:
         optional: true
 
+  crossws@0.3.4:
+    resolution: {integrity: sha512-uj0O1ETYX1Bh6uSgktfPvwDiPYGQ3aI4qVsaC/LWpkIzGj1nUYm5FK3K+t11oOlpN01lGbprFCH4wBlKdJjVgw==}
+
   css-declaration-sorter@7.2.0:
     resolution: {integrity: sha512-h70rUM+3PNFuaBDTLe8wF/cdWu+dOZmb7pJt8Z2sedYbAcQVQV/tEchueg3GWxwqS0cxtbxmaHEdkNACqcvsow==}
     engines: {node: ^14 || ^16 || >=18}
@@ -3130,6 +3133,9 @@ packages:
 
   h3@1.12.0:
     resolution: {integrity: sha512-Zi/CcNeWBXDrFNlV0hUBJQR9F7a96RjMeAZweW/ZWkR9fuXrMcvKnSA63f/zZ9l0GgQOZDVHGvXivNN9PWOwhA==}
+
+  h3@1.15.1:
+    resolution: {integrity: sha512-+ORaOBttdUm1E2Uu/obAyCguiI7MbBvsLTndc3gyK3zU+SYLoZXlyCP9Xgy0gikkGufFLTZXCXD6+4BsufnmHA==}
 
   has-flag@3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
@@ -4071,6 +4077,9 @@ packages:
     resolution: {integrity: sha512-OSs33Z9yWr148JZcbZd5WiAXhh/n9z8TxQcdMhIOlpN9AhWpLfvVFO73+m77bBABQMaY9XSvIa+qk0jlI7Gcaw==}
     hasBin: true
 
+  node-mock-http@1.0.0:
+    resolution: {integrity: sha512-0uGYQ1WQL1M5kKvGRXWQ3uZCHtLTO8hln3oBjIusM75WoesZ909uQJs/Hb946i2SS+Gsrhkaa6iAO17jRIv6DQ==}
+
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
 
@@ -4170,8 +4179,14 @@ packages:
   ofetch@1.3.4:
     resolution: {integrity: sha512-KLIET85ik3vhEfS+3fDlc/BAZiAp+43QEC/yCo5zkNoY2YaKvNkOaFr/6wCFgFH1kuYQM5pMNi0Tg8koiIemtw==}
 
+  ofetch@1.4.1:
+    resolution: {integrity: sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw==}
+
   ohash@1.1.3:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
+
+  ohash@2.0.11:
+    resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -7196,7 +7211,7 @@ snapshots:
       jiti: 1.21.6
       mri: 1.2.0
       nanoid: 5.0.7
-      ofetch: 1.3.4
+      ofetch: 1.4.1
       parse-git-config: 3.0.0
       pathe: 1.1.2
       rc9: 2.1.2
@@ -7225,7 +7240,7 @@ snapshots:
       externality: 1.0.2
       fs-extra: 11.2.0
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.15.1
       knitwork: 1.1.0
       magic-string: 0.30.11
       mlly: 1.7.1
@@ -7262,7 +7277,6 @@ snapshots:
       - supports-color
       - terser
       - typescript
-      - uWebSockets.js
       - vls
       - vti
       - vue-tsc
@@ -7283,7 +7297,7 @@ snapshots:
       estree-walker: 3.0.3
       externality: 1.0.2
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.15.1
       knitwork: 1.1.0
       magic-string: 0.30.11
       mlly: 1.7.1
@@ -7321,7 +7335,6 @@ snapshots:
       - supports-color
       - terser
       - typescript
-      - uWebSockets.js
       - vls
       - vti
       - vue-tsc
@@ -8764,6 +8777,10 @@ snapshots:
 
   crossws@0.2.4: {}
 
+  crossws@0.3.4:
+    dependencies:
+      uncrypto: 0.1.3
+
   css-declaration-sorter@7.2.0(postcss@8.4.41):
     dependencies:
       postcss: 8.4.41
@@ -9711,6 +9728,18 @@ snapshots:
     transitivePeerDependencies:
       - uWebSockets.js
 
+  h3@1.15.1:
+    dependencies:
+      cookie-es: 1.2.2
+      crossws: 0.3.4
+      defu: 6.1.4
+      destr: 2.0.3
+      iron-webcrypto: 1.2.1
+      node-mock-http: 1.0.0
+      radix3: 1.1.2
+      ufo: 1.5.4
+      uncrypto: 0.1.3
+
   has-flag@3.0.0: {}
 
   has-flag@4.0.0: {}
@@ -10111,7 +10140,7 @@ snapshots:
       crossws: 0.2.4
       defu: 6.1.4
       get-port-please: 3.1.2
-      h3: 1.12.0
+      h3: 1.15.1
       http-shutdown: 1.2.2
       jiti: 1.21.6
       mlly: 1.7.1
@@ -10936,7 +10965,7 @@ snapshots:
       fs-extra: 11.2.0
       globby: 14.0.2
       gzip-size: 7.0.0
-      h3: 1.12.0
+      h3: 1.15.1
       hookable: 5.5.3
       httpxy: 0.1.5
       ioredis: 5.4.1
@@ -10949,7 +10978,7 @@ snapshots:
       mlly: 1.7.1
       mri: 1.2.0
       node-fetch-native: 1.6.4
-      ofetch: 1.3.4
+      ofetch: 1.4.1
       ohash: 1.1.3
       openapi-typescript: 6.7.6
       pathe: 1.1.2
@@ -11015,6 +11044,8 @@ snapshots:
   node-forge@1.3.1: {}
 
   node-gyp-build@4.8.1: {}
+
+  node-mock-http@1.0.0: {}
 
   node-releases@2.0.18: {}
 
@@ -11332,7 +11363,15 @@ snapshots:
       node-fetch-native: 1.6.4
       ufo: 1.5.4
 
+  ofetch@1.4.1:
+    dependencies:
+      destr: 2.0.3
+      node-fetch-native: 1.6.4
+      ufo: 1.5.4
+
   ohash@1.1.3: {}
+
+  ohash@2.0.11: {}
 
   on-finished@2.4.1:
     dependencies:
@@ -12904,12 +12943,12 @@ snapshots:
       anymatch: 3.1.3
       chokidar: 3.6.0
       destr: 2.0.3
-      h3: 1.12.0
+      h3: 1.15.1
       listhen: 1.7.2
       lru-cache: 10.4.3
       mri: 1.2.0
       node-fetch-native: 1.6.4
-      ofetch: 1.3.4
+      ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
       ioredis: 5.4.1
