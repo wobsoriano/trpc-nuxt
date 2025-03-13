@@ -35,8 +35,7 @@
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "pnpm build && changeset publish",
-    "update-deps": "taze -w && pnpm i"
+    "release": "pnpm build && changeset publish"
   },
   "peerDependencies": {
     "@trpc/client": "^11.0.0-rc.802",
@@ -48,13 +47,12 @@
     "ohash": "^2.0.11"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
-    "@nuxt/eslint-config": "^0.3.13",
+    "@changesets/cli": "^2.28.1",
+    "@nuxt/eslint-config": "^1.2.0",
     "@trpc/client": "^11.0.0-rc.828",
     "@trpc/server": "^11.0.0-rc.828",
-    "eslint": "^9.7.0",
-    "taze": "^0.13.8",
-    "tsup": "8.0.2",
+    "eslint": "^9.22.0",
+    "tsup": "8.4.0",
     "typescript": "^5.4.5"
   }
 }
