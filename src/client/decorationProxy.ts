@@ -1,9 +1,9 @@
 import { createRecursiveProxy } from '@trpc/server/unstable-core-do-not-import'
 import type { AnyTRPCRouter } from '@trpc/server'
 import type { TRPCClient } from '@trpc/client'
+import { getCurrentInstance, onScopeDispose, toValue, shallowRef, isRef, toRaw } from 'vue'
+import { useAsyncData } from 'nuxt/app'
 import { getQueryKeyInternal } from './getQueryKey'
-// @ts-expect-error: Nuxt imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, shallowRef, isRef, toRaw } from '#imports'
 
 function isRefOrGetter<T>(val: T): boolean {
   return isRef(val) || typeof val === 'function'

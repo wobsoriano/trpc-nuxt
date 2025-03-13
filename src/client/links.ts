@@ -7,9 +7,8 @@ import {
 import type { FetchError } from 'ofetch'
 import type { AnyTRPCRouter } from '@trpc/server'
 import type { FetchEsque } from '@trpc/client/dist/internals/types'
+import { useRequestHeaders } from 'nuxt/app'
 import { defaultEndpoint } from '../utils'
-// @ts-expect-error: Nuxt auto-imports
-import { useRequestHeaders } from '#imports'
 
 function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError'
@@ -49,6 +48,7 @@ export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TR
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: HTTPLinkOptions<TRouter>) {
+  // @ts-expect-error: Default to undefined to get all request headers
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpLink({
@@ -80,6 +80,7 @@ export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLink
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
+  // @ts-expect-error: Default to undefined to get all request headers
   const headers = useRequestHeaders(opts?.pickHeaders)
 
   return _httpBatchLink({

@@ -5,6 +5,6 @@ export default defineConfig({
   format: ['esm'],
   splitting: false,
   clean: true,
-  external: ['#app', '#imports', /@trpc\/client/, /@trpc\/server/],
+  external: ['nuxt', 'vue', /@trpc\/client/, /@trpc\/server/],
   dts: true,
 })
