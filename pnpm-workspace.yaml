@@ -1,3 +1,11 @@
 packages:
   - .
-  - playground
+  - apps/*
+catalog:
+  nuxt: 3.16.1
+  '@trpc/client': ^11.0.0
+  '@trpc/server': ^11.0.0
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - sharp

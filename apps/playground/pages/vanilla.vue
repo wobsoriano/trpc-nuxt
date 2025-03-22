@@ -42,7 +42,8 @@ const addTodo = async () => {
     if (result) {
       todos.value?.push(result)
     }
-  } catch (err) {
+  }
+  catch (err) {
     if (isTRPCClientError(err)) {
       console.log('trpc error!', err)
     }

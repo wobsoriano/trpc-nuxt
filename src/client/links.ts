@@ -8,7 +8,7 @@ import type { FetchError } from 'ofetch'
 import type { AnyTRPCRouter } from '@trpc/server'
 import type { FetchEsque } from '@trpc/client/dist/internals/types'
 import { useRequestHeaders } from 'nuxt/app'
-import { defaultEndpoint } from '../utils'
+import { defaultEndpoint } from '../shared'
 
 function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError'

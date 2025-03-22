@@ -19,7 +19,7 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 ## Installation
 
 ```bash
-npm install trpc-nuxt@next @trpc/server@next @trpc/client@next
+npm install trpc-nuxt @trpc/server @trpc/client
 ```
 
 Add `trpc-nuxt` to your `nuxt.config.ts`'s `build.transpile`:
@@ -70,11 +70,11 @@ export type Context = Awaited<ReturnType<typeof createContext>>
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { createNuxtApiHandler } from 'trpc-nuxt/server'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
 import { router } from '~/server/trpc/trpc'
 import { createContext } from '~/server/trpc/context'
 
-export default createNuxtApiHandler({
+export default createTRPCNuxtHandler({
   endpoint: '/api/trpc', // default endpoint is /api/trpc
   router,
   createContext,
@@ -88,7 +88,7 @@ import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
 import type { Router } from '~/server/trpc/trpc'
 
 export default defineNuxtPlugin(() => {
-  const client = createTRPCNuxtClient<Router>({
+  const trpc = createTRPCNuxtClient<Router>({
     links: [
       httpBatchLink({
         url: '/api/trpc' // default endpoint is /api/trpc
@@ -98,7 +98,7 @@ export default defineNuxtPlugin(() => {
 
   return {
     provide: {
-      client,
+      trpc,
     },
   }
 })
@@ -108,9 +108,9 @@ export default defineNuxtPlugin(() => {
 
 ```vue
 <script setup lang="ts">
-const { $client } = useNuxtApp()
+const { $trpc } = useNuxtApp()
 
-const { data: greeting } = await $client.greeting.useQuery()
+const { data: greeting } = await $trpc.greeting.useQuery()
 </script>
 
 <template>

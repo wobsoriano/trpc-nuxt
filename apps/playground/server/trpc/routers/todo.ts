@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { $fetch } from 'ofetch'
 import { publicProcedure, router } from '../trpc'
 
 const baseURL = 'https://jsonplaceholder.typicode.com'
