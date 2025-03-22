@@ -19,7 +19,7 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 ## Installation
 
 ```bash
-npm install trpc-nuxt @trpc/server @trpc/client
+npm install trpc-nuxt@next @trpc/server @trpc/client
 ```
 
 Add `trpc-nuxt` to your `nuxt.config.ts`'s `build.transpile`:
