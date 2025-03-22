@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.1
+
+### Patch Changes
+
+- ec1d9bf: Next patch before major
+- 4e02015: Initial next version
+- 060a36e: - Migrate to `fetchRequestHandler` to support Fetch/Edge runtimes.
+  - Remove most of internal tRPC imports
+- a91a74c: Fix incorrect mutate input type
+- 7c495c9: Use correct versions when installing
+- c1101f2: Release next test
+
 ## 0.11.1-next.5
 
 ### Patch Changes
