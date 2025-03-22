@@ -10,9 +10,9 @@ The magic of tRPC is making strongly typed API calls without relying on code gen
 Create a typesafe client via a Nuxt [plugin](https://nuxt.com/docs/guide/directory-structure/plugins) with the `createTRPCNuxtClient` function from `trpc-nuxt/client`, and add a `links` array with a [terminating link](https://trpc.io/docs/links#the-terminating-link). If you want to learn more about tRPC links, check out the docs [here](https://trpc.io/docs/links):
 
 ```ts
+import type { AppRouter } from '~/server/trpc/routers';
 // plugins/trpc.ts
-import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
-import type { AppRouter } from '~/server/trpc/routers'
+import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client';
 
 export default defineNuxtPlugin(() => {
   const trpc = createTRPCNuxtClient<AppRouter>({
@@ -21,21 +21,21 @@ export default defineNuxtPlugin(() => {
         url: '/api/trpc',
       }),
     ],
-  })
+  });
 
   return {
     provide: {
       trpc,
     },
-  }
-})
+  };
+});
 ```
 
 As you can see, we passed `AppRouter` as a type argument of `createTRPCNuxtClient`. This returns a strongly typed client instance, a proxy that mirrors the structure of your `AppRouter` on the client:
 
 ```vue
 <script setup lang="ts">
-const { $trpc } = useNuxtApp()
+const { $trpc } = useNuxtApp();
 
 // With composables
 
@@ -45,7 +45,6 @@ const getUser = await $trpc.getUser.useQuery('id_bilbo');
 const createUser = await $trpc.createUser.useMutation();
 await createUser.mutate({ name: 'Frodo' });
 // => { id: 'id_frodo', name: 'Frodo' };
-
 
 // With vanilla
 

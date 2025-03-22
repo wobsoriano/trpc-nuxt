@@ -1,55 +1,56 @@
-import { createTRPCRecursiveProxy, type AnyTRPCRouter } from '@trpc/server'
-import type { TRPCClient } from '@trpc/client'
-import { getCurrentInstance, onScopeDispose, toValue, shallowRef, isRef, toRaw } from 'vue'
-import { useAsyncData } from 'nuxt/app'
-import { getQueryKeyInternal } from './getQueryKey'
+import type { TRPCClient } from '@trpc/client';
+import type { AnyTRPCRouter } from '@trpc/server';
+import { createTRPCRecursiveProxy } from '@trpc/server';
+import { useAsyncData } from 'nuxt/app';
+import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue';
+import { getQueryKeyInternal } from './getQueryKey';
 
 function isRefOrGetter<T>(val: T): boolean {
-  return isRef(val) || typeof val === 'function'
+  return isRef(val) || typeof val === 'function';
 }
 
 function createAbortController(trpc: any) {
-  let controller: AbortController | undefined
+  let controller: AbortController | undefined;
 
   if (trpc?.abortOnUnmount) {
     if (getCurrentInstance()) {
       onScopeDispose(() => {
-        controller?.abort?.()
-      })
+        controller?.abort?.();
+      });
     }
-    controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController
+    controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController;
   }
 
-  return controller
+  return controller;
 }
 
 export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string | number | symbol, client: TRPCClient<TRouter>) {
   return createTRPCRecursiveProxy((opts) => {
-    const args = opts.args
+    const args = opts.args;
 
-    const pathCopy = [name, ...opts.path]
+    const pathCopy = [name, ...opts.path];
 
     // The last arg is for instance `.useMutation` or `.useQuery()`
-    const lastArg = pathCopy.pop()!
+    const lastArg = pathCopy.pop()!;
 
     // The `path` ends up being something like `post.byId`
-    const path = pathCopy.join('.')
+    const path = pathCopy.join('.');
 
-    const [input, otherOptions] = args
+    const [input, otherOptions] = args;
 
     if (lastArg === '_def') {
       return {
         path: pathCopy,
-      }
+      };
     }
 
     if (lastArg === 'useQuery') {
-      const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any
+      const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = otherOptions || {} as any;
 
-      const controller = createAbortController(trpc)
+      const controller = createAbortController(trpc);
 
-      const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
-      const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
+      const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input));
+      const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch;
 
       return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
         signal: controller?.signal,
@@ -57,15 +58,15 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
       }), {
         ...asyncDataOptions,
         watch,
-      })
+      });
     }
 
     if (lastArg === 'useMutation') {
-      const { trpc, ...asyncDataOptions } = otherOptions || {} as any
+      const { trpc, ...asyncDataOptions } = otherOptions || {} as any;
 
-      const payload = shallowRef(null)
+      const payload = shallowRef(null);
 
-      const controller = createAbortController(trpc)
+      const controller = createAbortController(trpc);
 
       const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
         signal: controller?.signal,
@@ -73,19 +74,19 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
       }), {
         ...asyncDataOptions,
         immediate: false,
-      })
+      });
 
       async function mutate(input: any) {
-        payload.value = input
-        await asyncData.execute()
-        return toRaw(asyncData.data.value)
+        payload.value = input;
+        await asyncData.execute();
+        return toRaw(asyncData.data.value);
       }
 
-      Object.assign(asyncData, { mutate })
+      Object.assign(asyncData, { mutate });
 
-      return asyncData
+      return asyncData;
     }
 
-    return (client as any)[path][lastArg](...args)
-  })
+    return (client as any)[path][lastArg](...args);
+  });
 }

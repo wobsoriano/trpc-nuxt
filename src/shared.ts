@@ -1,1 +1,1 @@
-export const defaultEndpoint = '/api/trpc'
+export const defaultEndpoint = '/api/trpc';

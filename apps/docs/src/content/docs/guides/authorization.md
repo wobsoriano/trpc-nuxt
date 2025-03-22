@@ -8,27 +8,27 @@ The `createContext` function is called for each incoming request so here you can
 ## Create context from request headers
 
 ```ts
-import { decodeAndVerifyJwtToken } from './somewhere/in/your/app/utils'
 import type { H3Event } from 'h3';
+import { decodeAndVerifyJwtToken } from './somewhere/in/your/app/utils';
 
-export const createTRPCContext = async (event: H3Event) => {
+export async function createTRPCContext(event: H3Event) {
   // Create your context based on the event object
   // Will be available as `ctx` in all your resolvers
 
   // This is just an example of something you might want to do in your ctx fn
-  const authorization = getRequestHeader(event, 'authorization')
+  const authorization = getRequestHeader(event, 'authorization');
   async function getUserFromHeader() {
     if (authorization) {
-      const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1])
-      return user
+      const user = await decodeAndVerifyJwtToken(authorization.split(' ')[1]);
+      return user;
     }
-    return null
+    return null;
   }
-  const user = await getUserFromHeader()
+  const user = await getUserFromHeader();
 
   return {
     user,
-  }
+  };
 }
 
 export type Context = Awaited<ReturnType<typeof createContext>>;
@@ -37,11 +37,11 @@ export type Context = Awaited<ReturnType<typeof createContext>>;
 ## Option 1: Authorize using resolver
 
 ```ts
-import { TRPCError, initTRPC } from '@trpc/server'
+import { initTRPC, TRPCError } from '@trpc/server';
 
 // ... context function
 
-const t = initTRPC.context<Context>().create()
+const t = initTRPC.context<Context>().create();
 
 const appRouter = t.router({
   // open for anyone
@@ -51,37 +51,37 @@ const appRouter = t.router({
   // checked in resolver
   secret: t.procedure.query(({ ctx }) => {
     if (!ctx.user) {
-      throw new TRPCError({ code: 'UNAUTHORIZED' })
+      throw new TRPCError({ code: 'UNAUTHORIZED' });
     }
     return {
       secret: 'sauce',
-    }
+    };
   }),
-})
+});
 ```
 
 ## Option 2: Authorize using middleware
 
 ```ts
-import { TRPCError, initTRPC } from '@trpc/server'
+import { initTRPC, TRPCError } from '@trpc/server';
 
 // ... context function
 
-const t = initTRPC.context<Context>().create()
+const t = initTRPC.context<Context>().create();
 
 const isAuthed = t.middleware(({ next, ctx }) => {
   if (!ctx.user?.isAdmin) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' })
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
   return next({
     ctx: {
       user: ctx.user,
     },
-  })
-})
+  });
+});
 
 // you can reuse this for any procedure
-export const protectedProcedure = t.procedure.use(isAuthed)
+export const protectedProcedure = t.procedure.use(isAuthed);
 
 t.router({
   // this is accessible for everyone
@@ -93,8 +93,8 @@ t.router({
     secret: protectedProcedure.query(({ ctx }) => {
       return {
         secret: 'sauce',
-      }
+      };
     }),
   }),
-})
+});
 ```

@@ -1,6 +1,6 @@
-import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
-import { appRouter } from '../../trpc/routers'
-import { createContext } from '../../trpc/context'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server';
+import { createContext } from '../../trpc/context';
+import { appRouter } from '../../trpc/routers';
 
 export default createTRPCNuxtHandler({
   router: appRouter,
@@ -11,7 +11,7 @@ export default createTRPCNuxtHandler({
   onError({ error }) {
     if (error.code === 'INTERNAL_SERVER_ERROR') {
       // send to bug reporting
-      console.error('Something went wrong', error)
+      console.error('Something went wrong', error);
     }
   },
   /**
@@ -20,4 +20,4 @@ export default createTRPCNuxtHandler({
   // responseMeta() {
   //   // ...
   // },
-})
+});

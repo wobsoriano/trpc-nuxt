@@ -1,7 +1,7 @@
 {
   "name": "playground",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
