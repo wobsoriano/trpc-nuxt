@@ -2,10 +2,10 @@ import type {
   AnyTRPCRouter,
   inferRouterContext,
 } from '@trpc/server'
-import type { H3Event } from 'h3'
-import { eventHandler } from 'h3'
 import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch'
+import type { H3Event } from 'h3'
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
+import { eventHandler } from 'h3'
 import { defaultEndpoint } from '../shared'
 import { toWebRequest } from './toWebRequest'
 

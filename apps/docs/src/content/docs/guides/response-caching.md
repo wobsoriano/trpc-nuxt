@@ -19,13 +19,13 @@ export default createTRPCNuxtHandler({
    */
   responseMeta(opts) {
     // cache request for 1 day + revalidate once every second
-    const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
+    const ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
     return {
       headers: {
         'cache-control': `s-maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
       },
-    };
+    }
   },
 })
 ```
@@ -46,6 +46,7 @@ export default defineCachedEventHandler(async (event) => {
     greeting
   }
 }, {
-  swr: true, maxAge: 10
+  swr: true,
+  maxAge: 10
 })
 ```

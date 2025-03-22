@@ -8,10 +8,10 @@ The `createContext` function is called for each incoming request so here you can
 ## Create context from request headers
 
 ```ts
+import type { H3Event } from 'h3'
 import { decodeAndVerifyJwtToken } from './somewhere/in/your/app/utils'
-import type { H3Event } from 'h3';
 
-export const createTRPCContext = async (event: H3Event) => {
+export async function createTRPCContext(event: H3Event) {
   // Create your context based on the event object
   // Will be available as `ctx` in all your resolvers
 
@@ -31,13 +31,13 @@ export const createTRPCContext = async (event: H3Event) => {
   }
 }
 
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export type Context = Awaited<ReturnType<typeof createContext>>
 ```
 
 ## Option 1: Authorize using resolver
 
 ```ts
-import { TRPCError, initTRPC } from '@trpc/server'
+import { initTRPC, TRPCError } from '@trpc/server'
 
 // ... context function
 
@@ -63,7 +63,7 @@ const appRouter = t.router({
 ## Option 2: Authorize using middleware
 
 ```ts
-import { TRPCError, initTRPC } from '@trpc/server'
+import { initTRPC, TRPCError } from '@trpc/server'
 
 // ... context function
 

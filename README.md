@@ -37,16 +37,16 @@ export default defineNuxtConfig({
 ### 1. Create your [tRPC router](https://trpc.io/docs/server/routers):
 
 ```ts
+import type { Context } from './context'
 // server/trpc/trpc.ts
 import { initTRPC } from '@trpc/server'
-import type { Context } from './context'
 
-export const t = initTRPC.context<Context>().create();
+export const t = initTRPC.context<Context>().create()
 
 export const router = t.router({
   greeting: t.procedure.query(async () => {
-    await anExpensiveOperation();
-    return `Hello tRPC v11 @ ${new Date().toLocaleTimeString()}`;
+    await anExpensiveOperation()
+    return `Hello tRPC v11 @ ${new Date().toLocaleTimeString()}`
   })
 })
 
@@ -60,7 +60,7 @@ export type Router = typeof router
 export async function createContext(event: H3Event) {
   return {
     // context information
-  };
+  }
 }
 
 export type Context = Awaited<ReturnType<typeof createContext>>
@@ -71,8 +71,8 @@ export type Context = Awaited<ReturnType<typeof createContext>>
 ```ts
 // server/api/trpc/[trpc].ts
 import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
-import { router } from '~/server/trpc/trpc'
 import { createContext } from '~/server/trpc/context'
+import { router } from '~/server/trpc/trpc'
 
 export default createTRPCNuxtHandler({
   endpoint: '/api/trpc', // default endpoint is /api/trpc
@@ -84,8 +84,8 @@ export default createTRPCNuxtHandler({
 ### 4. Create a plugin to easily use the tRPC client in your pages:
 
 ```ts
-import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
 import type { Router } from '~/server/trpc/trpc'
+import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
 
 export default defineNuxtPlugin(() => {
   const trpc = createTRPCNuxtClient<Router>({

@@ -1,7 +1,8 @@
-import { createTRPCRecursiveProxy, type AnyTRPCRouter } from '@trpc/server'
 import type { TRPCClient } from '@trpc/client'
-import { getCurrentInstance, onScopeDispose, toValue, shallowRef, isRef, toRaw } from 'vue'
+import type { AnyTRPCRouter } from '@trpc/server'
+import { createTRPCRecursiveProxy } from '@trpc/server'
 import { useAsyncData } from 'nuxt/app'
+import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue'
 import { getQueryKeyInternal } from './getQueryKey'
 
 function isRefOrGetter<T>(val: T): boolean {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { TRPCClientError } from '@trpc/client'
 import type { inferRouterOutputs } from '@trpc/server'
 import type { AppRouter } from '~/server/trpc/routers'
+import { TRPCClientError } from '@trpc/client'
 
 const { $client } = useNuxtApp()
 
@@ -17,7 +17,7 @@ function isTRPCClientError(
   return cause instanceof TRPCClientError
 }
 
-const fetchTodos = async () => {
+async function fetchTodos() {
   loading.value = true
   todos.value = await $client.todo.getTodos.query()
   loading.value = false
@@ -27,7 +27,7 @@ onMounted(() => {
   fetchTodos()
 })
 
-const addTodo = async () => {
+async function addTodo() {
   const title = Math.random().toString(36).slice(2, 7)
 
   const newData = {

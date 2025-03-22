@@ -13,7 +13,7 @@ async function handleSubmit(e: Event) {
   <form
     method="POST"
     encType="multipart/form-data"
-    :action="`/api/trpc/user.hello`"
+    action="/api/trpc/user.hello"
     @submit.prevent="handleSubmit"
   >
     <input

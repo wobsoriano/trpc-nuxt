@@ -11,9 +11,9 @@ You may need to call your procedure(s) directly from the server, `createCaller()
 // server/trpc/init.ts
 import { initTRPC } from '@trpc/server'
 import { z } from 'zod'
- 
+
 const t = initTRPC.create()
- 
+
 export const router = t.router({
   // Create procedure at path 'greeting'
   greeting: t.procedure
@@ -44,9 +44,9 @@ export default defineEventHandler(async (event) => {
 // server/trpc/init.ts
 import { initTRPC } from '@trpc/server'
 import { z } from 'zod'
- 
+
 const posts = ['One', 'Two', 'Three']
- 
+
 const t = initTRPC.create()
 
 export const router = t.router({

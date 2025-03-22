@@ -1,19 +1,19 @@
 import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client'
-import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
-import type { AnyTRPCRootTypes, AnyTRPCProcedure, AnyTRPCRouter, TRPCProcedureType, inferProcedureInput, inferTransformedProcedureOutput } from '@trpc/server'
-import { createTRPCFlatProxy } from '@trpc/server'
-import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
+import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
+import type { AnyTRPCProcedure, AnyTRPCRootTypes, AnyTRPCRouter, inferProcedureInput, inferTransformedProcedureOutput, TRPCProcedureType } from '@trpc/server'
+import type { Unsubscribable } from '@trpc/server/observable'
 import type { RouterRecord } from '@trpc/server/unstable-core-do-not-import'
+import type { AsyncData, AsyncDataOptions } from 'nuxt/app'
 
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
-import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient'
-import type { Unsubscribable } from '@trpc/server/observable'
+import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client'
+import { createTRPCFlatProxy } from '@trpc/server'
 import { createNuxtProxyDecoration } from './decorationProxy'
 
 type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T
 type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>
 
-type ResolverDef = {
+interface ResolverDef {
   input: any
   output: any
   transformer: boolean
@@ -67,7 +67,7 @@ type Resolver<TDef extends ResolverDef> = (
   opts?: TRPCProcedureOptions,
 ) => Promise<TDef['output']>
 
-export type DecoratedQuery<TDef extends ResolverDef> = {
+export interface DecoratedQuery<TDef extends ResolverDef> {
   /**
    * @example
    *
@@ -93,7 +93,7 @@ export type DecoratedQuery<TDef extends ResolverDef> = {
   query: Resolver<TDef>
 }
 
-export type DecoratedMutation<TDef extends ResolverDef> = {
+export interface DecoratedMutation<TDef extends ResolverDef> {
   /**
    * @example
    *

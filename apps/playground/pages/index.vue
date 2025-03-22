@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getQueryKey } from 'trpc-nuxt/client'
 import type { inferRouterOutputs } from '@trpc/server'
 import type { AppRouter } from '~/server/trpc/routers'
+import { getQueryKey } from 'trpc-nuxt/client'
 
 const { $client } = useNuxtApp()
 
@@ -14,7 +14,7 @@ const { data: todos, pending, error, refresh } = await $client.todo.getTodos.use
 
 const { mutate, error: someError } = $client.todo.addTodo.useMutation()
 
-const addTodo = async () => {
+async function addTodo() {
   const title = Math.random().toString(36).slice(2, 7)
 
   const newData = {

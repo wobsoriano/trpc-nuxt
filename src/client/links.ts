@@ -1,12 +1,13 @@
-import {
-  httpLink as _httpLink,
-  httpBatchLink as _httpBatchLink,
-  type HTTPLinkOptions as _HTTPLinkOptions,
-  type HTTPBatchLinkOptions as _HTTPBatchLinkOptions,
-} from '@trpc/client'
-import type { FetchError } from 'ofetch'
-import type { AnyTRPCRouter } from '@trpc/server'
+import type { HTTPBatchLinkOptions as _HTTPBatchLinkOptions, HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client'
 import type { FetchEsque } from '@trpc/client/dist/internals/types'
+import type { AnyTRPCRouter } from '@trpc/server'
+import type { FetchError } from 'ofetch'
+import {
+  httpBatchLink as _httpBatchLink,
+
+  httpLink as _httpLink,
+
+} from '@trpc/client'
 import { useRequestHeaders } from 'nuxt/app'
 import { defaultEndpoint } from '../shared'
 

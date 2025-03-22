@@ -1,8 +1,8 @@
-export { getQueryKey } from './getQueryKey'
-
 export {
   createTRPCNuxtClient,
 } from './createTRPCNuxtClient'
+
+export { getQueryKey } from './getQueryKey'
 
 export {
   httpBatchLink,

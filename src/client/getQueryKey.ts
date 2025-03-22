@@ -1,7 +1,7 @@
-import { hash } from 'ohash'
 import type { AnyTRPCQueryProcedure, inferProcedureInput } from '@trpc/server'
 import type { DeepPartial } from '@trpc/server/unstable-core-do-not-import'
 import type { DecoratedMutation, DecoratedQuery, DecorateRouterRecord } from './createTRPCNuxtClient'
+import { hash } from 'ohash'
 
 type ProcedureOrRouter =
   | DecoratedMutation<any>

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type { H3Event } from 'h3'
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch'
+import type { H3Event } from 'h3'
 
 export type Context = Awaited<ReturnType<typeof createContext>>
 
