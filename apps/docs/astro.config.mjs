@@ -24,6 +24,10 @@ export default defineConfig({
           label: 'Guides',
           autogenerate: { directory: 'guides' },
         },
+        {
+          label: 'References',
+          autogenerate: { directory: 'references' },
+        },
       ],
     }),
   ],
