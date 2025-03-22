@@ -1,10 +1,10 @@
 export {
   createTRPCNuxtClient,
-} from './createTRPCNuxtClient'
+} from './createTRPCNuxtClient';
 
-export { getQueryKey } from './getQueryKey'
+export { getQueryKey } from './getQueryKey';
 
 export {
   httpBatchLink,
   httpLink,
-} from './links'
+} from './links';

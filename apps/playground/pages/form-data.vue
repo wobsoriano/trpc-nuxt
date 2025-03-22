@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const { $client } = useNuxtApp()
+const { $client } = useNuxtApp();
 
 async function handleSubmit(e: Event) {
-  const formData = new FormData(e.target as HTMLFormElement)
-  console.log('formdata client', formData.get('name'))
-  const result = await $client.user.hello.mutate(formData)
-  console.log('Result:', result)
+  const formData = new FormData(e.target as HTMLFormElement);
+  console.log('formdata client', formData.get('name'));
+  const result = await $client.user.hello.mutate(formData);
+  console.log('Result:', result);
 }
 </script>
 

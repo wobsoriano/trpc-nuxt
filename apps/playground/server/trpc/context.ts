@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch'
-import type { H3Event } from 'h3'
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import type { H3Event } from 'h3';
 
-export type Context = Awaited<ReturnType<typeof createContext>>
+export type Context = Awaited<ReturnType<typeof createContext>>;
 
 /**
  * Creates context for an incoming request
@@ -17,5 +17,5 @@ export function createContext(
 
   return {
     userId: 1,
-  }
+  };
 }

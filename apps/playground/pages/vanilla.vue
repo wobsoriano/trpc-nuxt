@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import type { inferRouterOutputs } from '@trpc/server'
-import type { AppRouter } from '~/server/trpc/routers'
-import { TRPCClientError } from '@trpc/client'
+import type { inferRouterOutputs } from '@trpc/server';
+import type { AppRouter } from '~/server/trpc/routers';
+import { TRPCClientError } from '@trpc/client';
 
-const { $client } = useNuxtApp()
+const { $client } = useNuxtApp();
 
-type RouterOutput = inferRouterOutputs<AppRouter>
+type RouterOutput = inferRouterOutputs<AppRouter>;
 
-const loading = ref(false)
+const loading = ref(false);
 // const error = ref<TRPCClientError<AppRouter> | null>(null)
-const todos = ref<RouterOutput['todo']['getTodos']>([])
+const todos = ref<RouterOutput['todo']['getTodos']>([]);
 
 function isTRPCClientError(
   cause: unknown,
 ): cause is TRPCClientError<AppRouter> {
-  return cause instanceof TRPCClientError
+  return cause instanceof TRPCClientError;
 }
 
 async function fetchTodos() {
-  loading.value = true
-  todos.value = await $client.todo.getTodos.query()
-  loading.value = false
+  loading.value = true;
+  todos.value = await $client.todo.getTodos.query();
+  loading.value = false;
 }
 
 onMounted(() => {
-  fetchTodos()
-})
+  fetchTodos();
+});
 
 async function addTodo() {
-  const title = Math.random().toString(36).slice(2, 7)
+  const title = Math.random().toString(36).slice(2, 7);
 
   const newData = {
     id: Date.now(),
     userId: 69,
     title,
     completed: false,
-  }
+  };
 
   try {
-    const result = await $client.todo.addTodo.mutate(newData)
+    const result = await $client.todo.addTodo.mutate(newData);
     if (result) {
-      todos.value?.push(result)
+      todos.value?.push(result);
     }
   }
   catch (err) {
     if (isTRPCClientError(err)) {
-      console.log('trpc error!', err)
+      console.log('trpc error!', err);
     }
   }
 }

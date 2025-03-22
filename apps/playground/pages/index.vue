@@ -1,32 +1,32 @@
 <script setup lang="ts">
-import type { inferRouterOutputs } from '@trpc/server'
-import type { AppRouter } from '~/server/trpc/routers'
-import { getQueryKey } from 'trpc-nuxt/client'
+import type { inferRouterOutputs } from '@trpc/server';
+import type { AppRouter } from '~/server/trpc/routers';
+import { getQueryKey } from 'trpc-nuxt/client';
 
-const { $client } = useNuxtApp()
+const { $client } = useNuxtApp();
 
-type RouterOutput = inferRouterOutputs<AppRouter>
+type RouterOutput = inferRouterOutputs<AppRouter>;
 
-const todosKey = getQueryKey($client.todo.getTodos, undefined)
-const { data } = useNuxtData<RouterOutput['todo']['getTodos']>(todosKey)
+const todosKey = getQueryKey($client.todo.getTodos, undefined);
+const { data } = useNuxtData<RouterOutput['todo']['getTodos']>(todosKey);
 
-const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery()
+const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery();
 
-const { mutate, error: someError } = $client.todo.addTodo.useMutation()
+const { mutate, error: someError } = $client.todo.addTodo.useMutation();
 
 async function addTodo() {
-  const title = Math.random().toString(36).slice(2, 7)
+  const title = Math.random().toString(36).slice(2, 7);
 
   const newData = {
     id: Date.now(),
     userId: 69,
     title,
     completed: false,
-  }
+  };
 
-  const result = await mutate(newData)
+  const result = await mutate(newData);
   if (result) {
-    data.value?.push(result)
+    data.value?.push(result);
   }
 }
 </script>

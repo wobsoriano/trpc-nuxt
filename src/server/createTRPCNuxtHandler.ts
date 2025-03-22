@@ -1,17 +1,17 @@
 import type {
   AnyTRPCRouter,
   inferRouterContext,
-} from '@trpc/server'
-import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch'
-import type { H3Event } from 'h3'
-import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
-import { eventHandler } from 'h3'
-import { defaultEndpoint } from '../shared'
-import { toWebRequest } from './toWebRequest'
+} from '@trpc/server';
+import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch';
+import type { H3Event } from 'h3';
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
+import { eventHandler } from 'h3';
+import { defaultEndpoint } from '../shared';
+import { toWebRequest } from './toWebRequest';
 
-type MaybePromise<T> = T | Promise<T>
+type MaybePromise<T> = T | Promise<T>;
 
-type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, fetchCreateContextOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>
+type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, fetchCreateContextOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>;
 
 type TRPCNuxtHandlerOptions<
   TRouter extends AnyTRPCRouter,
@@ -20,21 +20,21 @@ type TRPCNuxtHandlerOptions<
    * The tRPC API endpoint.
    * @default '/api/trpc'
    */
-  endpoint?: string
+  endpoint?: string;
   /**
    * A function that returns the tRPC context.
    * @see https://trpc.io/docs/context
    */
-  createContext?: CreateContextFn<TRouter>
-}
+  createContext?: CreateContextFn<TRouter>;
+};
 
 export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCNuxtHandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
     const createContext: FetchCreateContextFn<TRouter> = async (
       fetchCreateContextOptions,
     ) => {
-      return await opts.createContext?.(event, fetchCreateContextOptions)
-    }
+      return await opts.createContext?.(event, fetchCreateContextOptions);
+    };
 
     const httpResponse = await fetchRequestHandler({
       ...opts,
@@ -42,8 +42,8 @@ export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCN
       router: opts.router,
       req: toWebRequest(event),
       createContext,
-    })
+    });
 
-    return httpResponse
-  })
+    return httpResponse;
+  });
 }

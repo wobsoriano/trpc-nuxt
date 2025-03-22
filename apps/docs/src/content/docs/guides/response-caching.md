@@ -9,8 +9,8 @@ The `createTRPCNuxtHandler` function conveniently allows you to specify a `respo
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
-import { appRouter } from '~/server/trpc/routers'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server';
+import { appRouter } from '~/server/trpc/routers';
 
 export default createTRPCNuxtHandler({
   router: appRouter,
@@ -19,34 +19,34 @@ export default createTRPCNuxtHandler({
    */
   responseMeta(opts) {
     // cache request for 1 day + revalidate once every second
-    const ONE_DAY_IN_SECONDS = 60 * 60 * 24
+    const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
 
     return {
       headers: {
         'cache-control': `s-maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
       },
-    }
+    };
   },
-})
+});
 ```
 
 You can also take advantage of Nitro's [Cache API](https://nitro.unjs.io/guide/cache#cache-api) if doing server-side calls:
 
 ```ts
-import { appRouter } from '~/server/trpc/routers'
+import { appRouter } from '~/server/trpc/routers';
 
-const caller = appRouter.createCaller({})
+const caller = appRouter.createCaller({});
 
 export default defineCachedEventHandler(async (event) => {
-  const { name } = getQuery(event)
+  const { name } = getQuery(event);
 
-  const greeting = await caller.greeting({ name })
+  const greeting = await caller.greeting({ name });
 
   return {
     greeting
-  }
+  };
 }, {
   swr: true,
   maxAge: 10
-})
+});
 ```

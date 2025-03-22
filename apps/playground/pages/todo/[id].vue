@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const route = useRoute()
-const { $client } = useNuxtApp()
-const { data: todo, pending, error } = await useAsyncData(() => $client.todo.getTodo.query(Number(route.params.id)))
+const route = useRoute();
+const { $client } = useNuxtApp();
+const { data: todo, pending, error } = await useAsyncData(() => $client.todo.getTodo.query(Number(route.params.id)));
 </script>
 
 <template>
