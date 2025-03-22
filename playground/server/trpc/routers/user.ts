@@ -13,6 +13,14 @@ const UserShape = z.object({
 export type User = z.infer<typeof UserShape>
 
 export const userRouter = router({
+  hello: publicProcedure.input(z.instanceof(FormData)).mutation((opts) => {
+    console.log(opts)
+    const data = opts.input
+
+    return {
+      greeting: `Hello ${data.get('name')}`,
+    }
+  }),
   getUsers: publicProcedure
     .query(() => {
       return $fetch<User[]>(`${baseURL}/users`)

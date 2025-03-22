@@ -1,5 +1,6 @@
 import { incomingMessageToRequest } from '@trpc/server/adapters/node-http'
 import type { H3Event } from 'h3'
+import { toWebRequest as _toWebRequest } from 'h3'
 
 export function toWebRequest(event: H3Event) {
   // TODO: Prepare for h3 v2 https://github.com/unjs/h3/blob/main/MIGRATION.md#migration-guide-for-v1-to-v2
@@ -9,7 +10,7 @@ export function toWebRequest(event: H3Event) {
 
   // H3 v1 Web Request location
   if (event?.web?.request) {
-    return event.web?.request
+    return event.web.request
   }
 
   // Fallback to Node Request to web Request
