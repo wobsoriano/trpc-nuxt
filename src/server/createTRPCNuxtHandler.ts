@@ -11,9 +11,9 @@ import { toWebRequest } from './toWebRequest'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, fetchCreateContextOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>
+type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, fetchCreateContextOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>
 
-type H3HandlerOptions<
+type TRPCNuxtHandlerOptions<
   TRouter extends AnyTRPCRouter,
 > = Omit<FetchHandlerRequestOptions<TRouter>, 'endpoint' | 'req' | 'createContext'> & {
   /**
@@ -28,7 +28,7 @@ type H3HandlerOptions<
   createContext?: CreateContextFn<TRouter>
 }
 
-export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: H3HandlerOptions<TRouter>) {
+export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCNuxtHandlerOptions<TRouter>) {
   return eventHandler(async (event) => {
     const createContext: FetchCreateContextFn<TRouter> = async (
       fetchCreateContextOptions,

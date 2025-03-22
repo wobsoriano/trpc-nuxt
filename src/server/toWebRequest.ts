@@ -6,12 +6,12 @@ export async function toWebRequest(event: H3Event) {
     return event.request as Request
   }
 
-  // H3 v1 web request location
+  // H3 v1 Web Request location
   if (event?.web?.request) {
     return event.web?.request
   }
 
-  // Fallback to Node request to web request
+  // Fallback to Node Request to web Request
   const { incomingMessageToRequest } = await import('@trpc/server/adapters/node-http')
   return incomingMessageToRequest(event.node.req, event.node.res, {
     maxBodySize: null
