@@ -88,7 +88,7 @@ import { createTRPCNuxtClient, httpBatchLink } from 'trpc-nuxt/client'
 import type { Router } from '~/server/trpc/trpc'
 
 export default defineNuxtPlugin(() => {
-  const client = createTRPCNuxtClient<Router>({
+  const trpc = createTRPCNuxtClient<Router>({
     links: [
       httpBatchLink({
         url: '/api/trpc' // default endpoint is /api/trpc
@@ -98,7 +98,7 @@ export default defineNuxtPlugin(() => {
 
   return {
     provide: {
-      client,
+      trpc,
     },
   }
 })
@@ -108,9 +108,9 @@ export default defineNuxtPlugin(() => {
 
 ```vue
 <script setup lang="ts">
-const { $client } = useNuxtApp()
+const { $trpc } = useNuxtApp()
 
-const { data: greeting } = await $client.greeting.useQuery()
+const { data: greeting } = await $trpc.greeting.useQuery()
 </script>
 
 <template>
