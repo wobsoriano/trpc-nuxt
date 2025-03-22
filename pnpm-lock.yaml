@@ -25,11 +25,11 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(@vue/compiler-sfc@3.5.13)(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       '@trpc/client':
-        specifier: ^11.0.0-rc.828
-        version: 11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.8.2))(typescript@5.8.2)
+        specifier: ^11.0.0
+        version: 11.0.0(@trpc/server@11.0.0(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server':
-        specifier: ^11.0.0-rc.828
-        version: 11.0.0-rc.828(typescript@5.8.2)
+        specifier: ^11.0.0
+        version: 11.0.0(typescript@5.8.2)
       eslint:
         specifier: ^9.22.0
         version: 9.22.0(jiti@2.4.2)
@@ -991,14 +991,14 @@ packages:
     peerDependencies:
       eslint: '>=9.0.0'
 
-  '@trpc/client@11.0.0-rc.828':
-    resolution: {integrity: sha512-pV2bELnPqH7S2R1wBH6OB7lOi61ELt8CEcvHuxVM2YhL4hP408tzKT0YvNBo4GVqc8So/1ncpXJyRJQG0o6rsQ==}
+  '@trpc/client@11.0.0':
+    resolution: {integrity: sha512-U2THlxsdr4ykAX5lpTU8k5WRADPQ+68Ex2gfUht3MlCxGK7njBmNSSzjpQSWNt7tMI/xsYrddFiRlmEPrh+Cbg==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.828+322552736
+      '@trpc/server': 11.0.0
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.0.0-rc.828':
-    resolution: {integrity: sha512-+dvcIcE5QPy52cz4rqwfUqk+WQDYAH3Xri+u2t0NdzIoo78fnL14if8oSZXAPU1bCmWGyR1k/0m5rSQ7AZaKlQ==}
+  '@trpc/server@11.0.0':
+    resolution: {integrity: sha512-xY9q/b/wR/tWGYTm5xmRjivkYD2EZZXmOKmHuNJRYZuLbieeNUsdfQRjJC409WB1pjKWInomhHwuA8bahZJ4lQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -5063,12 +5063,12 @@ snapshots:
       - supports-color
       - typescript
 
-  '@trpc/client@11.0.0-rc.828(@trpc/server@11.0.0-rc.828(typescript@5.8.2))(typescript@5.8.2)':
+  '@trpc/client@11.0.0(@trpc/server@11.0.0(typescript@5.8.2))(typescript@5.8.2)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.828(typescript@5.8.2)
+      '@trpc/server': 11.0.0(typescript@5.8.2)
       typescript: 5.8.2
 
-  '@trpc/server@11.0.0-rc.828(typescript@5.8.2)':
+  '@trpc/server@11.0.0(typescript@5.8.2)':
     dependencies:
       typescript: 5.8.2
 

@@ -38,8 +38,8 @@
     "release": "pnpm build && changeset publish"
   },
   "peerDependencies": {
-    "@trpc/client": "^11.0.0-rc.802",
-    "@trpc/server": "^11.0.0-rc.802"
+    "@trpc/client": "^11.0.0",
+    "@trpc/server": "^11.0.0"
   },
   "dependencies": {
     "h3": "^1.15.1",
@@ -50,8 +50,8 @@
     "nuxt": "^3.16.0",
     "@changesets/cli": "^2.28.1",
     "@nuxt/eslint-config": "^1.2.0",
-    "@trpc/client": "^11.0.0-rc.828",
-    "@trpc/server": "^11.0.0-rc.828",
+    "@trpc/client": "^11.0.0",
+    "@trpc/server": "^11.0.0",
     "eslint": "^9.22.0",
     "tsup": "8.4.0",
     "typescript": "^5.4.5"
