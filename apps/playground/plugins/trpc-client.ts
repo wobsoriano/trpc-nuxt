@@ -17,7 +17,7 @@ export default defineNuxtPlugin(() => {
           url: '/api/trpc',
           transformer: superjson,
         }),
-      })
+      }),
     ],
   })
 

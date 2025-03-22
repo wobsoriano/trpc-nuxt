@@ -15,6 +15,6 @@ export function toWebRequest(event: H3Event) {
 
   // Fallback to Node Request to web Request
   return incomingMessageToRequest(event.node.req, event.node.res, {
-    maxBodySize: null
+    maxBodySize: null,
   })
 }
