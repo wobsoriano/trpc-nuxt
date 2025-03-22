@@ -9,7 +9,7 @@ The `createTRPCNuxtHandler` function conveniently allows you to specify a `respo
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { createTRPCNuxtHandler } from 'trpc-nuxt'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
 import { appRouter } from '~/server/trpc/routers'
 
 export default createTRPCNuxtHandler({
@@ -33,11 +33,11 @@ export default createTRPCNuxtHandler({
 You can also take advantage of Nitro's [Cache API](https://nitro.unjs.io/guide/cache#cache-api) if doing server-side calls:
 
 ```ts
-import { appRouter } from '~@~/server/trpc/routers'
+import { appRouter } from '~/server/trpc/routers'
 
 const caller = appRouter.createCaller({})
 
-export default cachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
   const { name } = getQuery(event)
 
   const greeting = await caller.greeting({ name })

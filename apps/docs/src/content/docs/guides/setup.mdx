@@ -110,7 +110,7 @@ export type AppRouter = typeof appRouter;
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { createTRPCNuxtHandler } from 'trpc-nuxt'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
 import { createTRPCContext } from '~/server/trpc/init'
 import { appRouter } from '~/server/trpc/routers'
 
