@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.1-next.5
+
+### Patch Changes
+
+- ec1d9bf: Next patch before major
+
 ## 0.11.1-next.4
 
 ### Patch Changes
