@@ -36,12 +36,11 @@ export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCN
       return await opts.createContext?.(event, fetchCreateContextOptions)
     }
 
-    const req = await toWebRequest(event)
     const httpResponse = await fetchRequestHandler({
       ...opts,
       endpoint: opts.endpoint || defaultEndpoint,
       router: opts.router,
-      req,
+      req: toWebRequest(event),
       createContext,
     })
 
