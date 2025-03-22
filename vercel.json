@@ -3,7 +3,8 @@
     "deploymentEnabled": {
       "main": true,
       "next": false,
-      "fetch-request-handler": false
+      "fetch-request-handler": false,
+      "trpc-v11-stable": false
     }
   }
 }
