@@ -8,7 +8,6 @@ The `createContext` function is called for each incoming request so here you can
 ## Create context from request headers
 
 ```ts
-import { inferAsyncReturnType } from '@trpc/server'
 import { decodeAndVerifyJwtToken } from './somewhere/in/your/app/utils'
 import type { H3Event } from 'h3';
 
@@ -32,7 +31,7 @@ export const createTRPCContext = async (event: H3Event) => {
   }
 }
 
-type Context = inferAsyncReturnType<typeof createContext>
+export type Context = Awaited<ReturnType<typeof createContext>>;
 ```
 
 ## Option 1: Authorize using resolver
