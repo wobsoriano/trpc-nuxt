@@ -1,6 +1,8 @@
+import cloudflare from '@astrojs/cloudflare';
 import starlight from '@astrojs/starlight';
 // @ts-check
 import { defineConfig } from 'astro/config';
+
 import starlightThemeFlexoki from 'starlight-theme-flexoki';
 
 // https://astro.build/config
@@ -31,4 +33,6 @@ export default defineConfig({
       ],
     }),
   ],
-});
+
+  adapter: cloudflare(),
+})
