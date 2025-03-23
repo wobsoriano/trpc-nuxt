@@ -1,6 +1,18 @@
 ---
 title: createTRPCNuxtHandler
-description: Set up with Nuxt.
+description: Work in progress
 ---
 
-Work in progress. Please check back later.
+The `createTRPCNuxtHandler` is an adapter that extends the [Fetch / Edge runtime adapter](https://trpc.io/docs/server/adapters/fetch), sets a default endpoint (`/api/trpc`), and passes the [H3 event object](https://h3.unjs.io/guide/event) to your contexts.
+
+```ts
+// server/api/trpc/[trpc].ts
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
+import { createTRPCContext } from '~/server/trpc/init'
+import { appRouter } from '~/server/trpc/routers'
+
+export default createTRPCNuxtHandler({
+  router: appRouter,
+  createContext: createTRPCContext,
+})
+```
