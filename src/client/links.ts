@@ -4,9 +4,9 @@ import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError } from 'ofetch';
 import {
   httpBatchLink as _httpBatchLink,
-
   httpLink as _httpLink,
-
+  httpBatchStreamLink as _httpBatchStreamLink,
+  httpSubscriptionLink as _httpSubscriptionLink,
 } from '@trpc/client';
 import { useRequestHeaders } from 'nuxt/app';
 import { defaultEndpoint } from '../shared';
@@ -37,6 +37,19 @@ export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TR
   pickHeaders?: string[];
 };
 
+function createDefaultLinkOptions(pickHeaders?: string[]) {
+  // @ts-expect-error: Default to undefined to get all request headers
+  const headers = useRequestHeaders(pickHeaders);
+  
+  return {
+    url: defaultEndpoint,
+    headers() {
+      return headers;
+    },
+    fetch: customFetch as FetchEsque,
+  };
+}
+
 /**
  * This is a convenience wrapper around the original httpLink
  * that replaces regular `fetch` with a `$fetch` from Nuxt. It
@@ -49,15 +62,8 @@ export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TR
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: HTTPLinkOptions<TRouter>) {
-  // @ts-expect-error: Default to undefined to get all request headers
-  const headers = useRequestHeaders(opts?.pickHeaders);
-
   return _httpLink({
-    url: defaultEndpoint,
-    headers() {
-      return headers;
-    },
-    fetch: customFetch as FetchEsque,
+    ...createDefaultLinkOptions(opts?.pickHeaders),
     ...opts,
   });
 }
@@ -81,15 +87,26 @@ export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLink
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
-  // @ts-expect-error: Default to undefined to get all request headers
-  const headers = useRequestHeaders(opts?.pickHeaders);
-
   return _httpBatchLink({
-    url: defaultEndpoint,
-    headers() {
-      return headers;
-    },
-    fetch: customFetch as FetchEsque,
+    ...createDefaultLinkOptions(opts?.pickHeaders),
+    ...opts,
+  });
+}
+
+/**
+ * This is a convenience wrapper around the original httpBatchStreamLink
+ * that replaces regular `fetch` with a `$fetch` from Nuxt. It
+ * also sets the default headers based on `useRequestHeaders` values.
+ *
+ * During server-side rendering, calling $fetch to fetch your internal API routes
+ * will directly call the relevant function (emulating the request),
+ * saving an additional API call.
+ *
+ * @see https://nuxt.com/docs/api/utils/dollarfetch
+ */
+export function httpBatchStreamLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
+  return _httpBatchStreamLink({
+    ...createDefaultLinkOptions(opts?.pickHeaders),
     ...opts,
   });
 }
