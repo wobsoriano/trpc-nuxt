@@ -154,11 +154,11 @@ We recommend a file structure like this one, although it is not enforced by tRPC
     <script setup lang="ts">
     const { $trpc } = useNuxtApp()
 
-    const { data: greeting } = await $trpc.hello.useQuery({ text: 'client'  })
+    const { data: hello } = await $trpc.hello.useQuery({ text: 'client'  })
     </script>
 
     <template>
-      <div>{{ greeting }}</div>
+      <div>{{ hello?.greeting }}</div>
     </template>
     ```
 
