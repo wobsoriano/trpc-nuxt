@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- a85d1d4: Custom links clean up and introduce custom `httpBatchStreamLink`
+
 ## 1.0.0
 
 ### Major Changes
