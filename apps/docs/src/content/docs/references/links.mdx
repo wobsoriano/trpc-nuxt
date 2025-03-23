@@ -3,7 +3,7 @@ title: Links
 description: Work in progress
 ---
 
-The links exported by `trpc-nuxt/client` are convenience wrapper around the tRPC's [links](https://trpc.io/docs/client/links) that replaces regular `fetch` with [`$fetch`](https://nuxt.com/docs/api/utils/dollarfetch) from Nuxt and sets the default headers using [`useRequestHeaders`](https://nuxt.com/docs/api/composables/use-request-headers#userequestheaders).
+The links exported by `trpc-nuxt/client` are convenience wrapper around the tRPC's [links](https://trpc.io/docs/client/links) that replaces regular `fetch` with [`$fetch`](https://nuxt.com/docs/api/utils/dollarfetch) from Nuxt, sets a default url (`/api/trpc`), and sets the default headers using [`useRequestHeaders`](https://nuxt.com/docs/api/composables/use-request-headers#userequestheaders).
 
 ```ts
 // plugins/trpc.ts
