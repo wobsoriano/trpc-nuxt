@@ -24,9 +24,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "client",
-    "dist",
-    "server"
+    "dist"
   ],
   "scripts": {
     "dev": "tsup --watch --onSuccess \"pnpm --filter playground dev\"",

@@ -1,0 +1,25 @@
+{
+  "name": "test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "nuxt": "catalog:",
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
+    "superjson": "catalog:",
+    "zod": "catalog:",
+    "trpc-nuxt": "workspace:*"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.17.2",
+    "@playwright/test": "1.51.1"
+  }
+}

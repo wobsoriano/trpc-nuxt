@@ -12,9 +12,9 @@
   "dependencies": {
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
-    "superjson": "^2.2.2",
+    "superjson": "catalog:",
     "trpc-nuxt": "workspace:*",
-    "zod": "^3.24.2"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@types/node": "20.12.12",
