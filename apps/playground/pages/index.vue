@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { inferRouterOutputs } from '@trpc/server';
 import type { AppRouter } from '~/server/trpc/routers';
-import { getQueryKey } from 'trpc-nuxt/client';
+import { getMutationKey, getQueryKey } from 'trpc-nuxt/client';
 
 const { $client } = useNuxtApp();
 
@@ -13,6 +13,9 @@ const { data } = useNuxtData<RouterOutput['todo']['getTodos']>(todosKey);
 const { data: todos, pending, error, refresh } = await $client.todo.getTodos.useQuery();
 
 const { mutate, error: someError } = $client.todo.addTodo.useMutation();
+
+const mutationKey = getMutationKey($client.todo.addTodo);
+const { data: mutationData } = useNuxtData(mutationKey);
 
 async function addTodo() {
   const title = Math.random().toString(36).slice(2, 7);
@@ -28,6 +31,8 @@ async function addTodo() {
   if (result) {
     data.value?.push(result);
   }
+
+  console.log('mutationData', toRaw(mutationData.value))
 }
 </script>
 
