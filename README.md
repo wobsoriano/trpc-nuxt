@@ -15,7 +15,7 @@ End-to-end typesafe APIs with [tRPC.io](https://trpc.io/) in Nuxt applications.
 
 ## Documentation
 
-For detailed setup and usage instructions, please visit the [documentation](https://trpc-nuxt.vercel.app).
+For detailed setup and usage instructions, please visit the [documentation](https://trpc-nuxt.pages.dev).
 
 ## License
 
