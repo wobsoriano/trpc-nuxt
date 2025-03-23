@@ -21,11 +21,18 @@ type GetParams<TProcedureOrRouter extends ProcedureOrRouter> =
     ? [input?: GetQueryProcedureInput<$Def['input']>]
     : [];
 
+export function getQueryKeyInternal(
+  path: string,
+  input: unknown,
+): string {
+  return input === undefined ? path : `${path}-${hash(input || '')}`;
+}
+
 /**
  * Method to extract the query key for a procedure
  * @param procedure - procedure
  * @param input - input to procedure
- * @link https://trpc-nuxt.vercel.app/get-started/tips/mutation
+ * @see https://trpc-nuxt.vercel.app/references/getquerykey
  */
 export function getQueryKey<TProcedureOrRouter extends ProcedureOrRouter,
 >(
@@ -41,12 +48,19 @@ export function getQueryKey<TProcedureOrRouter extends ProcedureOrRouter,
   return getQueryKeyInternal(dotPath, input);
 }
 
+export function getMutationKeyInternal(path: string) {
+  return getQueryKeyInternal(path, undefined);
+}
+
 /**
- * @internal
+ * Method to extract the mutation key for a procedure
+ * @param procedure - procedure
+ * @see https://trpc-nuxt.vercel.app/references/getquerykey
  */
-export function getQueryKeyInternal(
-  path: string,
-  input: unknown,
-): string {
-  return input === undefined ? path : `${path}-${hash(input || '')}`;
+export function getMutationKey<TProcedure extends DecoratedMutation<any>>(procedure: TProcedure) {
+  // @ts-expect-error - we don't expose _def on the type layer
+  const path = procedure._def().path as string[];
+  const dotPath = path.join('.');
+
+  return getMutationKeyInternal(dotPath);
 }

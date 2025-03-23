@@ -3,7 +3,7 @@ import type { AnyTRPCRouter } from '@trpc/server';
 import { createTRPCRecursiveProxy } from '@trpc/server';
 import { useAsyncData } from 'nuxt/app';
 import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue';
-import { getQueryKeyInternal } from './getQueryKey';
+import { getMutationKeyInternal, getQueryKeyInternal } from './getQueryKey';
 
 function isRefOrGetter<T>(val: T): boolean {
   return isRef(val) || typeof val === 'function';
@@ -64,11 +64,12 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
     if (lastArg === 'useMutation') {
       const { trpc, ...asyncDataOptions } = otherOptions || {} as any;
 
-      const payload = shallowRef(null);
+      const input = shallowRef(null);
 
       const controller = createAbortController(trpc);
 
-      const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
+      const mutationKey = getMutationKeyInternal(path);
+      const asyncData = useAsyncData(mutationKey, () => (client as any)[path].mutate(input.value, {
         signal: controller?.signal,
         ...trpc,
       }), {
@@ -76,8 +77,8 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
         immediate: false,
       });
 
-      async function mutate(input: any) {
-        payload.value = input;
+      async function mutate(value: any) {
+        input.value = value;
         await asyncData.execute();
         return toRaw(asyncData.data.value);
       }

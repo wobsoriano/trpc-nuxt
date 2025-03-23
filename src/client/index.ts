@@ -2,7 +2,7 @@ export {
   createTRPCNuxtClient,
 } from './createTRPCNuxtClient';
 
-export { getQueryKey } from './getQueryKey';
+export { getMutationKey, getQueryKey } from './getQueryKey';
 
 export {
   httpBatchLink,
