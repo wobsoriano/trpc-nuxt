@@ -69,7 +69,7 @@ We recommend a file structure like this one, although it is not enforced by tRPC
       * @see: https://trpc.io/docs/server/context
       */
       return { auth: event.context.auth };
-    })
+    }
 
     // Avoid exporting the entire t-object
     // since it's not very descriptive.
@@ -154,7 +154,7 @@ We recommend a file structure like this one, although it is not enforced by tRPC
     <script setup lang="ts">
     const { $trpc } = useNuxtApp()
 
-    const { data: hello } = await $trpc.greeting.useQuery({ text: 'client'  })
+    const { data: hello } = await $trpc.hello.useQuery({ text: 'client'  })
     </script>
 
     <template>
