@@ -33,7 +33,8 @@
     "build": "tsup",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "test": "pnpm --filter test test"
   },
   "peerDependencies": {
     "@trpc/client": "catalog:",
