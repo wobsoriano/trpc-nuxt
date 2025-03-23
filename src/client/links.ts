@@ -4,9 +4,8 @@ import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError } from 'ofetch';
 import {
   httpBatchLink as _httpBatchLink,
-  httpLink as _httpLink,
   httpBatchStreamLink as _httpBatchStreamLink,
-  httpSubscriptionLink as _httpSubscriptionLink,
+  httpLink as _httpLink,
 } from '@trpc/client';
 import { useRequestHeaders } from 'nuxt/app';
 import { defaultEndpoint } from '../shared';
@@ -40,7 +39,7 @@ export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TR
 function createDefaultLinkOptions(pickHeaders?: string[]) {
   // @ts-expect-error: Default to undefined to get all request headers
   const headers = useRequestHeaders(pickHeaders);
-  
+
   return {
     url: defaultEndpoint,
     headers() {

@@ -6,5 +6,6 @@ export { getQueryKey } from './getQueryKey';
 
 export {
   httpBatchLink,
+  httpBatchStreamLink,
   httpLink,
 } from './links';
