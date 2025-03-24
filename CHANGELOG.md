@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- b37525d: `useMutation()` type improvements and added an option to specify a custom mutation key.
+
 ## 1.0.2
 
 ### Patch Changes
