@@ -62,18 +62,20 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
     }
 
     if (lastArg === 'useMutation') {
-      const { trpc, ...asyncDataOptions } = otherOptions || {} as any;
+      const { trpc, mutationKey: customMutationKey, ...asyncDataOptions } = otherOptions || {} as any;
 
       const input = shallowRef(null);
 
       const controller = createAbortController(trpc);
 
-      const mutationKey = getMutationKeyInternal(path);
-      const asyncData = useAsyncData(mutationKey, () => (client as any)[path].mutate(input.value, {
+      const mutationKey = customMutationKey || getMutationKeyInternal(path);
+      const asyncData = useAsyncData(mutationKey, () => (client as any)[path].mutate(toRaw(input.value), {
         signal: controller?.signal,
         ...trpc,
       }), {
         ...asyncDataOptions,
+        lazy: false,
+        server: false,
         immediate: false,
       });
 

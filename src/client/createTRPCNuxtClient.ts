@@ -97,7 +97,7 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
   /**
    * @example
    *
-   * const { mutate } = await $trpc.todo.addTodo.useMutation()
+   * const { mutate } = $trpc.todo.addTodo.useMutation()
    * mutate({ text: 'migrate to TRPC v11', completed: false })
    */
   useMutation: <
@@ -105,13 +105,19 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     TData = TQueryFnData,
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
   >(
-    opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch'>
+    opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch' | 'server' | 'immediate'> & {
+      /**
+       * The custom unique key to use.
+       * @see https://nuxt.com/docs/api/composables/use-async-data#params
+       */
+      mutationKey?: string;
+      trpc?: TRPCRequestOptions;
+    }
   ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>> & {
     /**
      * The function to call to trigger the mutation.
      */
     mutate: (input: TDef['input']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>;
-    trpc?: TRPCRequestOptions;
   };
   mutate: Resolver<TDef>;
 }
