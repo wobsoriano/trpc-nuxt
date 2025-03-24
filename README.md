@@ -19,7 +19,7 @@ For detailed setup and usage instructions, please visit the [documentation](http
 
 ## Acknowledgments
 
-- Special thanks to [therealokoro__](https://x.com/therealokoro__) for his work on the logo ❤️
+Special thanks to [@therealokoro__](https://x.com/therealokoro__) for his work on the logo ❤️
 
 ## License
 
