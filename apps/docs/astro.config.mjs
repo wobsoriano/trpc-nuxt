@@ -17,7 +17,7 @@ export default defineConfig({
       social: {
         github: 'https://github.com/wobsoriano/trpc-nuxt',
       },
-      lastUpdated: true,
+      // lastUpdated: true,
       editLink: {
         baseUrl: 'https://github.com/wobsoriano/trpc-nuxt/edit/main/apps/docs/',
       },
