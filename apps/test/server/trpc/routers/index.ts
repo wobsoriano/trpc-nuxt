@@ -29,6 +29,14 @@ export const appRouter = createTRPCRouter({
     .query(({ ctx }) => {
       return ctx.userId;
     }),
+  postFormData: baseProcedure
+    .input(z.instanceof(FormData))
+    .mutation(({ input }) => {
+      return {
+        firstName: input.get('firstName'),
+        lastName: input.get('lastName')
+      }
+    })
 });
 
 // export type definition of API
