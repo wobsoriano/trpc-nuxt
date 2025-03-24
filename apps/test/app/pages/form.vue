@@ -1,14 +1,12 @@
 <script setup lang="ts">
 const { $trpc } = useNuxtApp()
 
-const { mutate } = $trpc.postFormData.useMutation()
-const result = ref('User')
+const { data, mutate } = $trpc.postFormData.useMutation()
 
-async function handleSubmit(e: Event) {
+function handleSubmit(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
 
-  const data = await mutate(formData)
-  result.value = `${data?.firstName} ${data?.lastName}`
+  mutate(formData)
 }
 </script>
 
@@ -20,5 +18,10 @@ async function handleSubmit(e: Event) {
       Submit
     </button>
   </form>
-  <h1>Welcome, {{ result }}</h1>
+  <h1 v-if="data">
+    Welcome, {{ data.firstName }} {{ data.lastName }}
+  </h1>
+  <h1 v-else>
+    Welcome, Guest
+  </h1>
 </template>

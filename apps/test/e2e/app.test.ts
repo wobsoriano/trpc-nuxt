@@ -21,7 +21,7 @@ test('context', async ({ page, goto }) => {
 
 test('FormData', async ({ page, goto }) => {
   await goto('/form', { waitUntil: 'hydration' })
-  await expect(page.getByRole('heading')).toHaveText('Welcome, User')
+  await expect(page.getByRole('heading')).toHaveText('Welcome, Guest')
   await page.getByRole('button', { name: 'Submit' }).click()
   await expect(page.getByRole('heading')).toHaveText('Welcome, John Doe')
 })
