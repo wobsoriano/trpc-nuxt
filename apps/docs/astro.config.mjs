@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 
 import starlightThemeFlexoki from 'starlight-theme-flexoki';
 
+const baseUrl = 'https://trpc-nuxt.pages.dev'
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -25,7 +27,11 @@ export default defineConfig({
       head: [
         {
           tag: 'meta',
-          attrs: { property: 'og:image', content: '/og.png' },
+          attrs: { property: 'og:image', content: `${baseUrl}/og.png` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: `${baseUrl}/og.png` },
         },
         {
           tag: 'meta',
