@@ -1,8 +1,8 @@
 import { type inferRouterProxyClient } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
 import { createRecursiveProxy } from '@trpc/server/shared'
-// @ts-expect-error: Nuxt auto-imports
-import { getCurrentInstance, onScopeDispose, useAsyncData, toValue, ref, isRef, toRaw } from '#imports'
+import { getCurrentInstance, onScopeDispose, toValue, shallowRef, isRef, toRaw } from 'vue'
+import { useAsyncData } from 'nuxt/app'
 import { getQueryKeyInternal } from './getQueryKey'
 
 function isRefOrGetter<T>(val: T): boolean {
@@ -52,7 +52,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
       const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input))
       const watch = asyncDataOptions.watch === false ? [] : isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch
       const isLazy = lastArg === 'useLazyQuery' ? true : (asyncDataOptions.lazy || false)
-  
+
       return useAsyncData(queryKey, () => (client as any)[path].query(toValue(input), {
         signal: controller?.signal,
         ...trpc
@@ -65,22 +65,24 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
 
     if (lastArg === 'useMutation') {
       const { trpc, ...asyncDataOptions } = otherOptions || {} as any
-      
-      const payload = ref(null)
+
+      const input = shallowRef(null);
 
       const controller = createAbortController(trpc);
-  
-      const asyncData = useAsyncData(() => (client as any)[path].mutate(payload.value, {
+
+      const asyncData = useAsyncData(() => (client as any)[path].mutate(toRaw(input.value), {
         signal: controller?.signal,
         ...trpc
       }), {
         ...asyncDataOptions,
-        immediate: false
+        lazy: false,
+        immediate: false,
+        server: false,
       })
 
-       
+
       async function mutate (input: any) {
-        payload.value = input
+        input.value = input
         await asyncData.execute()
         return toRaw(asyncData.data.value)
       }
@@ -89,7 +91,7 @@ export function createNuxtProxyDecoration<TRouter extends AnyRouter> (name: stri
 
       return asyncData
     }
-    
+
     return (client as any)[path][lastArg](...args)
   })
 }

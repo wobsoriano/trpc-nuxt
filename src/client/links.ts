@@ -5,10 +5,10 @@ import {
   type HTTPBatchLinkOptions as _HTTPBatchLinkOptions
 } from '@trpc/client'
 import { type AnyRouter } from '@trpc/server'
-// @ts-expect-error: Nuxt auto-imports
-import { useRequestHeaders } from '#imports'
+import { useRequestHeaders } from 'nuxt/app'
 import { type FetchEsque } from '@trpc/client/dist/internals/types'
 import { type FetchError } from "ofetch";
+import { defaultEndpoint } from '../shared';
 
 function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError';
@@ -27,11 +27,24 @@ function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'G
     }))
 }
 
+function createDefaultLinkOptions(pickHeaders?: string[]) {
+  // @ts-expect-error: Default to undefined to get all request headers
+  const headers = useRequestHeaders(pickHeaders);
+
+  return {
+    url: defaultEndpoint,
+    headers() {
+      return headers;
+    },
+    fetch: customFetch as FetchEsque,
+  };
+}
+
 export interface HTTPLinkOptions extends _HTTPLinkOptions {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
-  pickHeaders?: string[] 
+  pickHeaders?: string[]
 }
 
 /**
@@ -46,14 +59,8 @@ export interface HTTPLinkOptions extends _HTTPLinkOptions {
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpLink<TRouter extends AnyRouter>(opts?: HTTPLinkOptions) {
-  const headers = useRequestHeaders(opts?.pickHeaders)
-
   return _httpLink<TRouter>({
-    url: '/api/trpc',
-    headers () {
-      return headers
-    },
-    fetch: customFetch as FetchEsque,
+    ...createDefaultLinkOptions(opts?.pickHeaders),
     ...opts,
   })
 }
@@ -62,7 +69,7 @@ export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
-  pickHeaders?: string[] 
+  pickHeaders?: string[]
 }
 
 
@@ -78,14 +85,8 @@ export interface HttpBatchLinkOptions extends _HTTPBatchLinkOptions {
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
 export function httpBatchLink<TRouter extends AnyRouter>(opts?: HttpBatchLinkOptions) {
-  const headers = useRequestHeaders(opts?.pickHeaders)
-
   return _httpBatchLink<TRouter>({
-    url: '/api/trpc',
-    headers () {
-      return headers
-    },
-    fetch: customFetch as FetchEsque,
+    ...createDefaultLinkOptions(opts?.pickHeaders),
     ...opts,
   })
 }
