@@ -1,10 +1,10 @@
-import type { CreateTRPCClientOptions, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client';
-import type { TRPCSubscriptionObserver } from '@trpc/client/dist/internals/TRPCUntypedClient';
+import type { CreateTRPCClientOptions, OperationContext, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client';
+import type { TRPCConnectionState } from '@trpc/client/unstable-internals';
 import type { AnyTRPCProcedure, AnyTRPCRootTypes, AnyTRPCRouter, inferProcedureInput, inferTransformedProcedureOutput, TRPCProcedureType } from '@trpc/server';
 import type { Unsubscribable } from '@trpc/server/observable';
-import type { RouterRecord } from '@trpc/server/unstable-core-do-not-import';
-import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
+import type { inferAsyncIterableYield, RouterRecord } from '@trpc/server/unstable-core-do-not-import';
 
+import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue';
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
 import { createTRPCFlatProxy } from '@trpc/server';
@@ -18,6 +18,16 @@ interface ResolverDef {
   output: any;
   transformer: boolean;
   errorShape: any;
+}
+
+// Extracted from https://github.com/trpc/trpc/blob/5597551257ad8d83dbca7272cc6659756896bbda/packages/client/src/internals/TRPCUntypedClient.ts#L32
+interface TRPCSubscriptionObserver<TValue, TError> {
+  onStarted: (opts: { context: OperationContext | undefined }) => void;
+  onData: (value: inferAsyncIterableYield<TValue>) => void;
+  onError: (err: TError) => void;
+  onStopped: () => void;
+  onComplete: () => void;
+  onConnectionStateChange: (state: TRPCConnectionState<TError>) => void;
 }
 
 type SubscriptionResolver<TDef extends ResolverDef> = (
