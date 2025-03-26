@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- 4554340: Add missing subscription event types
+
 ## 1.0.3
 
 ### Patch Changes
