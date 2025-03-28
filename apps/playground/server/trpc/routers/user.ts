@@ -14,7 +14,6 @@ export type User = z.infer<typeof UserShape>;
 
 export const userRouter = router({
   hello: publicProcedure.input(z.instanceof(FormData)).mutation((opts) => {
-    console.log(opts);
     const data = opts.input;
 
     return {
