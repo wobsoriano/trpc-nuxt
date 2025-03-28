@@ -5,13 +5,4 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-03-13',
-
-  // Temporary fix. See https://github.com/nuxt/nuxt/discussions/27779#discussioncomment-9952440
-  vite: {
-    server: {
-      hmr: {
-        clientPort: 3000,
-      },
-    },
-  },
 });
