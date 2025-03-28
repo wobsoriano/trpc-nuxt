@@ -10,14 +10,14 @@
     "postinstall": "nuxi prepare"
   },
   "dependencies": {
-    "@trpc/client": "catalog:",
-    "@trpc/server": "catalog:",
-    "superjson": "catalog:",
+    "@trpc/client": "catalog:trpc",
+    "@trpc/server": "catalog:trpc",
+    "superjson": "catalog:repo",
     "trpc-nuxt": "workspace:*",
-    "zod": "catalog:"
+    "zod": "catalog:repo"
   },
   "devDependencies": {
     "@types/node": "20.12.12",
-    "nuxt": "catalog:"
+    "nuxt": "catalog:repo"
   }
 }

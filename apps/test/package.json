@@ -11,11 +11,11 @@
     "test": "playwright test"
   },
   "dependencies": {
-    "nuxt": "catalog:",
-    "@trpc/client": "catalog:",
-    "@trpc/server": "catalog:",
-    "superjson": "catalog:",
-    "zod": "catalog:",
+    "nuxt": "catalog:repo",
+    "@trpc/client": "catalog:trpc",
+    "@trpc/server": "catalog:trpc",
+    "superjson": "catalog:repo",
+    "zod": "catalog:repo",
     "trpc-nuxt": "workspace:*"
   },
   "devDependencies": {
