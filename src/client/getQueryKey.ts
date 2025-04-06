@@ -32,7 +32,7 @@ export function getQueryKeyInternal(
  * Method to extract the query key for a procedure
  * @param procedure - procedure
  * @param input - input to procedure
- * @see https://trpc-nuxt.vercel.app/references/getquerykey
+ * @see https://trpc-nuxt.pages.dev/guides/mutation-and-revalidation
  */
 export function getQueryKey<TProcedureOrRouter extends ProcedureOrRouter,
 >(
@@ -55,7 +55,7 @@ export function getMutationKeyInternal(path: string) {
 /**
  * Method to extract the mutation key for a procedure
  * @param procedure - procedure
- * @see https://trpc-nuxt.vercel.app/references/getquerykey
+ * @see https://trpc-nuxt.pages.dev/guides/mutation-and-revalidation
  */
 export function getMutationKey<TProcedure extends DecoratedMutation<any>>(procedure: TProcedure) {
   // @ts-expect-error - we don't expose _def on the type layer
