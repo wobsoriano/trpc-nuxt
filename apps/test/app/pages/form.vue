@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { $trpc } = useNuxtApp()
+const { $trpc } = useNuxtApp();
 
-const { data, mutate } = $trpc.postFormData.useMutation()
+const { data, mutate } = $trpc.postFormData.useMutation();
 
 function handleSubmit(e: Event) {
-  const formData = new FormData(e.target as HTMLFormElement)
+  const formData = new FormData(e.target as HTMLFormElement);
 
-  mutate(formData)
+  mutate(formData);
 }
 </script>
 

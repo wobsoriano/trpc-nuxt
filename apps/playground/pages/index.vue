@@ -32,7 +32,7 @@ async function addTodo() {
     data.value?.push(result);
   }
 
-  console.log('mutationData', toRaw(mutationData.value))
+  console.log('mutationData', toRaw(mutationData.value));
 }
 </script>
 

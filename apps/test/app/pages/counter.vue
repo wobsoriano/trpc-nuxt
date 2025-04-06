@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { $trpc } = useNuxtApp()
+const { $trpc } = useNuxtApp();
 
-const { data: count, refresh } = await $trpc.getCount.useQuery()
-const { mutate } = $trpc.setCount.useMutation()
+const { data: count, refresh } = await $trpc.getCount.useQuery();
+const { mutate } = $trpc.setCount.useMutation();
 
 async function setCount() {
-  await mutate(Number(count.value) + 1)
-  refresh()
+  await mutate(Number(count.value) + 1);
+  refresh();
 }
 </script>
 
@@ -15,4 +15,7 @@ async function setCount() {
   <button @click="setCount">
     Update
   </button>
+  <NuxtLink to="/get-query-key">
+    Go to query key
+  </NuxtLink>
 </template>

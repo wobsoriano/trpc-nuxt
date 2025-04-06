@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { $trpc } = useNuxtApp()
+const { $trpc } = useNuxtApp();
 
-const hello = await $trpc.hello.query({ text: 'client' })
+const hello = await $trpc.hello.query({ text: 'client' });
 </script>
 
 <template>

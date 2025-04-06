@@ -3,7 +3,7 @@ import { initTRPC } from '@trpc/server';
 import { superjson } from '~/shared/superjson';
 
 export async function createTRPCContext(event: H3Event) {
-  const { userId } = event.context.auth
+  const { userId } = event.context.auth;
   return { userId };
 }
 

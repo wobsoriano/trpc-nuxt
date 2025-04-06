@@ -7,5 +7,5 @@ const createTRPCNuxtHandler = _createTRPCNuxtHandler;
 
 export {
   createNuxtApiHandler,
-  createTRPCNuxtHandler
-}
+  createTRPCNuxtHandler,
+};

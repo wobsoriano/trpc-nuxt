@@ -1,7 +1,7 @@
-import { z } from 'zod'
-import { baseProcedure, createTRPCRouter } from '../init'
+import { z } from 'zod';
+import { baseProcedure, createTRPCRouter } from '../init';
 
-let count = 0
+let count = 0;
 
 export const appRouter = createTRPCRouter({
   hello: baseProcedure
@@ -34,9 +34,9 @@ export const appRouter = createTRPCRouter({
     .mutation(({ input }) => {
       return {
         firstName: input.get('firstName'),
-        lastName: input.get('lastName')
-      }
-    })
+        lastName: input.get('lastName'),
+      };
+    }),
 });
 
 // export type definition of API
