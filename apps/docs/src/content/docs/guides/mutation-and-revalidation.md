@@ -27,7 +27,7 @@ const queryKey = getQueryKey($trpc.getTodos, undefined);
 type RouterOutput = inferRouterOutputs<AppRouter>;
 
 // Access to the cached value of useQuery in todos.vue
-const { data: todos } = useNuxtData<RouterOutput['todos']['get']>(queryKey);
+const { data: todos } = useNuxtData<RouterOutput['getTodos']>(queryKey);
 
 async function addTodo(payload) {
   // Store the previously cached value to restore if mutation fails.
