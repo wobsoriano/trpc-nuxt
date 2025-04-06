@@ -9,8 +9,8 @@ catalogs:
     zod: ^3.24.2
   # Can be referenced through "catalog:trpc"
   trpc:
-    '@trpc/client': ^11.0.1
-    '@trpc/server': ^11.0.1
+    '@trpc/client': ^11.0.2
+    '@trpc/server': ^11.0.2
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild

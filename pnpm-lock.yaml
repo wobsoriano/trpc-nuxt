@@ -17,11 +17,11 @@ catalogs:
       version: 3.24.2
   trpc:
     '@trpc/client':
-      specifier: ^11.0.1
-      version: 11.0.1
+      specifier: ^11.0.2
+      version: 11.0.2
     '@trpc/server':
-      specifier: ^11.0.1
-      version: 11.0.1
+      specifier: ^11.0.2
+      version: 11.0.2
 
 importers:
 
@@ -45,10 +45,10 @@ importers:
         version: 2.28.1
       '@trpc/client':
         specifier: catalog:trpc
-        version: 11.0.1(@trpc/server@11.0.1(typescript@5.8.2))(typescript@5.8.2)
+        version: 11.0.2(@trpc/server@11.0.2(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server':
         specifier: catalog:trpc
-        version: 11.0.1(typescript@5.8.2)
+        version: 11.0.2(typescript@5.8.2)
       astro-eslint-parser:
         specifier: ^1.2.1
         version: 1.2.2
@@ -87,10 +87,10 @@ importers:
     dependencies:
       '@trpc/client':
         specifier: catalog:trpc
-        version: 11.0.1(@trpc/server@11.0.1(typescript@5.8.2))(typescript@5.8.2)
+        version: 11.0.2(@trpc/server@11.0.2(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server':
         specifier: catalog:trpc
-        version: 11.0.1(typescript@5.8.2)
+        version: 11.0.2(typescript@5.8.2)
       superjson:
         specifier: catalog:repo
         version: 2.2.2
@@ -112,10 +112,10 @@ importers:
     dependencies:
       '@trpc/client':
         specifier: catalog:trpc
-        version: 11.0.1(@trpc/server@11.0.1(typescript@5.8.2))(typescript@5.8.2)
+        version: 11.0.2(@trpc/server@11.0.2(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server':
         specifier: catalog:trpc
-        version: 11.0.1(typescript@5.8.2)
+        version: 11.0.2(typescript@5.8.2)
       nuxt:
         specifier: catalog:repo
         version: 3.16.1(@parcel/watcher@2.5.1)(@types/node@20.12.12)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.37.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.3(@types/node@20.12.12)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
@@ -1381,14 +1381,14 @@ packages:
     peerDependencies:
       eslint: '>=9.0.0'
 
-  '@trpc/client@11.0.1':
-    resolution: {integrity: sha512-HvOrvWAXbGBwt4om+NfuxrK4f+ik2aaNIXq7WLrJbEp7U+YXfh5++1a5p4JDaikrvSaObJ389DhYAGWz90xSGw==}
+  '@trpc/client@11.0.2':
+    resolution: {integrity: sha512-GlPEedbMTerkUfAJBsrwU6dg8N65lt3LBwrCoqR3MTZ64lRU/DQqyLjzpz5nRkEN0x4S2JmX0hASV9vc2KlSHA==}
     peerDependencies:
-      '@trpc/server': 11.0.1
+      '@trpc/server': 11.0.2
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.0.1':
-    resolution: {integrity: sha512-DZS3+bONLno4oJjHBMrS3xRPtoZsnmBImDH/Mmo1QhaFt3Xp/S0Riu7WU/oofsLTVj2m1UO5LlgLJFumvlSNoQ==}
+  '@trpc/server@11.0.2':
+    resolution: {integrity: sha512-PIcm8UWFyE0AnIYjxsyc1zfVa6X10m9Opm1SJ2ou9Vu8dlXO6rMtmafLUXJsMeQk/3ecxObFtEiZIX8TvB3eCg==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -6947,12 +6947,12 @@ snapshots:
       - supports-color
       - typescript
 
-  '@trpc/client@11.0.1(@trpc/server@11.0.1(typescript@5.8.2))(typescript@5.8.2)':
+  '@trpc/client@11.0.2(@trpc/server@11.0.2(typescript@5.8.2))(typescript@5.8.2)':
     dependencies:
-      '@trpc/server': 11.0.1(typescript@5.8.2)
+      '@trpc/server': 11.0.2(typescript@5.8.2)
       typescript: 5.8.2
 
-  '@trpc/server@11.0.1(typescript@5.8.2)':
+  '@trpc/server@11.0.2(typescript@5.8.2)':
     dependencies:
       typescript: 5.8.2
 
