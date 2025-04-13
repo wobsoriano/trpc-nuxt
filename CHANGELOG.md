@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- 4edc91c: Use copy of H3's `toWebRequest`
+
 ## 1.0.4
 
 ### Patch Changes
