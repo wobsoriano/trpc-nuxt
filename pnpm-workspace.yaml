@@ -2,16 +2,15 @@ packages:
   - .
   - apps/*
 catalogs:
-  # Can be referenced through "catalog:repo"
   repo:
     nuxt: 3.16.1
     superjson: ^2.2.2
     zod: ^3.24.2
-  # Can be referenced through "catalog:trpc"
   trpc:
     '@trpc/client': ^11.0.2
     '@trpc/server': ^11.0.2
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
+  - rolldown
   - sharp
