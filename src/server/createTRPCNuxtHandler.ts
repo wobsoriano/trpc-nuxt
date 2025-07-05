@@ -44,6 +44,10 @@ export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCN
       createContext,
     });
 
+    // don't return tRPC response when h3 event was already handled (e.g. using sendRedirect() or sendStream())
+    if (event.handled)
+      return;
+
     return httpResponse;
   });
 }

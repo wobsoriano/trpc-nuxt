@@ -1,7 +1,7 @@
 import type { HTTPBatchLinkOptions as _HTTPBatchLinkOptions, HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client';
 import type { FetchEsque } from '@trpc/client/dist/internals/types';
 import type { AnyTRPCRouter } from '@trpc/server';
-import type { FetchError } from 'ofetch';
+import type { FetchError, FetchOptions } from 'ofetch';
 import {
   httpBatchLink as _httpBatchLink,
   httpBatchStreamLink as _httpBatchStreamLink,
@@ -14,38 +14,48 @@ function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError';
 }
 
-async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
-  return globalThis.$fetch.raw(input.toString(), init)
-    .catch((e) => {
+function createCustomFetch(fetchOptions?: FetchOptions) {
+  return async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
+    return globalThis.$fetch.create(fetchOptions ?? {}).raw(input.toString(), init).catch((e) => {
       if (isFetchError(e) && e.response) {
         return e.response;
       }
       throw e;
-    })
-    .then(response => ({
+    }).then(response => ({
       ...response,
       headers: response.headers,
       json: () => Promise.resolve(response._data),
-    }));
+    }
+    ));
+  } as FetchEsque;
 }
 
-export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TRouter['_def']['_config']['$types']> & {
+interface DefaultLinkOptionsParams {
   /**
    * Select headers to pass to `useRequestHeaders`.
    */
   pickHeaders?: string[];
-};
 
-function createDefaultLinkOptions(pickHeaders?: string[]) {
+  /**
+   * ofetch fetch options.
+   * @see https://github.com/unjs/ofetch
+   */
+  fetchOptions?: FetchOptions;
+}
+
+export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TRouter['_def']['_config']['$types']>
+  & DefaultLinkOptionsParams;
+
+function createDefaultLinkOptions(params: DefaultLinkOptionsParams) {
   // @ts-expect-error: Default to undefined to get all request headers
-  const headers = useRequestHeaders(pickHeaders);
+  const headers = useRequestHeaders(params.pickHeaders);
 
   return {
     url: defaultEndpoint,
     headers() {
       return headers;
     },
-    fetch: customFetch as FetchEsque,
+    fetch: createCustomFetch(params.fetchOptions),
   };
 }
 
@@ -62,17 +72,13 @@ function createDefaultLinkOptions(pickHeaders?: string[]) {
  */
 export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: HTTPLinkOptions<TRouter>) {
   return _httpLink({
-    ...createDefaultLinkOptions(opts?.pickHeaders),
+    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
   });
 }
 
-export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<TRouter['_def']['_config']['$types']> & {
-  /**
-   * Select headers to pass to `useRequestHeaders`.
-   */
-  pickHeaders?: string[];
-};
+export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<TRouter['_def']['_config']['$types']>
+  & DefaultLinkOptionsParams;
 
 /**
  * This is a convenience wrapper around the original httpBatchLink
@@ -87,7 +93,7 @@ export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLink
  */
 export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
   return _httpBatchLink({
-    ...createDefaultLinkOptions(opts?.pickHeaders),
+    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
   });
 }
@@ -105,7 +111,7 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLin
  */
 export function httpBatchStreamLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
   return _httpBatchStreamLink({
-    ...createDefaultLinkOptions(opts?.pickHeaders),
+    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
   });
 }
