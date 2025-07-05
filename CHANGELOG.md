@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- ad98bae: Set minimum version to Node 20
+
 ## 1.1.0
 
 ### Minor Changes
