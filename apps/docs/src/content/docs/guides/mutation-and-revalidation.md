@@ -31,7 +31,7 @@ const { data: todos } = useNuxtData<RouterOutput['getTodos']>(queryKey);
 
 async function addTodo(payload) {
   // Store the previously cached value to restore if mutation fails.
-  previousTodos.value = todos.value;
+  previousTodos.value = [...todos.value];
 
   // Optimistically update the todos.
   todos.value.push(payload);
