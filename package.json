@@ -26,6 +26,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "tsdown --watch --onSuccess \"pnpm --filter playground dev\"",
     "dev:prepare": "pnpm build && nuxt prepare playground",
@@ -54,10 +57,7 @@
     "eslint": "^9.22.0",
     "eslint-plugin-astro": "^1.3.1",
     "nuxt": "catalog:repo",
-    "tsdown": "^0.12.9",
+    "tsdown": "^0.15.9",
     "typescript": "^5.8.2"
-  },
-  "engines": {
-    "node": ">=20"
   }
 }

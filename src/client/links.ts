@@ -1,5 +1,4 @@
 import type { HTTPBatchLinkOptions as _HTTPBatchLinkOptions, HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client';
-import type { FetchEsque } from '@trpc/client/dist/internals/types';
 import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError, FetchOptions } from 'ofetch';
 import {
@@ -13,6 +12,11 @@ import { defaultEndpoint } from '../shared';
 function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError';
 }
+
+type FetchEsque = (
+  input: RequestInfo | URL | string,
+  init?: RequestInit | Request,
+) => Promise<Response>;
 
 function createCustomFetch(fetchOptions?: FetchOptions) {
   return async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
@@ -74,7 +78,7 @@ export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: H
   return _httpLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
-  });
+  } as any);
 }
 
 export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<TRouter['_def']['_config']['$types']>
@@ -95,7 +99,7 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLin
   return _httpBatchLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
-  });
+  } as any);
 }
 
 /**
@@ -113,5 +117,5 @@ export function httpBatchStreamLink<TRouter extends AnyTRPCRouter>(opts?: HttpBa
   return _httpBatchStreamLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
-  });
+  } as any);
 }

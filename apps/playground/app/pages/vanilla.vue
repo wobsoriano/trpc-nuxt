@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { inferRouterOutputs } from '@trpc/server';
-import type { AppRouter } from '~/server/trpc/routers';
+import type { AppRouter } from '~~/server/trpc/routers';
 import { TRPCClientError } from '@trpc/client';
 
 const { $client } = useNuxtApp();
