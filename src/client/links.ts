@@ -3,7 +3,6 @@ import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError, FetchOptions } from 'ofetch';
 import {
   httpBatchLink as _httpBatchLink,
-  httpBatchStreamLink as _httpBatchStreamLink,
   httpLink as _httpLink,
 } from '@trpc/client';
 import { useRequestHeaders } from 'nuxt/app';
@@ -78,7 +77,7 @@ export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: H
   return _httpLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
-  } as any);
+  });
 }
 
 export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<TRouter['_def']['_config']['$types']>
@@ -99,5 +98,5 @@ export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLin
   return _httpBatchLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
-  } as any);
+  });
 }
