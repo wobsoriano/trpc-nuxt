@@ -1,8 +1,8 @@
 export {
   createTRPCNuxtClient,
-} from './createTRPCNuxtClient';
+} from './create-trpc-nuxt-client';
 
-export { getMutationKey, getQueryKey } from './getQueryKey';
+export { getMutationKey, getQueryKey } from './get-query-key';
 
 export {
   httpBatchLink,

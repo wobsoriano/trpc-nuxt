@@ -1,12 +1,11 @@
-import type { AnyTRPCQueryProcedure, inferProcedureInput } from '@trpc/server';
-import type { DeepPartial } from '@trpc/server/unstable-core-do-not-import';
-import type { DecoratedMutation, DecoratedQuery, DecorateRouterRecord } from './createTRPCNuxtClient';
+import type { AnyTRPCQueryProcedure, DeepPartial, inferProcedureInput } from '@trpc/server';
+import type { DecoratedMutation, DecoratedQuery, DecorateRouterRecord } from './create-trpc-nuxt-client';
 import { hash } from 'ohash';
 
-type ProcedureOrRouter =
-  | DecoratedMutation<any>
-  | DecoratedQuery<any>
-  | DecorateRouterRecord<any, any>;
+type ProcedureOrRouter
+  = | DecoratedMutation<any>
+    | DecoratedQuery<any>
+    | DecorateRouterRecord<any, any>;
 
 export type GetQueryParams<
   TProcedureOrRouter extends AnyTRPCQueryProcedure,
@@ -16,8 +15,8 @@ export type GetQueryParams<
 /** @internal */
 export type GetQueryProcedureInput<TProcedureInput> = DeepPartial<TProcedureInput> | undefined;
 
-type GetParams<TProcedureOrRouter extends ProcedureOrRouter> =
-  TProcedureOrRouter extends DecoratedQuery<infer $Def>
+type GetParams<TProcedureOrRouter extends ProcedureOrRouter>
+  = TProcedureOrRouter extends DecoratedQuery<infer $Def>
     ? [input?: GetQueryProcedureInput<$Def['input']>]
     : [];
 

@@ -1,10 +1,10 @@
 import type { TRPCClient } from '@trpc/client';
 import type { AnyTRPCRouter } from '@trpc/server';
-import type { AsyncDataExecuteOptions } from './createTRPCNuxtClient';
+import type { AsyncDataExecuteOptions } from './nuxt-types';
 import { createTRPCRecursiveProxy } from '@trpc/server';
 import { useAsyncData } from 'nuxt/app';
 import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue';
-import { getMutationKeyInternal, getQueryKeyInternal } from './getQueryKey';
+import { getMutationKeyInternal, getQueryKeyInternal } from './get-query-key';
 
 function isRefOrGetter<T>(val: T): boolean {
   return isRef(val) || typeof val === 'function';

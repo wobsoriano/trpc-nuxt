@@ -6,26 +6,10 @@ import type { inferAsyncIterableYield, RouterRecord } from '@trpc/server/unstabl
 
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type { MaybeRefOrGetter, UnwrapRef } from 'vue';
+import type { AsyncDataExecuteOptions, KeysOf, PickFrom } from './nuxt-types';
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
 import { createTRPCFlatProxy } from '@trpc/server';
-import { createNuxtProxyDecoration } from './decorationProxy';
-
-// Extracted Nuxt types
-type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T;
-type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>;
-
-type AsyncDataRefreshCause = 'initial' | 'refresh:hook' | 'refresh:manual' | 'watch';
-export interface AsyncDataExecuteOptions {
-  /**
-   * Force a refresh, even if there is already a pending request. Previous requests will
-   * not be cancelled, but their result will not affect the data/pending state - and any
-   * previously awaited promises will not resolve until this new request resolves.
-   */
-  dedupe?: 'cancel' | 'defer';
-  cause?: AsyncDataRefreshCause;
-  /** @internal */
-  cachedData?: any;
-}
+import { createNuxtProxyDecoration } from './decoration-proxy';
 
 interface ResolverDef {
   input: any;
