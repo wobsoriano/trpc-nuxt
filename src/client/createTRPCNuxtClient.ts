@@ -87,6 +87,7 @@ export interface DecoratedQuery<TDef extends ResolverDef> {
     TQueryFnData extends TDef['output'] = TDef['output'],
     TData = TQueryFnData,
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
+    DefaultT = undefined,
   >(
     input: MaybeRefOrGetter<TDef['input']>,
     // todo: add trpc options?
@@ -99,7 +100,7 @@ export interface DecoratedQuery<TDef extends ResolverDef> {
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false;
       trpc?: TRPCRequestOptions;
     }
-  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>;
+  ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>;
   query: Resolver<TDef>;
 }
 
@@ -114,6 +115,7 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     TQueryFnData extends TDef['output'] = TDef['output'],
     TData = TQueryFnData,
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
+    DefaultT = undefined,
   >(
     opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch' | 'server' | 'immediate'> & {
       /**
@@ -123,11 +125,11 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
       mutationKey?: string;
       trpc?: TRPCRequestOptions;
     }
-  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>> & {
+  ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>> & {
     /**
      * The function to call to trigger the mutation.
      */
-    mutate: (input: TDef['input']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>;
+    mutate: (input: TDef['input']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>['data']>>;
   };
   mutate: Resolver<TDef>;
 }
