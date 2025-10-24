@@ -1,4 +1,4 @@
-import type { AppRouter } from '../../server/trpc/routers';
+import type { AppRouter } from '~~/server/trpc/routers';
 import { isNonJsonSerializable, splitLink } from '@trpc/client';
 import { createTRPCNuxtClient, httpBatchLink, httpLink } from 'trpc-nuxt/client';
 import { superjson } from '~/shared/superjson';
