@@ -108,7 +108,7 @@ export interface DecoratedQuery<TDef extends ResolverDef> {
     opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'watch'> & {
       /**
        * The custom unique key to use.
-       * @see https://nuxt.com/docs/api/composables/use-async-data#params
+       * @see https://nuxt.com/docs/4.x/api/composables/use-async-data#params
        */
       queryKey?: string;
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false;
@@ -134,7 +134,7 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch' | 'server' | 'immediate'> & {
       /**
        * The custom unique key to use.
-       * @see https://nuxt.com/docs/api/composables/use-async-data#params
+       * @see https://nuxt.com/docs/4.x/api/composables/use-async-data#params
        */
       mutationKey?: string;
       trpc?: TRPCRequestOptions;
