@@ -1,5 +1,6 @@
 import type { TRPCClient } from '@trpc/client';
 import type { AnyTRPCRouter } from '@trpc/server';
+import type { AsyncDataExecuteOptions } from './createTRPCNuxtClient';
 import { createTRPCRecursiveProxy } from '@trpc/server';
 import { useAsyncData } from 'nuxt/app';
 import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue';
@@ -79,9 +80,9 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
         immediate: false,
       });
 
-      async function mutate(value: any) {
+      async function mutate(value: any, opts?: AsyncDataExecuteOptions) {
         input.value = value;
-        await asyncData.execute();
+        await asyncData.execute(opts);
         return toRaw(asyncData.data.value);
       }
 
