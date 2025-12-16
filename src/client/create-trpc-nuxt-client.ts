@@ -74,7 +74,7 @@ export interface DecoratedSubscription<TDef extends ResolverDef> {
     opts?: UseSubscriptionOptions<
       inferAsyncIterableYield<TDef['output']>,
       TRPCClientError<TDef>
-    >
+    >,
   ) => UseSubscriptionReturn<
     inferAsyncIterableYield<TDef['output']>,
     TRPCClientError<TDef>
@@ -141,7 +141,7 @@ export interface DecoratedQuery<TDef extends ResolverDef> {
       queryKey?: string;
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false;
       trpc?: TRPCRequestOptions;
-    }
+    },
   ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>;
   query: Resolver<TDef>;
 }
@@ -166,7 +166,7 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
        */
       mutationKey?: string;
       trpc?: TRPCRequestOptions;
-    }
+    },
   ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>> & {
     /**
      * The function to call to trigger the mutation.
