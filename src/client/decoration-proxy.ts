@@ -3,7 +3,7 @@ import type { AnyTRPCRouter } from '@trpc/server';
 import type { AsyncDataExecuteOptions } from './nuxt-types';
 import { createTRPCRecursiveProxy } from '@trpc/server';
 import { useAsyncData } from 'nuxt/app';
-import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue } from 'vue';
+import { getCurrentInstance, isRef, onScopeDispose, shallowRef, toRaw, toValue, watch } from 'vue';
 import { getMutationKeyInternal, getQueryKeyInternal } from './get-query-key';
 
 function isRefOrGetter<T>(val: T): boolean {
@@ -89,6 +89,118 @@ export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: s
       Object.assign(asyncData, { mutate });
 
       return asyncData;
+    }
+
+    if (lastArg === 'useSubscription') {
+      const { enabled, onStarted, onData, onError, onComplete, onConnectionStateChange, onStopped, trpc: trpcOpts } = otherOptions || {} as any;
+
+      const status = shallowRef<'idle' | 'connecting' | 'pending' | 'error'>('idle');
+      const data = shallowRef<any>(undefined);
+      const error = shallowRef<any>(null);
+      let unsubscribe: (() => void) | null = null;
+
+      function subscribe() {
+        // Unsubscribe from previous subscription
+        unsubscribe?.();
+
+        status.value = 'connecting';
+        error.value = null;
+        onConnectionStateChange?.('connecting');
+
+        const sub = (client as any)[path].subscribe(toValue(input), {
+          onStarted: (opts: any) => {
+            status.value = 'pending';
+            onStarted?.(opts);
+            onConnectionStateChange?.('connected');
+          },
+          onData: (value: any) => {
+            // The SSE link wraps data in { data: <actual> }, so extract it
+            const actualData = value?.data ?? value;
+            data.value = actualData;
+            onData?.(actualData);
+          },
+          onError: (err: any) => {
+            status.value = 'error';
+            error.value = err;
+            onError?.(err);
+            onConnectionStateChange?.('error');
+          },
+          onComplete: () => {
+            status.value = 'idle';
+            onComplete?.();
+            onConnectionStateChange?.('idle');
+          },
+          onConnectionStateChange: (state: any) => {
+            // Pass through connection state changes from tRPC client (e.g., 'reconnecting')
+            onConnectionStateChange?.(state);
+            // Update our internal status if needed
+            if (state === 'connected' && status.value !== 'pending') {
+              status.value = 'pending';
+            }
+            else if (state === 'error' && status.value !== 'error') {
+              status.value = 'error';
+            }
+            else if (state === 'idle' && status.value !== 'idle') {
+              status.value = 'idle';
+            }
+            else if (state === 'connecting' && status.value !== 'connecting') {
+              status.value = 'connecting';
+            }
+          },
+          onStopped: () => {
+            onStopped?.();
+          },
+          ...trpcOpts,
+        });
+
+        unsubscribe = () => {
+          sub.unsubscribe();
+          onStopped?.();
+        };
+      }
+
+      function reset() {
+        unsubscribe?.();
+        status.value = 'idle';
+        data.value = undefined;
+        error.value = null;
+        onConnectionStateChange?.('idle');
+
+        if (toValue(enabled) !== false) {
+          subscribe();
+        }
+      }
+
+      // Watch for input/enabled changes (client-side only)
+      if (import.meta.client) {
+        // Start subscription immediately if enabled is not false
+        if (toValue(enabled) !== false) {
+          subscribe();
+        }
+
+        watch(
+          () => [toValue(input), toValue(enabled)],
+          ([_, isEnabled]) => {
+            if (isEnabled === false) {
+              unsubscribe?.();
+              status.value = 'idle';
+              onConnectionStateChange?.('idle');
+            }
+            else {
+              subscribe();
+            }
+          },
+          { immediate: false, deep: true },
+        );
+      }
+      // Note: Subscriptions are client-side only (SSE doesn't work during SSR)
+
+      // Auto-cleanup on scope dispose
+      if (getCurrentInstance()) {
+        onScopeDispose(() => unsubscribe?.());
+      }
+
+      return { status, data, error, reset };
     }
 
     return (client as any)[path][lastArg](...args);

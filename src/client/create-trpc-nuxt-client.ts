@@ -5,7 +5,7 @@ import type { Unsubscribable } from '@trpc/server/observable';
 import type { inferAsyncIterableYield, RouterRecord } from '@trpc/server/unstable-core-do-not-import';
 
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
-import type { MaybeRefOrGetter, UnwrapRef } from 'vue';
+import type { MaybeRefOrGetter, Ref, ShallowRef, UnwrapRef } from 'vue';
 import type { AsyncDataExecuteOptions, KeysOf, PickFrom } from './nuxt-types';
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
 import { createTRPCFlatProxy } from '@trpc/server';
@@ -36,6 +36,52 @@ type SubscriptionResolver<TDef extends ResolverDef> = (
   & TRPCProcedureOptions,
 ) => Unsubscribable;
 
+type SubscriptionStatus = 'idle' | 'connecting' | 'pending' | 'error';
+
+export interface UseSubscriptionOptions<TOutput, TError> {
+  enabled?: MaybeRefOrGetter<boolean>;
+  onStarted?: (opts: { context: OperationContext | undefined }) => void;
+  onData?: (data: TOutput) => void;
+  onError?: (error: TError) => void;
+  onComplete?: () => void;
+  onConnectionStateChange?: (state: TRPCConnectionState<TError>) => void;
+  onStopped?: () => void;
+  trpc?: TRPCRequestOptions;
+}
+
+export interface UseSubscriptionReturn<TOutput, TError> {
+  status: Ref<SubscriptionStatus>;
+  data: ShallowRef<TOutput | undefined>;
+  error: ShallowRef<TError | null>;
+  reset: () => void;
+}
+
+export interface DecoratedSubscription<TDef extends ResolverDef> {
+  /**
+   * @example
+   *
+   * const { status, data, error } = $trpc.chat.onMessage.useSubscription(
+   *   () => ({ roomId: props.roomId }),
+   *   {
+   *     onData: (message) => {
+   *       messages.value.push(message);
+   *     },
+   *   }
+   * );
+   */
+  useSubscription: (
+    input: MaybeRefOrGetter<TDef['input']>,
+    opts?: UseSubscriptionOptions<
+      inferAsyncIterableYield<TDef['output']>,
+      TRPCClientError<TDef>
+    >
+  ) => UseSubscriptionReturn<
+    inferAsyncIterableYield<TDef['output']>,
+    TRPCClientError<TDef>
+  >;
+  subscribe: SubscriptionResolver<TDef>;
+}
+
 export type DecorateProcedure<
   TType extends TRPCProcedureType,
   TDef extends ResolverDef,
@@ -44,9 +90,7 @@ export type DecorateProcedure<
   : TType extends 'mutation'
     ? DecoratedMutation<TDef>
     : TType extends 'subscription'
-      ? {
-          subscribe: SubscriptionResolver<TDef>;
-        }
+      ? DecoratedSubscription<TDef>
       : never;
 
 export type DecorateRouterRecord<
