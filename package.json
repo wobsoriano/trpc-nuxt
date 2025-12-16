@@ -5,6 +5,11 @@
   "packageManager": "pnpm@10.26.0",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "license": "MIT",
+  "homepage": "https://github.com/wobsoriano/trpc-nuxt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobsoriano/trpc-nuxt.git"
+  },
   "sideEffects": false,
   "exports": {
     "./client": {
