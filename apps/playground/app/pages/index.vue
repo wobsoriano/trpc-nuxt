@@ -43,6 +43,9 @@ const subscriptionResult = $client.todo.onActivity.useSubscription(undefined, {
   onComplete: () => {
     console.log('Subscription completed');
   },
+  onConnectionStateChange(state) {
+    console.log('Connection state changed:', state);
+  },
 });
 
 watchEffect(() => {
