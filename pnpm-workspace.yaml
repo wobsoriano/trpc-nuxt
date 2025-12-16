@@ -4,11 +4,11 @@ packages:
 catalogs:
   repo:
     nuxt: 4.1.3
-    superjson: ^2.2.2
-    zod: ^3.24.2
+    superjson: ^2.2.6
+    zod: ^3.25.76
   trpc:
-    '@trpc/client': ^11.6.0
-    '@trpc/server': ^11.6.0
+    '@trpc/client': ^11.8.0
+    '@trpc/server': ^11.8.0
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
