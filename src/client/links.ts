@@ -1,10 +1,8 @@
 import type { HTTPBatchLinkOptions as _HTTPBatchLinkOptions, HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client';
-import type { FetchEsque } from '@trpc/client/dist/internals/types';
 import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError, FetchOptions } from 'ofetch';
 import {
   httpBatchLink as _httpBatchLink,
-  httpBatchStreamLink as _httpBatchStreamLink,
   httpLink as _httpLink,
 } from '@trpc/client';
 import { useRequestHeaders } from 'nuxt/app';
@@ -13,6 +11,11 @@ import { defaultEndpoint } from '../shared';
 function isFetchError(error: unknown): error is FetchError {
   return error instanceof Error && error.name === 'FetchError';
 }
+
+type FetchEsque = (
+  input: RequestInfo | URL | string,
+  init?: RequestInit | Request,
+) => Promise<Response>;
 
 function createCustomFetch(fetchOptions?: FetchOptions) {
   return async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
@@ -93,24 +96,6 @@ export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLink
  */
 export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
   return _httpBatchLink({
-    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
-    ...opts,
-  });
-}
-
-/**
- * This is a convenience wrapper around the original httpBatchStreamLink
- * that replaces regular `fetch` with a `$fetch` from Nuxt. It
- * also sets the default headers based on `useRequestHeaders` values.
- *
- * During server-side rendering, calling $fetch to fetch your internal API routes
- * will directly call the relevant function (emulating the request),
- * saving an additional API call.
- *
- * @see https://nuxt.com/docs/api/utils/dollarfetch
- */
-export function httpBatchStreamLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
-  return _httpBatchStreamLink({
     ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
     ...opts,
   });

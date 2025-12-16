@@ -29,3 +29,25 @@ test('FormData', async ({ page, goto }) => {
   await page.getByRole('button', { name: 'Submit' }).click();
   await expect(page.getByRole('heading')).toHaveText('Welcome, John Doe');
 });
+
+test('subscription', async ({ page, goto }) => {
+  await goto('/subscription', { waitUntil: 'hydration' });
+
+  // Wait for subscription to connect
+  await expect(page.getByText('Status:')).toBeVisible();
+  await expect(page.getByText('Status: pending')).toBeVisible({ timeout: 5000 });
+
+  // Click button to increment count (triggers mutation that emits to subscription)
+  await page.getByRole('button', { name: 'Increment Count' }).click();
+
+  // Should receive the new value (1) - this confirms subscription is working
+  await expect(page.getByText('Last value: 1')).toBeVisible({ timeout: 5000 });
+  await expect(page.getByText(/Received values:.*1/)).toBeVisible();
+
+  // Click again
+  await page.getByRole('button', { name: 'Increment Count' }).click();
+
+  // Should receive the new value (2)
+  await expect(page.getByText('Last value: 2')).toBeVisible({ timeout: 5000 });
+  await expect(page.getByText(/Received values:.*2/)).toBeVisible();
+});

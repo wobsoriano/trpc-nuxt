@@ -5,13 +5,11 @@ import type { Unsubscribable } from '@trpc/server/observable';
 import type { inferAsyncIterableYield, RouterRecord } from '@trpc/server/unstable-core-do-not-import';
 
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
-import type { MaybeRefOrGetter, UnwrapRef } from 'vue';
+import type { MaybeRefOrGetter, Ref, ShallowRef, UnwrapRef } from 'vue';
+import type { AsyncDataExecuteOptions, KeysOf, PickFrom } from './nuxt-types';
 import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
 import { createTRPCFlatProxy } from '@trpc/server';
-import { createNuxtProxyDecoration } from './decorationProxy';
-
-type PickFrom<T, K extends Array<string>> = T extends Array<any> ? T : T extends Record<string, any> ? keyof T extends K[number] ? T : K[number] extends never ? T : Pick<T, K[number]> : T;
-type KeysOf<T> = Array<T extends T ? keyof T extends string ? keyof T : never : never>;
+import { createNuxtProxyDecoration } from './decoration-proxy';
 
 interface ResolverDef {
   input: any;
@@ -34,9 +32,55 @@ type SubscriptionResolver<TDef extends ResolverDef> = (
   input: TDef['input'],
   opts?: Partial<
     TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>
-  > &
-  TRPCProcedureOptions,
+  >
+  & TRPCProcedureOptions,
 ) => Unsubscribable;
+
+type SubscriptionStatus = 'idle' | 'connecting' | 'pending' | 'error';
+
+export interface UseSubscriptionOptions<TOutput, TError> {
+  enabled?: MaybeRefOrGetter<boolean>;
+  onStarted?: (opts: { context: OperationContext | undefined }) => void;
+  onData?: (data: TOutput) => void;
+  onError?: (error: TError) => void;
+  onComplete?: () => void;
+  onConnectionStateChange?: (state: TRPCConnectionState<TError>) => void;
+  onStopped?: () => void;
+  trpc?: TRPCRequestOptions;
+}
+
+export interface UseSubscriptionReturn<TOutput, TError> {
+  status: Ref<SubscriptionStatus>;
+  data: ShallowRef<TOutput | undefined>;
+  error: ShallowRef<TError | null>;
+  reset: () => void;
+}
+
+export interface DecoratedSubscription<TDef extends ResolverDef> {
+  /**
+   * @example
+   *
+   * const { status, data, error } = $trpc.chat.onMessage.useSubscription(
+   *   () => ({ roomId: props.roomId }),
+   *   {
+   *     onData: (message) => {
+   *       messages.value.push(message);
+   *     },
+   *   }
+   * );
+   */
+  useSubscription: (
+    input: MaybeRefOrGetter<TDef['input']>,
+    opts?: UseSubscriptionOptions<
+      inferAsyncIterableYield<TDef['output']>,
+      TRPCClientError<TDef>
+    >
+  ) => UseSubscriptionReturn<
+    inferAsyncIterableYield<TDef['output']>,
+    TRPCClientError<TDef>
+  >;
+  subscribe: SubscriptionResolver<TDef>;
+}
 
 export type DecorateProcedure<
   TType extends TRPCProcedureType,
@@ -46,9 +90,7 @@ export type DecorateProcedure<
   : TType extends 'mutation'
     ? DecoratedMutation<TDef>
     : TType extends 'subscription'
-      ? {
-          subscribe: SubscriptionResolver<TDef>;
-        }
+      ? DecoratedSubscription<TDef>
       : never;
 
 export type DecorateRouterRecord<
@@ -87,19 +129,20 @@ export interface DecoratedQuery<TDef extends ResolverDef> {
     TQueryFnData extends TDef['output'] = TDef['output'],
     TData = TQueryFnData,
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
+    DefaultT = undefined,
   >(
     input: MaybeRefOrGetter<TDef['input']>,
     // todo: add trpc options?
     opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'watch'> & {
       /**
        * The custom unique key to use.
-       * @see https://nuxt.com/docs/api/composables/use-async-data#params
+       * @see https://nuxt.com/docs/4.x/api/composables/use-async-data#params
        */
       queryKey?: string;
       watch?: AsyncDataOptions<TQueryFnData, TData, PickKeys>['watch'] | false;
       trpc?: TRPCRequestOptions;
     }
-  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>;
+  ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>;
   query: Resolver<TDef>;
 }
 
@@ -114,20 +157,21 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     TQueryFnData extends TDef['output'] = TDef['output'],
     TData = TQueryFnData,
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
+    DefaultT = undefined,
   >(
     opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch' | 'server' | 'immediate'> & {
       /**
        * The custom unique key to use.
-       * @see https://nuxt.com/docs/api/composables/use-async-data#params
+       * @see https://nuxt.com/docs/4.x/api/composables/use-async-data#params
        */
       mutationKey?: string;
       trpc?: TRPCRequestOptions;
     }
-  ) => AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>> & {
+  ) => AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>> & {
     /**
      * The function to call to trigger the mutation.
      */
-    mutate: (input: TDef['input']) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | null, TRPCClientErrorLike<TDef>>['data']>>;
+    mutate: (input: TDef['input'], opts?: AsyncDataExecuteOptions) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>['data']>>;
   };
   mutate: Resolver<TDef>;
 }

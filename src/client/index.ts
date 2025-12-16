@@ -1,11 +1,15 @@
 export {
   createTRPCNuxtClient,
-} from './createTRPCNuxtClient';
+} from './create-trpc-nuxt-client';
 
-export { getMutationKey, getQueryKey } from './getQueryKey';
+export type {
+  UseSubscriptionOptions,
+  UseSubscriptionReturn,
+} from './create-trpc-nuxt-client';
+
+export { getMutationKey, getQueryKey } from './get-query-key';
 
 export {
   httpBatchLink,
-  httpBatchStreamLink,
   httpLink,
 } from './links';
