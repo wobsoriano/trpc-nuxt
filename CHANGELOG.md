@@ -1,5 +1,58 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- 5f753be: This release makes `trpc-nuxt` Nuxt 4 first while maintaining backward compatibility with Nuxt 3. The minimum Node.js version is now 22 (previously 20).
+
+  **Breaking changes:**
+
+  - Minimum Node.js version is now 22 (previously 20)
+  - Nuxt 4 is now the primary target (Nuxt 3 remains supported)
+
+  **Migration:**
+
+  - Update to Node.js 22 or higher
+  - For new projects, use Nuxt 4.x for the best experience
+
+### Minor Changes
+
+- 5f753be: Introduce `useSubscription` composable that provides a reactive interface for tRPC subscriptions.
+
+  **Example:**
+
+  ```vue
+  <script setup lang="ts">
+  const { $trpc } = useNuxtApp();
+
+  const { status, data, error } = $trpc.todo.onActivity.useSubscription(
+    undefined,
+    {
+      onStarted: () => {
+        console.log("Subscription started");
+      },
+      onData: (activity) => {
+        console.log("Received activity:", activity);
+      },
+      onError: (err) => {
+        console.error("Subscription error:", err);
+      },
+      onConnectionStateChange: (state) => {
+        console.log("Connection state:", state);
+      },
+    }
+  );
+  </script>
+
+  <template>
+    <div>
+      <p>Status: {{ status }}</p>
+      <p v-if="data">Last activity: {{ data }}</p>
+    </div>
+  </template>
+  ```
+
 ## 1.2.0
 
 ### Minor Changes
