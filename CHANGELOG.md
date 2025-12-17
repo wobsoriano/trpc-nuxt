@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- 658597b: Fix unused exports
+
 ## 2.0.0
 
 ### Major Changes
