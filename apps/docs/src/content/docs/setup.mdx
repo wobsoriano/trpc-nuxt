@@ -40,17 +40,6 @@ We recommend a file structure like this one, although it is not enforced by tRPC
     npm install trpc-nuxt @trpc/server @trpc/client
     ```
 
-    Add `trpc-nuxt` to your `nuxt.config.ts`'s `build.transpile`:
-
-    ```ts
-    // nuxt.config.ts
-    export default defineNuxtConfig({
-      build: {
-        transpile: ['trpc-nuxt']
-      }
-    })
-    ```
-
 2. ### Create a [tRPC router](https://trpc.io/docs/server/routers)
 
     Initialize your tRPC backend in `server/trpc/init.ts` using the `initTRPC` function, and create your first router. We're going to make a simple "hello world" router and procedure here - but for deeper information on creating your tRPC API you should refer to the [Quickstart guide](https://trpc.io/docs/quickstart) and [Backend usage docs](https://trpc.io/docs/server/introduction) for tRPC information.
