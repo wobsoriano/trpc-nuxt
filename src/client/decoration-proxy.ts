@@ -30,7 +30,12 @@ function handleUseQuery(client: any, path: string, input: any, options: any) {
 
   const controller = createAbortController(trpc);
 
-  const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input));
+  // Make queryKey a getter so it updates when input changes
+  // This ensures useAsyncData uses the correct cache key for reactive inputs
+  const queryKey = customQueryKey
+    ? (isRefOrGetter(customQueryKey) ? customQueryKey : () => customQueryKey)
+    : () => getQueryKeyInternal(path, toValue(input));
+
   const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch;
 
   return useAsyncData(queryKey, () => client[path].query(toValue(input), {
