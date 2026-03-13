@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- 094d4d2: Bump h3 to 1.15.6
+
 ## 2.0.1
 
 ### Patch Changes
