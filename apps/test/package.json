@@ -19,7 +19,7 @@
     "zod": "catalog:repo"
   },
   "devDependencies": {
-    "@nuxt/test-utils": "^3.19.2",
+    "@nuxt/test-utils": "^4.0.0",
     "@playwright/test": "1.56.1"
   }
 }
