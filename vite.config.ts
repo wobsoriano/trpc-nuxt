@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite-plus'
+import { defineConfig } from 'vite-plus';
 
 export default defineConfig({
   staged: {
@@ -6,14 +6,21 @@ export default defineConfig({
   },
   fmt: {
     singleQuote: true,
-    semi: false,
+    semi: true,
   },
-  lint: { options: { typeAware: true, typeCheck: true } },
+  lint: {
+    plugins: ['import', 'jsdoc', 'vue'],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+  },
   pack: {
     entry: ['src/client/index.ts', 'src/server/index.ts'],
-    format: ['esm'],
     clean: true,
-    external: ['nuxt/app', 'vue', /@trpc\/client/, /@trpc\/server/],
+    deps: {
+      neverBundle: ['nuxt/app', 'vue', /@trpc\/client/, /@trpc\/server/],
+    },
     dts: true,
   },
-})
+});

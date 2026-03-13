@@ -7,7 +7,7 @@ export default defineNuxtPlugin(() => {
   const client = createTRPCNuxtClient<AppRouter>({
     links: [
       splitLink({
-        condition: op => op.type === 'subscription',
+        condition: (op) => op.type === 'subscription',
         true: httpSubscriptionLink({
           url: '/api/trpc',
           transformer: superjson,

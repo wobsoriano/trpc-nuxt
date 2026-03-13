@@ -1,5 +1,3 @@
 import superjson from 'superjson';
 
-export {
-  superjson,
-};
+export { superjson };

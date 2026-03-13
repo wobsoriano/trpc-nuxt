@@ -25,42 +25,38 @@ type ActivityCallback = (activity: Activity) => void;
 const activitySubscribers = new Set<ActivityCallback>();
 
 function emitActivity(activity: Activity) {
-  activitySubscribers.forEach(callback => callback(activity));
+  activitySubscribers.forEach((callback) => callback(activity));
 }
 
 export const todoRouter = router({
   list: publicProcedure.query(() => todos),
 
-  add: publicProcedure
-    .input(z.object({ title: z.string().min(1) }))
-    .mutation(({ input }) => {
-      const todo: Todo = {
-        id: Date.now(),
-        title: input.title,
-        completed: false,
-      };
-      todos.push(todo);
-      emitActivity({ type: 'added', todo });
-      return todo;
-    }),
+  add: publicProcedure.input(z.object({ title: z.string().min(1) })).mutation(({ input }) => {
+    const todo: Todo = {
+      id: Date.now(),
+      title: input.title,
+      completed: false,
+    };
+    todos.push(todo);
+    emitActivity({ type: 'added', todo });
+    return todo;
+  }),
 
-  toggle: publicProcedure
-    .input(z.object({ id: z.number() }))
-    .mutation(({ input }) => {
-      const todo = todos.find(t => t.id === input.id);
-      if (todo) {
-        todo.completed = !todo.completed;
-        emitActivity({ type: 'toggled', todo });
-        return todo;
-      }
-      throw new Error('Todo not found');
-    }),
+  toggle: publicProcedure.input(z.object({ id: z.number() })).mutation(({ input }) => {
+    const todo = todos.find((t) => t.id === input.id);
+    if (todo) {
+      todo.completed = !todo.completed;
+      emitActivity({ type: 'toggled', todo });
+      return todo;
+    }
+    throw new Error('Todo not found');
+  }),
 
   onCounter: publicProcedure.subscription(async function* (opts) {
     let i = 0;
     while (!opts.signal?.aborted) {
       yield { count: i++ };
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 1000));
     }
   }),
 
@@ -72,8 +68,7 @@ export const todoRouter = router({
       if (resolve) {
         resolve(activity);
         resolve = null;
-      }
-      else {
+      } else {
         queue.push(activity);
       }
     };
@@ -82,16 +77,16 @@ export const todoRouter = router({
 
     try {
       while (!opts.signal?.aborted) {
-        const activity = queue.length > 0
-          ? queue.shift()!
-          : await new Promise<Activity>((r) => {
-              resolve = r;
-            });
+        const activity =
+          queue.length > 0
+            ? queue.shift()!
+            : await new Promise<Activity>((r) => {
+                resolve = r;
+              });
 
         yield activity;
       }
-    }
-    finally {
+    } finally {
       activitySubscribers.delete(callback);
     }
   }),

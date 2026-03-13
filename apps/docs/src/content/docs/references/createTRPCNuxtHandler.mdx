@@ -7,12 +7,12 @@ The `createTRPCNuxtHandler` is an adapter that extends the [Fetch / Edge runtime
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { createTRPCNuxtHandler } from 'trpc-nuxt/server'
-import { createTRPCContext } from '~/server/trpc/init'
-import { appRouter } from '~/server/trpc/routers'
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server';
+import { createTRPCContext } from '~/server/trpc/init';
+import { appRouter } from '~/server/trpc/routers';
 
 export default createTRPCNuxtHandler({
   router: appRouter,
   createContext: createTRPCContext,
-})
+});
 ```

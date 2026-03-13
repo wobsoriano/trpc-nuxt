@@ -40,8 +40,7 @@ async function addTodo(payload) {
     await $trpc.addTodo.mutate(payload);
     // Invalidate todos in the background if the mutation succeeded.
     await refreshNuxtData(queryKey);
-  }
-  catch {
+  } catch {
     // Rollback the data if the mutation failed.
     todos.value = previousTodos.value;
   }

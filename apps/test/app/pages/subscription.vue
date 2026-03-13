@@ -25,8 +25,6 @@ function incrementCount() {
     <p>Status: {{ status }}</p>
     <p>Last value: {{ data ?? 'N/A' }}</p>
     <p>Received values: {{ receivedValues.join(', ') }}</p>
-    <button @click="incrementCount">
-      Increment Count
-    </button>
+    <button @click="incrementCount">Increment Count</button>
   </div>
 </template>

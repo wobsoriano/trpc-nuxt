@@ -31,7 +31,13 @@ const subscriptionResult = $client.todo.onActivity.useSubscription(undefined, {
   },
   onData: (activity) => {
     console.log('onData', activity);
-    if (activity && typeof activity === 'object' && 'type' in activity && 'todo' in activity && activity.todo) {
+    if (
+      activity &&
+      typeof activity === 'object' &&
+      'type' in activity &&
+      'todo' in activity &&
+      activity.todo
+    ) {
       activities.value.unshift(activity);
       // Refresh the list when activity happens
       refresh();
@@ -72,9 +78,7 @@ async function handleToggle(id: number) {
   <div class="app">
     <header>
       <h1>tRPC Nuxt Todo</h1>
-      <p class="subtitle">
-        Demonstrating useQuery, useMutation, and useSubscription
-      </p>
+      <p class="subtitle">Demonstrating useQuery, useMutation, and useSubscription</p>
     </header>
 
     <main>
@@ -86,10 +90,8 @@ async function handleToggle(id: number) {
             type="text"
             placeholder="What needs to be done?"
             class="todo-input"
-          >
-          <button type="submit" class="add-button">
-            Add
-          </button>
+          />
+          <button type="submit" class="add-button">Add</button>
         </form>
 
         <ul class="todo-list">
@@ -100,7 +102,7 @@ async function handleToggle(id: number) {
                 :checked="todo.completed"
                 class="todo-checkbox"
                 @change="handleToggle(todo.id)"
-              >
+              />
               <span class="todo-text">{{ todo.title }}</span>
             </label>
           </li>
@@ -113,9 +115,7 @@ async function handleToggle(id: number) {
       <!-- Activity feed sidebar -->
       <aside class="activity-feed">
         <h2>Live Activity</h2>
-        <div v-if="validActivities.length === 0" class="empty-activity">
-          No activity yet...
-        </div>
+        <div v-if="validActivities.length === 0" class="empty-activity">No activity yet...</div>
         <ul v-else class="activity-list">
           <li v-for="(activity, index) in validActivities" :key="index" class="activity-item">
             <span class="badge" :class="activity.type">{{ activity.type }}</span>
@@ -132,7 +132,8 @@ async function handleToggle(id: number) {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: #1f2937;
 }
 
@@ -173,7 +174,9 @@ main {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .todo-form {
@@ -272,7 +275,9 @@ main {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 2rem;
   max-height: calc(100vh - 4rem);

@@ -15,23 +15,23 @@
   "sideEffects": false,
   "exports": {
     "./client": {
-      "types": "./dist/client/index.d.ts",
-      "import": "./dist/client/index.js"
+      "types": "./dist/client/index.d.mts",
+      "import": "./dist/client/index.mjs"
     },
     "./server": {
-      "types": "./dist/server/index.d.ts",
-      "import": "./dist/server/index.js"
+      "types": "./dist/server/index.d.mts",
+      "import": "./dist/server/index.mjs"
     }
   },
   "scripts": {
-    "dev": "vp pack --watch --onSuccess \"pnpm --filter playground dev\"",
+    "dev": "vp pack --watch --onSuccess=\"pnpm --filter playground dev\"",
     "dev:prepare": "pnpm build && nuxt prepare playground",
     "prepublishOnly": "pnpm build",
     "build": "vp pack",
-    "format": "vp format",
+    "format": "vp fmt",
     "lint": "vp lint",
     "lint:fix": "vp lint --fix",
-    "release": "pnpm build && changeset publish",
+    "release": "changeset publish",
     "test": "pnpm --filter test test",
     "prepare": "vp config"
   },

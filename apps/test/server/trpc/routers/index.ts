@@ -8,7 +8,7 @@ type CounterCallback = (value: number) => void;
 const counterSubscribers = new Set<CounterCallback>();
 
 function emitCounter(value: number) {
-  counterSubscribers.forEach(callback => callback(value));
+  counterSubscribers.forEach((callback) => callback(value));
 }
 
 export const appRouter = createTRPCRouter({
@@ -23,17 +23,14 @@ export const appRouter = createTRPCRouter({
         greeting: `Hello ${opts.input.text}`,
       };
     }),
-  getCount: baseProcedure
-    .query(() => {
-      return count;
-    }),
-  setCount: baseProcedure
-    .input(z.number())
-    .mutation(async (opts) => {
-      count = opts.input;
-      emitCounter(count);
-      return count;
-    }),
+  getCount: baseProcedure.query(() => {
+    return count;
+  }),
+  setCount: baseProcedure.input(z.number()).mutation(async (opts) => {
+    count = opts.input;
+    emitCounter(count);
+    return count;
+  }),
   onCountChange: baseProcedure.subscription(async function* (opts) {
     const queue: number[] = [];
     let resolve: ((value: number) => void) | null = null;
@@ -42,8 +39,7 @@ export const appRouter = createTRPCRouter({
       if (resolve) {
         resolve(value);
         resolve = null;
-      }
-      else {
+      } else {
         queue.push(value);
       }
     };
@@ -55,31 +51,28 @@ export const appRouter = createTRPCRouter({
       yield count;
 
       while (!opts.signal?.aborted) {
-        const value = queue.length > 0
-          ? queue.shift()!
-          : await new Promise<number>((r) => {
-              resolve = r;
-            });
+        const value =
+          queue.length > 0
+            ? queue.shift()!
+            : await new Promise<number>((r) => {
+                resolve = r;
+              });
 
         yield value;
       }
-    }
-    finally {
+    } finally {
       counterSubscribers.delete(callback);
     }
   }),
-  getUserId: baseProcedure
-    .query(({ ctx }) => {
-      return ctx.userId;
-    }),
-  postFormData: baseProcedure
-    .input(z.instanceof(FormData))
-    .mutation(({ input }) => {
-      return {
-        firstName: input.get('firstName'),
-        lastName: input.get('lastName'),
-      };
-    }),
+  getUserId: baseProcedure.query(({ ctx }) => {
+    return ctx.userId;
+  }),
+  postFormData: baseProcedure.input(z.instanceof(FormData)).mutation(({ input }) => {
+    return {
+      firstName: input.get('firstName'),
+      lastName: input.get('lastName'),
+    };
+  }),
 });
 
 // export type definition of API

@@ -36,7 +36,10 @@ export default defineConfig({
         },
         {
           tag: 'meta',
-          attrs: { property: 'og:image:alt', content: 'End-to-end typesafe APIs in Nuxt applications.' },
+          attrs: {
+            property: 'og:image:alt',
+            content: 'End-to-end typesafe APIs in Nuxt applications.',
+          },
         },
       ],
       sidebar: [
