@@ -7,10 +7,7 @@ export type Context = Awaited<ReturnType<typeof createContext>>;
  * Creates context for an incoming request
  * @link https://trpc.io/docs/context
  */
-export function createContext(
-  _event: H3Event,
-  _innerOptions?: FetchCreateContextFnOptions,
-) {
+export function createContext(_event: H3Event, _innerOptions?: FetchCreateContextFnOptions) {
   // for API-response caching see https://trpc.io/docs/caching
   // console.log('cookies', parseCookies(event))
 

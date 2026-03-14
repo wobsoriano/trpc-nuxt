@@ -1,8 +1,25 @@
-import type { CreateTRPCClientOptions, OperationContext, TRPCClientError, TRPCClientErrorLike, TRPCProcedureOptions, TRPCRequestOptions } from '@trpc/client';
+import type {
+  CreateTRPCClientOptions,
+  OperationContext,
+  TRPCClientError,
+  TRPCClientErrorLike,
+  TRPCProcedureOptions,
+  TRPCRequestOptions,
+} from '@trpc/client';
 import type { TRPCConnectionState } from '@trpc/client/unstable-internals';
-import type { AnyTRPCProcedure, AnyTRPCRootTypes, AnyTRPCRouter, inferProcedureInput, inferTransformedProcedureOutput, TRPCProcedureType } from '@trpc/server';
+import type {
+  AnyTRPCProcedure,
+  AnyTRPCRootTypes,
+  AnyTRPCRouter,
+  inferProcedureInput,
+  inferTransformedProcedureOutput,
+  TRPCProcedureType,
+} from '@trpc/server';
 import type { Unsubscribable } from '@trpc/server/observable';
-import type { inferAsyncIterableYield, RouterRecord } from '@trpc/server/unstable-core-do-not-import';
+import type {
+  inferAsyncIterableYield,
+  RouterRecord,
+} from '@trpc/server/unstable-core-do-not-import';
 
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type { MaybeRefOrGetter, Ref, ShallowRef, UnwrapRef } from 'vue';
@@ -30,10 +47,8 @@ interface TRPCSubscriptionObserver<TValue, TError> {
 
 type SubscriptionResolver<TDef extends ResolverDef> = (
   input: TDef['input'],
-  opts?: Partial<
-    TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>
-  >
-  & TRPCProcedureOptions,
+  opts?: Partial<TRPCSubscriptionObserver<TDef['output'], TRPCClientError<TDef>>> &
+    TRPCProcedureOptions,
 ) => Unsubscribable;
 
 type SubscriptionStatus = 'idle' | 'connecting' | 'pending' | 'error';
@@ -71,14 +86,8 @@ export interface DecoratedSubscription<TDef extends ResolverDef> {
    */
   useSubscription: (
     input: MaybeRefOrGetter<TDef['input']>,
-    opts?: UseSubscriptionOptions<
-      inferAsyncIterableYield<TDef['output']>,
-      TRPCClientError<TDef>
-    >,
-  ) => UseSubscriptionReturn<
-    inferAsyncIterableYield<TDef['output']>,
-    TRPCClientError<TDef>
-  >;
+    opts?: UseSubscriptionOptions<inferAsyncIterableYield<TDef['output']>, TRPCClientError<TDef>>,
+  ) => UseSubscriptionReturn<inferAsyncIterableYield<TDef['output']>, TRPCClientError<TDef>>;
   subscribe: SubscriptionResolver<TDef>;
 }
 
@@ -93,23 +102,20 @@ export type DecorateProcedure<
       ? DecoratedSubscription<TDef>
       : never;
 
-export type DecorateRouterRecord<
-  TRoot extends AnyTRPCRootTypes,
-  TRecord extends RouterRecord,
-> = {
+export type DecorateRouterRecord<TRoot extends AnyTRPCRootTypes, TRecord extends RouterRecord> = {
   [TKey in keyof TRecord]: TRecord[TKey] extends infer $Value
     ? $Value extends RouterRecord
       ? DecorateRouterRecord<TRoot, $Value>
       : $Value extends AnyTRPCProcedure
         ? DecorateProcedure<
-          $Value['_def']['type'],
-          {
-            input: inferProcedureInput<$Value>;
-            output: inferTransformedProcedureOutput<TRoot, $Value>;
-            transformer: TRoot['transformer'];
-            errorShape: TRoot['errorShape'];
-          }
-        >
+            $Value['_def']['type'],
+            {
+              input: inferProcedureInput<$Value>;
+              output: inferTransformedProcedureOutput<TRoot, $Value>;
+              transformer: TRoot['transformer'];
+              errorShape: TRoot['errorShape'];
+            }
+          >
         : never
     : never;
 };
@@ -159,7 +165,10 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     PickKeys extends KeysOf<TData> = KeysOf<TData>,
     DefaultT = undefined,
   >(
-    opts?: Omit<AsyncDataOptions<TQueryFnData, TData, PickKeys>, 'lazy' | 'watch' | 'server' | 'immediate'> & {
+    opts?: Omit<
+      AsyncDataOptions<TQueryFnData, TData, PickKeys>,
+      'lazy' | 'watch' | 'server' | 'immediate'
+    > & {
       /**
        * The custom unique key to use.
        * @see https://nuxt.com/docs/4.x/api/composables/use-async-data#params
@@ -171,12 +180,19 @@ export interface DecoratedMutation<TDef extends ResolverDef> {
     /**
      * The function to call to trigger the mutation.
      */
-    mutate: (input: TDef['input'], opts?: AsyncDataExecuteOptions) => Promise<UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>['data']>>;
+    mutate: (
+      input: TDef['input'],
+      opts?: AsyncDataExecuteOptions,
+    ) => Promise<
+      UnwrapRef<AsyncData<PickFrom<TData, PickKeys> | DefaultT, TRPCClientErrorLike<TDef>>['data']>
+    >;
   };
   mutate: Resolver<TDef>;
 }
 
-export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(opts: CreateTRPCClientOptions<TRouter>) {
+export function createTRPCNuxtClient<TRouter extends AnyTRPCRouter>(
+  opts: CreateTRPCClientOptions<TRouter>,
+) {
   const client = createTRPCUntypedClient<TRouter>(opts);
   const proxy = createTRPCClientProxy<TRouter>(client);
 

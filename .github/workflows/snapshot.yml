@@ -1,32 +1,40 @@
-name: Snapshot
+name: Snapshot Release
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-    name: Build
+  snapshot:
+    name: Publish Snapshot
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          version: 10.26.0
+          node-version: '24'
+          cache: true
+          run-install: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: pnpm
+      - name: Build library
+        run: vp run build:lib
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm build
-
-      - name: Create a snapshot version
+      - name: Publish snapshot package
         id: snapshot
-        run: pnpm dlx pkg-pr-new publish
+        run: vp dlx pkg-pr-new publish

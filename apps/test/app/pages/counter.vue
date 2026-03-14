@@ -12,10 +12,6 @@ async function setCount() {
 
 <template>
   <h1>Count: {{ count }}</h1>
-  <button @click="setCount">
-    Update
-  </button>
-  <NuxtLink to="/get-query-key">
-    Go to query key
-  </NuxtLink>
+  <button @click="setCount">Update</button>
+  <NuxtLink to="/get-query-key"> Go to query key </NuxtLink>
 </template>

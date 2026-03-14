@@ -1,45 +1,38 @@
 {
   "name": "trpc-nuxt",
-  "type": "module",
   "version": "2.0.2",
-  "packageManager": "pnpm@10.26.0",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
-  "license": "MIT",
   "homepage": "https://github.com/wobsoriano/trpc-nuxt#readme",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wobsoriano/trpc-nuxt.git"
   },
-  "sideEffects": false,
-  "exports": {
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "import": "./dist/client/index.js"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "import": "./dist/server/index.js"
-    }
-  },
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=22"
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./client": {
+      "types": "./dist/client/index.d.mts",
+      "import": "./dist/client/index.mjs"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.mts",
+      "import": "./dist/server/index.mjs"
+    }
   },
   "scripts": {
-    "dev": "tsdown --watch --onSuccess \"pnpm --filter playground dev\"",
+    "dev": "vp pack --watch",
     "dev:prepare": "pnpm build && nuxt prepare playground",
     "prepublishOnly": "pnpm build",
-    "build": "tsdown",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "release": "pnpm build && changeset publish",
-    "test": "pnpm --filter test test"
-  },
-  "peerDependencies": {
-    "@trpc/client": "^11.0.0",
-    "@trpc/server": "^11.0.0"
+    "build": "vp pack",
+    "format": "vp fmt",
+    "lint": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "release": "changeset publish",
+    "prepare": "vp config"
   },
   "dependencies": {
     "h3": "^1.15.6",
@@ -47,15 +40,23 @@
     "ohash": "^2.0.11"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.19.0",
     "@changesets/cli": "^2.29.8",
     "@trpc/client": "catalog:trpc",
     "@trpc/server": "catalog:trpc",
-    "astro-eslint-parser": "^1.2.2",
     "eslint": "^9.39.2",
-    "eslint-plugin-astro": "^1.5.0",
     "nuxt": "catalog:repo",
-    "tsdown": "^0.15.12",
-    "typescript": "^5.9.3"
-  }
+    "rolldown": "catalog:repo",
+    "typescript": "^5.9.3",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
+    "vue": "^3.5.30"
+  },
+  "peerDependencies": {
+    "@trpc/client": "^11.0.0",
+    "@trpc/server": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.26.0"
 }

@@ -1,7 +1,7 @@
 {
   "name": "test",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.0.0",
-    "@playwright/test": "1.56.1"
+    "@playwright/test": "1.56.1",
+    "rolldown": "catalog:repo"
   }
 }

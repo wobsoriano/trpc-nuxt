@@ -1,11 +1,15 @@
 import type { AnyTRPCQueryProcedure, DeepPartial, inferProcedureInput } from '@trpc/server';
-import type { DecoratedMutation, DecoratedQuery, DecorateRouterRecord } from './create-trpc-nuxt-client';
+import type {
+  DecoratedMutation,
+  DecoratedQuery,
+  DecorateRouterRecord,
+} from './create-trpc-nuxt-client';
 import { hash } from 'ohash';
 
-type ProcedureOrRouter
-  = | DecoratedMutation<any>
-    | DecoratedQuery<any>
-    | DecorateRouterRecord<any, any>;
+type ProcedureOrRouter =
+  | DecoratedMutation<any>
+  | DecoratedQuery<any>
+  | DecorateRouterRecord<any, any>;
 
 export type GetQueryParams<
   TProcedureOrRouter extends AnyTRPCQueryProcedure,
@@ -15,15 +19,12 @@ export type GetQueryParams<
 /** @internal */
 export type GetQueryProcedureInput<TProcedureInput> = DeepPartial<TProcedureInput> | undefined;
 
-type GetParams<TProcedureOrRouter extends ProcedureOrRouter>
-  = TProcedureOrRouter extends DecoratedQuery<infer $Def>
+type GetParams<TProcedureOrRouter extends ProcedureOrRouter> =
+  TProcedureOrRouter extends DecoratedQuery<infer $Def>
     ? [input?: GetQueryProcedureInput<$Def['input']>]
     : [];
 
-export function getQueryKeyInternal(
-  path: string,
-  input: unknown,
-): string {
+export function getQueryKeyInternal(path: string, input: unknown): string {
   return input === undefined ? path : `${path}-${hash(input || '')}`;
 }
 
@@ -33,8 +34,7 @@ export function getQueryKeyInternal(
  * @param input - input to procedure
  * @see https://trpc-nuxt.pages.dev/guides/mutation-and-revalidation
  */
-export function getQueryKey<TProcedureOrRouter extends ProcedureOrRouter,
->(
+export function getQueryKey<TProcedureOrRouter extends ProcedureOrRouter>(
   procedureOrRouter: TProcedureOrRouter,
   ..._params: GetParams<TProcedureOrRouter>
 ): string {

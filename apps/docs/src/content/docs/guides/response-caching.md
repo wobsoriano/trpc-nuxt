@@ -37,16 +37,19 @@ import { appRouter } from '~/server/trpc/routers';
 
 const caller = appRouter.createCaller({});
 
-export default defineCachedEventHandler(async (event) => {
-  const { name } = getQuery(event);
+export default defineCachedEventHandler(
+  async (event) => {
+    const { name } = getQuery(event);
 
-  const greeting = await caller.greeting({ name });
+    const greeting = await caller.greeting({ name });
 
-  return {
-    greeting
-  };
-}, {
-  swr: true,
-  maxAge: 10
-});
+    return {
+      greeting,
+    };
+  },
+  {
+    swr: true,
+    maxAge: 10,
+  },
+);
 ```

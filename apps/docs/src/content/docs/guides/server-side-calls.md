@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
   const greeting = await caller.greeting({ name });
 
   return {
-    greeting
+    greeting,
   };
 });
 ```
@@ -70,7 +70,7 @@ export default defineEventHandler(async (event) => {
   const post = await caller.post.add(body.post);
 
   return {
-    post
+    post,
   };
 });
 ```

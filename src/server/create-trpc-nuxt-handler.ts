@@ -1,8 +1,9 @@
+import type { AnyTRPCRouter, inferRouterContext } from '@trpc/server';
 import type {
-  AnyTRPCRouter,
-  inferRouterContext,
-} from '@trpc/server';
-import type { FetchCreateContextFn, FetchCreateContextFnOptions, FetchHandlerRequestOptions } from '@trpc/server/adapters/fetch';
+  FetchCreateContextFn,
+  FetchCreateContextFnOptions,
+  FetchHandlerRequestOptions,
+} from '@trpc/server/adapters/fetch';
 import type { H3Event } from 'h3';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { eventHandler } from 'h3';
@@ -11,11 +12,15 @@ import { toWebRequest } from './utils';
 
 type MaybePromise<T> = T | Promise<T>;
 
-type CreateContextFn<TRouter extends AnyTRPCRouter> = (event: H3Event, fetchCreateContextOptions: FetchCreateContextFnOptions) => MaybePromise<inferRouterContext<TRouter>>;
+type CreateContextFn<TRouter extends AnyTRPCRouter> = (
+  event: H3Event,
+  fetchCreateContextOptions: FetchCreateContextFnOptions,
+) => MaybePromise<inferRouterContext<TRouter>>;
 
-type TRPCNuxtHandlerOptions<
-  TRouter extends AnyTRPCRouter,
-> = Omit<FetchHandlerRequestOptions<TRouter>, 'endpoint' | 'req' | 'createContext'> & {
+type TRPCNuxtHandlerOptions<TRouter extends AnyTRPCRouter> = Omit<
+  FetchHandlerRequestOptions<TRouter>,
+  'endpoint' | 'req' | 'createContext'
+> & {
   /**
    * The tRPC API endpoint.
    * @default '/api/trpc'
@@ -28,11 +33,11 @@ type TRPCNuxtHandlerOptions<
   createContext?: CreateContextFn<TRouter>;
 };
 
-export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCNuxtHandlerOptions<TRouter>) {
+export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(
+  opts: TRPCNuxtHandlerOptions<TRouter>,
+) {
   return eventHandler(async (event) => {
-    const createContext: FetchCreateContextFn<TRouter> = async (
-      fetchCreateContextOptions,
-    ) => {
+    const createContext: FetchCreateContextFn<TRouter> = async (fetchCreateContextOptions) => {
       return await opts.createContext?.(event, fetchCreateContextOptions);
     };
 
@@ -45,8 +50,7 @@ export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(opts: TRPCN
     });
 
     // don't return tRPC response when h3 event was already handled (e.g. using sendRedirect() or sendStream())
-    if (event.handled)
-      return;
+    if (event.handled) return;
 
     return httpResponse;
   });

@@ -19,46 +19,59 @@ function createAbortController(trpc: any) {
         controller?.abort?.();
       });
     }
-    controller = typeof AbortController !== 'undefined' ? new AbortController() : {} as AbortController;
+    controller =
+      typeof AbortController !== 'undefined' ? new AbortController() : ({} as AbortController);
   }
 
   return controller;
 }
 
 function handleUseQuery(client: any, path: string, input: any, options: any) {
-  const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = options || {} as any;
+  const { trpc, queryKey: customQueryKey, ...asyncDataOptions } = options || ({} as any);
 
   const controller = createAbortController(trpc);
 
   const queryKey = customQueryKey || getQueryKeyInternal(path, toValue(input));
-  const watch = isRefOrGetter(input) ? [...(asyncDataOptions.watch || []), input] : asyncDataOptions.watch;
+  const watch = isRefOrGetter(input)
+    ? [...(asyncDataOptions.watch || []), input]
+    : asyncDataOptions.watch;
 
-  return useAsyncData(queryKey, () => client[path].query(toValue(input), {
-    signal: controller?.signal,
-    ...trpc,
-  }), {
-    ...asyncDataOptions,
-    watch,
-  });
+  return useAsyncData(
+    queryKey,
+    () =>
+      client[path].query(toValue(input), {
+        signal: controller?.signal,
+        ...trpc,
+      }),
+    {
+      ...asyncDataOptions,
+      watch,
+    },
+  );
 }
 
 function handleUseMutation(client: any, path: string, options: any) {
-  const { trpc, mutationKey: customMutationKey, ...asyncDataOptions } = options || {} as any;
+  const { trpc, mutationKey: customMutationKey, ...asyncDataOptions } = options || ({} as any);
 
   const input = shallowRef(null);
 
   const controller = createAbortController(trpc);
 
   const mutationKey = customMutationKey || getMutationKeyInternal(path);
-  const asyncData = useAsyncData(mutationKey, () => client[path].mutate(toRaw(input.value), {
-    signal: controller?.signal,
-    ...trpc,
-  }), {
-    ...asyncDataOptions,
-    lazy: false,
-    server: false,
-    immediate: false,
-  });
+  const asyncData = useAsyncData(
+    mutationKey,
+    () =>
+      client[path].mutate(toRaw(input.value), {
+        signal: controller?.signal,
+        ...trpc,
+      }),
+    {
+      ...asyncDataOptions,
+      lazy: false,
+      server: false,
+      immediate: false,
+    },
+  );
 
   async function mutate(value: any, opts?: AsyncDataExecuteOptions) {
     input.value = value;
@@ -72,7 +85,16 @@ function handleUseMutation(client: any, path: string, options: any) {
 }
 
 function handleUseSubscription(client: any, path: string, input: any, options: any) {
-  const { enabled, onStarted, onData, onError, onComplete, onConnectionStateChange, onStopped, trpc: trpcOpts } = options || {} as any;
+  const {
+    enabled,
+    onStarted,
+    onData,
+    onError,
+    onComplete,
+    onConnectionStateChange,
+    onStopped,
+    trpc: trpcOpts,
+  } = options || ({} as any);
 
   const status = shallowRef<'idle' | 'connecting' | 'pending' | 'error'>('idle');
   const data = shallowRef<any>(undefined);
@@ -116,14 +138,11 @@ function handleUseSubscription(client: any, path: string, input: any, options: a
         // Update our internal status if needed
         if (state === 'connected' && status.value !== 'pending') {
           status.value = 'pending';
-        }
-        else if (state === 'error' && status.value !== 'error') {
+        } else if (state === 'error' && status.value !== 'error') {
           status.value = 'error';
-        }
-        else if (state === 'idle' && status.value !== 'idle') {
+        } else if (state === 'idle' && status.value !== 'idle') {
           status.value = 'idle';
-        }
-        else if (state === 'connecting' && status.value !== 'connecting') {
+        } else if (state === 'connecting' && status.value !== 'connecting') {
           status.value = 'connecting';
         }
       },
@@ -165,8 +184,7 @@ function handleUseSubscription(client: any, path: string, input: any, options: a
           unsubscribe?.();
           status.value = 'idle';
           onConnectionStateChange?.('idle');
-        }
-        else {
+        } else {
           subscribe();
         }
       },
@@ -181,7 +199,10 @@ function handleUseSubscription(client: any, path: string, input: any, options: a
   return { status, data, error, reset };
 }
 
-export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(name: string | number | symbol, client: TRPCClient<TRouter>) {
+export function createNuxtProxyDecoration<TRouter extends AnyTRPCRouter>(
+  name: string | number | symbol,
+  client: TRPCClient<TRouter>,
+) {
   return createTRPCRecursiveProxy((opts) => {
     const pathCopy = [name, ...opts.path];
     const lastArg = pathCopy.pop()!;

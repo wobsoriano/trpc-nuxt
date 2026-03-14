@@ -5,40 +5,38 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
 jobs:
-  release:
-    permissions:
-      contents: write # to create release (changesets/action)
-      pull-requests: write # to create pull request (changesets/action)
-      id-token: write # allows GitHub Actions to generate OIDC tokens
-    name: Release
+  publish:
+    name: Publish Release
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
-          version: 10.26.0
+          node-version: '24'
+          cache: true
+          run-install: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: pnpm
-          registry-url: https://registry.npmjs.org
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create release PR or publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
+          publish: vp run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

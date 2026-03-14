@@ -1,10 +1,10 @@
-import type { HTTPBatchLinkOptions as _HTTPBatchLinkOptions, HTTPLinkOptions as _HTTPLinkOptions } from '@trpc/client';
+import type {
+  HTTPBatchLinkOptions as _HTTPBatchLinkOptions,
+  HTTPLinkOptions as _HTTPLinkOptions,
+} from '@trpc/client';
 import type { AnyTRPCRouter } from '@trpc/server';
 import type { FetchError, FetchOptions } from 'ofetch';
-import {
-  httpBatchLink as _httpBatchLink,
-  httpLink as _httpLink,
-} from '@trpc/client';
+import { httpBatchLink as _httpBatchLink, httpLink as _httpLink } from '@trpc/client';
 import { useRequestHeaders } from 'nuxt/app';
 import { defaultEndpoint } from '../shared';
 
@@ -18,18 +18,24 @@ type FetchEsque = (
 ) => Promise<Response>;
 
 function createCustomFetch(fetchOptions?: FetchOptions) {
-  return async function customFetch(input: RequestInfo | URL, init?: RequestInit & { method: 'GET' }) {
-    return globalThis.$fetch.create(fetchOptions ?? {}).raw(input.toString(), init).catch((e) => {
-      if (isFetchError(e) && e.response) {
-        return e.response;
-      }
-      throw e;
-    }).then(response => ({
-      ...response,
-      headers: response.headers,
-      json: () => Promise.resolve(response._data),
-    }
-    ));
+  return async function customFetch(
+    input: RequestInfo | URL,
+    init?: RequestInit & { method: 'GET' },
+  ) {
+    return globalThis.$fetch
+      .create(fetchOptions ?? {})
+      .raw(input.toString(), init)
+      .catch((e) => {
+        if (isFetchError(e) && e.response) {
+          return e.response;
+        }
+        throw e;
+      })
+      .then((response) => ({
+        ...response,
+        headers: response.headers,
+        json: () => Promise.resolve(response._data),
+      }));
   } as FetchEsque;
 }
 
@@ -46,8 +52,10 @@ interface DefaultLinkOptionsParams {
   fetchOptions?: FetchOptions;
 }
 
-export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<TRouter['_def']['_config']['$types']>
-  & DefaultLinkOptionsParams;
+export type HTTPLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPLinkOptions<
+  TRouter['_def']['_config']['$types']
+> &
+  DefaultLinkOptionsParams;
 
 function createDefaultLinkOptions(params: DefaultLinkOptionsParams) {
   // @ts-expect-error: Default to undefined to get all request headers
@@ -73,15 +81,22 @@ function createDefaultLinkOptions(params: DefaultLinkOptionsParams) {
  *
  * @see https://nuxt.com/docs/api/utils/dollarfetch
  */
-export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(opts?: HTTPLinkOptions<TRouter>) {
+export function httpLink<TRouter extends AnyTRPCRouter = AnyTRPCRouter>(
+  opts?: HTTPLinkOptions<TRouter>,
+) {
   return _httpLink({
-    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
+    ...createDefaultLinkOptions({
+      pickHeaders: opts?.pickHeaders,
+      fetchOptions: opts?.fetchOptions,
+    }),
     ...opts,
   });
 }
 
-export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<TRouter['_def']['_config']['$types']>
-  & DefaultLinkOptionsParams;
+export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLinkOptions<
+  TRouter['_def']['_config']['$types']
+> &
+  DefaultLinkOptionsParams;
 
 /**
  * This is a convenience wrapper around the original httpBatchLink
@@ -96,7 +111,10 @@ export type HttpBatchLinkOptions<TRouter extends AnyTRPCRouter> = _HTTPBatchLink
  */
 export function httpBatchLink<TRouter extends AnyTRPCRouter>(opts?: HttpBatchLinkOptions<TRouter>) {
   return _httpBatchLink({
-    ...createDefaultLinkOptions({ pickHeaders: opts?.pickHeaders, fetchOptions: opts?.fetchOptions }),
+    ...createDefaultLinkOptions({
+      pickHeaders: opts?.pickHeaders,
+      fetchOptions: opts?.fetchOptions,
+    }),
     ...opts,
   });
 }

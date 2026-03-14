@@ -17,7 +17,8 @@
     "zod": "catalog:repo"
   },
   "devDependencies": {
-    "@types/node": "20.12.12",
-    "nuxt": "catalog:repo"
+    "@types/node": "22.12.0",
+    "nuxt": "catalog:repo",
+    "rolldown": "catalog:repo"
   }
 }
