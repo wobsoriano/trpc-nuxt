@@ -1,7 +1,6 @@
 import starlight from '@astrojs/starlight';
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import starlightThemeFlexoki from 'starlight-theme-flexoki';
 
 const site = 'https://trpc-nuxt.pages.dev';

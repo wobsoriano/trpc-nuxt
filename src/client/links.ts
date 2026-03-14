@@ -2,10 +2,11 @@ import type {
   HTTPBatchLinkOptions as _HTTPBatchLinkOptions,
   HTTPLinkOptions as _HTTPLinkOptions,
 } from '@trpc/client';
-import type { AnyTRPCRouter } from '@trpc/server';
-import type { FetchError, FetchOptions } from 'ofetch';
 import { httpBatchLink as _httpBatchLink, httpLink as _httpLink } from '@trpc/client';
+import type { AnyTRPCRouter } from '@trpc/server';
 import { useRequestHeaders } from 'nuxt/app';
+import type { FetchError, FetchOptions } from 'ofetch';
+
 import { defaultEndpoint } from '../shared';
 
 function isFetchError(error: unknown): error is FetchError {

@@ -1,10 +1,11 @@
 import type { AnyTRPCQueryProcedure, DeepPartial, inferProcedureInput } from '@trpc/server';
+import { hash } from 'ohash';
+
 import type {
   DecoratedMutation,
   DecoratedQuery,
   DecorateRouterRecord,
 } from './create-trpc-nuxt-client';
-import { hash } from 'ohash';
 
 type ProcedureOrRouter =
   | DecoratedMutation<any>

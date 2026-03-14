@@ -1,4 +1,5 @@
 import { createTRPCNuxtHandler } from 'trpc-nuxt/server';
+
 import { createTRPCContext } from '../../trpc/init';
 import { appRouter } from '../../trpc/routers';
 

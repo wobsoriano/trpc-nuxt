@@ -1,5 +1,5 @@
-import type { H3Event } from 'h3';
 import { initTRPC } from '@trpc/server';
+import type { H3Event } from 'h3';
 import { superjson } from '~/shared/superjson';
 
 export async function createTRPCContext(event: H3Event) {

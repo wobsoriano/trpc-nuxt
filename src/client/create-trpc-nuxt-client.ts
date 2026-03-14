@@ -6,6 +6,7 @@ import type {
   TRPCProcedureOptions,
   TRPCRequestOptions,
 } from '@trpc/client';
+import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
 import type { TRPCConnectionState } from '@trpc/client/unstable-internals';
 import type {
   AnyTRPCProcedure,
@@ -15,18 +16,17 @@ import type {
   inferTransformedProcedureOutput,
   TRPCProcedureType,
 } from '@trpc/server';
+import { createTRPCFlatProxy } from '@trpc/server';
 import type { Unsubscribable } from '@trpc/server/observable';
 import type {
   inferAsyncIterableYield,
   RouterRecord,
 } from '@trpc/server/unstable-core-do-not-import';
-
 import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type { MaybeRefOrGetter, Ref, ShallowRef, UnwrapRef } from 'vue';
-import type { AsyncDataExecuteOptions, KeysOf, PickFrom } from './nuxt-types';
-import { createTRPCClientProxy, createTRPCUntypedClient } from '@trpc/client';
-import { createTRPCFlatProxy } from '@trpc/server';
+
 import { createNuxtProxyDecoration } from './decoration-proxy';
+import type { AsyncDataExecuteOptions, KeysOf, PickFrom } from './nuxt-types';
 
 interface ResolverDef {
   input: any;
