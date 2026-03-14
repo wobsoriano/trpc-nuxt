@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "dev": "vp pack --watch --onSuccess=\"pnpm --filter playground dev\"",
+    "dev": "vp pack --watch",
     "dev:prepare": "pnpm build && nuxt prepare playground",
     "prepublishOnly": "pnpm build",
     "build": "vp pack",
