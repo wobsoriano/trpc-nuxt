@@ -16,7 +16,7 @@ export default defineConfig({
     },
   },
   pack: {
-    entry: ['src/client/index.ts', 'src/server/index.ts'],
+    entry: ['./src/client/index.ts', './src/server/index.ts'],
     clean: true,
     deps: {
       neverBundle: ['nuxt/app', 'vue', /@trpc\/client/, /@trpc\/server/],

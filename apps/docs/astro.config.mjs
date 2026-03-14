@@ -17,9 +17,13 @@ export default defineConfig({
       // },
       plugins: [starlightThemeFlexoki()],
       title: 'tRPC Nuxt',
-      social: {
-        github: 'https://github.com/wobsoriano/trpc-nuxt',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/wobsoriano/trpc-nuxt',
+        },
+      ],
       // lastUpdated: true,
       editLink: {
         baseUrl: 'https://github.com/wobsoriano/trpc-nuxt/edit/main/apps/docs/',
