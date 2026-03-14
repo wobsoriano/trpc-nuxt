@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
@@ -13,22 +16,24 @@ permissions:
   id-token: write
 
 jobs:
-  release:
-    name: Release
+  publish:
+    name: Publish Release
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-      - uses: voidzero-dev/setup-vp@v1
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
           node-version: '24'
           cache: true
           run-install: true
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create release PR or publish to npm
         id: changesets
         uses: changesets/action@v1
         with:

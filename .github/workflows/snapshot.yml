@@ -1,6 +1,11 @@
-name: Snapshot
+name: Snapshot Release
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
@@ -10,23 +15,26 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build
+  snapshot:
+    name: Publish Snapshot
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: voidzero-dev/setup-vp@v1
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
           node-version: '24'
           cache: true
           run-install: true
 
-      - name: Build
+      - name: Build library
         run: vp run build:lib
 
-      - name: Create a snapshot version
+      - name: Publish snapshot package
         id: snapshot
         run: vp dlx pkg-pr-new publish

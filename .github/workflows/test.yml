@@ -1,10 +1,15 @@
-name: Test
+name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
@@ -14,23 +19,27 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  e2e:
+    name: Library and E2E
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - uses: voidzero-dev/setup-vp@v1
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
         with:
           node-version: '24'
           cache: true
           run-install: true
 
-      - name: Build module
+      - name: Build library
         run: vp run build:lib
 
       - name: Install Playwright browsers
+        working-directory: apps/test
         run: vp exec playwright install --with-deps
 
-      - name: Run tests
+      - name: Run e2e tests
         run: vp run test
