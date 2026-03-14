@@ -4,6 +4,7 @@ packages:
 catalogs:
   repo:
     nuxt: 4.4.2
+    rolldown: 1.0.0-rc.9
     superjson: ^2.2.6
     zod: ^3.25.76
   trpc:
@@ -19,6 +20,7 @@ catalog:
   vitest: npm:@voidzero-dev/vite-plus-test@latest
   vite-plus: latest
 overrides:
+  rolldown: 1.0.0-rc.9
   vite: 'catalog:'
   vitest: 'catalog:'
 peerDependencyRules:

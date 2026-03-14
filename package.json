@@ -46,6 +46,7 @@
     "@trpc/server": "catalog:trpc",
     "eslint": "^9.39.2",
     "nuxt": "catalog:repo",
+    "rolldown": "catalog:repo",
     "typescript": "^5.9.3",
     "vite": "catalog:",
     "vite-plus": "catalog:"
