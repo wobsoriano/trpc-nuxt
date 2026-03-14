@@ -32,7 +32,6 @@
     "lint": "vp lint",
     "lint:fix": "vp lint --fix",
     "release": "changeset publish",
-    "test": "pnpm --filter test test",
     "prepare": "vp config"
   },
   "dependencies": {
