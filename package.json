@@ -48,14 +48,12 @@
     "rolldown": "catalog:repo",
     "typescript": "^5.9.3",
     "vite": "catalog:",
-    "vite-plus": "catalog:"
+    "vite-plus": "catalog:",
+    "vue": "^3.5.30"
   },
   "peerDependencies": {
     "@trpc/client": "^11.0.0",
     "@trpc/server": "^11.0.0"
-  },
-  "overrides": {
-    "vite": "^7.3.1"
   },
   "engines": {
     "node": ">=22"
