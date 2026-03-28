@@ -21,6 +21,17 @@ For detailed setup and usage instructions, please visit the [documentation](http
 
 Special thanks to [@therealokoro\_\_](https://x.com/therealokoro__) for his work on the logo ❤️
 
+## Skill Installation
+
+To install the trpc-nuxt skill for use with AI agents, run:
+
+```bash
+npx skills add wobsoriano/trpc-nuxt
+bunx skills add wobsoriano/trpc-nuxt
+```
+
+This will make the trpc-nuxt skill available for use in your projects.
+
 ## License
 
 MIT
