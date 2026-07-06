@@ -1,4 +1,4 @@
-import type { AsyncData, AsyncDataOptions } from '#imports';
+import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type {
   CreateTRPCClientOptions,
   OperationContext,
