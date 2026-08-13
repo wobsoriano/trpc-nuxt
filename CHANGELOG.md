@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.2
+
+### Patch Changes
+
+- 8123d24: Fix `useQuery` / `useMutation` return types collapsing to `any` (regression in 2.1.0).
+
 ## 2.1.1
 
 ### Patch Changes
