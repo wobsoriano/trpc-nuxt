@@ -67,7 +67,7 @@ export default defineConfig({
         command: 'vp test',
         cwd: 'apps/test',
         dependsOn: ['build:lib'],
-        // vitest writes its run cache under node_modules/.vite
+        // vp test writes its run cache under node_modules/.vite
         input: [{ auto: true }, '!apps/test/.nuxt/**', '!apps/test/node_modules/**'],
       },
       'build:playground': {

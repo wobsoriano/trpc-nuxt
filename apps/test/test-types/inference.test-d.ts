@@ -2,7 +2,7 @@
 // @see https://github.com/wobsoriano/trpc-nuxt/issues/255
 
 import { createTRPCNuxtClient } from 'trpc-nuxt/client';
-import { assertType, describe, expectTypeOf, test } from 'vitest';
+import { assertType, describe, expectTypeOf, test } from 'vite-plus/test';
 
 import type { AppRouter } from '../server/trpc/routers';
 
