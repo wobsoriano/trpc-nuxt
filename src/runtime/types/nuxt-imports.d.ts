@@ -1,6 +1,7 @@
+// Values only. Nuxt generates `#imports` from auto-import registrations, so a type
+// imported through it resolves to nothing in a consumer's project.
+// @see https://github.com/wobsoriano/trpc-nuxt/issues/255
 declare module '#imports' {
-  export type H3Event = import('h3').H3Event;
-  export type { AsyncData, AsyncDataOptions } from 'nuxt/app';
   export const useAsyncData: typeof import('nuxt/app').useAsyncData;
   export const useRequestHeaders: typeof import('nuxt/app').useRequestHeaders;
   export const eventHandler: typeof import('h3').eventHandler;

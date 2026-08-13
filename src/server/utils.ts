@@ -1,5 +1,5 @@
 import { getRequestURL, getRequestWebStream } from '#imports';
-import type { H3Event } from '#imports';
+import type { H3Event } from 'h3';
 
 export function toWebRequest(event: H3Event): Request {
   // TODO: Prepare for h3 v2 https://github.com/h3js/h3/blob/main/MIGRATION.md#web-standards

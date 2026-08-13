@@ -63,6 +63,13 @@ export default defineConfig({
           '!apps/test/playwright-report/**',
         ],
       },
+      'test:types': {
+        command: 'vp test',
+        cwd: 'apps/test',
+        dependsOn: ['build:lib'],
+        // vitest writes its run cache under node_modules/.vite
+        input: [{ auto: true }, '!apps/test/.nuxt/**', '!apps/test/node_modules/**'],
+      },
       'build:playground': {
         command: 'vp exec nuxi build',
         cwd: 'apps/playground',
