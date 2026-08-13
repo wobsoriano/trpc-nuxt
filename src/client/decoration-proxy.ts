@@ -1,5 +1,5 @@
 import { useAsyncData } from '#imports';
-import type { AsyncDataOptions } from '#imports';
+import type { AsyncDataOptions } from 'nuxt/app';
 import type { TRPCClient, TRPCRequestOptions } from '@trpc/client';
 import type { TRPCConnectionState } from '@trpc/client/unstable-internals';
 import type { AnyTRPCRouter } from '@trpc/server';
