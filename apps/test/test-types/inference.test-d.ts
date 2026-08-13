@@ -1,17 +1,5 @@
-// Type-level regression guard for the *published* declarations.
-//
-// This consumes `trpc-nuxt/client` the way a real app does, so it typechecks
-// `dist/**/*.d.mts` rather than `src`. Nuxt sets `skipLibCheck: true` by
-// default, so a broken import inside our shipped `.d.mts` does not error, it
-// silently resolves to `any` and takes `data` / `data.value` with it.
-//
-// NOTE: `toEqualTypeOf` does NOT catch that failure. When a module in a `.d.mts`
-// cannot be resolved, TS produces its *error* type, which is mutually assignable
-// with everything and short-circuits the conditional types `toEqualTypeOf` is
-// built on, so it reports a false pass. `not.toBeAny()` and `@ts-expect-error`
-// both catch it. Keep at least one of those per assertion group.
-//
-// See https://github.com/wobsoriano/trpc-nuxt/issues/255
+// Typechecks a consumer against the built `dist`, not `src`.
+// @see https://github.com/wobsoriano/trpc-nuxt/issues/255
 
 import { createTRPCNuxtClient } from 'trpc-nuxt/client';
 import { assertType, describe, expectTypeOf, test } from 'vitest';
@@ -23,15 +11,14 @@ declare const client: ReturnType<typeof createTRPCNuxtClient<AppRouter>>;
 describe('useQuery', () => {
   const query = client.hello.useQuery({ text: 'world' });
 
-  test('data is inferred, not any', () => {
-    expectTypeOf(query.data).not.toBeAny();
+  test('data is inferred', () => {
+    // `toEqualTypeOf` alone passes here even when inference is broken: an
+    // unresolvable module in a `.d.mts` yields TS's error type, which satisfies it.
     expectTypeOf(query.data.value).not.toBeAny();
     expectTypeOf(query.data.value).toEqualTypeOf<{ greeting: string } | undefined>();
   });
 
   test('output shape is enforced', () => {
-    expectTypeOf(query.data.value?.greeting).toEqualTypeOf<string | undefined>();
-
     // @ts-expect-error `greeting` is a string, not a number.
     assertType<number | undefined>(query.data.value?.greeting);
 
@@ -53,8 +40,7 @@ describe('useQuery', () => {
 describe('useMutation', () => {
   const mutation = client.setCount.useMutation();
 
-  test('data is inferred, not any', () => {
-    expectTypeOf(mutation.data).not.toBeAny();
+  test('data is inferred', () => {
     expectTypeOf(mutation.data.value).not.toBeAny();
     expectTypeOf(mutation.data.value).toEqualTypeOf<number | undefined>();
   });

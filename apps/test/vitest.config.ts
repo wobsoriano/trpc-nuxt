@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    // Playwright owns the runtime e2e suite, so this project is type tests only.
+    // playwright owns the runtime suite, this project is type tests only
     include: [],
     typecheck: {
       enabled: true,
