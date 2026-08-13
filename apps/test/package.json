@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:types": "vp test"
   },
   "dependencies": {
     "@trpc/client": "catalog:trpc",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.0.3",
-    "@playwright/test": "1.60.0"
+    "@playwright/test": "1.60.0",
+    "vitest": "catalog:"
   }
 }

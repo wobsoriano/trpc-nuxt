@@ -1,4 +1,3 @@
-import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type {
   CreateTRPCClientOptions,
   OperationContext,
@@ -24,6 +23,7 @@ import type {
   inferAsyncIterableYield,
   RouterRecord,
 } from '@trpc/server/unstable-core-do-not-import';
+import type { AsyncData, AsyncDataOptions } from 'nuxt/app';
 import type { MaybeRefOrGetter, Ref, ShallowRef, UnwrapRef } from 'vue';
 
 import { createNuxtProxyDecoration } from './decoration-proxy';

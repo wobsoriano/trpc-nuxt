@@ -37,6 +37,9 @@ jobs:
       - name: Build library
         run: vp run build:lib
 
+      - name: Typecheck published declarations
+        run: vp run test:types
+
       - name: Install Playwright browsers
         working-directory: apps/test
         run: vp exec playwright install --with-deps

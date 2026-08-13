@@ -63,6 +63,16 @@ export default defineConfig({
           '!apps/test/playwright-report/**',
         ],
       },
+      // Typechecks a consumer against the built `dist`, not `src`. Guards
+      // against shipped declarations that resolve to `any` downstream (#255).
+      'test:types': {
+        command: 'vp test',
+        cwd: 'apps/test',
+        dependsOn: ['build:lib'],
+        // Vitest writes its run cache under `node_modules/.vite`, which would
+        // otherwise invalidate this task on every run.
+        input: [{ auto: true }, '!apps/test/.nuxt/**', '!apps/test/node_modules/**'],
+      },
       'build:playground': {
         command: 'vp exec nuxi build',
         cwd: 'apps/playground',
