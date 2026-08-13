@@ -1,6 +1,6 @@
 {
   "name": "trpc-nuxt",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "End-to-end typesafe APIs in Nuxt applications.",
   "homepage": "https://github.com/wobsoriano/trpc-nuxt#readme",
   "license": "MIT",
