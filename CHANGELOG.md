@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.3
+
+### Patch Changes
+
+- a394c9a: Keep h3 external in the Nitro build so that Nitro's H3Event augmentation applies correctly ([#261](https://github.com/wobsoriano/trpc-nuxt/pull/261)). Previously, h3's H3Event was being inlined instead of imported, causing type checking failures when typing `createContext` against h3 (missing properties on H3Event).
+
 ## 2.1.2
 
 ### Patch Changes
@@ -37,10 +43,12 @@
 - 5f753be: This release makes `trpc-nuxt` Nuxt 4 first while maintaining backward compatibility with Nuxt 3. The minimum Node.js version is now 22 (previously 20).
 
   **Breaking changes:**
+
   - Minimum Node.js version is now 22 (previously 20)
   - Nuxt 4 is now the primary target (Nuxt 3 remains supported)
 
   **Migration:**
+
   - Update to Node.js 22 or higher
   - For new projects, use Nuxt 4.x for the best experience
 
