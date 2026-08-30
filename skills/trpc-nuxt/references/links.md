@@ -1,0 +1,18 @@
+
+The links exported by `trpc-nuxt/client` are convenience wrapper around the tRPC's [links](https://trpc.io/docs/client/links) that replaces regular `fetch` with [`$fetch`](https://nuxt.com/docs/api/utils/dollarfetch) from Nuxt, sets a default url (`/api/trpc`), and sets the default headers using [`useRequestHeaders`](https://nuxt.com/docs/api/composables/use-request-headers#userequestheaders).
+
+```ts
+// plugins/trpc.ts
+import { createTRPCNuxtClient, httpLink } from 'trpc-nuxt/client';
+import type { AppRouter } from '~/server/trpc/routers';
+
+const client = createTRPCNuxtClient<AppRouter>({
+  links: [
+    httpLink({
+      // Select headers to pass to `useRequestHeaders`.
+      // By default, `useRequestHeaders()` returns all headers.
+      pickHeaders: ['authorization'],
+    }),
+  ],
+});
+```
