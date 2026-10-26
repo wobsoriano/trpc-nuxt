@@ -50,36 +50,46 @@ export default defineConfig({
     tasks: {
       'build:lib': {
         command: 'vp pack',
-        input: [{ auto: true }, '!dist/**'],
+        cache: {
+          input: [{ auto: true }, '!dist/**'],
+        },
       },
       test: {
         command: 'vp exec playwright test',
         cwd: 'apps/test',
         dependsOn: ['build:lib'],
-        input: [
-          { auto: true },
-          '!apps/test/.nuxt/**',
-          '!apps/test/test-results/**',
-          '!apps/test/playwright-report/**',
-        ],
+        cache: {
+          input: [
+            { auto: true },
+            '!apps/test/.nuxt/**',
+            '!apps/test/test-results/**',
+            '!apps/test/playwright-report/**',
+          ],
+        },
       },
       'test:types': {
         command: 'vp test',
         cwd: 'apps/test',
         dependsOn: ['build:lib'],
-        // vp test writes its run cache under node_modules/.vite
-        input: [{ auto: true }, '!apps/test/.nuxt/**', '!apps/test/node_modules/**'],
+        cache: {
+          // vp test writes its run cache under node_modules/.vite
+          input: [{ auto: true }, '!apps/test/.nuxt/**', '!apps/test/node_modules/**'],
+        },
       },
       'build:playground': {
         command: 'vp exec nuxi build',
         cwd: 'apps/playground',
         dependsOn: ['build:lib'],
-        input: [{ auto: true }, '!apps/playground/.nuxt/**', '!apps/playground/.output/**'],
+        cache: {
+          input: [{ auto: true }, '!apps/playground/.nuxt/**', '!apps/playground/.output/**'],
+        },
       },
       'build:docs': {
         command: 'vp exec astro build',
         cwd: 'apps/docs',
-        input: [{ auto: true }, '!apps/docs/dist/**'],
+        cache: {
+          input: [{ auto: true }, '!apps/docs/dist/**'],
+        },
       },
     },
   },

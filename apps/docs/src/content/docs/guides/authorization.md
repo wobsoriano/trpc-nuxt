@@ -9,6 +9,7 @@ The `createContext` function is called for each incoming request so here you can
 
 ```ts
 import type { H3Event } from 'h3';
+
 import { decodeAndVerifyJwtToken } from './somewhere/in/your/app/utils';
 
 export async function createTRPCContext(event: H3Event) {
