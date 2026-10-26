@@ -5,7 +5,8 @@ import type {
   FetchHandlerRequestOptions,
 } from '@trpc/server/adapters/fetch';
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
-import type { RequestEvent } from 'nuxt/server';
+import type { EventHandler, RequestEvent } from 'nuxt/server';
+import { defineEventHandler } from 'nuxt/server';
 
 import { defaultEndpoint } from '../shared';
 
@@ -20,18 +21,22 @@ type TRPCNuxtHandlerOptions<TRouter extends AnyTRPCRouter> = Omit<
   FetchHandlerRequestOptions<TRouter>,
   'endpoint' | 'req' | 'createContext'
 > & {
+  /**
+   * The tRPC API endpoint.
+   * @default '/api/trpc'
+   */
   endpoint?: string;
+  /**
+   * A function that returns the tRPC context.
+   * @see https://trpc.io/docs/context
+   */
   createContext?: CreateContextFn<TRouter>;
 };
 
 export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(
   opts: TRPCNuxtHandlerOptions<TRouter>,
-): (event: RequestEvent) => Promise<Response | undefined> {
-  return async (event) => {
-    if (!(event.req instanceof Request)) {
-      throw new Error("Default-export defineEventHandler from 'nuxt/server'.");
-    }
-
+): EventHandler<Promise<Response | undefined>> {
+  return defineEventHandler(async (event) => {
     const createContext: FetchCreateContextFn<TRouter> = async (fetchCreateContextOptions) => {
       return await opts.createContext?.(event, fetchCreateContextOptions);
     };
@@ -50,5 +55,5 @@ export function createTRPCNuxtHandler<TRouter extends AnyTRPCRouter>(
     }
 
     return httpResponse;
-  };
+  });
 }

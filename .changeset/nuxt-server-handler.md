@@ -2,4 +2,4 @@
 'trpc-nuxt': minor
 ---
 
-Apps on Nuxt 4.6 can pass the portable request event into `createTRPCNuxtHandler` from `trpc-nuxt/server/nuxt`.
+Apps on Nuxt 4.6 can import `createTRPCNuxtHandler` from `trpc-nuxt/server/portable`, which passes Nuxt's portable `RequestEvent` to `createContext`.

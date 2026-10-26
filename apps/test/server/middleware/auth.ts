@@ -1,14 +1,10 @@
-export default eventHandler((event) => {
+import { defineEventHandler } from 'nuxt/server';
+
+export default defineEventHandler((event) => {
   event.context.auth = {
     userId: 'abc_123',
   };
 });
-
-declare module 'h3' {
-  interface H3EventContext {
-    auth: { userId: string };
-  }
-}
 
 declare module 'nuxt/schema' {
   interface RequestEventContext {

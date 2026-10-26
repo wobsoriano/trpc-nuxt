@@ -22,9 +22,9 @@
       "types": "./dist/server/index.d.mts",
       "import": "./dist/server/index.mjs"
     },
-    "./server/nuxt": {
-      "types": "./dist/server/nuxt.d.mts",
-      "import": "./dist/server/nuxt.mjs"
+    "./server/portable": {
+      "types": "./dist/server/portable.d.mts",
+      "import": "./dist/server/portable.mjs"
     }
   },
   "publishConfig": {

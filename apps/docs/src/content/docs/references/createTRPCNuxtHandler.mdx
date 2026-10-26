@@ -17,19 +17,16 @@ export default createTRPCNuxtHandler({
 });
 ```
 
-On Nuxt 4.6 or later, pass the request event from `nuxt/server`.
+On Nuxt 4.6 or later, import from `trpc-nuxt/server/portable`. Its `createContext` receives Nuxt's `RequestEvent` from `nuxt/server` instead of h3's `H3Event`.
 
 ```ts
 // server/api/trpc/[trpc].ts
-import { defineEventHandler } from 'nuxt/server';
-import { createTRPCNuxtHandler } from 'trpc-nuxt/server/nuxt';
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server/portable';
 import { createTRPCContext } from '~/server/trpc/init';
 import { appRouter } from '~/server/trpc/routers';
 
-export default defineEventHandler(
-  createTRPCNuxtHandler({
-    router: appRouter,
-    createContext: createTRPCContext,
-  }),
-);
+export default createTRPCNuxtHandler({
+  router: appRouter,
+  createContext: createTRPCContext,
+});
 ```
