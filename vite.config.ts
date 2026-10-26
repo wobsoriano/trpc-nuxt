@@ -35,7 +35,7 @@ export default defineConfig({
     },
   },
   pack: {
-    entry: ['./src/client/index.ts', './src/server/index.ts', './src/server/portable.ts'],
+    entry: ['./src/client/index.ts', './src/server/index.ts', './src/server/future.ts'],
     clean: true,
     deps: {
       neverBundle: [

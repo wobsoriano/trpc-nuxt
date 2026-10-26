@@ -22,9 +22,9 @@
       "types": "./dist/server/index.d.mts",
       "import": "./dist/server/index.mjs"
     },
-    "./server/portable": {
-      "types": "./dist/server/portable.d.mts",
-      "import": "./dist/server/portable.mjs"
+    "./server/future": {
+      "types": "./dist/server/future.d.mts",
+      "import": "./dist/server/future.mjs"
     }
   },
   "publishConfig": {

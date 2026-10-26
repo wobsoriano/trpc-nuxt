@@ -1,4 +1,4 @@
-import { createTRPCNuxtHandler } from 'trpc-nuxt/server/portable';
+import { createTRPCNuxtHandler } from 'trpc-nuxt/server/future';
 
 import { createTRPCContext } from '../../trpc/init';
 import { appRouter } from '../../trpc/routers';
