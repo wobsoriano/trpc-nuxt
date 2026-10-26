@@ -1,4 +1,5 @@
 import { expect, test } from '@nuxt/test-utils/playwright';
+import type { APIRequestContext } from '@playwright/test';
 
 test('basic', async ({ page, goto }) => {
   await goto('/', { waitUntil: 'hydration' });
@@ -50,4 +51,39 @@ test('subscription', async ({ page, goto }) => {
   // Should receive the new value (2)
   await expect(page.getByText('Last value: 2')).toBeVisible({ timeout: 5000 });
   await expect(page.getByText(/Received values:.*2/)).toBeVisible();
+});
+
+async function h3Query(request: APIRequestContext, path: string, input?: unknown) {
+  const search =
+    input === undefined ? '' : `?input=${encodeURIComponent(JSON.stringify({ json: input }))}`;
+  const response = await request.get(`/api/trpc-h3/${path}${search}`);
+  expect(response.ok()).toBe(true);
+  return (await response.json()).result.data.json;
+}
+
+async function h3Mutation(request: APIRequestContext, path: string, input: unknown) {
+  const response = await request.post(`/api/trpc-h3/${path}`, { data: { json: input } });
+  expect(response.ok()).toBe(true);
+  return (await response.json()).result.data.json;
+}
+
+test('trpc-nuxt/server handler: query', async ({ request }) => {
+  expect(await h3Query(request, 'hello', { text: 'h3' })).toEqual({ greeting: 'Hello h3' });
+});
+
+test('trpc-nuxt/server handler: mutation is visible to a later query', async ({ request }) => {
+  const previous = await h3Query(request, 'getCount');
+  const next = previous + 40;
+
+  expect(await h3Mutation(request, 'setCount', next)).toBe(next);
+  expect(await h3Query(request, 'getCount')).toBe(next);
+
+  await h3Mutation(request, 'setCount', previous);
+  expect(await h3Query(request, 'getCount')).toBe(previous);
+});
+
+test('trpc-nuxt/server handler: context reads event.context set by middleware', async ({
+  request,
+}) => {
+  expect(await h3Query(request, 'getUserId')).toBe('abc_123');
 });
