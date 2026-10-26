@@ -124,6 +124,20 @@ We recommend a file structure like this one, although it is not enforced by tRPC
    });
    ```
 
+   On Nuxt 4.6 or later, import from `trpc-nuxt/server/future`. Its `createContext` receives Nuxt's `RequestEvent` from `nuxt/server` instead of h3's `H3Event`. In the next major release, this handler moves to `trpc-nuxt/server`.
+
+   ```ts
+   // server/api/trpc/[trpc].ts
+   import { createTRPCNuxtHandler } from 'trpc-nuxt/server/future';
+   import { createTRPCContext } from '~/server/trpc/init';
+   import { appRouter } from '~/server/trpc/routers';
+
+   export default createTRPCNuxtHandler({
+     router: appRouter,
+     createContext: createTRPCContext,
+   });
+   ```
+
    </details>
 
 3. ### Create a client plugin

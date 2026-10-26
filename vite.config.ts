@@ -35,10 +35,18 @@ export default defineConfig({
     },
   },
   pack: {
-    entry: ['./src/client/index.ts', './src/server/index.ts'],
+    entry: ['./src/client/index.ts', './src/server/index.ts', './src/server/future.ts'],
     clean: true,
     deps: {
-      neverBundle: ['#imports', 'nuxt/app', 'vue', 'h3', /@trpc\/client/, /@trpc\/server/],
+      neverBundle: [
+        '#imports',
+        'nuxt/app',
+        'nuxt/server',
+        'vue',
+        'h3',
+        /@trpc\/client/,
+        /@trpc\/server/,
+      ],
     },
     dts: true,
   },

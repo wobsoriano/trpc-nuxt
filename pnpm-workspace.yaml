@@ -3,7 +3,7 @@ packages:
   - apps/*
 catalogs:
   repo:
-    nuxt: 4.4.5
+    nuxt: 4.6.2
     superjson: ^2.2.6
     zod: ^3.25.76
   trpc:
