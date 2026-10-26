@@ -1,8 +1,8 @@
 import { initTRPC } from '@trpc/server';
-import type { H3Event } from 'h3';
+import type { RequestEvent } from 'nuxt/server';
 import { superjson } from '~/shared/superjson';
 
-export async function createTRPCContext(event: H3Event) {
+export async function createTRPCContext(event: RequestEvent) {
   const { userId } = event.context.auth;
   return { userId };
 }

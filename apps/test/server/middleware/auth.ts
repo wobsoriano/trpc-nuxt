@@ -9,3 +9,9 @@ declare module 'h3' {
     auth: { userId: string };
   }
 }
+
+declare module 'nuxt/schema' {
+  interface RequestEventContext {
+    auth: { userId: string };
+  }
+}

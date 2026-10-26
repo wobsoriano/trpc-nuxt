@@ -124,6 +124,23 @@ We recommend a file structure like this one, although it is not enforced by tRPC
    });
    ```
 
+   On Nuxt 4.6 or later, pass the request event from `nuxt/server`.
+
+   ```ts
+   // server/api/trpc/[trpc].ts
+   import { defineEventHandler } from 'nuxt/server';
+   import { createTRPCNuxtHandler } from 'trpc-nuxt/server/nuxt';
+   import { createTRPCContext } from '~/server/trpc/init';
+   import { appRouter } from '~/server/trpc/routers';
+
+   export default defineEventHandler(
+     createTRPCNuxtHandler({
+       router: appRouter,
+       createContext: createTRPCContext,
+     }),
+   );
+   ```
+
    </details>
 
 3. ### Create a client plugin
